@@ -7,6 +7,7 @@
 			</div>
 			<div class="title">
 				<h1>Bid-Well Application</h1>
+				<h2>Greenwell Bank</h2>
 			</div>
 			<div>
 				<ul class="top-nav">

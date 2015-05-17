@@ -1,14 +1,13 @@
-* Google Fonts */
-/*
-@font-face {
-  font-family: "Comfortaa Regular";
-  src: 	url("../fonts/Comfortaa/Comfortaa-Regular.eot");
-  src: 	url("../fonts/Comfortaa/Comfortaa-Regular.eot?#iefix") format("embedded-opentype"), 
-  		url("../fonts/Comfortaa/Comfortaa-Regular.woff") format("woff"), 
-  		url("../fonts/Comfortaa/Comfortaa-Regular.svg#Comfortaa-Regular") format("svg"), 
-  		url("../fonts/Comfortaa/Comfortaa-Regular.ttf") format("truetype"); 
-  	}*/
+/* Google Fonts */
 
+@font-face {
+  font-family: "Didact Gothic";
+  src: 	url("../fonts/DidactGothic/DidactGothic.eot");
+  src: 	url("../fonts/DidactGothic/DidactGothic.eot?#iefix") format("embedded-opentype"), 
+  		url("../fonts/DidactGothic/DidactGothic.woff") format("woff"), 
+  		url("../fonts/DidactGothic/DidactGothic.svg#DidactGothic") format("svg"), 
+  		url("../fonts/DidactGothic/DidactGothic.ttf") format("truetype"); 
+  	}
 
 * 
 {
@@ -20,6 +19,7 @@ body
 	background-color: #387929;
 	color: #333333;
 	font-size: 18px;
+	font-family: "Didact Gothic", Tahoma, sans-serif;
 }
 
 p 
@@ -29,14 +29,14 @@ p
 
 .wrapper 
 {
-	width: 1200px;
-  	margin: 50px auto 0 auto;
+	width: 960px;
+  	margin: 0 auto;
  }
 
 header 
 {
 	width: 100%;
-	height: 100px;
+	height: 150px;
 	background-color: #ffffff;
 }
 
@@ -60,6 +60,9 @@ header
 	text-align: center;
 	padding: 10px 0 0 0;
 	color: #004800;
+}
+.title h1, .title h2 {
+	margin: 5px 0;
 }
 
 .top-nav 
@@ -117,7 +120,7 @@ footer p {
 {
 	width: 100%;
 	margin: 0;
-	padding: 20px 0 0 0;
+	padding: 50px 0;
 	background-color: #90C32E;
 	text-align: center;
 }
@@ -134,49 +137,40 @@ input
 	margin-top: 20px;
 }
 
-.box
-{
-    padding: 20px;
-    display: none;
- }
-
-.division1, .division2
-{ 
-	text-align: center;
-}
-
-input[type=checkbox] 
-{
-display: none;
-}
-
-:checked + div {
-    display: block !important;
-}
-
 img 
 {
 	height: 25px;
 	width: auto;
 }
 
-/* Changed table styles */
+/* Home Page */
+
+#home-tabs {
+	width: 85%;
+	margin: 10px auto 30px auto;
+}
+
+
+/* Table Styles */
 
 table 
 {
-	width: 80%;
+	width: 100%;
+	height: 200px;
+	overflow: scroll;
 	margin: 0 auto;
 	text-align: center;
 	background-color: #ffffff;
 	border-collapse: collapse;
 }
 tr:nth-child(1) { 
-	background-color: #afc486;
+	background-color: #387929;
+	color: #ffffff;
 }
 tr:nth-child(even) {
-	background-color: #d5ebab;
+	background-color: #dcf6ac;
 }
 th, td {
-	padding: 10px;
-	border: 2px solid #ffffff;
+	padding: 10px 5px;
+	border: 5px solid #ffffff;
 }
