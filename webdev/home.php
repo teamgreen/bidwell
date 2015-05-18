@@ -108,8 +108,8 @@
 						</div>
 					</form>
 					<div id="home-form_dashboard">
-						<button id="prev" href="#">Previous</button>
 						<div id="progress-bar"></div>
+						<button id="prev" href="#">Previous</button>
 						<button id="next" href="#">Next</button>
 					</div>
 				</div>
