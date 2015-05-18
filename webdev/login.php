@@ -7,7 +7,7 @@
 </head>
 <body>
 <div class="wrapper">
-	<?php @require_once "includes/header.inc.php"; ?>
+	<?php @require_once "includes/header-login.inc.php"; ?>
 	<div class="content">
 		<h2>Login Page</h2>
 		<form method="post" action="#">
