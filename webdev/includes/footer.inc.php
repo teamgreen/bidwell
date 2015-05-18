@@ -5,5 +5,5 @@
 				<li><a href="#" title="Help">Help</a></li>
 				<li><a href="#" title="Sign out">Sign out</a></li>
 			</ul>
-			<p>Product of Greenwell Bank &copy; 2015</p>
+			<p class="footer_copy">Product of Greenwell Bank &copy; 2015</p>
 		</footer>
