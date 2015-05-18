@@ -5,7 +5,7 @@
 	echo "<div class=\"logo\">\n";
 	echo "<a href=\"#\" title=\"Home\">\n";
 	echo "<img src=\"images/greenwell.jpg\" alt=\"Greenwell Logo\" </a></div>\n";
-	echo "<div class=\"title\">\n;
+	echo "<div class=\"title\">\n";
 	echo "<h1>Bid-Well Application</h1>\n";
 	echo "<h2>Greenwell Bank</h2>\n";
 	echo "</div>\n";
