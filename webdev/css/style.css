@@ -169,6 +169,8 @@ label {
 input[type="text"], select {
 	width: 60%;
 	background-color: #efefef;
+}
+input[type="text"] {
 	border-radius: 10px;
 }
 #home-form_dashboard {
