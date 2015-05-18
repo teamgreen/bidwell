@@ -1,6 +1,7 @@
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> parent of fc9dafc... Revert "Update header.inc.php"
 <?php 
@@ -52,3 +53,24 @@
 >>>>>>> fc9dafc3a84003495abc0403d0d4d6d14bf954f5
 =======
 >>>>>>> parent of fc9dafc... Revert "Update header.inc.php"
+=======
+		<header>  
+			<div class="logo">  
+				<a href="#" title="Home">  
+					<img src="images/greenwell.jpg" alt="Greenwell Logo">  
+				</a>  
+			</div>  
+			<div class="title">  
+				<h1>Bid-Well Application</h1>  
+				<h2>Greenwell Bank</h2>  
+			</div>  
+			<div>  
+				<ul class="top-nav">  
+					<li><a href="#" title="Sign out">Sign out</a></li>  
+					<li><a href="help.php" title="Help">Help</a></li>  
+					<li><a href="about.php" title="About">About</a></li>  
+					<li><a href="#" title="Greenwell">Greenwell</a></li>  
+				</ul>  
+			</div>  
+		</header>  
+>>>>>>> origin/master

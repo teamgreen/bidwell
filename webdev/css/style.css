@@ -168,6 +168,11 @@ label {
 }
 input[type="text"], select {
 	width: 60%;
+	background-color: #efefef;
+	border: 1px solid #dddddd;
+}
+input[type="text"] {
+	border-radius: 10px;
 }
 #home-form_dashboard {
 	width: 80%;
@@ -177,21 +182,19 @@ input[type="text"], select {
 	margin: 0 10px;
 }
 #progress-bar {
-	width: 30%;
+	width: 60%;
+	margin: 40px auto;
 }
 #home-form_dashboard > button {
 	background-color: #b4e753;
 	border: 1px solid #97d423;
+	border-radius: 10px;
+	padding: 5px;
+	margin: 0 20px;
 }
 #home-form_dashboard > button:hover {
 	background-color: #d7f3a1;
 	border: 1px solid #beea68;
-}
-#next {
-	float: left;
-}
-#prev {
-	float: right;
 }
 
 /* Table Styles */
