@@ -69,7 +69,49 @@
 					</table>
 				</div>
 				<div id="tab2">
-					<!-- form elements go here -->
+					<form action="#" method="post" id="home-form">
+						<div class="form-half">
+							<div>
+								<label for="owner">Owner: </label>
+								<input type="text" id="owner" name="owner">
+							</div>
+							<div>
+								<label for="phone">Phone: </label>
+								<input type="text" id="phone" name="phone">
+							</div>
+							<div>
+								<label for="email">Email: </label>
+								<input type="text" id="email" name="email">
+							</div>
+							<div>
+								<label for="address">Address: </label>
+								<input type="text" id="address" name="address">
+							</div>
+						</div>
+						<div class="form-half">
+							<div>
+								<label for="city">City: </label>
+								<input type="text" id="city" name="city">
+							</div>
+							<div>
+								<label for="state">State: </label>
+								<select name="state" id="state">
+									<option value="ca">California</option>
+									<option value="or">Oregon</option>
+									<option value="wa">Washington</option>
+								</select>
+							</div>
+							<div>
+								<label for="zip">Zip: </label>
+								<input type="text" id="zip" name="zip">
+							</div>
+						</div>
+					</form>
+					<div id="home-form_dashboard">
+						<button id="prev" href="#">Previous</button>
+						<div id="progress-bar"></div>
+						<button id="next" href="#">Next</button>
+					</div>
 				</div>
 				<div id="tab3">
 					<table>
