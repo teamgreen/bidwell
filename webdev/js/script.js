@@ -1,9 +1,31 @@
 // This is the script.js file for bid-well
 
-// jQuery UI 
 $(document).ready(function(){
-	$('#home-tabs').tabs(); // tabs for Home Page
+
+	//////////////////////////////////////
+	// jQuery UI Functions
+	// --------------------
+	// Used in the following pages:
+	// home.php
+	// admin.php
+	// Purpose: To provide additional
+	//			visual and functional
+	//			features to the user
+	//			interface with jQuery UI.
+	//////////////////////////////////////
+
+	///////////////////////////
+	// jQuery UI for Home Page:
+	// Tabs, Progressbar
+	///////////////////////////
+	$('#home-tabs').tabs();
 	$('#progress-bar').progressbar({
 		value: 12
-	}); // progress bar for Home Page
+	}); 
+	///////////////////////////
+	// jQuery UI for Admin Page:
+	// Tabs
+	///////////////////////////
+	$('#admin-tabs').tabs();
+	
 });

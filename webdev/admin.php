@@ -1,46 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+	<!-- 
+	
+	///////////////////////////////////////
+	// Admin Page
+	// Authored by Alex Chaudoin
+	// Purpose: To provide a page where
+	// 			the admin can access other
+	//			accounts and change 
+	//			system settings as well.
+	///////////////////////////////////////
+
+	-->
+
 	<meta charset="UTF-8">
-	<title>Bid-Well Admin Page</title>
-	<link rel="stylesheet" type="text/css" href="css/styles.css">
+	<title>Admin | Bid-Well</title>
+	
+	<!-- Main Stylesheet and Admin Page Stylesheet -->
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/admin-style.css">
+	<!-- Custom jQuery UI Library Stylesheets - 1.11.4 -->
+	<link rel="stylesheet" href="libs/jquery-ui-1.11.4.custom/jquery-ui.min.css">
+	<link rel="stylesheet" href="libs/jquery-ui-1.11.4.custom/jquery-ui.theme.min.css">
+
+	<!-- jQuery Library - Google CDN -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<!-- Custom jQuery UI Library - 1.11.4 -->
+	<script src="libs/jquery-ui-1.11.4.custom/jquery-ui.min.js"></script>
 </head>
 <body>
-<div class="wrapper">
+
+	<div class="wrapper">
+
 	<?php @require_once "includes/header.inc.php"; ?>
-	<!-- <header>
-		<div class="logo"><a href="#" title="Home"><img src="images/greenwell.jpg" alt="Greenwell Logo"></a></div>
-		<div class="title">Bid-Well</div>
-		<div>
-			<ul class="top-nav">
-				<li><a href="#" title="Contact">Contact</a></li>
-				<li><a href="#" title="Admin">Admin</a></li>
-				<li><a href="#" title="About">About</a></li>
-			</ul>
+
+		<div class="content">
+			
+			<div id="admin-tabs">
+				<ul>
+					<li><a href="#tab-a">Accounts</a></li>
+					<li><a href="#tab-b">System Settings</a></li>
+				</ul>
+				<div id="tab-a">
+					<table>
+						<tr>
+							<th>Account ID</th>
+							<th>Username</th>
+							<th>Email</th>
+							<th>Preset</th>
+							<th>Password</th>
+						</tr>
+						<tr>
+							<td>1</td>
+							<td>Lorem Ipsum</td>
+							<td>email@gmail.com</td>
+							<td>Loan Officer</td>
+							<td>***********</td>
+						</tr>
+						<tr>
+							<td>2</td>
+							<td>Lorem Ipsum</td>
+							<td>email@hotmail.com</td>
+							<td>Bid Preparer</td>
+							<td>***********</td>
+						</tr>
+						<tr>
+							<td>3</td>
+							<td>Lorem Ipsum</td>
+							<td>email@yahoo.com</td>
+							<td>Custom</td>
+							<td>***********</td>
+						</tr>
+						<tr>
+							<td>4</td>
+							<td>Lorem Ipsum</td>
+							<td>email@aol.com</td>
+							<td>Executive</td>
+							<td>***********</td>
+						</tr>
+					</table>
+					<div id="admin-table_dashboard">
+						<button class="prev" href="#">Reset</button>
+						<button class="new-edit" href="#">New/Edit</button> <!--will change-->
+						<button class="delete" href="#">Delete</button>
+					</div>
+				</div>
+				<div id="tab-b">
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate obcaecati porro eum repudiandae possimus repellat cumque asperiores magni architecto esse sed minima dolorum deserunt, quo animi quod omnis, earum! Veniam.</p>
+				</div>
+			</div>
+
 		</div>
-	</header> -->
-	<div class="content">
-		<p>ADMIN</p>
-		<form method="post" action="#">
-			<label for="username">Username:</label>
-			<input type="text" name="username" tabindex=1 autofocus require><br>
-			<label for="company">Company:</label>
-			<input type="text" name="company" tabindex=2 require><br>
-			<label for="password">Password:</label>
-			<input type="text" name="password" tabindex=3 require><br><br>
-			<input type="submit" value="Login" tabindex=4><br><br><br><br>
-		</form>
-		<?php @require_once "includes/footer.inc.php"; ?>
-		<!-- <footer>
-		<ul>
-				<li><a href="#" title="About">About</a></li>
-				<li><a href="#" title="Admin">Admin</a></li>
-				<li><a href="#" title="Contact">Contact</a></li>
-		</ul>
-		<p>Product of Greenwell Bank &copy; 2015</p>
-	</footer> -->
+
+	<?php @require_once "includes/footer.inc.php"; ?>
+		
 	</div>
-	
-</div>
+
+	<!-- JavaScript/jQuery script file -->
+	<script src="js/script.js"></script>
+
 </body>
 </html>

@@ -125,8 +125,8 @@
 					</form>
 					<div id="home-form_dashboard">
 						<div id="progress-bar"></div>
-						<button id="prev" href="#">Previous</button>
-						<button id="next" href="#">Next</button>
+						<button class="prev" href="#">Previous</button>
+						<button class="next" href="#">Next</button>
 					</div>
 				</div>
 				<div id="tab3">
