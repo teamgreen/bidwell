@@ -37,21 +37,21 @@ input[type="text"] {
 	width: 80%;
 	margin: 0 auto;
 }
-#home-form_dashboard > button, #progress-bar {
+#home-form_dashboard > input[type="button"], #progress-bar {
 	margin: 0 10px;
 }
 #progress-bar {
 	width: 60%;
 	margin: 40px auto;
 }
-#home-form_dashboard > button {
+#home-form_dashboard > input[type="button"] {
 	background-color: #b4e753;
 	border: 1px solid #97d423;
 	border-radius: 10px;
 	padding: 5px;
 	margin: 0 20px;
 }
-#home-form_dashboard > button:hover {
+#home-form_dashboard > input[type="button"]:hover {
 	background-color: #d7f3a1;
 	border: 1px solid #beea68;
 }

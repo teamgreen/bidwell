@@ -56,31 +56,31 @@
 						</tr>
 						<tr>
 							<td>1</td>
-							<td>Lorem Ipsum</td>
+							<td>Lorem Ipsum <span class="ui-icon ui-icon-info" title="Project information goes here."></span></td>
 							<td>Portland</td>
 							<td>7/12/2015</td>
-							<td>In Progress</td>
+							<td>In Progress <span class="ui-icon ui-icon-info" title="Status on Project Completion."></span></td>
 						</tr>
 						<tr>
 							<td>2</td>
-							<td>Lorem Ipsum</td>
+							<td>Lorem Ipsum <span class="ui-icon ui-icon-info" title="Project information goes here."></span></td>
 							<td>Portland</td>
 							<td>7/19/2015</td>
-							<td>In Progress</td>
+							<td>In Progress <span class="ui-icon ui-icon-info" title="Status on Project Completion."></span></td>
 						</tr>
 						<tr>
 							<td>3</td>
-							<td>Lorem Ipsum</td>
+							<td>Lorem Ipsum <span class="ui-icon ui-icon-info" title="Project information goes here."></span></td>
 							<td>Portland</td>
 							<td>7/27/2015</td>
-							<td>In Progress</td>
+							<td>In Progress <span class="ui-icon ui-icon-info" title="Status on Project Completion."></span></td>
 						</tr>
 						<tr>
 							<td>4</td>
-							<td>Lorem Ipsum</td>
+							<td>Lorem Ipsum <span class="ui-icon ui-icon-info" title="Project information goes here."></span></td>
 							<td>Portland</td>
 							<td>8/2/2015</td>
-							<td>In Progress</td>
+							<td>In Progress <span class="ui-icon ui-icon-info" title="Status on Project Completion."></span></td>
 						</tr>
 					</table>
 				</div>
@@ -125,8 +125,8 @@
 					</form>
 					<div id="home-form_dashboard">
 						<div id="progress-bar"></div>
-						<button class="prev" href="#">Previous</button>
-						<button class="next" href="#">Next</button>
+						<input type="button" class="prev" href="#" value="Previous">
+						<input type="button" class="next" href="#" value="Next">
 					</div>
 				</div>
 				<div id="tab3">

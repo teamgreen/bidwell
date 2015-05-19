@@ -56,35 +56,35 @@
 							<td>1</td>
 							<td>Lorem Ipsum</td>
 							<td>email@gmail.com</td>
-							<td>Loan Officer</td>
+							<td>Loan Officer <span class="ui-icon ui-icon-info" title="A Greenwell Bank employee who helps facilitate the loan process relating to successful bids on projects."></span></td>
 							<td>***********</td>
 						</tr>
 						<tr>
 							<td>2</td>
 							<td>Lorem Ipsum</td>
 							<td>email@hotmail.com</td>
-							<td>Bid Preparer</td>
+							<td>Bid Preparer <span class="ui-icon ui-icon-info" title="An employee of the construction company entrusted with preparing bids."></span></td>
 							<td>***********</td>
 						</tr>
 						<tr>
 							<td>3</td>
 							<td>Lorem Ipsum</td>
 							<td>email@yahoo.com</td>
-							<td>Custom</td>
+							<td>Custom <span class="ui-icon ui-icon-info" title="A customized set of user permissions, ideally for a user who needs access to many features which cannot be fulfilled by one preset."></span></td>
 							<td>***********</td>
 						</tr>
 						<tr>
 							<td>4</td>
 							<td>Lorem Ipsum</td>
 							<td>email@aol.com</td>
-							<td>Executive</td>
+							<td>Executive <span class="ui-icon ui-icon-info" title="A high ranked employee who has the ability to view and comment on all projects."></span></td>
 							<td>***********</td>
 						</tr>
 					</table>
 					<div id="admin-table_dashboard">
-						<button class="prev" href="#">Reset</button>
-						<button class="new-edit" href="#">New/Edit</button> <!--will change-->
-						<button class="delete" href="#">Delete</button>
+						<input type="button" class="reset" href="#" value="Reset">
+						<input type="button" class="new-edit" href="#" value="New"><!--will change-->
+						<input type="button" class="delete" href="#" value="Delete">
 					</div>
 				</div>
 				<div id="tab-b">
