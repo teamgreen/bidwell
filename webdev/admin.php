@@ -82,7 +82,7 @@
 						</tr>
 					</table>
 					<div id="admin-table_dashboard">
-						<input type="button" class="reset" href="#" value="Reset">
+						<input type="reset" class="reset" href="#" value="Reset">
 						<input type="button" class="new-edit" href="#" value="New"><!--will change-->
 						<input type="button" class="delete" href="#" value="Delete">
 					</div>

@@ -67,4 +67,20 @@ $(document).ready(function(){
 		})
 	});
 
+	// In progress function below:
+	// when the new/edit button is clicked,
+	// depending on the name of its "value",
+	// either the add-account or the 
+	// edit-account dialog will be opened.
+
+	// $('.new-edit').click(function(){
+	// 	var buttonVal = $(this).attr('value');
+	// 	switch
+	// 	if (buttonVal === "New") {
+	// 		// show add-account dialog
+	// 	} else {
+	// 		// show edit-account dialog
+	// 	};
+	// });
+
 });
