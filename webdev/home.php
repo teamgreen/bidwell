@@ -1,11 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+	<!-- 
+	
+	///////////////////////////////////////
+	// Home Page
+	// Authored by Alex Chaudoin
+	// Purpose: To provide a page where
+	// 			the user can access their
+	//			current and completed 
+	//			projects, as well as
+	//			create a new project.
+	///////////////////////////////////////
+
+	-->
+
 	<meta charset="UTF-8">
 	<title>Home | Bid-Well</title>
 	
-	<!-- Stylesheet -->
+	<!-- Main Stylesheet and Home Page Stylesheet -->
 	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/home-style.css">
 	<!-- Custom jQuery UI Library Stylesheets - 1.11.4 -->
 	<link rel="stylesheet" href="libs/jquery-ui-1.11.4.custom/jquery-ui.min.css">
 	<link rel="stylesheet" href="libs/jquery-ui-1.11.4.custom/jquery-ui.theme.min.css">
