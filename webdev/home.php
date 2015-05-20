@@ -125,8 +125,13 @@
 					</form>
 					<div id="home-form_dashboard">
 						<div id="progress-bar"></div>
-						<input type="button" class="prev" href="#" value="Previous">
-						<input type="button" class="next" href="#" value="Next">
+						<div id="progress-buttons">
+							<span>Page 1 of 4</span>
+							<!-- <input type="button" class="prev" href="#" value="Previous">
+							 -->
+							 <!-- Previous button will show up after page -->
+							 <input type="button" class="next" href="#" value="Next">
+						</div>
 					</div>
 				</div>
 				<div id="tab3">

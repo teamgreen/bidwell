@@ -18,7 +18,7 @@ $(document).ready(function(){
 	// jQuery UI for all Pages:
 	//	Tooltip
 	///////////////////////////
-	$(document).tooltip();
+	$('span.ui-icon').tooltip();
 
 	///////////////////////////
 	// jQuery UI for Home Page:
