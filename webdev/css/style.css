@@ -1,13 +1,13 @@
 
 /* Google Fonts */
 @font-face {
-  font-family: "Didact Gothic";
-  src: 	url("../fonts/DidactGothic/DidactGothic.eot");
-  src: 	url("../fonts/DidactGothic/DidactGothic.eot?#iefix") format("embedded-opentype"), 
-  		url("../fonts/DidactGothic/DidactGothic.woff") format("woff"),
-  		url("../fonts/DidactGothic/DidactGothic.woff2") format("woff2"), 
-  		url("../fonts/DidactGothic/DidactGothic.svg#DidactGothic") format("svg"), 
-  		url("../fonts/DidactGothic/DidactGothic.ttf") format("truetype"); 
+  font-family: "Questrial Regular";
+  src: 	url("../fonts/Questrial-Regular/Questrial-Regular.eot");
+  src: 	url("../fonts/Questrial-Regular/Questrial-Regular.eot?#iefix") format("embedded-opentype"), 
+  		url("../fonts/Questrial-Regular/Questrial-Regular.woff") format("woff"),
+  		url("../fonts/Questrial-Regular/Questrial-Regular.woff2") format("woff2"), 
+  		url("../fonts/Questrial-Regular/Questrial-Regular.svg#Questrial-Regular") format("svg"), 
+  		url("../fonts/Questrial-Regular/Questrial-Regular.ttf") format("truetype"); 
 }
 
 * {
@@ -18,7 +18,7 @@ body {
 	background-color: #387929;
 	color: #333333;
 	font-size: 18px;
-	font-family: "Didact Gothic", Tahoma, sans-serif;
+	font-family: "Questrial Regular", Tahoma, sans-serif;
 }
 
 p {

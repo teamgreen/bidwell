@@ -8,14 +8,14 @@
  *
  * http://api.jqueryui.com/category/theming/
  *
- * To view and modify this theme, visit http://jqueryui.com/themeroller/?ffDefault=%22Didact%20Gothic%22%2C%20Tahoma%2C%20sans-serif&fwDefault=normal&fsDefault=1.1em&cornerRadius=0px&bgColorHeader=%23387929&bgTextureHeader=flat&bgImgOpacityHeader=100&borderColorHeader=%2324481b&fcHeader=%23ffffff&iconColorHeader=%23ffffff&bgColorContent=%23ffffff&bgTextureContent=flat&bgImgOpacityContent=75&borderColorContent=%23aaaaaa&fcContent=%23333333&iconColorContent=%23387929&bgColorDefault=%23b4e753&bgTextureDefault=flat&bgImgOpacityDefault=100&borderColorDefault=%2397d423&fcDefault=%23333333&iconColorDefault=%23387929&bgColorHover=%23d7f3a1&bgTextureHover=flat&bgImgOpacityHover=100&borderColorHover=%23beea68&fcHover=%23333333&iconColorHover=%23387929&bgColorActive=%23ffffff&bgTextureActive=flat&bgImgOpacityActive=100&borderColorActive=%23aaaaaa&fcActive=%23333333&iconColorActive=%23387929&bgColorHighlight=%23fbf9ee&bgTextureHighlight=glass&bgImgOpacityHighlight=55&borderColorHighlight=%23fcefa1&fcHighlight=%23363636&iconColorHighlight=%232e83ff&bgColorError=%23fef1ec&bgTextureError=glass&bgImgOpacityError=95&borderColorError=%23cd0a0a&fcError=%23cd0a0a&iconColorError=%23cd0a0a&bgColorOverlay=%23aaaaaa&bgTextureOverlay=flat&bgImgOpacityOverlay=0&opacityOverlay=50&bgColorShadow=%23aaaaaa&bgTextureShadow=flat&bgImgOpacityShadow=0&opacityShadow=30&thicknessShadow=6px&offsetTopShadow=-6px&offsetLeftShadow=-6px&cornerRadiusShadow=6px
+ * To view and modify this theme, visit http://jqueryui.com/themeroller/?ffDefault=%22Questrial%20Regular%22%2C%20Tahoma%2C%20sans-serif&fwDefault=normal&fsDefault=1.1em&cornerRadius=0px&bgColorHeader=%23387929&bgTextureHeader=flat&bgImgOpacityHeader=100&borderColorHeader=%2324481b&fcHeader=%23ffffff&iconColorHeader=%23ffffff&bgColorContent=%23ffffff&bgTextureContent=flat&bgImgOpacityContent=75&borderColorContent=%23aaaaaa&fcContent=%23333333&iconColorContent=%23387929&bgColorDefault=%23b4e753&bgTextureDefault=flat&bgImgOpacityDefault=100&borderColorDefault=%2397d423&fcDefault=%23333333&iconColorDefault=%23387929&bgColorHover=%23d7f3a1&bgTextureHover=flat&bgImgOpacityHover=100&borderColorHover=%23beea68&fcHover=%23333333&iconColorHover=%23387929&bgColorActive=%23ffffff&bgTextureActive=flat&bgImgOpacityActive=100&borderColorActive=%23aaaaaa&fcActive=%23333333&iconColorActive=%23387929&bgColorHighlight=%23fbf9ee&bgTextureHighlight=glass&bgImgOpacityHighlight=55&borderColorHighlight=%23fcefa1&fcHighlight=%23363636&iconColorHighlight=%232e83ff&bgColorError=%23fef1ec&bgTextureError=glass&bgImgOpacityError=95&borderColorError=%23cd0a0a&fcError=%23cd0a0a&iconColorError=%23cd0a0a&bgColorOverlay=%23aaaaaa&bgTextureOverlay=flat&bgImgOpacityOverlay=0&opacityOverlay=50&bgColorShadow=%23aaaaaa&bgTextureShadow=flat&bgImgOpacityShadow=0&opacityShadow=30&thicknessShadow=6px&offsetTopShadow=-6px&offsetLeftShadow=-6px&cornerRadiusShadow=6px
  */
 
 
 /* Component containers
 ----------------------------------*/
 .ui-widget {
-	font-family: "Didact Gothic", Tahoma, sans-serif;
+	font-family: "Questrial Regular", Tahoma, sans-serif;
 	font-size: 1.1em;
 }
 .ui-widget .ui-widget {
@@ -25,7 +25,7 @@
 .ui-widget select,
 .ui-widget textarea,
 .ui-widget button {
-	font-family: "Didact Gothic", Tahoma, sans-serif;
+	font-family: "Questrial Regular", Tahoma, sans-serif;
 	font-size: 1em;
 }
 .ui-widget-content {
