@@ -1,0 +1,213 @@
+/* ////////////////////// *
+// Login Page Stylesheet
+// Authored by Tim Willbanks
+* ///////////////////// */
+
+/* Google Fonts */
+@font-face {
+  font-family: "Questrial Regular";
+  src: 	url("../fonts/Questrial-Regular/Questrial-Regular.eot");
+  src: 	url("../fonts/Questrial-Regular/Questrial-Regular.eot?#iefix") format("embedded-opentype"), 
+  		url("../fonts/Questrial-Regular/Questrial-Regular.woff") format("woff"),
+  		url("../fonts/Questrial-Regular/Questrial-Regular.woff2") format("woff2"), 
+  		url("../fonts/Questrial-Regular/Questrial-Regular.svg#Questrial-Regular") format("svg"), 
+  		url("../fonts/Questrial-Regular/Questrial-Regular.ttf") format("truetype"); 
+}
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	background-color: #387929;
+	color: #333333;
+	font-size: 18px;
+	font-family: "Questrial Regular", Tahoma, sans-serif;
+}
+
+p {
+	font-size: 20px;
+}
+
+.wrapper {
+	width: 960px;
+  	margin: 0 auto;
+ }
+
+header {
+	width: 100%;
+	height: 200px;
+	background-color: #ffffff;
+}
+
+ul.top-nav {
+	width: 35%;
+	float: right;
+	padding: 10px 10px 0 0;
+	list-style-type: none;
+
+	color: #333333;
+}
+
+.top-nav > li {
+	float: left;
+	padding: 0 10px;
+	text-decoration: none;
+}
+
+.logo {
+	clear: both;
+	width: 25%;
+	float: left;
+	margin-left: 200px;
+}
+
+.logo img {
+	width: 100px;
+	height: auto;
+}
+
+.title {
+	width: 100%;
+	float: left;
+	text-align: center;
+	padding: 10px 0 0 0;
+	color: #004800;
+}
+.title h1, .title h2 {
+	margin: 5px 0;
+}
+
+.admin 
+{
+	width: 100%;
+	margin: 0 auto;
+}
+
+.logo2 
+{
+	width: 50%;
+}
+
+.logo2 img 
+{
+	-moz-border-radius: 50%;
+	-webkit-border-radius: 50%;
+	border-radius: 50%;
+	width: 300px;
+	height: 300px;
+	float: left;
+	margin-left: 135px;
+	margin-bottom: 100px;
+}
+
+.form 
+{
+	width: 50%;
+	float: left;
+	margin-top: 35px;
+}
+
+footer {
+	background-color: #ffffff;
+	text-align: center;
+	padding: 10px 0;
+	clear: both;
+	margin-bottom: -50px;
+}
+
+footer li a 
+{
+	text-decoration: none;
+}
+
+header li a 
+{
+	text-decoration: none;
+}
+
+a  {
+	color: #333333;
+}
+a:visited {
+	color: #000000;
+}
+a:hover {
+	color: #387929;
+	text-decoration: underline;
+}
+
+footer ul {
+	padding: 0 0 10px 0;
+}
+
+footer li {
+	display: inline-block;
+	list-style-type: none;
+	color: green;
+	padding: 0 10px;
+}
+.footer_copy {
+	text-align: center;
+	font-size: 16px;
+	padding: 0 0 20px 0;
+}
+
+.content {
+	width: 100%;
+	margin: 0;
+	padding: 50px 0;
+	background-color: #90C32E;
+	text-align: center;
+}
+
+label {
+
+	text-align: right;
+	margin-top: 20px;
+}
+
+input {
+	margin-top: 20px;
+	border-radius: 5px;
+	margin-left: 5px;
+}
+
+input[type="submit"] 
+{
+	background-color: #387929;
+	color: #fff;
+	width: 100px;
+	height: 40px;
+}
+
+img {
+	height: 25px;
+	width: auto;
+}
+
+/* Table Styles */
+
+table {
+	width: 100%;
+	height: 200px;
+	overflow: scroll;
+	margin: 0 auto;
+	text-align: center;
+	background-color: #ffffff;
+	border-collapse: collapse;
+}
+tr:nth-child(1) { 
+	background-color: #387929;
+	color: #ffffff;
+}
+tr:nth-child(even) {
+	background-color: #dcf6ac;
+}
+th, td {
+	padding: 10px 5px;
+	border: 5px solid #ffffff;
+}
+td > span.ui-icon {
+	display: inline-block;
+}
