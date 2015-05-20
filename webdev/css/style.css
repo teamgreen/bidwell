@@ -4,7 +4,8 @@
   font-family: "Didact Gothic";
   src: 	url("../fonts/DidactGothic/DidactGothic.eot");
   src: 	url("../fonts/DidactGothic/DidactGothic.eot?#iefix") format("embedded-opentype"), 
-  		url("../fonts/DidactGothic/DidactGothic.woff") format("woff"), 
+  		url("../fonts/DidactGothic/DidactGothic.woff") format("woff"),
+  		url("../fonts/DidactGothic/DidactGothic.woff2") format("woff2"), 
   		url("../fonts/DidactGothic/DidactGothic.svg#DidactGothic") format("svg"), 
   		url("../fonts/DidactGothic/DidactGothic.ttf") format("truetype"); 
 }
