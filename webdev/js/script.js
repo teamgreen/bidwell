@@ -54,14 +54,19 @@ $(document).ready(function(){
 	// When clicking on a row in the admin table,
 	// that row will be highlighted and the 
 	// "New" button will change to "Edit".
+	// The pointer events on other rows will be
+	// disabled until the selected row is clicked
+	// on again.
 
 	$('#tab-a tr:not(:first-child)').click(function(){
 
 		if ($('.new-edit').attr('value') === 'New') {
 			$(this).css('background-color', '#ffffff');
+			$(this).siblings('tr:not(:first-child)').css('pointer-events', 'none');
 			$('.new-edit').attr('value', 'Edit');
 		} else {
 			$('.new-edit').attr('value', 'New');
+			$(this).siblings('tr:not(:first-child)').css('pointer-events', 'auto');
 			$(this).css('background-color', '#dcf6ac');
 		};
 
