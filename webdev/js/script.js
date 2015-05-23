@@ -67,7 +67,6 @@ $(document).ready(function(){
 
 	}); // end click
 
-
 	// For the click function below:
 	// When the New/Edit button is clicked,
 	// depending on the name of its "value",

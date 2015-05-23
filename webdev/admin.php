@@ -97,8 +97,6 @@
 		<div id="add-account" title="Add a new account">
 			<form>
 				<fieldset>
-					<label for="name">Name</label>
-					<input type="text" name="name" id="name" class="text ui-widget-content ui-corner-all">
 					<label for="name">Username</label>
 					<input type="text" name="username" id="username" class="text ui-widget-content ui-corner-all">
 					<label for="name">Email</label>
@@ -114,16 +112,14 @@
 		<div id="edit-account" title="Edit an account">
 			<form>
 				<fieldset>
-					<label for="name">Name</label>
-					<input type="text" name="name" id="name" class="text ui-widget-content ui-corner-all">
 					<label for="name">Username</label>
-					<input type="text" name="username" id="username" class="text ui-widget-content ui-corner-all">
+					<input type="text" name="username" id="username" value="Lorem Ipsum" class="text ui-widget-content ui-corner-all">
 					<label for="name">Email</label>
-					<input type="email" name="email" id="email" class="text ui-widget-content ui-corner-all">
+					<input type="email" name="email" id="email" value="email@gmail.com" class="text ui-widget-content ui-corner-all">
 					<label for="name">Password</label>
-					<input type="password" name="password" id="password" class="text ui-widget-content ui-corner-all">
+					<input type="password" name="password" id="password" value="***********" class="text ui-widget-content ui-corner-all">
 					<label for="name">Confirm Password</label>
-					<input type="password" name="confirm-password" id="confirm-password" class="text ui-widget-content ui-corner-all">
+					<input type="password" name="confirm-password" id="confirm-password" value="***********" class="text ui-widget-content ui-corner-all">
 				</fieldset>
 			</form>
 		</div>
