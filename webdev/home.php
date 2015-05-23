@@ -86,51 +86,229 @@
 				</div>
 				<div id="tab2">
 					<form action="#" method="post" id="home-form">
-						<div class="form-half">
-							<div>
-								<label for="owner">Owner: </label>
-								<input type="text" id="owner" name="owner">
+						<div class="active-form">
+							<p>Page 1<hr></p>
+							<div class="form-half">
+								<div>
+									<label for="owner">Owner: </label>
+									<input type="text" id="owner" name="owner">
+								</div>
+								<div>
+									<label for="phone">Phone: </label>
+									<input type="text" id="phone" name="phone">
+								</div>
+								<div>
+									<label for="email">Email: </label>
+									<input type="text" id="email" name="email">
+								</div>
+								<div>
+									<label for="address">Address: </label>
+									<input type="text" id="address" name="address">
+								</div>
 							</div>
-							<div>
-								<label for="phone">Phone: </label>
-								<input type="text" id="phone" name="phone">
-							</div>
-							<div>
-								<label for="email">Email: </label>
-								<input type="text" id="email" name="email">
-							</div>
-							<div>
-								<label for="address">Address: </label>
-								<input type="text" id="address" name="address">
+							<div class="form-half">
+								<div>
+									<label for="city">City: </label>
+									<input type="text" id="city" name="city">
+								</div>
+								<div>
+									<label for="state">State: </label>
+									<select name="state" id="state">
+										<option value="ca">California</option>
+										<option value="or">Oregon</option>
+										<option value="wa">Washington</option>
+									</select>
+								</div>
+								<div>
+									<label for="zip">Zip: </label>
+									<input type="text" id="zip" name="zip">
+								</div>
 							</div>
 						</div>
-						<div class="form-half">
-							<div>
-								<label for="city">City: </label>
-								<input type="text" id="city" name="city">
+						<div>
+							<p>Page 2<hr></p>
+							<div class="form-half">
+								<div>
+									<label for="owner">Owner: </label>
+									<input type="text" id="owner" name="owner">
+								</div>
+								<div>
+									<label for="phone">Phone: </label>
+									<input type="text" id="phone" name="phone">
+								</div>
+								<div>
+									<label for="email">Email: </label>
+									<input type="text" id="email" name="email">
+								</div>
+								<div>
+									<label for="address">Address: </label>
+									<input type="text" id="address" name="address">
+								</div>
 							</div>
-							<div>
-								<label for="state">State: </label>
-								<select name="state" id="state">
-									<option value="ca">California</option>
-									<option value="or">Oregon</option>
-									<option value="wa">Washington</option>
-								</select>
+							<div class="form-half">
+								<div>
+									<label for="city">City: </label>
+									<input type="text" id="city" name="city">
+								</div>
+								<div>
+									<label for="state">State: </label>
+									<select name="state" id="state">
+										<option value="ca">California</option>
+										<option value="or">Oregon</option>
+										<option value="wa">Washington</option>
+									</select>
+								</div>
+								<div>
+									<label for="zip">Zip: </label>
+									<input type="text" id="zip" name="zip">
+								</div>
 							</div>
-							<div>
-								<label for="zip">Zip: </label>
-								<input type="text" id="zip" name="zip">
+						</div>
+						<div>
+							<p>Page 3<hr></p>
+							<div class="form-half">
+								<div>
+									<label for="owner">Owner: </label>
+									<input type="text" id="owner" name="owner">
+								</div>
+								<div>
+									<label for="phone">Phone: </label>
+									<input type="text" id="phone" name="phone">
+								</div>
+								<div>
+									<label for="email">Email: </label>
+									<input type="text" id="email" name="email">
+								</div>
+								<div>
+									<label for="address">Address: </label>
+									<input type="text" id="address" name="address">
+								</div>
+							</div>
+							<div class="form-half">
+								<div>
+									<label for="city">City: </label>
+									<input type="text" id="city" name="city">
+								</div>
+								<div>
+									<label for="state">State: </label>
+									<select name="state" id="state">
+										<option value="ca">California</option>
+										<option value="or">Oregon</option>
+										<option value="wa">Washington</option>
+									</select>
+								</div>
+								<div>
+									<label for="zip">Zip: </label>
+									<input type="text" id="zip" name="zip">
+								</div>
+							</div>
+						</div>
+						<div>
+							<p>Page 4<hr></p>
+							<div class="form-half">
+								<div>
+									<label for="owner">Owner: </label>
+									<input type="text" id="owner" name="owner">
+								</div>
+								<div>
+									<label for="phone">Phone: </label>
+									<input type="text" id="phone" name="phone">
+								</div>
+								<div>
+									<label for="email">Email: </label>
+									<input type="text" id="email" name="email">
+								</div>
+								<div>
+									<label for="address">Address: </label>
+									<input type="text" id="address" name="address">
+								</div>
+							</div>
+							<div class="form-half">
+								<div>
+									<label for="city">City: </label>
+									<input type="text" id="city" name="city">
+								</div>
+								<div>
+									<label for="state">State: </label>
+									<select name="state" id="state">
+										<option value="ca">California</option>
+										<option value="or">Oregon</option>
+										<option value="wa">Washington</option>
+									</select>
+								</div>
+								<div>
+									<label for="zip">Zip: </label>
+									<input type="text" id="zip" name="zip">
+								</div>
+							</div>
+						</div>
+						<div>
+							<p>Page 5<hr></p>
+							<div class="form-half">
+								<div>
+									<label for="owner">Owner: </label>
+									<input type="text" id="owner" name="owner">
+								</div>
+								<div>
+									<label for="phone">Phone: </label>
+									<input type="text" id="phone" name="phone">
+								</div>
+								<div>
+									<label for="email">Email: </label>
+									<input type="text" id="email" name="email">
+								</div>
+								<div>
+									<label for="address">Address: </label>
+									<input type="text" id="address" name="address">
+								</div>
+							</div>
+							<div class="form-half">
+								<div>
+									<label for="city">City: </label>
+									<input type="text" id="city" name="city">
+								</div>
+								<div>
+									<label for="state">State: </label>
+									<select name="state" id="state">
+										<option value="ca">California</option>
+										<option value="or">Oregon</option>
+										<option value="wa">Washington</option>
+									</select>
+								</div>
+								<div>
+									<label for="zip">Zip: </label>
+									<input type="text" id="zip" name="zip">
+								</div>
 							</div>
 						</div>
 					</form>
 					<div id="home-form_dashboard">
 						<div id="progress-bar"></div>
 						<div id="progress-buttons">
-							<span>Page 1 of 4</span>
-							<!-- <input type="button" class="prev" href="#" value="Previous">
-							 -->
-							 <!-- Previous button will show up after page -->
-							 <input type="button" class="next" href="#" value="Next">
+							<div class="active">
+								<span>Page 1 of 5</span>
+								<input type="button" class="next" href="#" id="next1" value="Next" onclick="nextDiv('#next1')">
+							</div>
+							<div>
+								<input type="button" class="prev" href="#" id="prev1" value="Previous" onclick="prevDiv('#prev1')">
+								<span>Page 2 of 5</span>
+								<input type="button" class="next" href="#" id="next2" value="Next" onclick="nextDiv('#next2')">
+							</div>
+							<div>
+								<input type="button" class="prev" href="#" id="prev2" value="Previous" onclick="prevDiv('#prev2')">
+								<span>Page 3 of 5</span>
+								<input type="button" class="next" href="#" id="next3" value="Next" onclick="nextDiv('#next3')">
+							</div>
+							<div>
+								<input type="button" class="prev" href="#" id="prev3" value="Previous" onclick="prevDiv('#prev3')">
+								<span>Page 4 of 5</span>
+								<input type="button" class="next" href="#" id="next4" value="Next" onclick="nextDiv('#next4')">
+							</div>
+							<div>
+								<input type="button" class="prev" href="#" id="prev4" value="Previous" onclick="prevDiv('#prev4')">
+								<span>Page 5 of 5</span>
+								<input type="submit" class="finish" href="#" id="finish" value="Finish">
+							</div>
 						</div>
 					</div>
 				</div>

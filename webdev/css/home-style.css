@@ -15,6 +15,12 @@
 	margin: 0 auto;
 	text-align: left;
 }
+#home-form > div {
+	display: none;
+}
+#home-form > div.active-form {
+	display: block;
+}
 .form-half {
 	width: 41%;
 	margin: 0 4%;
@@ -54,4 +60,14 @@ input[type="text"] {
 #home-form_dashboard > #progress-buttons > input[type="button"]:hover {
 	background-color: #d7f3a1;
 	border: 1px solid #beea68;
+}
+
+#progress-buttons > div {
+	display: none;
+}
+#progress-buttons > div.active {
+	display: block;
+}
+#progress-buttons > div > span {
+	margin: 0 20px;
 }
