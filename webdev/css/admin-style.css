@@ -8,6 +8,23 @@
 	width: 85%;
 	margin: 10px auto 30px auto;
 }
+tr:not(:first-child) {
+	cursor: pointer;
+}
+
+#add-account > label, #add-account > input, #edit-account > label, #edit-account > input {
+	display: block;
+}
+.text {
+	margin: 0 0 12px 0;
+	width: 95%;
+	padding: 0.4em;
+}
+#add-account > form > fieldset, #edit-account > form > fieldset {
+	padding: 0;
+	border: none;
+	margin: 25px 0 0 0;
+}
 
 #admin-table_dashboard {
 	width: 80%;
