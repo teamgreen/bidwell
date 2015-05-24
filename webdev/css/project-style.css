@@ -144,4 +144,23 @@ display: none;
 	margin-bottom: 5px;
 }
 
+button {
+	background-color: #90C32E;
+	width: 150px;
+	height: 45px;
+	border-radius: 15px;
+	margin-left: 30px;
+	color: #000;
+	font-size: 18px;
+	border: 0;
+	margin-bottom: 20px;
+	margin-top: 20px;
+}
 
+button a {
+	text-decoration: none;
+}
+
+button a:hover {
+	background-color: #d7f3a1
+}
