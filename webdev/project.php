@@ -126,7 +126,7 @@
 					<div class="description-cont">
 						<p class="description-left-title">Description:</p>
 						<p class="description-left">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas gravida ut purus id ullamcorper. Praesent fringilla eros tortor, nec mollis nunc cursus eget. Vivamus odio leo, lacinia id faucibus id, viverra sed nunc. Aenean id posuere orci. Duis vehicula laoreet nulla ac rutrum. Ut consectetur elit in risus aliquam, vel iaculis justo commodo. Sed imperdiet malesuada libero, ac consequat orci lacinia sed.</p>
-						<p class="description-left-title">Upload Photo:</p>
+						<p class="description-left-title">Files Uploaded:</p>
 						<p class="description-left">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas gravida ut purus id ullamcorper. Praesent fringilla eros tortor, nec mollis nunc cursus eget. Vivamus odio leo, lacinia id faucibus id, viverra sed nunc. Aenean id posuere orci. Duis vehicula laoreet nulla ac rutrum. Ut consectetur elit in risus aliquam, vel iaculis justo commodo. Sed imperdiet malesuada libero, ac consequat orci lacinia sed.</p>
 					</div>
 					<button><a href="#">Upload</a></button>
@@ -134,6 +134,7 @@
 					<button><a href="#">Print</a></button>
 				</div>
 				<div id="tab3">
+					<div class="scroller">
 					<div class="division">
 						<label><input type="checkbox" name="checkbox" value="division1">Division1</label>
 					</div>
@@ -604,12 +605,14 @@
 					</table>
 			<input type="submit" value="Login" tabindex=4>
 		</form>
+	</div>
 		</div>
 			<button><a href="#">Version</a></button>
 			<button><a href="#">Save</a></button>
 			<button><a href="#">Save As</a></button>
 			</div>
 				<div id="tab4">
+					<div class="scroller">
 					<div class="division">
 						<label><input type="checkbox" name="checkbox" value="division1">Division1</label>
 					</div>
@@ -1080,12 +1083,14 @@
 					</table>
 			<input type="submit" value="Login" tabindex=4>
 		</form>
+	</div>
 		</div>
 			<button><a href="#">Version</a></button>
 			<button><a href="#">Save</a></button>
 			<button><a href="#">Save As</a></button>
 			</div>
 				<div id="tab5">
+					<div class="scroller">
 					<div class="division">
 						<label><input type="checkbox" name="checkbox" value="division1">Division1</label>
 					</div>
@@ -1556,6 +1561,7 @@
 					</table>
 			<input type="submit" value="Login" tabindex=4>
 		</form>
+	</div>
 		</div>
 			<button><a href="#">Version</a></button>
 			<button><a href="#">Save</a></button>

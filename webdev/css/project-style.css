@@ -145,7 +145,7 @@ display: none;
 }
 
 button {
-	background-color: #90C32E;
+	background-color: #b4e753;
 	width: 150px;
 	height: 45px;
 	border-radius: 15px;
@@ -163,4 +163,10 @@ button a {
 
 button a:hover {
 	background-color: #d7f3a1
+}
+
+.scroller {
+	height: 325px;
+	overflow-y: scroll;
+	overflow-x: hidden;
 }
