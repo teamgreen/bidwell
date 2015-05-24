@@ -7,6 +7,7 @@
 	///////////////////////////////////////
 	// Admin Page
 	// Authored by Alex Chaudoin
+	// Created 5/15/2015
 	// Purpose: To provide a page where
 	// 			the admin can access other
 	//			accounts and change 

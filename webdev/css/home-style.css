@@ -1,6 +1,7 @@
 
 /* ////////////////////// *
 // Home Page Stylesheet
+// Created 5/15/2015
 // Authored by Alex Chaudoin
 * ///////////////////// */
 
@@ -27,7 +28,7 @@
 	display: inline-block;
 }
 label {
-	width: 90px;
+	width: 180px;
 	display: inline-block;
 	text-align: left;
 }
@@ -38,6 +39,9 @@ input[type="text"], select {
 }
 input[type="text"] {
 	border-radius: 10px;
+}
+textarea {
+	margin: 10px 0 0 0;
 }
 #home-form_dashboard {
 	width: 80%;
