@@ -7,6 +7,7 @@
 	///////////////////////////////////////
 	// Home Page
 	// Authored by Alex Chaudoin
+	// Created 5/15/2015
 	// Purpose: To provide a page where
 	// 			the user can access their
 	//			current and completed 
@@ -87,197 +88,153 @@
 				<div id="tab2">
 					<form action="#" method="post" id="home-form">
 						<div class="active-form">
-							<p>Page 1<hr></p>
+							<p>Project Information<hr></p>
 							<div class="form-half">
 								<div>
-									<label for="owner">Owner: </label>
-									<input type="text" id="owner" name="owner">
+									<label for="project_name">Project Name</label>
+									<input type="text" id="project_name" name="project_name" maxlength="100">
 								</div>
 								<div>
-									<label for="phone">Phone: </label>
-									<input type="text" id="phone" name="phone">
-								</div>
-								<div>
-									<label for="email">Email: </label>
-									<input type="text" id="email" name="email">
-								</div>
-								<div>
-									<label for="address">Address: </label>
-									<input type="text" id="address" name="address">
+									<label for="project_description">Project Description</label>
+									<input type="text" id="project_description" name="project_description" maxlength="1000">
 								</div>
 							</div>
 							<div class="form-half">
 								<div>
-									<label for="city">City: </label>
-									<input type="text" id="city" name="city">
+									<label for="project_date_entered">Date Entered</label>
+									<input type="date" id="project_date_entered" name="project_date_entered">
 								</div>
 								<div>
-									<label for="state">State: </label>
-									<select name="state" id="state">
-										<option value="ca">California</option>
-										<option value="or">Oregon</option>
-										<option value="wa">Washington</option>
-									</select>
-								</div>
-								<div>
-									<label for="zip">Zip: </label>
-									<input type="text" id="zip" name="zip">
+									<label for="project_due_date">Due Date</label>
+									<input type="date" id="project_due_date" name="project_due_date" maxlength="">
 								</div>
 							</div>
 						</div>
 						<div>
-							<p>Page 2<hr></p>
+							<p>Project Owner Information<hr></p>
 							<div class="form-half">
 								<div>
-									<label for="owner">Owner: </label>
-									<input type="text" id="owner" name="owner">
+									<label for="owner">Owner</label>
+									<input type="text" id="owner" name="owner" maxlength="100">
 								</div>
 								<div>
-									<label for="phone">Phone: </label>
-									<input type="text" id="phone" name="phone">
+									<label for="name_owner">Owner Name</label>
+									<input type="text" id="name_owner" name="name_owner" maxlength="200">
 								</div>
 								<div>
-									<label for="email">Email: </label>
-									<input type="text" id="email" name="email">
+									<label for="phone_owner">Owner Phone</label>
+									<input type="text" id="phone_owner" name="phone_owner" maxlength="40">
 								</div>
 								<div>
-									<label for="address">Address: </label>
-									<input type="text" id="address" name="address">
+									<label for="cellphone_owner">Owner Cellphone</label>
+									<input type="text" id="cellphone_owner" name="cellphone_owner" maxlength="40">
+								</div>
+								<div>
+									<label for="email_owner">Owner Email</label>
+									<input type="email_owner" id="email_owner" name="email_owner" maxlength="40">
 								</div>
 							</div>
 							<div class="form-half">
 								<div>
-									<label for="city">City: </label>
-									<input type="text" id="city" name="city">
+									<label for="address_owner">Owner Address</label>
+									<input type="text" id="address1_owner" name="address_owner" maxlength="100">
+									<input type="text" id="address2_owner" name="address_owner" maxlength="100">
 								</div>
 								<div>
-									<label for="state">State: </label>
+									<label for="city_owner">Owner City</label>
+									<input type="text" id="city_owner" name="city_owner" maxlength="20">
+								</div>
+								<!-- <div>
+									<label for="state">State</label>
 									<select name="state" id="state">
 										<option value="ca">California</option>
 										<option value="or">Oregon</option>
 										<option value="wa">Washington</option>
 									</select>
-								</div>
+								</div> WA is default, pull states from table -->
 								<div>
-									<label for="zip">Zip: </label>
-									<input type="text" id="zip" name="zip">
+									<label for="zip_owner">Owner Zip</label>
+									<input type="text" id="zip_owner" name="zip_owner" maxlength="10">
 								</div>
 							</div>
 						</div>
 						<div>
-							<p>Page 3<hr></p>
+							<p>Architect Information</p>
 							<div class="form-half">
 								<div>
-									<label for="owner">Owner: </label>
-									<input type="text" id="owner" name="owner">
+									<label for="name_architect">Architect Name</label>
+									<input type="text" id="name_architect" name="name_architect" maxlength="200">
 								</div>
 								<div>
-									<label for="phone">Phone: </label>
-									<input type="text" id="phone" name="phone">
+									<label for="phone_architect">Architect Phone</label>
+									<input type="text" id="phone_architect" name="phone_architect" maxlength="40">
 								</div>
 								<div>
-									<label for="email">Email: </label>
-									<input type="text" id="email" name="email">
+									<label for="cellphone_architect">Architect Cellphone</label>
+									<input type="text" id="cellphone_architect" name="cellphone_architect" maxlength="40">
 								</div>
 								<div>
-									<label for="address">Address: </label>
-									<input type="text" id="address" name="address">
+									<label for="email_architect">Architect Email</label>
+									<input type="email_architect" id="email_architect" name="email_architect" maxlength="100">
 								</div>
 							</div>
 							<div class="form-half">
 								<div>
-									<label for="city">City: </label>
-									<input type="text" id="city" name="city">
+									<label for="address_architect">Architect Address</label>
+									<input type="text" id="address1_architect" name="address_architect" maxlength="100">
+									<input type="text" id="address2_architect" name="address_architect" maxlength="100">
 								</div>
 								<div>
-									<label for="state">State: </label>
+									<label for="city_architect">Architect City</label>
+									<input type="text" id="city_architect" name="city_architect" maxlength="20">
+								</div>
+								<!-- <div>
+									<label for="state">State</label>
 									<select name="state" id="state">
 										<option value="ca">California</option>
 										<option value="or">Oregon</option>
 										<option value="wa">Washington</option>
 									</select>
-								</div>
+								</div> WA is default, pull states from table -->
 								<div>
-									<label for="zip">Zip: </label>
-									<input type="text" id="zip" name="zip">
+									<label for="zip_architect">Architect Zip</label>
+									<input type="text" id="zip_architect" name="zip_architect" maxlength="12">
 								</div>
 							</div>
 						</div>
 						<div>
-							<p>Page 4<hr></p>
+							<p>Project Site and Company Information<hr></p>
 							<div class="form-half">
 								<div>
-									<label for="owner">Owner: </label>
-									<input type="text" id="owner" name="owner">
+									<label for="address_location">Location Address</label>
+									<input type="text" id="address1_location" name="address_location" maxlength="100">
+									<input type="text" id="address2_location" name="address_location" maxlength="100">
 								</div>
 								<div>
-									<label for="phone">Phone: </label>
-									<input type="text" id="phone" name="phone">
+									<label for="city_location">Location City</label>
+									<input type="text" id="city_location" name="city_location" maxlength="20">
 								</div>
-								<div>
-									<label for="email">Email: </label>
-									<input type="text" id="email" name="email">
-								</div>
-								<div>
-									<label for="address">Address: </label>
-									<input type="text" id="address" name="address">
-								</div>
-							</div>
-							<div class="form-half">
-								<div>
-									<label for="city">City: </label>
-									<input type="text" id="city" name="city">
-								</div>
-								<div>
-									<label for="state">State: </label>
+								<!-- <div>
+									<label for="state">State</label>
 									<select name="state" id="state">
 										<option value="ca">California</option>
 										<option value="or">Oregon</option>
 										<option value="wa">Washington</option>
 									</select>
-								</div>
+								</div> WA is default, pull states from table -->
 								<div>
-									<label for="zip">Zip: </label>
-									<input type="text" id="zip" name="zip">
-								</div>
-							</div>
-						</div>
-						<div>
-							<p>Page 5<hr></p>
-							<div class="form-half">
-								<div>
-									<label for="owner">Owner: </label>
-									<input type="text" id="owner" name="owner">
-								</div>
-								<div>
-									<label for="phone">Phone: </label>
-									<input type="text" id="phone" name="phone">
-								</div>
-								<div>
-									<label for="email">Email: </label>
-									<input type="text" id="email" name="email">
-								</div>
-								<div>
-									<label for="address">Address: </label>
-									<input type="text" id="address" name="address">
+									<label for="zip_location">Location Zip</label>
+									<input type="text" id="zip_location" name="zip_location" maxlength="12">
 								</div>
 							</div>
 							<div class="form-half">
 								<div>
-									<label for="city">City: </label>
-									<input type="text" id="city" name="city">
+									<label for="name_company">Company Name</label>
+									<input type="text" id="name_company" name="name_company" maxlength="200">
 								</div>
 								<div>
-									<label for="state">State: </label>
-									<select name="state" id="state">
-										<option value="ca">California</option>
-										<option value="or">Oregon</option>
-										<option value="wa">Washington</option>
-									</select>
-								</div>
-								<div>
-									<label for="zip">Zip: </label>
-									<input type="text" id="zip" name="zip">
+									<label for="project_notes">Project Notes</label>
+									<textarea id="project_notes" name="project_notes" rows="5" cols="25" maxlength="4000"></textarea>
 								</div>
 							</div>
 						</div>
@@ -286,27 +243,22 @@
 						<div id="progress-bar"></div>
 						<div id="progress-buttons">
 							<div class="active">
-								<span>Page 1 of 5</span>
+								<span>Page 1 of 4</span>
 								<input type="button" class="next" href="#" id="next1" value="Next" onclick="nextDiv('#next1')">
 							</div>
 							<div>
 								<input type="button" class="prev" href="#" id="prev1" value="Previous" onclick="prevDiv('#prev1')">
-								<span>Page 2 of 5</span>
+								<span>Page 2 of 4</span>
 								<input type="button" class="next" href="#" id="next2" value="Next" onclick="nextDiv('#next2')">
 							</div>
 							<div>
 								<input type="button" class="prev" href="#" id="prev2" value="Previous" onclick="prevDiv('#prev2')">
-								<span>Page 3 of 5</span>
+								<span>Page 3 of 4</span>
 								<input type="button" class="next" href="#" id="next3" value="Next" onclick="nextDiv('#next3')">
 							</div>
 							<div>
 								<input type="button" class="prev" href="#" id="prev3" value="Previous" onclick="prevDiv('#prev3')">
-								<span>Page 4 of 5</span>
-								<input type="button" class="next" href="#" id="next4" value="Next" onclick="nextDiv('#next4')">
-							</div>
-							<div>
-								<input type="button" class="prev" href="#" id="prev4" value="Previous" onclick="prevDiv('#prev4')">
-								<span>Page 5 of 5</span>
+								<span>Page 4 of 4</span>
 								<input type="submit" class="finish" href="#" id="finish" value="Finish">
 							</div>
 						</div>

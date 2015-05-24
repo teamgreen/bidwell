@@ -8,6 +8,8 @@ $(document).ready(function(){
 	// Used in the following pages:
 	// home.php
 	// admin.php
+	// Created 5/15/2015
+	// Authored by Alex Chaudoin
 	// Purpose: To provide additional
 	//			visual and functional
 	//			features to the user
@@ -18,6 +20,7 @@ $(document).ready(function(){
 	// jQuery UI for all Pages:
 	// Tooltip
 	// ------------------------
+	// Created 5/15/2015
 	// Authored by Alex Chaudoin
 	/////////////////////////////
 	$('span.ui-icon').tooltip();
@@ -26,16 +29,18 @@ $(document).ready(function(){
 	// jQuery UI for Home Page:
 	// Tabs, Progressbar
 	// ------------------------
+	// Created 5/15/2015
 	// Authored by Alex Chaudoin
 	/////////////////////////////
 	$('#home-tabs').tabs();
 	$('#progress-bar').progressbar({
-		value: 0
+		value: 25
 	}); 
 	/////////////////////////////
 	// jQuery UI for Admin Page:
 	// Tabs
 	// ------------------------
+	// Created 5/15/2015
 	// Authored by Alex Chaudoin
 	/////////////////////////////
 	$('#admin-tabs').tabs();
@@ -47,10 +52,12 @@ $(document).ready(function(){
 	/////////////////////////////
 	// Admin Page Functions
 	// --------------------
+	// Created 5/17/2015
 	// Authored by Alex Chaudoin
 	/////////////////////////////
 
 	// For the click function below:
+	// ------------------------------------------
 	// When clicking on a row in the admin table,
 	// that row will be highlighted and the 
 	// "New" button will change to "Edit".
@@ -73,10 +80,23 @@ $(document).ready(function(){
 	}); // end click
 
 	// For the click function below:
+	// ------------------------------------
 	// When the New/Edit button is clicked,
 	// depending on the name of its "value",
 	// either the add-account or the 
 	// edit-account dialog will be opened.
+	//
+	// addDialog = holds #add-account div
+	//			as an dialog with specified
+	//			values, such as height and
+	//			width, as well as buttons.
+	// editDialog = holds #edit-account div
+	//			as an dialog with specified
+	//			values, such as height and
+	//			width, as well as buttons.
+	// buttonval = holds the "value" attribute
+	//			of the "new/edit" button.
+
 
 	var addDialog = $('#add-account').dialog({
 			autoOpen: false,
@@ -124,10 +144,12 @@ $(document).ready(function(){
 ////////////////////////////////
 // Home Page Functions
 // --------------------
+// Created 5/15/2015
 // Authored by Alex Chaudoin
 ////////////////////////////////
 
 // For the two button functions below:
+// ------------------------------------
 // These two functions are called as
 // onclick events by the "Previous" and 
 // "Next" buttons on the Home Page.
@@ -143,8 +165,8 @@ $(document).ready(function(){
 // With each subsequent click on the "Next"
 // button, the current value of the progress
 // bar will be incremented by 25.
-
-//Clicking the "Previous" button works in 
+//
+// Clicking the "Previous" button works in 
 // the same way except the "active" class 
 // is placed on the previous div instead, 
 // making the parent div disappear and the 
@@ -153,6 +175,11 @@ $(document).ready(function(){
 // instead and the progress bar is decremented
 // by 25 with each subsequent click of the
 // "Previous" button.
+//
+// nextSibling = holds the next sibling element
+//			of the div with the "active-form" class.
+// prevSibling = holds the previous sibling element
+//			of the div with the "active-form" class.
 
 function nextDiv(button) {
 	$(button).parent('div').removeClass('active');
