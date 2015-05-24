@@ -27,12 +27,13 @@ $(document).ready(function(){
 
 	/////////////////////////////
 	// jQuery UI for Home Page:
-	// Tabs, Progressbar
+	// Tabs, Datepicker, Progressbar
 	// ------------------------
 	// Created 5/15/2015
 	// Authored by Alex Chaudoin
 	/////////////////////////////
 	$('#home-tabs').tabs();
+	$('#project_due_date').datepicker();
 	$('#progress-bar').progressbar({
 		value: 25
 	}); 

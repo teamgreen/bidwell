@@ -24,8 +24,9 @@
 }
 .form-half {
 	width: 41%;
-	margin: 0 4%;
+	margin: 0 4% 5%;
 	display: inline-block;
+	vertical-align: top;
 }
 label {
 	width: 180px;
@@ -34,8 +35,8 @@ label {
 }
 input[type="text"], select {
 	width: 60%;
-	background-color: #efefef;
-	border: 1px solid #dddddd;
+	background-color: #dcf5ae;
+	border: 1px solid #c3db95;
 }
 input[type="text"] {
 	border-radius: 10px;
@@ -52,7 +53,7 @@ textarea {
 }
 #progress-bar {
 	width: 60%;
-	margin: 40px auto;
+	margin: 40px auto 10px auto;
 }
 #home-form_dashboard > #progress-buttons > input[type="button"] {
 	background-color: #b4e753;
