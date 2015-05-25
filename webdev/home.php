@@ -145,6 +145,8 @@
 
 											require 'includes/mysqli_connect.inc.php';
 
+											$dbc = SQLConnect();
+
 											$sql_states = "SELECT * FROM `state`";
 											$result_states = @mysqli_query($dbc, $sql_states);
 

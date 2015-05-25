@@ -15,7 +15,7 @@
 	///////////////////////////////////////
 	function SQLConnect()
 	{
-		$host = "http://107.22.222.166";
+		$host = "107.22.222.166";
 		$username = "ctecadmin";
 		$password = "ctec227*user";
 		$db = "Bid-well";
