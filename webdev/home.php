@@ -37,7 +37,7 @@
 	<div class="wrapper">
 
 	<?php @require_once "includes/header.inc.php"; ?>
-		
+	
 		<div class="content">
 
 			<div id="home-tabs">
@@ -47,6 +47,29 @@
 					<li><a href="#tab3">Completed Projects</a></li>
 				</ul>
 				<div id="tab1">
+					<!-- test PHP function to read account permissions
+					<?php
+	
+						// require 'includes/mysqli_connect.inc.php';
+
+						// $dbc = SQLConnect();
+
+						// $sql_test = "SELECT * FROM `account|permission`";
+						// $result_test = @mysqli_query($dbc, $sql_test);
+
+						// while($row_test = @mysqli_fetch_array($result_test)) {
+						// 	testPermissions($row_test['AccountID'], $row_test['PermissionID']);
+						// }
+
+						// function testPermissions($accountID, $permissionID) {
+						// 	if ($accountPermission === $permissionID) {
+						// 		return 1;
+						// 	} else {
+						// 		return 0;
+						// 	};
+						// }
+
+					?> -->
 					<table>
 						<tr>
 							<th>Project Number</th>
@@ -141,12 +164,14 @@
 								<div>
 									<label for="state">State</label>
 									<select name="state" id="state">
+										<option value="-">Select a State</option>
 										<?php 
 
 											require 'includes/mysqli_connect.inc.php';
 
 											$dbc = SQLConnect();
 
+											// SQL statement to select everything from state table to populate options in select form element
 											$sql_states = "SELECT * FROM `state`";
 											$result_states = @mysqli_query($dbc, $sql_states);
 
