@@ -138,14 +138,23 @@
 									<label for="city_owner">City</label>
 									<input type="text" id="city_owner" name="city_owner" maxlength="20">
 								</div>
-								<!-- <div>
+								<div>
 									<label for="state">State</label>
 									<select name="state" id="state">
-										<option value="ca">California</option>
-										<option value="or">Oregon</option>
-										<option value="wa">Washington</option>
+										<?php 
+
+											require 'includes/mysqli_connect.inc.php';
+
+											$sql_states = "SELECT * FROM `state`";
+											$result_states = @mysqli_query($dbc, $sql_states);
+
+											while($row_states = @mysqli_fetch_array($result_states)) {
+												echo "<option value='" . $row_states['fullStateName'] . "'>" .$row_states['abbrevName'] . "</option>\n";
+											}
+
+										?>
 									</select>
-								</div> WA is default, pull states from table -->
+								</div>
 								<div>
 									<label for="zip_owner">Zip</label>
 									<input type="text" id="zip_owner" name="zip_owner" maxlength="10">
