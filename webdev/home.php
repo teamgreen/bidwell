@@ -70,43 +70,43 @@
 						// }
 
 					?> -->
-					<table>
-						<tr>
-							<th>Project Number</th>
-							<th>Project Name</th>
-							<th>Location</th>
-							<th>Completion Date</th>
-							<th>Status</th>
-						</tr>
-						<tr>
-							<td>1</td>
-							<td>Lorem Ipsum <span class="ui-icon ui-icon-info" title="Project information goes here."></span></td>
-							<td>Portland</td>
-							<td>7/12/2015</td>
-							<td>In Progress <span class="ui-icon ui-icon-info" title="Status on Project Completion."></span></td>
-						</tr>
-						<tr>
-							<td>2</td>
-							<td>Lorem Ipsum <span class="ui-icon ui-icon-info" title="Project information goes here."></span></td>
-							<td>Portland</td>
-							<td>7/19/2015</td>
-							<td>In Progress <span class="ui-icon ui-icon-info" title="Status on Project Completion."></span></td>
-						</tr>
-						<tr>
-							<td>3</td>
-							<td>Lorem Ipsum <span class="ui-icon ui-icon-info" title="Project information goes here."></span></td>
-							<td>Portland</td>
-							<td>7/27/2015</td>
-							<td>In Progress <span class="ui-icon ui-icon-info" title="Status on Project Completion."></span></td>
-						</tr>
-						<tr>
-							<td>4</td>
-							<td>Lorem Ipsum <span class="ui-icon ui-icon-info" title="Project information goes here."></span></td>
-							<td>Portland</td>
-							<td>8/2/2015</td>
-							<td>In Progress <span class="ui-icon ui-icon-info" title="Status on Project Completion."></span></td>
-						</tr>
-					</table>
+					<?php
+		
+						require 'includes/mysqli_connect.inc.php';
+
+						$dbc = SQLConnect();
+
+						// SQL statement to select everything from project table to populate table with rows and cells		
+						$sql_project = "SELECT * FROM `project`";
+						$result_project = @mysqli_query($dbc, $sql_project);
+
+						$num_rows_project = @mysql_num_rows($result_project);
+						if ($num_rows_project == 0) {
+							echo "<p>Currently there are no projects in this tab. Care to create a new project in the next tab?</p>";
+						} else {
+							echo "<table>\n";
+							echo "<tr>\n";
+							echo "<th>Project Number</th>";
+							echo "<th>Project Name</th>";
+							echo "<th>Location</th>";
+							echo "<th>Completion Date</th>";
+							echo "<th>Status</th>";
+							echo "</tr>\n";
+
+							while($row_project = @mysqli_fetch_array($result_project)) {
+								echo "<tr>\n";
+								echo "<td>" . $row_project['ProjectID'] . "</td>";
+								echo "<td>" . $row_project['ProjectName'] . "<span class=\"ui-icon ui-icon-info\" title=\"" . $row_project['ProjectName'] . "\"></span></td>";
+								echo "<td>" . $row_project['SiteLocID'] . "</td>";
+								echo "<td>" . $row_project['ProjectDueDate'] . "</td>";
+								echo "<td>" . $row_project['ProjectStatusID'] . "<span class=\"ui-icon ui-icon-info\" title=\"" . $row_project['ProjectStatusID'] . "\"></span></td>";
+								echo "</tr>\n";
+							}
+
+							echo "</table>\n";
+						};
+
+					?>
 				</div>
 				<div id="tab2">
 					<form action="#" method="post" id="home-form">
@@ -162,14 +162,10 @@
 									<input type="text" id="city_owner" name="city_owner" maxlength="20">
 								</div>
 								<div>
-									<label for="state">State</label>
-									<select name="state" id="state">
+									<label for="state_owner">State</label>
+									<select name="state_owner" id="state_owner">
 										<option value="-">Select a State</option>
 										<?php 
-
-											require 'includes/mysqli_connect.inc.php';
-
-											$dbc = SQLConnect();
 
 											// SQL statement to select everything from state table to populate options in select form element
 											$sql_states = "SELECT * FROM `state`";
@@ -219,14 +215,23 @@
 									<label for="city_architect">City</label>
 									<input type="text" id="city_architect" name="city_architect" maxlength="20">
 								</div>
-								<!-- <div>
-									<label for="state">State</label>
-									<select name="state" id="state">
-										<option value="ca">California</option>
-										<option value="or">Oregon</option>
-										<option value="wa">Washington</option>
+								<div>
+									<label for="state_architect">State</label>
+									<select name="state_architect" id="state_architect">
+										<option value="-">Select a State</option>
+										<?php 
+
+											// SQL statement to select everything from state table to populate options in select form element
+											$sql_states = "SELECT * FROM `state`";
+											$result_states = @mysqli_query($dbc, $sql_states);
+
+											while($row_states = @mysqli_fetch_array($result_states)) {
+												echo "<option value='" . $row_states['fullStateName'] . "'>" .$row_states['abbrevName'] . "</option>\n";
+											}
+
+										?>
 									</select>
-								</div> WA is default, pull states from table -->
+								</div>
 								<div>
 									<label for="zip_architect">Zip</label>
 									<input type="text" id="zip_architect" name="zip_architect" maxlength="12">
@@ -246,14 +251,23 @@
 									<label for="city_location">City</label>
 									<input type="text" id="city_location" name="city_location" maxlength="20">
 								</div>
-								<!-- <div>
-									<label for="state">State</label>
-									<select name="state" id="state">
-										<option value="ca">California</option>
-										<option value="or">Oregon</option>
-										<option value="wa">Washington</option>
+								<div>
+									<label for="state_owner">State</label>
+									<select name="state_owner" id="state_owner">
+										<option value="-">Select a State</option>
+										<?php 
+
+											// SQL statement to select everything from state table to populate options in select form element
+											$sql_states = "SELECT * FROM `state`";
+											$result_states = @mysqli_query($dbc, $sql_states);
+
+											while($row_states = @mysqli_fetch_array($result_states)) {
+												echo "<option value='" . $row_states['fullStateName'] . "'>" .$row_states['abbrevName'] . "</option>\n";
+											}
+
+										?>
 									</select>
-								</div> WA is default, pull states from table -->
+								</div>
 								<div>
 									<label for="zip_location">Zip</label>
 									<input type="text" id="zip_location" name="zip_location" maxlength="12">
