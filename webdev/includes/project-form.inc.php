@@ -44,8 +44,8 @@
 							<div class="form-half">
 								<div>
 									<label>Address</label>
-									<input type="text" id="address1_owner" name="address_owner" maxlength="100">
-									<input type="text" id="address2_owner" name="address_owner" maxlength="100">
+									<input type="text" id="address1_owner" name="address1_owner" maxlength="100">
+									<input type="text" id="address2_owner" name="address2_owner" maxlength="100">
 								</div>
 								<div>
 									<label for="city_owner">City</label>
@@ -98,8 +98,8 @@
 							<div class="form-half">
 								<div>
 									<label>Address</label>
-									<input type="text" id="address1_architect" name="address_architect" maxlength="100">
-									<input type="text" id="address2_architect" name="address_architect" maxlength="100">
+									<input type="text" id="address1_architect" name="address1_architect" maxlength="100">
+									<input type="text" id="address2_architect" name="address2_architect" maxlength="100">
 								</div>
 								<div>
 									<label for="city_architect">City</label>
@@ -134,8 +134,8 @@
 							<div class="form-half">
 								<div>
 									<label>Address</label>
-									<input type="text" id="address1_location" name="address_location" maxlength="100">
-									<input type="text" id="address2_location" name="address_location" maxlength="100">
+									<input type="text" id="address1_location" name="address1_location" maxlength="100">
+									<input type="text" id="address2_location" name="address2_location" maxlength="100">
 								</div>
 								<div>
 									<label for="city_location">City</label>
