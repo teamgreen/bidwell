@@ -45,14 +45,6 @@
 					<li><a href="#tab-b">System Settings</a></li>
 				</ul>
 				<div id="tab-a">
-					<table>
-						<tr>
-							<th>Account ID</th>
-							<th>Username</th>
-							<th>Email</th>
-							<th>Preset</th>
-							<th>Password</th>
-						</tr>
 						<?php
 		
 							require 'includes/mysqli_connect.inc.php';
@@ -63,18 +55,36 @@
 							$sql_account = "SELECT * FROM `account`";
 							$result_account = @mysqli_query($dbc, $sql_account);
 
-							while($row_account = @mysqli_fetch_array($result_account)) {
+							$num_rows_account = @mysqli_num_rows($result_account);
+							if ($num_rows_account == 0) {
+								echo "<p>Currently there are no accounts in this tab.</p>";
+								echo "<p>Care to create a new account by clicking 'New' below?</p>";
+							} else {
+
+								echo "<table>\n";
 								echo "<tr>\n";
-								echo "<td>" . $row_account['AccountID'] . "</td>";
-								echo "<td>" . $row_account['LoginName'] . "</td>";
-								echo "<td>" . $row_account['Email'] . "</td>";
-								echo "<td>" . $row_account['PresetName'] . "<span class=\"ui-icon ui-icon-info\" title=\"" . $row_account['PresetName'] . "\"></span></td>";
-								echo "<td>" . $row_account['Password'] . "</td>";
+								echo "<th>Account ID</th>";
+								echo "<th>Username</th>";
+								echo "<th>Email</th>";
+								echo "<th>Preset</th>";
+								echo "<th>Password</th>";
 								echo "</tr>\n";
-							}
+
+								while($row_account = @mysqli_fetch_array($result_account)) {
+									echo "<tr>\n";
+									echo "<td>" . $row_account['AccountID'] . "</td>";
+									echo "<td>" . $row_account['LoginName'] . "</td>";
+									echo "<td>" . $row_account['Email'] . "</td>";
+									echo "<td>" . $row_account['PresetName'] . "<span class=\"ui-icon ui-icon-info\" title=\"" . $row_account['PresetName'] . "\"></span></td>";
+									echo "<td>" . $row_account['Password'] . "</td>";
+									echo "</tr>\n";
+								};
+
+							};
+
+							echo "</table>\n";
 
 						?>
-					</table>
 					<div id="admin-table_dashboard">
 						<input type="reset" class="reset" href="#" value="Reset">
 						<input type="button" class="new-edit" href="#" value="New"><!--will change-->

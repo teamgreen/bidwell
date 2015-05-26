@@ -80,7 +80,7 @@
 						$sql_project = "SELECT * FROM `project`";
 						$result_project = @mysqli_query($dbc, $sql_project);
 
-						$num_rows_project = @mysql_num_rows($result_project);
+						$num_rows_project = @mysqli_num_rows($result_project);
 						if ($num_rows_project == 0) {
 							echo "<p>Currently there are no projects in this tab.</p>";
 							echo "<p>Care to create a new project in the next tab?</p>";
@@ -318,118 +318,76 @@
 
 					<?php
 
+						@require_once 'includes/functions.php';
+
 						# If the above form has been submitted,
 						# this PHP code will run and all the form
 						# values will be sent to the database.
 
 						if($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-							$projectName = $_POST['project_name'];
-							$projectDescription = $_POST['project_description'];
-							$projectDueDate = $_POST['project_due_date'];
+							$projectName = assignIfNotEmpty('project_name', 'Project');
+							$projectDescription = assignIfNotEmpty('project_description', 'Here is the project description.');
+							$projectDueDate = assignIfNotEmpty('project_due_date', 'TBD');
 
-							$ownerName = $_POST['name_owner'];
-							$ownerPhone = $_POST['phone_owner'];
-							$ownerCellphone = $_POST['cellphone_owner'];
-							$ownerEmail = $_POST['email_owner'];
-							$ownerAddress1 = $_POST['address1_owner'];
-							$ownerAddress2 = $_POST['address2_owner'];
-							$ownerCity = $_POST['city_owner'];
-							$ownerState = $_POST['state_owner'];
-							$ownerZip = $_POST['zip_owner'];
+							$ownerName = assignIfNotEmpty('name_owner', 'TBD');
+							$ownerPhone = assignIfNotEmpty('phone_owner', 'TBD');
+							$ownerCellphone = assignIfNotEmpty('cellphone_owner', 'TBD');
+							$ownerEmail = assignIfNotEmpty('email_owner', 'TBD');
+							$ownerAddress1 = assignIfNotEmpty('address1_owner', 'TBD');
+							$ownerAddress2 = assignIfNotEmpty('address2_owner', 'TBD');
+							$ownerCity = assignIfNotEmpty('city_owner', 'TBD');
+							$ownerState = assignIfNotEmpty('state_owner', 'TBD');
+							$ownerZip = assignIfNotEmpty('zip_owner', 'TBD');
 
-							$architectName = $_POST['name_architect'];
-							$architectPhone = $_POST['phone_architect'];
-							$architectCellphone = $_POST['cellphone_architect'];
-							$architectEmail = $_POST['email_architect'];
-							$architectAddress1 = $_POST['address1_architect'];
-							$architectAddress2 = $_POST['address2_architect'];
-							$architectCity = $_POST['city_architect'];
-							$architectState = $_POST['state_architect'];
-							$architectZip = $_POST['zip_architect'];
+							$architectName = assignIfNotEmpty('name_architect', 'TBD');
+							$architectPhone = assignIfNotEmpty('phone_architect', 'TBD');
+							$architectCellphone = assignIfNotEmpty('cellphone_architect', 'TBD');
+							$architectEmail = assignIfNotEmpty('email_architect', 'TBD');
+							$architectAddress1 = assignIfNotEmpty('address1_architect', 'TBD');
+							$architectAddress2 = assignIfNotEmpty('address2_architect', 'TBD');
+							$architectCity = assignIfNotEmpty('city_architect', 'TBD');
+							$architectState = assignIfNotEmpty('state_architect', 'TBD');
+							$architectZip = assignIfNotEmpty('zip_architect', 'TBD');
 
-							$locationName = $_POST['name_location'];
-							$locationAddress1 = $_POST['address1_location'];
-							$locationAddress2 = $_POST['address2_location'];
-							$locationCity = $_POST['city_location'];
-							$locationState = $_POST['state_location'];
-							$locationZip = $_POST['zip_location'];
-							$projectNotes = $_POST['project_notes'];
+							$locationName = assignIfNotEmpty('name_location', 'TBD');
+							$locationAddress1 = assignIfNotEmpty('address1_location', 'TBD');
+							$locationAddress2 = assignIfNotEmpty('address2_location', 'TBD');
+							$locationCity = assignIfNotEmpty('city_location', 'TBD');
+							$locationState = assignIfNotEmpty('state_location', 'TBD');
+							$locationZip = assignIfNotEmpty('zip_location', 'TBD');
+							$projectNotes = assignIfNotEmpty('project_notes', 'Here are the project notes.');
 
 							$sql_form_project = "INSERT INTO `project` (ProjectName, ProjectDescription, ProjectDueDate, Owner, OwnerPhone, OwnerCellPhone, OwnerEmail, Architect, ArchitectPhone, ArchitectCellPhone, ArchitectEmail, ProjectNotes)
 										VALUES ('$projectName', '$projectDescription', '$projectDueDate', '$ownerName', '$ownerPhone', '$ownerCellphone', '$ownerEmail', '$architectName', '$architectPhone', '$architectCellphone', '$architectEmail', '$projectNotes')";
 							$result_form_project = @mysqli_query($dbc, $sql_form_project);
 
-							$num_rows_form_project = @mysql_num_rows($result_form_project);
-							if ($num_rows_form_project >= 1) {
-								# code...
-							} else {
+							$num_rows_form_project = @mysqli_num_rows($result_form_project);
+							if ($num_rows_form_project == 0) {
 							 	echo "<p>We apologize for the inconvenience, but the following information has not been received:\n";
 							 	echo "Project Information\n</p>";
 							};
 
-							$sql_form_owner = "INSERT INTO `address` (Name, Address1, Address2, City, State, ZipCode)
-										VALUES ('$ownerName', '$ownerAddress1', '$ownerAddress2', '$ownerCity', '$ownerState', '$ownerZip')";
-							$result_form_owner = @mysqli_query($dbc, $sql_form_owner);
-
-							$num_rows_form_owner = @mysql_num_rows($result_form_owner);
-							if ($num_rows_form_owner >= 1) {
-								# code...
-							} else {
-							 	echo "<p>We apologize for the inconvenience, but the following information has not been received:\n";
-							 	echo "Owner Address Information\n</p>";
-							};
+							addAddress($ownerName, $ownerAddress1, $ownerAddress2, $ownerCity, $ownerState, $ownerZip, 'Owner Address Information');
 
 							# use SQL to retrieve addressId from Owner info
 							# and insert same value for OwnerAddress ID to 
 							# project table
-							$sql_ownerID = "SELECT 'AddressID' FROM `address` WHERE Name = '$ownerName';
-											UPDATE `project` SET project.OwnerAddressID = address.AddressID WHERE Name = '$ownerName'";
-							$result_ownerID = @mysqli_multi_query($dbc, $sql_ownerID);
+							addAddressID($ownerName, 'Owner Address ID');
 
-							# ------------------------------------
-
-							$sql_form_architect = "INSERT INTO `address` (Name, Address1, Address2, City, State, ZipCode)
-										VALUES ('$architectName', '$architectAddress1', '$architectAddress2', '$architectCity', '$architectState', '$architectZip')";
-							$result_form_architect = @mysqli_query($dbc, $sql_form_architect);
-
-							$num_rows_form_architect = @mysql_num_rows($result_form_architect);
-							if ($num_rows_form_architect >= 1) {
-								# code...
-							} else {
-							 	echo "<p>We apologize for the inconvenience, but the following information has not been received:\n";
-							 	echo "Architect Address Information\n</p>";
-							};
+							addAddress($architectName, $architectAddress1, $architectAddress2, $architectCity, $architectState, $architectZip, 'Architect Address Information');
 
 							# use SQL to retrieve addressId from Architect info
 							# and insert same value for ArchitectAddress ID to 
 							# project table
-							$sql_architectID = "SELECT 'AddressID' FROM `address` WHERE Name = '$architectName';
-												UPDATE `project` SET project.ArchitectAddressID = address.AddressID WHERE Name = '$architectName'";
-							$result_architectID = @mysqli_multi_query($dbc, $sql_architectID);
+							addAddressID($architectName, 'Architect Address ID');
 
-							# ------------------------------------
-
-							$sql_form_location = "INSERT INTO `address` (Name, Address1, Address2, City, State, ZipCode)
-										VALUES ('$locationName', '$locationAddress1', '$locationAddress2', '$locationCity', '$locationState', '$locationZip')";
-							$result_form_location = @mysqli_query($dbc, $sql_form_location);
-
-							$num_rows_form_location = @mysql_num_rows($result_form_location);
-							if ($num_rows_form_location >= 1) {
-								# code...
-							} else {
-							 	echo "<p>We apologize for the inconvenience, but the following information has not been received:\n";
-							 	echo "Location Address Information\n</p>";
-							};
+							addAddress($locationName, $locationAddress1, $locationAddress2, $locationCity, $locationState, $locationZip, 'Location Address Information');
 
 							# use SQL to retrieve addressId from Location info
 							# and insert same value for LocationAddress ID to 
 							# project table
-							$sql_locationID = "SELECT 'AddressID' FROM `address` WHERE Name = '$locationName';
-												UPDATE `project` SET project.LocationAddressID = address.AddressID WHERE Name = '$locationName'";
-							$result_locationID = @mysqli_multi_query($dbc, $sql_locationID);
-
-							# ------------------------------------
+							addAddressID($locationName, 'Location Address ID'); 
 
 						};
 		
@@ -443,7 +401,7 @@
 						$sql_completed_project = "SELECT * FROM `project`";
 						$result_completed_project = @mysqli_query($dbc, $sql_completed_project);
 
-						$num_rows_completed_project = @mysql_num_rows($result_completed_project);
+						$num_rows_completed_project = @mysqli_num_rows($result_completed_project);
 						if ($num_rows_completed_project == 0) {
 							echo "<p>Currently there are no completed projects in this tab.</p>";
 							echo "<p>Care to create a new project in the previous tab?</p>";
