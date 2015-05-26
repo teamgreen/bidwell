@@ -325,7 +325,7 @@
 					</div>
 					<?php
 
-						// require 'includes/mysqli_functions.inc.php';
+						require 'includes/mysqli_functions.inc.php';
 
 						# If the above form has been submitted,
 						# this PHP code will run and all the form

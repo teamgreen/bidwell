@@ -113,28 +113,24 @@
 		return (isset($_POST[$field])) ? $_POST[$field] : $default;
 	} // end function
 
-	function addAddress($name, $address1, $address2, $city, $state, $zip, $message) {
+	function addAddress($name, $address1, $address2, $city, $state, $zip) {
 		$sql = "INSERT INTO `address` (Name, Address1, Address2, City, State, ZipCode)
 				VALUES ('$name', '$address1', '$address2', '$city', '$state', '$zip')";
 		$result = @mysqli_query($dbc, $sql);
 		
 		$num_rows = @mysqli_num_rows($result);
 		if ($num_rows == 0) {
-		 	echo "<p>We apologize for the inconvenience, but the following information has not been received:\n";
-		 	echo $message . "\n</p>";
+			return 0;
+		} else {
+			$id = mysqli_query('SELECT LAST_INSERT_ID()');
+			addAddress($id);
 		};
 	} // end function
 
-	function addAddressID($name, $message) {
-		$sql = "SELECT 'AddressID' FROM `address` WHERE Name = '$name';
-				UPDATE `project` SET project.OwnerAddressID = address.AddressID WHERE Name = '$name'";
-		$result = @mysqli_multi_query($dbc, $sql);
-
-		$num_rows = @mysqli_num_rows($result);
-		if ($num_rows == 0) {
-		 	echo "<p>We apologize for the inconvenience, but the following information has not been received:\n";
-		 	echo $message . "\n</p>";
-		};
+	function addAddressID($id) {
+		$sql = "SELECT 'AddressID' FROM `address` WHERE AddressID = '$id';
+				UPDATE `project` SET project.OwnerAddressID = address.AddressID WHERE address.AddressID = '$id'";
+		$result = @mysqli_store_result($dbc, $sql);
 	} // end function
 
 

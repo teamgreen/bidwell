@@ -249,21 +249,11 @@
 							 	echo "Project Information\n</p>";
 							};
 
-							addAddress($ownerName, $ownerAddress1, $ownerAddress2, $ownerCity, $ownerState, $ownerZip, 'Owner Address Information');
+							addAddress($ownerName, $ownerAddress1, $ownerAddress2, $ownerCity, $ownerState, $ownerZip);
 
-							# use SQL to retrieve addressId from Owner info
-							# and insert same value for OwnerAddress ID to 
-							# project table
-							addAddressID($ownerName, 'Owner Address ID');
+							addAddress($architectName, $architectAddress1, $architectAddress2, $architectCity, $architectState, $architectZip);
 
-							addAddress($architectName, $architectAddress1, $architectAddress2, $architectCity, $architectState, $architectZip, 'Architect Address Information');
-
-							# use SQL to retrieve addressId from Architect info
-							# and insert same value for ArchitectAddress ID to 
-							# project table
-							addAddressID($architectName, 'Architect Address ID');
-
-							addAddress($locationAddress1, $locationAddress2, $locationCity, $locationState, $locationZip, 'Location Address Information');
+							addAddress($locationAddress1, $locationAddress2, $locationCity, $locationState, $locationZip);
 
 							header('Location: project.php');
 							exit();
