@@ -27,9 +27,11 @@
 	display: inline-block;
 }
 label {
-	width: 90px;
+	width: 125px;
 	display: inline-block;
 	text-align: left;
+	padding-left: 15px;
+	padding-bottom: 15px;
 }
 input[type="text"], select {
 	width: 60%;
@@ -39,6 +41,9 @@ input[type="text"], select {
 input[type="text"] {
 	border-radius: 10px;
 }
+
+
+
 #home-form_dashboard {
 	width: 80%;
 	margin: 0 auto;
@@ -72,9 +77,14 @@ input[type="text"] {
 	margin: 0 20px;
 }
 
+#tab2{
+	width: 100%;
+}
+
 .description-cont 
 {
-	display: inline-block;
+	float: left;
+	width: 50%;
 }
 
 .project-info 
@@ -86,8 +96,9 @@ input[type="text"] {
 {
 	text-align: left;
 	background-color: lightgray;
-	width: 45%;
+	width: 90%;
 	padding: 10px;
+	float: left;
 }
 
 .description-left-title 
@@ -99,7 +110,7 @@ input[type="text"] {
 {
 	text-align: left;
 	background-color: lightgray;
-	width: 45%;
+	width: 90%;
 	padding: 10px;
 	float: left;
 }
@@ -145,6 +156,7 @@ display: none;
 }
 
 button {
+	
 	background-color: #b4e753;
 	width: 150px;
 	height: 45px;
@@ -162,7 +174,22 @@ button a {
 }
 
 button a:hover {
-	background-color: #d7f3a1
+	text-decoration: none;
+}
+
+button:hover{
+	background-color: #d7f3a1;
+	text-decoration: none;
+}
+
+.login_button{
+	margin-bottom: 15px;
+
+}
+
+.login_button:hover{
+	background-color: #387929;
+	color: #fff;
 }
 
 .scroller {

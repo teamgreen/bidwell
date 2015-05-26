@@ -53,34 +53,27 @@
 							<th>Preset</th>
 							<th>Password</th>
 						</tr>
-						<tr>
-							<td>1</td>
-							<td>Lorem Ipsum</td>
-							<td>email@gmail.com</td>
-							<td>Loan Officer <span class="ui-icon ui-icon-info" title="A Greenwell Bank employee who helps facilitate the loan process relating to successful bids on projects."></span></td>
-							<td>***********</td>
-						</tr>
-						<tr>
-							<td>2</td>
-							<td>Lorem Ipsum</td>
-							<td>email@hotmail.com</td>
-							<td>Bid Preparer <span class="ui-icon ui-icon-info" title="An employee of the construction company entrusted with preparing bids."></span></td>
-							<td>***********</td>
-						</tr>
-						<tr>
-							<td>3</td>
-							<td>Lorem Ipsum</td>
-							<td>email@yahoo.com</td>
-							<td>Custom <span class="ui-icon ui-icon-info" title="A customized set of user permissions, ideally for a user who needs access to many features which cannot be fulfilled by one preset."></span></td>
-							<td>***********</td>
-						</tr>
-						<tr>
-							<td>4</td>
-							<td>Lorem Ipsum</td>
-							<td>email@aol.com</td>
-							<td>Executive <span class="ui-icon ui-icon-info" title="A high ranked employee who has the ability to view and comment on all projects."></span></td>
-							<td>***********</td>
-						</tr>
+						<?php
+		
+							require 'includes/mysqli_connect.inc.php';
+
+							$dbc = SQLConnect();
+
+							// SQL statement to select everything from account table to populate table with rows and cells		
+							$sql_account = "SELECT * FROM `account`";
+							$result_account = @mysqli_query($dbc, $sql_account);
+
+							while($row_account = @mysqli_fetch_array($result_account)) {
+								echo "<tr>\n";
+								echo "<td>" . $row_account['AccountID'] . "</td>";
+								echo "<td>" . $row_account['LoginName'] . "</td>";
+								echo "<td>" . $row_account['Email'] . "</td>";
+								echo "<td>" . $row_account['PresetName'] . "<span class=\"ui-icon ui-icon-info\" title=\"" . $row_account['PresetName'] . "\"></span></td>";
+								echo "<td>" . $row_account['Password'] . "</td>";
+								echo "</tr>\n";
+							}
+
+						?>
 					</table>
 					<div id="admin-table_dashboard">
 						<input type="reset" class="reset" href="#" value="Reset">

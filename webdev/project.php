@@ -17,6 +17,7 @@
 //			
 // Project Page 
 // Updated: by Adam Duthie on 5/24 @ 3:00PM - 2:21AM on 5/25
+// Updated: by Adam Duthie on 5/25/2015 @ 2:00PM - 
 /////////////////////////////////////////
 
 -->
@@ -35,80 +36,20 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <!-- Custom jQuery UI Library - 1.11.4 -->
 <script src="libs/jquery-ui-1.11.4.custom/jquery-ui.min.js"></script>
-<script type="text/javascript">
 
-$(document).ready(function(){
 
-$('input[type="checkbox"]').click(function(){
 
-	if($(this).attr("value")=="division1"){
-
-		$(".division1").slideToggle();
-	}
-
-	if($(this).attr("value")=="division2"){
-
-		$(".division2").slideToggle();
-
-	}
-
-	if($(this).attr("value")=="division3"){
-
-		$(".division3").slideToggle();
-
-	}
-
-	if($(this).attr("value")=="division4"){
-
-		$(".division4").slideToggle();
-
-	}
-
-	if($(this).attr("value")=="division5"){
-
-		$(".division5").slideToggle();
-
-	}
-
-	if($(this).attr("value")=="division6"){
-
-		$(".division6").slideToggle();
-
-	}
-
-	if($(this).attr("value")=="division7"){
-
-		$(".division7").slideToggle();
-
-	}
-
-	if($(this).attr("value")=="division8"){
-
-		$(".division8").slideToggle();
-
-	}
-
-	if($(this).attr("value")=="division9"){
-
-		$(".division9").slideToggle();
-
-	}
-
-	if($(this).attr("value")=="division10"){
-
-		$(".division10").slideToggle();
-
-	}
-});
-});
-
-</script>
 </head>
 <body>
 
 <div class="wrapper">
 
-<?php @require_once "includes/header.inc.php"; ?>
+<?php 
+
+	@require_once "includes/header.inc.php"; 
+	require "includes/mysqli_connect.inc.php";
+?>
+
 
 <div class="content">
 
@@ -139,7 +80,7 @@ $('input[type="checkbox"]').click(function(){
 		<div id="tab3">
 			<div class="scroller">
 				<div class="division">
-					<label><input type="checkbox" name="checkbox" value="division1">Division1</label>
+					<label><input type="checkbox" name="checkbox" value="division1">Division - 1</label>
 				</div>
 
 				<div class="division1 box">
@@ -186,7 +127,7 @@ $('input[type="checkbox"]').click(function(){
 					</form>
 				</div>
 				<div class="division">
-					<label><input type="checkbox" name="checkbox" value="division2">Division2</label>
+					<label><input type="checkbox" name="checkbox" value="division2">Division - 2</label>
 				</div>
 
 				<div class="division2 box">
@@ -234,7 +175,7 @@ $('input[type="checkbox"]').click(function(){
 
 				</div>
 				<div class="division">
-					<label><input type="checkbox" name="checkbox" value="division3">Division3</label>
+					<label><input type="checkbox" name="checkbox" value="division3">Division - 3</label>
 				</div>
 
 				<div class="division3 box">
@@ -281,7 +222,7 @@ $('input[type="checkbox"]').click(function(){
 					</form>
 				</div>
 				<div class="division">
-					<label><input type="checkbox" name="checkbox" value="division4">Division4</label>
+					<label><input type="checkbox" name="checkbox" value="division4">Division - 4</label>
 				</div>
 
 				<div class="division4 box">
@@ -328,7 +269,7 @@ $('input[type="checkbox"]').click(function(){
 					</form>
 				</div>
 				<div class="division">
-					<label><input type="checkbox" name="checkbox" value="division5">Division5</label>
+					<label><input type="checkbox" name="checkbox" value="division5">Division - 5</label>
 				</div>
 
 				<div class="division5 box">
@@ -375,7 +316,7 @@ $('input[type="checkbox"]').click(function(){
 					</form>
 				</div>
 				<div class="division">
-					<label><input type="checkbox" name="checkbox" value="division6">Division6</label>
+					<label><input type="checkbox" name="checkbox" value="division6">Division - 6</label>
 				</div>
 
 				<div class="division6 box">
@@ -422,7 +363,7 @@ $('input[type="checkbox"]').click(function(){
 					</form>
 				</div>
 				<div class="division">
-					<label><input type="checkbox" name="checkbox" value="division7">Division7</label>
+					<label><input type="checkbox" name="checkbox" value="division7">Division - 7</label>
 				</div>
 
 				<div class="division7 box">
@@ -469,7 +410,7 @@ $('input[type="checkbox"]').click(function(){
 					</form>
 				</div>
 				<div class="division">
-					<label><input type="checkbox" name="checkbox" value="division8">Division8</label>
+					<label><input type="checkbox" name="checkbox" value="division8">Division - 8</label>
 				</div>
 
 				<div class="division8 box">
@@ -516,7 +457,7 @@ $('input[type="checkbox"]').click(function(){
 					</form>
 				</div>
 				<div class="division">
-					<label><input type="checkbox" name="checkbox" value="division9">Division9</label>
+					<label><input type="checkbox" name="checkbox" value="division9">Division - 9</label>
 				</div>
 
 				<div class="division9 box">
@@ -563,7 +504,7 @@ $('input[type="checkbox"]').click(function(){
 					</form>
 				</div>
 				<div class="division">
-					<label><input type="checkbox" name="checkbox" value="division10">Division10</label>
+					<label><input type="checkbox" name="checkbox" value="division10">Division - 10</label>
 				</div>
 
 				<div class="division10 box">
@@ -617,7 +558,7 @@ $('input[type="checkbox"]').click(function(){
 		<div id="tab4">
 			<div class="scroller">
 				<div class="division">
-					<label><input type="checkbox" name="checkbox" value="division1">Division1</label>
+					<label><input type="checkbox" name="checkbox" value="division1">Division - 1</label>
 				</div>
 
 				<div class="division1 box">
@@ -654,7 +595,7 @@ $('input[type="checkbox"]').click(function(){
 					</form>
 				</div>
 				<div class="division">
-					<label><input type="checkbox" name="checkbox" value="division2">Division2</label>
+					<label><input type="checkbox" name="checkbox" value="division2">Division - 2</label>
 				</div>
 
 				<div class="division2 box">
@@ -692,7 +633,7 @@ $('input[type="checkbox"]').click(function(){
 
 				</div>
 				<div class="division">
-					<label><input type="checkbox" name="checkbox" value="division3">Division3</label>
+					<label><input type="checkbox" name="checkbox" value="division3">Division - 3</label>
 				</div>
 
 				<div class="division3 box">
@@ -729,7 +670,7 @@ $('input[type="checkbox"]').click(function(){
 					</form>
 				</div>
 				<div class="division">
-					<label><input type="checkbox" name="checkbox" value="division4">Division4</label>
+					<label><input type="checkbox" name="checkbox" value="division4">Division - 4</label>
 				</div>
 
 				<div class="division4 box">
@@ -766,7 +707,7 @@ $('input[type="checkbox"]').click(function(){
 					</form>
 				</div>
 				<div class="division">
-					<label><input type="checkbox" name="checkbox" value="division5">Division5</label>
+					<label><input type="checkbox" name="checkbox" value="division5">Division - 5</label>
 				</div>
 
 				<div class="division5 box">
@@ -803,7 +744,7 @@ $('input[type="checkbox"]').click(function(){
 					</form>
 				</div>
 				<div class="division">
-					<label><input type="checkbox" name="checkbox" value="division6">Division6</label>
+					<label><input type="checkbox" name="checkbox" value="division6">Division - 6</label>
 				</div>
 
 				<div class="division6 box">
@@ -840,7 +781,7 @@ $('input[type="checkbox"]').click(function(){
 					</form>
 				</div>
 				<div class="division">
-					<label><input type="checkbox" name="checkbox" value="division7">Division7</label>
+					<label><input type="checkbox" name="checkbox" value="division7">Division - 7</label>
 				</div>
 
 				<div class="division7 box">
@@ -877,7 +818,7 @@ $('input[type="checkbox"]').click(function(){
 					</form>
 				</div>
 				<div class="division">
-					<label><input type="checkbox" name="checkbox" value="division8">Division8</label>
+					<label><input type="checkbox" name="checkbox" value="division8">Division - 8</label>
 				</div>
 
 				<div class="division8 box">
@@ -914,7 +855,7 @@ $('input[type="checkbox"]').click(function(){
 					</form>
 				</div>
 				<div class="division">
-					<label><input type="checkbox" name="checkbox" value="division9">Division9</label>
+					<label><input type="checkbox" name="checkbox" value="division9">Division - 9</label>
 				</div>
 
 				<div class="division9 box">
@@ -951,7 +892,7 @@ $('input[type="checkbox"]').click(function(){
 					</form>
 				</div>
 				<div class="division">
-					<label><input type="checkbox" name="checkbox" value="division10">Division10</label>
+					<label><input type="checkbox" name="checkbox" value="division10">Division - 10</label>
 				</div>
 
 				<div class="division10 box">
@@ -995,7 +936,7 @@ $('input[type="checkbox"]').click(function(){
 		<div id="tab5">
 			<div class="scroller">
 				<div class="division">
-					<label><input type="checkbox" name="checkbox" value="division1">Division1</label>
+					<label><input type="checkbox" name="checkbox" value="division1">Division - 1</label>
 				</div>
 
 				<div class="division1 box">
@@ -1032,7 +973,7 @@ $('input[type="checkbox"]').click(function(){
 					</form>
 				</div>
 				<div class="division">
-					<label><input type="checkbox" name="checkbox" value="division2">Division2</label>
+					<label><input type="checkbox" name="checkbox" value="division2">Division - 2</label>
 				</div>
 
 				<div class="division2 box">
@@ -1070,7 +1011,7 @@ $('input[type="checkbox"]').click(function(){
 
 				</div>
 				<div class="division">
-					<label><input type="checkbox" name="checkbox" value="division3">Division3</label>
+					<label><input type="checkbox" name="checkbox" value="division3">Division - 3</label>
 				</div>
 
 				<div class="division3 box">
@@ -1107,7 +1048,7 @@ $('input[type="checkbox"]').click(function(){
 					</form>
 				</div>
 				<div class="division">
-					<label><input type="checkbox" name="checkbox" value="division4">Division4</label>
+					<label><input type="checkbox" name="checkbox" value="division4">Division - 4</label>
 				</div>
 
 				<div class="division4 box">
@@ -1144,7 +1085,7 @@ $('input[type="checkbox"]').click(function(){
 				</form>
 			</div>
 			<div class="division">
-				<label><input type="checkbox" name="checkbox" value="division5">Division5</label>
+				<label><input type="checkbox" name="checkbox" value="division5">Division - 5</label>
 			</div>
 
 			<div class="division5 box">
@@ -1181,7 +1122,7 @@ $('input[type="checkbox"]').click(function(){
 				</form>
 			</div>
 			<div class="division">
-				<label><input type="checkbox" name="checkbox" value="division6">Division6</label>
+				<label><input type="checkbox" name="checkbox" value="division6">Division - 6</label>
 			</div>
 
 			<div class="division6 box">
@@ -1218,7 +1159,7 @@ $('input[type="checkbox"]').click(function(){
 				</form>
 			</div>
 			<div class="division">
-				<label><input type="checkbox" name="checkbox" value="division7">Division7</label>
+				<label><input type="checkbox" name="checkbox" value="division7">Division - 7</label>
 			</div>
 
 			<div class="division7 box">
@@ -1255,7 +1196,7 @@ $('input[type="checkbox"]').click(function(){
 				</form>
 			</div>
 			<div class="division">
-				<label><input type="checkbox" name="checkbox" value="division8">Division8</label>
+				<label><input type="checkbox" name="checkbox" value="division8">Division - 8</label>
 			</div>
 
 			<div class="division8 box">
@@ -1292,7 +1233,7 @@ $('input[type="checkbox"]').click(function(){
 				</form>
 			</div>
 			<div class="division">
-				<label><input type="checkbox" name="checkbox" value="division9">Division9</label>
+				<label><input type="checkbox" name="checkbox" value="division9">Division - 9</label>
 			</div>
 
 			<div class="division9 box">
@@ -1329,7 +1270,7 @@ $('input[type="checkbox"]').click(function(){
 				</form>
 			</div>
 			<div class="division">
-				<label><input type="checkbox" name="checkbox" value="division10">Division10</label>
+				<label><input type="checkbox" name="checkbox" value="division10">Division - 10</label>
 			</div>
 
 			<div class="division10 box">
@@ -1375,5 +1316,6 @@ $('input[type="checkbox"]').click(function(){
 <?php @require_once "includes/footer.inc.php"; ?>
 <!-- JavaScript/jQuery script file -->
 <script src="js/script.js"></script>
+
 </body>
 </html>
