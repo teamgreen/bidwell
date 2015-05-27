@@ -99,38 +99,110 @@
 		</div>
 
 		<div id="add-account" title="Add a new account">
-			<form>
+			<form id="add-form">
 				<fieldset>
-					<label for="name">Username</label>
+					<label for="username">Username</label>
 					<input type="text" name="username" id="username" class="text ui-widget-content ui-corner-all">
-					<label for="name">Email</label>
+					<label for="email">Email</label>
 					<input type="email" name="email" id="email" class="text ui-widget-content ui-corner-all">
-					<label for="name">Password</label>
+					<label for="preset">Preset</label>
+					<input type="text" name="preset" id="preset" class="text ui-widget-content ui-corner-all">
+					<label for="password">Password</label>
 					<input type="password" name="password" id="password" class="text ui-widget-content ui-corner-all">
-					<label for="name">Confirm Password</label>
+					<label for="confirm-password">Confirm Password</label>
 					<input type="password" name="confirm-password" id="confirm-password" class="text ui-widget-content ui-corner-all">
 				</fieldset>
 			</form>
+			<?php
+
+				# If the above form has been submitted,
+				# this PHP code will run and all the form
+				# values will be sent to the database.
+
+				if($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+					$username = $_POST['username'];
+					$email = $_POST['email'];
+					$preset = $_POST['preset'];
+					$password = $_POST['password'];
+
+					$sql_add = "INSERT INTO `account` (LoginName, Email, PresetName, Password)
+								VALUES ('$username', '$email', $preset, '$password')";
+					$result_add = @mysqli_query($dbc, $sql_add);
+
+					$num_rows_add = @mysqli_num_rows($result_add);
+					if ($num_rows_add == 0) {
+					 	echo "<p>We apologize for the inconvenience but a new account could not be added.</p>\n";
+					};
+
+					$_POST = array(); // should clear all fields
+
+					?>
+
+					<script type="text/javascript">
+						newURL = document.location.href;
+
+						<?php header("Location: " . $newURL); ?>
+					</script>
+
+					<?php
+
+				};
+
+			?>
 		</div>
 
 		<div id="edit-account" title="Edit an account">
-			<?php
-				// when you click on account, retrieve values from that account (Account ID for select statement, this is retrieval)
-				// populate form with those values
-				// when the user saves changes, use an update statement to overwrite those changes
-				// if the num rows was 0, then let the user know that the account was not edited
-				// else let the user know that the row was successfuly changed
-			?>
-			<form>
+			<script>
+				// When clicking on a row in the admin table,
+				// the text values of children elements of that 
+				// selected row (td) will be assigned to an array 
+				// called "cells". Then a variable named "accountID" 
+				// will hold the first element of that array.
+				$('#tab-a tr:not(:first-child)').click(function(){
+
+					var cells = [];
+					cells = $(this).children('td').text();
+					var accountID = cells[0];
+					return accountID;
+
+				}); // end click
+
+				<?php 
+
+					$sql = "SELECT LoginName, Email, PresetName, Password FROM `account` WHERE AccountID = '$accountID'";
+					$result = @mysqli_query($dbc, $sql);
+
+					$num_rows = @mysqli_num_rows($result);
+					if ($num_rows >= 1) {
+					 	while($row = @mysqli_fetch_array($result)) {
+							$username = $row['LoginName'];
+							$email = $row['Email'];
+							$preset = $row['PresetName'];
+							$password = $row['Password'];
+						};
+					};
+
+					// populate form with those values
+					// when the user saves changes, use an update statement to overwrite those changes
+					// if the num rows was 0, then let the user know that the account was not edited
+					// else let the user know that the row was successfuly changed
+
+				?>
+
+			</script>
+			<form id="edit-form">
 				<fieldset>
-					<label for="name">Username</label>
-					<input type="text" name="username" id="username" value="Lorem Ipsum" class="text ui-widget-content ui-corner-all">
-					<label for="name">Email</label>
-					<input type="email" name="email" id="email" value="email@gmail.com" class="text ui-widget-content ui-corner-all">
-					<label for="name">Password</label>
-					<input type="password" name="password" id="password" value="***********" class="text ui-widget-content ui-corner-all">
-					<label for="name">Confirm Password</label>
-					<input type="password" name="confirm-password" id="confirm-password" value="***********" class="text ui-widget-content ui-corner-all">
+					<label for="username">Username</label>
+					<input type="text" name="username" id="username" value="<?php echo $username; ?>" class="text ui-widget-content ui-corner-all">
+					<label for="email">Email</label>
+					<input type="email" name="email" id="email" value="<?php echo $email; ?>" class="text ui-widget-content ui-corner-all">
+					<label for="preset">Preset</label>
+					<input type="text" name="preset" id="<?php echo $preset; ?>" class="text ui-widget-content ui-corner-all">
+					<label for="password">Password</label>
+					<input type="password" name="password" id="password" value="<?php echo $password; ?>" class="text ui-widget-content ui-corner-all">
+					<label for="confirm-password">Confirm Password</label>
+					<input type="password" name="confirm-password" id="confirm-password" value="<?php echo $password; ?>" class="text ui-widget-content ui-corner-all">
 				</fieldset>
 			</form>
 		</div>

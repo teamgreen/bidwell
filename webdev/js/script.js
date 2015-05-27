@@ -64,7 +64,11 @@ $(document).ready(function(){
 	// For the click function below:
 	// ------------------------------------------
 	// When clicking on a row in the admin table,
-	// that row will be highlighted and the 
+	// the text values of children elements of that 
+	// selected row (td) will be assigned to an array 
+	// called "cells". Then a variable named "accountID" 
+	// will hold the first element of that array.
+	// Also, that row will be highlighted and the 
 	// "New" button will change to "Edit".
 	// The pointer events on other rows will be
 	// disabled until the selected row is clicked
@@ -114,7 +118,7 @@ $(document).ready(function(){
 				},
 				Save: function(){
 					addDialog.dialog('close'); 
-					// need to add "add user" function
+					$('#add-form').submit();
 				}
 			}
 		}); // end dialog
@@ -130,7 +134,7 @@ $(document).ready(function(){
 				},
 				Save: function(){
 					editDialog.dialog('close'); 
-					// need to add "add user" function
+					$('#edit-form').submit();
 				}
 			}
 		}); // end dialog
