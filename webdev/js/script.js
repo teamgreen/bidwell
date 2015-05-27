@@ -35,7 +35,9 @@ $(document).ready(function(){
 	// Authored by Alex Chaudoin
 	/////////////////////////////
 	$('#home-tabs').tabs();
-	$('#project_due_date').datepicker();
+	$('#project_due_date').datepicker({
+		altFormat: "yyyy-mm-dd"
+	});
 	$('#progress-bar').progressbar({
 		value: 25
 	}); 

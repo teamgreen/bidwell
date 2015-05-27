@@ -196,7 +196,6 @@
 							<div>
 								<input type="button" class="prev" id="prev3" value="Previous" onclick="prevDiv('#prev3')">
 								<span>Page 4 of 4</span>
-								<input type="button" class="finish" id="finish" value="Finish">
 							</div>
 						</div>
 					</div>
@@ -255,8 +254,19 @@
 
 							addAddress($locationAddress1, $locationAddress2, $locationCity, $locationState, $locationZip);
 
-							header('Location: project.php');
-							exit();
+							$_POST = array(); // should clear all fields
+
+							?>
+
+							
+							<script type="text/javascript">
+								newURL = document.location.href;
+
+								<?php header("Location: " . $newURL); ?>
+							</script>
+
+							<?php
+
 						};
 		
 					?>
