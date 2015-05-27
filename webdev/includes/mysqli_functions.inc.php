@@ -8,32 +8,33 @@
 // 5/25/2015
 ///////////////////////////////////////////////
 
-	abstract class Permissions{
+	abstract class Permissions
+	{
 		// these MUST match the permission table, plus have the terminator at the end, which must always be
 		// at least one bigger than the previous entry.
 		// note that all of these are bit flags... 2^0, 2^1, 2^2...
-		constant $ePROJECT_CREATE = 1; //	user can create new projects
-		constant $ePROJECT_VIEW_INTERNAL = 2; //  	user can see internal project files
-		constant $ePROJECT_VIEW_EXTERNAL = 4; // user can see external project files
-		constant $ePROJECT_VIEW_ALL = 8; // user can view any project
-		constant $ePROJECT_EDIT_ALL = 16; // user can edit any project
-		constant $ePROJECT_DELETE = 32; // user can delete projects they own (hide them)
-		constant $ePROJECT_DELETE_ALL = 64; //user can delete any project
-		constant $ePROJECT_APPROVE = 128; //user can approve projects they own
-		constant $ePROJECT_APPROVE_ALL = 256; //user can approve any project
-		constant $ePROJECT_ASSIGN = 512; //user can assign projects they own to other people
-		constant $ePROJECT_ASSIGN_ALL = 1024; //user can assign any project
-		constant $ePROJECT_TRANSFER = 2048; //user can transfer ownership of projects they own
-		constant $ePROJECT_TRANSFER_ALL = 4096; // 	user can transfer ownership of any project
-		constant $eCOMMENT_VIEW_INTERNAL = 8192; // Can see internal comments
-		constant $eCOMMENT_VIEW_EXTERNAL = 16384; //Can see external comments
-		constant $eCOMMENT_WRITE_INTERNAL = 32768; //user can make internal comments
-		constant $eCOMMENT_WRITE_EXTERNAL = 65536; //user can make external comments
-		constant $eACCOUNT_MANAGE_GREENWELL = 131072; //Can create, manage, and delete Greenwell accounts
-		constant $eACCOUNT_MANAGE = 262144; //User can create, manage, and delete non-admin, non...
-		constant $eACCOUNT_MANAGE_TEMP = 524288; //Can create, manage, and delete temporary accounts
-		constant $eACCOUNT_MANAGE_ADMIN = 1048576; //can create, manage, and delete Admin level account...
-		constant $eTERMINATOR = 1048577;
+		const ePROJECT_CREATE = 1; //	user can create new projects
+		const ePROJECT_VIEW_INTERNAL = 2; //  	user can see internal project files
+		const ePROJECT_VIEW_EXTERNAL = 4; // user can see external project files
+		const ePROJECT_VIEW_ALL = 8; // user can view any project
+		const ePROJECT_EDIT_ALL = 16; // user can edit any project
+		const ePROJECT_DELETE = 32; // user can delete projects they own (hide them)
+		const ePROJECT_DELETE_ALL = 64; //user can delete any project
+		const ePROJECT_APPROVE = 128; //user can approve projects they own
+		const ePROJECT_APPROVE_ALL = 256; //user can approve any project
+		const ePROJECT_ASSIGN = 512; //user can assign projects they own to other people
+		const ePROJECT_ASSIGN_ALL = 1024; //user can assign any project
+		const ePROJECT_TRANSFER = 2048; //user can transfer ownership of projects they own
+		const ePROJECT_TRANSFER_ALL = 4096; // 	user can transfer ownership of any project
+		const eCOMMENT_VIEW_INTERNAL = 8192; // Can see internal comments
+		const eCOMMENT_VIEW_EXTERNAL = 16384; //Can see external comments
+		const eCOMMENT_WRITE_INTERNAL = 32768; //user can make internal comments
+		const eCOMMENT_WRITE_EXTERNAL = 65536; //user can make external comments
+		const eACCOUNT_MANAGE_GREENWELL = 131072; //Can create, manage, and delete Greenwell accounts
+		const eACCOUNT_MANAGE = 262144; //User can create, manage, and delete non-admin, non...
+		const eACCOUNT_MANAGE_TEMP = 524288; //Can create, manage, and delete temporary accounts
+		const eACCOUNT_MANAGE_ADMIN = 1048576; //can create, manage, and delete Admin level account...
+		const eTERMINATOR = 1048577;
 	}
 
 	////////////////////////////////////////////
@@ -89,10 +90,8 @@
 		return false;			
 	}
 
-?>
 
-<!-- 
-	
+
 	///////////////////////////////////////
 	// Additional PHP functions
 	// Authored by Alex Chaudoin
@@ -102,10 +101,6 @@
 	//			that can be called when 
 	//			necessary.
 	///////////////////////////////////////
-
-	-->
-
-<?php
 
 # PHP file for additional functions
 
