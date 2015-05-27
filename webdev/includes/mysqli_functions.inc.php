@@ -48,36 +48,38 @@
 	function HasPermission($a_dbc, $a_AccountID, $a_ePermissions)
 	{
 		// fetch our account
-		$sql = "SELECT * FROM account WHERE AccountID='$a_AccountID'";
-		$result = @mysqli_query($dbc, $sql);
+		$sql = "SELECT * FROM account WHERE AccountID='" . $a_AccountID . "'";
+		$result = @mysqli_query($a_dbc, $sql);
 		$permissions = null;
 
 		// if we have an account...
 		if(mysqli_num_rows($result) == 1){
 			$account = @mysqli_fetch_array($result);
 
-			// if the preset name is custom, we'll use the account|permission table.
+			// if not custom, we'll use the preset permissions.
 			$table = 'preset|permission';
 			$check = $account['PresetName'];
 			$column = 'PresetName';
 
-			// if not custome, we'll use the preset permissions.
-			if($account['PresetName'] !== 'Custom'){
+			// if the preset name is custom, we'll use the account|permission table.
+			if($account['PresetName'] == 'Custom'){
 				$table = 'account|permission';
 				$check = $a_AccountID;
 				$column = 'AccountID';
 			}
 
 			$return = true;
-			for($i=1;i < Permissions::eTERMINATOR;$i*=2)
+			for($i=1;$i < Permissions::eTERMINATOR;$i*=2)
 			{
+				$permission = $i & $a_ePermissions;
 				// if this is a permission we need to check for, check.
-				if (i & $a_ePermissions){
-					$sql = "SELECT * FROM $table WHERE $column='{$check}'";
-					$result = @mysqli_query($dbc, $sql);
+				if ($permission){
+					$sql = "SELECT * FROM `" . $table . "` WHERE $column='" . $check . "' AND `PermissionID`='" . $permission . "'";
+
+					$result = @mysqli_query($a_dbc, $sql);
 
 					// no rows means no permission, return false
-					if(mysqli_num_rows($result) < 1){
+					if(!$result || mysqli_num_rows($result) == 0){
 						return false;
 					}
 				}
