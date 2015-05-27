@@ -156,13 +156,14 @@ img {
 /* Table Styles */
 
 table {
-	width: 100%;
+	width: 750px;
 	height: 200px;
 	overflow: scroll;
 	margin: 0 auto;
 	text-align: center;
 	background-color: #ffffff;
 	border-collapse: collapse;
+	table-layout: fixed;
 }
 tr:nth-child(1) { 
 	background-color: #387929;

@@ -114,6 +114,13 @@
 		</div>
 
 		<div id="edit-account" title="Edit an account">
+			<?php
+				// when you click on account, retrieve values from that account (Account ID for select statement, this is retrieval)
+				// populate form with those values
+				// when the user saves changes, use an update statement to overwrite those changes
+				// if the num rows was 0, then let the user know that the account was not edited
+				// else let the user know that the row was successfuly changed
+			?>
 			<form>
 				<fieldset>
 					<label for="name">Username</label>
