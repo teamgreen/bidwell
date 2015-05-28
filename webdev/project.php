@@ -74,13 +74,14 @@
 					<?php
 					//require_once 'includes/project-tab1.inc.php';
 					?>
+					<p class="project-info">This tab will contain either multiple pages or sub-tabs to allow the user to view the information that was input on project creation.  The ability to assign the project to a person will most likely go here as well.</p>
 				</div>
 
 				<div id="tab2">
 					<?php
 	//				require_once 'includes/project-tab2.inc.php';
 					?>
-<!-- 					<div class="description-cont">
+					<div class="description-cont">
 						<p class="description-left-title">Description:</p>
 						<p class="description-left">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas gravida ut purus id ullamcorper. Praesent fringilla eros tortor, nec mollis nunc cursus eget. Vivamus odio leo, lacinia id faucibus id, viverra sed nunc. Aenean id posuere orci. Duis vehicula laoreet nulla ac rutrum. Ut consectetur elit in risus aliquam, vel iaculis justo commodo. Sed imperdiet malesuada libero, ac consequat orci lacinia sed.</p>
 					</div>
@@ -90,7 +91,7 @@
 					</div>
 					<button><a href="#">Upload</a></button>
 					<button><a href="#">Save Changes</a></button>
-					<button><a href="#">Print</a></button> -->
+					<button><a href="#">Print</a></button>
 				</div>
 				<div id="tab3">
 					<div class="scroller">
