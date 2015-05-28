@@ -7,17 +7,30 @@
 ////////////////////////////////////
 
 ///////////////////////////////////
-// VarDump - calls var_dump on a variable, but wraps it
+// varDump - calls var_dump on a variable, but wraps it
 // in paragraph tags and gives it a message before
 // $a_functionName - name of function calling this.
-// $a_headerMsg - message to display prior to dump
+// $a_varName - name of the variable
 // a_var - variable to dump
 /////////////////////////////////// 
-function varDump($a_functionName, $a_headerMsg, $a_var)
+function varDump($a_functionName, $a_varName, $a_var)
 {
-	echo "<p>{$a_functionName}: var_dump of $a_headerMsg<br>";
+	echo "<p>{$a_functionName}: var_dump of $a_varName<br>";
 	var_dump($a_var);
 	echo "</p>";
 }
 
+///////////////////////////////////
+// varValue - displays value of a variable, but wraps it
+// in paragraph tags and gives it a message before
+// $a_functionName - name of function calling this.
+// $a_varName - name of the variable.
+// a_var - variable to dump
+/////////////////////////////////// 
+function varValue($a_functionName, $a_varName, $a_var)
+{
+	echo "<p>{$a_functionName}:";
+	echo "Value of $a_varName is $a_var";
+	echo "</p>";
+}
 ?>
