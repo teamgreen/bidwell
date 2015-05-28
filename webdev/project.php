@@ -74,7 +74,7 @@
 					<?php
 					//require_once 'includes/project-tab1.inc.php';
 					?>
-					<p class="project-info">This tab will contain either multiple pages or sub-tabs to allow the user to view the information that was input on project creation.  The ability to assign the project to a person will most likely go here as well.</p>
+					<p class="project-info">This tab will contain either multiple pages or sub-tabs to allow the user to view the information that was input on project creation.  The ability to assign the project to a person will most likely go here as well.  Adam's tab.</p>
 				</div>
 
 				<div id="tab2">
