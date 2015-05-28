@@ -60,6 +60,8 @@
 //echo "<p>Testing, testing: " . $project->getProjectName() . "</p>"
 			?>
 
+			<h2><?php $project->getProjectName(); ?></h2>
+
 			<div id="home-tabs">
 				<ul>
 					<li><a href="#tab1">Project<br>Information</a></li>
@@ -99,23 +101,22 @@
 //include_once 'includes/debugging-helper-functions.inc.php';
 //varDump("project.php", "returnSheetRow()", $result);
 
-							while($result = $project->returnSheetRow()){
-								echo "<h3>" . $result['Name'] . "</h3>\n";
-								echo "<div><p>\n";
-								echo "Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer
-									ut neque. Vivamus nisi metus, molestie vel, gravida in, condimentum sit
-									amet, nunc. Nam a nibh. Donec suscipit eros. Nam mi. Proin viverra leo ut
-									odio. Curabitur malesuada. Vestibulum a velit eu ante scelerisque vulputate.\n";
-								echo "</p></div>\n";
+							while($row = $project->returnSheetRow()){
+								echo "<h3>" . $row['Name'] . "</h3>\n";
+								echo "<div>\n";
+								$sheet = new Sheet();
+								$sheet->loadSheetFromResult($dbc, $row);
+								$sheet->generateLinesTableHTML($dbc);
+								echo "</div>\n";
 							}
 							?>
 
 
 						</div> <!-- end of accordion -->
 					</div>
-					<button><a href="#">Version</a></button>
+<!-- 					<button><a href="#">Version</a></button>
 					<button><a href="#">Save</a></button>
-					<button><a href="#">Save As</a></button>
+					<button><a href="#">Save As</a></button> -->
 				</div>
 				<div id="tab4">
 					<div class="scroller">
@@ -126,14 +127,15 @@
 //include_once 'includes/debugging-helper-functions.inc.php';
 //varDump("project.php", "returnSheetRow()", $result);
 
-							while($result = $project->returnSheetRow()){
-								echo "<h3>" . $result['Name'] . "</h3>\n";
-								echo "<div><p>\n";
-								echo "Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer
-									ut neque. Vivamus nisi metus, molestie vel, gravida in, condimentum sit
-									amet, nunc. Nam a nibh. Donec suscipit eros. Nam mi. Proin viverra leo ut
-									odio. Curabitur malesuada. Vestibulum a velit eu ante scelerisque vulputate.\n";
-								echo "</p></div>\n";
+							while($row = $project->returnSheetRow()){
+								echo "<h3>" . $row['Name'] . "</h3>\n";
+								echo "<div>\n";
+								$sheet = new Sheet();
+								$sheet->loadSheetFromResult($dbc, $row);
+// include_once 'includes/debugging-helper-functions.inc.php';
+// varDump("project.php", "tab 4", $sheet);
+								$sheet->generateLinesTableHTML($dbc);
+								echo "</div>\n";
 							}
 							?>
 						</div>
@@ -147,14 +149,15 @@
 //include_once 'includes/debugging-helper-functions.inc.php';
 //varDump("project.php", "returnSheetRow()", $result);
 
-							while($result = $project->returnSheetRow()){
-								echo "<h3>" . $result['Name'] . "</h3>\n";
-								echo "<div><p>\n";
-								echo "Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer
-									ut neque. Vivamus nisi metus, molestie vel, gravida in, condimentum sit
-									amet, nunc. Nam a nibh. Donec suscipit eros. Nam mi. Proin viverra leo ut
-									odio. Curabitur malesuada. Vestibulum a velit eu ante scelerisque vulputate.\n";
-								echo "</p></div>\n";
+							while($row = $project->returnSheetRow()){
+								echo "<h3>" . $row['Name'] . "</h3>\n";
+								echo "<div>\n";
+								$sheet = new Sheet();
+								$sheet->loadSheetFromResult($dbc, $row);
+// include_once 'includes/debugging-helper-functions.inc.php';
+// varDump("project.php", "tab 5", $sheet);
+								$sheet->generateLinesTableHTML($dbc);
+								echo "</div>\n";
 							}
 							?>
 						</div>
