@@ -1,5 +1,7 @@
 <?php
 
+@include_once 'includes/debugging-helper-functions.inc.php';
+
 class Sheet{
 	const eExternalBidSheet = "ExternalBidSheet";
 	const eInternalBidSheet = "InternalBidSheet";
@@ -234,35 +236,35 @@ class Project{
 				break;
 		}
 
-		$sql = "SELECT * FROM address WHERE AddressID='" . $addressId . "'";
+		$sql = "SELECT * FROM `address` WHERE AddressID='" . $addressId . "'";
 		return @mysqli_query($a_dbc, $sql);
 	}
 
-	function getSheetIDs($a_dbc){
-		$sql_psheet="SELECT * FROM project|sheet WHERE `ProjectID`=" . $this->projectID;
-		$this->lastGetSheetIDsResults = @mysqli_query($a_dbc, $sql_psheet);
-
-		return $this->lastGetSheetIDsResults;
+	private function getSheetIDs($a_dbc){
+		$sql="SELECT * FROM `project|sheet` WHERE `ProjectID`=" . $this->projectID;
+//varDump("getSheetIDs", "sql", $sql);
+		$this->lastGetSheetIDsResults = @mysqli_query($a_dbc, $sql);
+//varDump("getSheetIDs", "lastGetSheetIDsResults", $this->lastGetSheetIDsResults);
 	}
 
 	function returnNextSheet($a_dbc){
 		$row_sheet = @mysqli_fetch_array($this->lastGetSheetIDsResults);
-		$sql_sheet = "SELECT * FROM sheet WHERE `SheetID`=" . $row_sheet['SheetID'];
+		$sql_sheet = "SELECT * FROM `sheet` WHERE `SheetID`=" . $row_sheet['SheetID'];
 		return @mysqli_query($a_dbc, $sql_sheet);
 	}
 
 	function getSheetsByType($a_dbc, $a_sheetType)
 	{
 		// get the sheets that go with this project
-		getSheetIDs($a_dbc);
+		$this->getSheetIDs($a_dbc);
 		$row_sheet = @mysqli_fetch_array($this->lastGetSheetIDsResults);
-
+//varDump("getSheetsByType", "row_sheet", $row_sheet);
 		// if we found nothing...
 		if(!$row_sheet)
 			return null;
 
 		// now we build our search string...
-		$sql = "SELECT * FROM `sheet` WHERE `SheetType`=" . $a_sheetType . " AND (";
+		$sql = "SELECT * FROM `sheet` WHERE `SheetType`='" . $a_sheetType . "' AND (";
 
 		// stack on the first one.
 		$sql = $sql . "`SheetID`=" . $row_sheet['SheetID'];
@@ -273,15 +275,15 @@ class Project{
 		}
 		// add ending parentheses.
 		$sql = $sql . ")";
-
+//varValue("getSheetsByType",'$sql', $sql);
 		$this->lastGetSheetsByTypeResults = @mysqli_query($a_dbc, $sql);
-
-		return $this->lastGetSheetsResultsByType;
-
+//varDump("getSheetsByType", '$this->lastGetSheetsByTypeResults', $this->lastGetSheetsByTypeResults);
+		return $this->lastGetSheetsByTypeResults;
 	}
 
-	function returnNextSheetByType($a_dbc, $a_sheetType){
-		return @mysqli_fetch_array($this->lastGetSheetsResultsByType);
+	function returnSheetRow(){
+//varDump("returnSheetRow", 'lastGetSheetsByTypeResults', $this->lastGetSheetsByTypeResults);
+		return @mysqli_fetch_array($this->lastGetSheetsByTypeResults);
 	}
 }  // end project class.
 
