@@ -1,0 +1,199 @@
+
+/* ////////////////////// *
+// Project Page Stylesheet
+// Authored by Tim Willbanks
+* ///////////////////// */
+
+#home-tabs {
+	width: 85%;
+	margin: 10px auto 30px auto;
+}
+
+#home-form {
+	width: 90%;
+	display: block;
+	margin: 0 auto;
+	text-align: left;
+}
+#home-form > div {
+	display: none;
+}
+#home-form > div.active-form {
+	display: block;
+}
+.form-half {
+	width: 41%;
+	margin: 0 4%;
+	display: inline-block;
+}
+label {
+	width: 125px;
+	display: inline-block;
+	text-align: left;
+	padding-left: 15px;
+	padding-bottom: 15px;
+}
+input[type="text"], select {
+	width: 60%;
+	background-color: #efefef;
+	border: 1px solid #dddddd;
+}
+input[type="text"] {
+	border-radius: 10px;
+}
+
+
+
+#home-form_dashboard {
+	width: 80%;
+	margin: 0 auto;
+}
+#home-form_dashboard > #progress-buttons > input[type="button"], #progress-bar {
+	margin: 0 10px;
+}
+#progress-bar {
+	width: 60%;
+	margin: 40px auto;
+}
+#home-form_dashboard > #progress-buttons > input[type="button"] {
+	background-color: #b4e753;
+	border: 1px solid #97d423;
+	border-radius: 10px;
+	padding: 5px;
+	margin: 0 20px;
+}
+#home-form_dashboard > #progress-buttons > input[type="button"]:hover {
+	background-color: #d7f3a1;
+	border: 1px solid #beea68;
+}
+
+#progress-buttons > div {
+	display: none;
+}
+#progress-buttons > div.active {
+	display: block;
+}
+#progress-buttons > div > span {
+	margin: 0 20px;
+}
+
+#tab2{
+	width: 100%;
+}
+
+.description-cont 
+{
+	float: left;
+	width: 50%;
+}
+
+.project-info 
+{
+	text-align: left;
+}
+
+.description-left 
+{
+	text-align: left;
+	background-color: lightgray;
+	width: 90%;
+	padding: 10px;
+	float: left;
+}
+
+.description-left-title 
+{
+	text-align: left;
+}
+
+.description-right 
+{
+	text-align: left;
+	background-color: lightgray;
+	width: 90%;
+	padding: 10px;
+	float: left;
+}
+
+.description-right-title 
+{
+	text-align: left;
+}
+
+[type=checkbox] 
+{
+display: none;
+}
+
+:checked + div {
+    display: block !important;
+    
+ }
+
+.box
+{
+    
+    display: none;
+ }
+
+ .division 
+ {
+ 	width: 100%;
+ 	background-color: #387929;
+ 	text-align: left;
+ 	margin-bottom: 5px;
+ 	border-radius: 10px;
+ 	padding: 10px;
+ 	color: #fff;
+ }
+
+ .division1, .division2, .division3, .division4, .division5, .division6, .division7, 
+ .division8, .division9, .division10 
+{ 
+	background: #90C32E;
+	text-align: center;
+	margin-bottom: 5px;
+}
+
+button {
+	
+	background-color: #b4e753;
+	width: 150px;
+	height: 45px;
+	border-radius: 15px;
+	margin-left: 30px;
+	color: #000;
+	font-size: 18px;
+	border: 0;
+	margin-bottom: 20px;
+	margin-top: 20px;
+}
+
+button a {
+	text-decoration: none;
+}
+
+button a:hover {
+	text-decoration: none;
+}
+
+button:hover{
+	background-color: #d7f3a1;
+	text-decoration: none;
+}
+
+.login_button{
+	margin-bottom: 15px;
+
+}
+
+.login_button:hover{
+	background-color: #387929;
+	color: #fff;
+}
+
+.scroller {
+	height: 325px;
+	overflow-y: scroll;
+	overflow-x: hidden;
+}
