@@ -60,7 +60,7 @@
 //echo "<p>Testing, testing: " . $project->getProjectName() . "</p>"
 			?>
 
-			<h2><?php $project->getProjectName(); ?></h2>
+			<h2><?php echo $project->getProjectName(); ?></h2>
 
 			<div id="home-tabs">
 				<ul>

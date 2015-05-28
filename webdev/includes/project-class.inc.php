@@ -107,8 +107,8 @@ class Sheet{
 	{
 		echo "<tr>\n";
 		echo "<td>1</td>\n";
-		echo '<td>Description of work being done will go here<span class="ui-icon ui-icon-info" title="Project information goes here."></span></td>\n';
-		echo "<td>$5000</td>";
+		echo '<td>Description of work being done will go here<span class="ui-icon ui-icon-info" title="Project information goes here."></span></td>' . "\n";
+		echo "<td>$5000</td>\n";
 		echo "</tr>\n";
 	}
 
