@@ -97,7 +97,7 @@ class Sheet{
 	private function generateExternalTableHeaderHTML()
 	{
 		echo "<tr>\n";
-		echo "<th>Item Number</th>\n";
+		echo "<th>Item #</th>\n";
 		echo "<th>Description of Work</th>\n";
 		echo "<th>Amount</th>\n";
 		echo "</tr>\n";
@@ -105,32 +105,35 @@ class Sheet{
 
 	private function generateExternalLineHTML($a_row)
 	{
+//varDump(__FUNCTION__, '$a_row', $a_row);
 		echo "<tr>\n";
 		echo "<td>1</td>\n";
-		echo '<td>Description of work being done will go here<span class="ui-icon ui-icon-info" title="Project information goes here."></span></td>' . "\n";
-		echo "<td>$5000</td>\n";
+		echo '<td>' . $a_row['WorkDescription'] . "</td>\n";
+//		echo '<td>' . $a_row['WorkDescription'] . '<span class="ui-icon ui-icon-info" title="Project information goes here."></span></td>' . "\n";
+		echo '<td>$' . $a_row['Amount'] . "</td>\n";
 		echo "</tr>\n";
 	}
 
 	private function generateInternalTableHeaderHTML()
 	{
 		echo "<tr>\n";
-		echo "<th>Project Number</th>\n";
-		echo "<th>Project Name</th>\n";
-		echo "<th>Location</th>\n";
-		echo "<th>Completion Date</th>\n";
-		echo "<th>Status</th>\n";
+		echo "<th>Task ID</th>\n";
+		echo "<th>Task Name</th>\n";
+		echo "<th>Subcontractor</th>\n";
+		echo "<th>Amount</th>\n";
+		echo "<th>Notes</th>\n";
 		echo "</tr>\n";
 	}
 
 	private function generateInternalLineHTML($a_row)
 	{
+//varDump(__FUNCTION__, '$a_row', $a_row);
 		echo "<tr>\n";
-	 	echo "<td>1</td>";
-		echo "<td>Lorem Ipsum <span class='ui-icon ui-icon-info' title='Project information goes here.'></span></td>\n";
-		echo "<td>Portland</td>\n";
-		echo "<td>7/12/2015</td>\n";
-		echo "<td>In Progress <span class='ui-icon ui-icon-info' title='Status on Project Completion.'></span></td>\n";
+	 	echo "<td>{$a_row['ConstructionSpecID']}</td>";
+		echo "<td>Lorem Ipsum <span class='ui-icon ui-icon-info' title='Info about what type of things this task heading covers here.'></span></td>\n";
+		echo "<td>{$a_row['SubcontractorBidUsed']}</td>\n";
+		echo "<td>{$a_row['Amount']}</td>\n";
+		echo "<td>{$a_row['GeneralNotes']}<span class='ui-icon ui-icon-info' title='Notes about this task.'></span></td>\n";
 		echo "</tr>\n";
 	}
 
@@ -188,6 +191,9 @@ class Sheet{
 		// get our lines.
 		$this->getLines($a_dbc);
 
+		// all of this in a form.
+		echo "<form>\n";
+
 		// start a table.
 		echo "<table>\n";
 
@@ -200,6 +206,9 @@ class Sheet{
 
 		// and close the table
 		echo "</table>\n";
+
+		// and the form.
+		echo "</form>\n";
 	}
 }
 
