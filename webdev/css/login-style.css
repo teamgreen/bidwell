@@ -211,3 +211,13 @@ th, td {
 td > span.ui-icon {
 	display: inline-block;
 }
+
+input[type="submit"] {
+	border-radius: 10px;
+	border: 0;
+	background-color: #b4e753;
+	width: 150px;
+	height: 45px;
+	color: #000;
+	font-size: 18px;
+}

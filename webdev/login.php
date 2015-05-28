@@ -1,3 +1,15 @@
+<!-- 
+///////////////////////////////////////
+// Login Page
+// Authored by Tim Willbanks
+// Purpose: To provide a page where
+// 			the user can login. Checks to 
+// 			see what level user is and
+// 			goes to either the admin or
+// 			home page based on level. 
+/////////////////////////////////////////
+-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,23 +42,36 @@
 						$dbc = SQLConnect();
 
 						if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-							$sql_preset = "SELECT * FROM `preset`";
-							$result_preset = @mysqli_query($dbc, $sql_preset);
-
-							$company = $_POST['id'];
-							$username = $_POST['PresetName'];
+							$username = $_POST['username'];
+							$company = $_POST['company'];
 							$password = $_POST['password'];
-						
-							if ($username == 'Admin') {
-							header("Location:admin.php");
-							} else {
-							header("Location:home.php");
-							}
+
+							// build the sql search condition using the posted data
+							$sql_account="SELECT * FROM account WHERE LoginName='$username' AND Password=PASSWORD('$password')";
+							$result_account = @mysqli_query($dbc, $sql_account);
+
+
+							// check to see if company is valid
+							$sql_company="SELECT * FROM company WHERE CompanyName = '$company'";
+							$result_company = @mysqli_query($dbc, $sql_company);
+
+							//check that we got match using mysqli_num_rows function
+							if ((mysqli_num_rows($result_account)==1) && (mysqli_num_rows($result_company)==1)) {
+								//now check that the CompanyID matches
+								$row_account = @mysqli_fetch_array($result_account);
+								$row_company = @mysqli_fetch_array($result_company);
+								if($row_account['CompanyID'] === $row_company['CompanyID']) {
+									if ($row_account['PresetName'] === 'Admin') {
+										header("Location:admin.php");
+									} else {
+										header("Location:home.php");
+									}
+								}
+							} 
+							echo "Not valid";
+								
 						}
-						
-						// SQL statement to select everything from preset table to test user level		
-						
-					?>
+			?>
 		
 		<?php @require_once "includes/login-footer.inc.php"; ?>
 		
