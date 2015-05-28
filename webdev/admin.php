@@ -131,7 +131,7 @@
 					$result_add = @mysqli_query($dbc, $sql_add);
 
 					$num_rows_add = @mysqli_num_rows($result_add);
-					if ($num_rows_add == 0) {
+					if ($num_rows_add === 0) {
 					 	echo "<p>We apologize for the inconvenience but a new account could not be added.</p>\n";
 					};
 
@@ -144,7 +144,6 @@
 
 						<?php header("Location: " . $newURL); ?>
 					</script>
-
 					<?php
 
 				};

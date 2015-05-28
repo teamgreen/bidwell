@@ -118,7 +118,7 @@
 						if ($hasPermission == false) {
 							echo "<p>We are sorry to report that you do not have the permission to create a project.</p>";
 						} else {
-							@include_once 'includes/project-form.inc.php';
+							@include_once 'includes/home-new-form.inc.php';
 						}
 
 					?>

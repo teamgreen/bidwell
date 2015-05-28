@@ -92,6 +92,14 @@
 		return false;			
 	}
 
+	// Date Conversion Function
+
+	function rearrangeDate($a_dateString)
+	{
+	 $pieces = explode("/", $a_dateString);
+	 return $pieces[2] . "-" . $pieces[0] . "-" . $pieces[1];
+	}
+
 
 
 	///////////////////////////////////////
@@ -116,11 +124,11 @@
 		$result = @mysqli_query($dbc, $sql);
 		
 		$num_rows = @mysqli_num_rows($result);
-		if ($num_rows == 0) {
+		if ($num_rows === 0) {
 			return 0;
 		} else {
 			$id = mysqli_query('SELECT LAST_INSERT_ID()');
-			addAddress($id);
+			addAddressID($id);
 		};
 	} // end function
 
