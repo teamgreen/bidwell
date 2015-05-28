@@ -21,21 +21,21 @@
 
 -->
 
-<meta charset="UTF-8">
-<title>Project | Bid-Well</title>
+	<meta charset="UTF-8">
+	<title>Project | Bid-Well</title>
 
 <!-- Main Stylesheet and Home Page Stylesheet -->
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/project-style.css">
-<!-- Custom jQuery UI Library Stylesheets - 1.11.4 -->
-<link rel="stylesheet" href="libs/jquery-ui-1.11.4.custom/jquery-ui.min.css">
-<link rel="stylesheet" href="libs/jquery-ui-1.11.4.custom/jquery-ui.theme.min.css">
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/project-style.css">
+	<!-- Custom jQuery UI Library Stylesheets - 1.11.4 -->
+	<link rel="stylesheet" href="libs/jquery-ui-1.11.4.custom/jquery-ui.min.css">
+	<link rel="stylesheet" href="libs/jquery-ui-1.11.4.custom/jquery-ui.theme.min.css">
 
-<!-- jQuery Library - Google CDN -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<!-- Custom jQuery UI Library - 1.11.4 -->
-<script src="libs/jquery-ui-1.11.4.custom/jquery-ui.min.js"></script>
-<script src="js/project-script.js"></script>
+	<!-- jQuery Library - Google CDN -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<!-- Custom jQuery UI Library - 1.11.4 -->
+	<script src="libs/jquery-ui-1.11.4.custom/jquery-ui.min.js"></script>
+	<script src="js/project-script.js"></script>
 </head>
 <body>
 
@@ -73,6 +73,7 @@
 					//require_once 'includes/project-tab1.inc.php';
 					?>
 				</div>
+
 				<div id="tab2">
 					<?php
 	//				require_once 'includes/project-tab2.inc.php';
@@ -93,27 +94,22 @@
 					<div class="scroller">
 						<div class="accordion">
 							<?php
-							$sheetResult = $project->getSheetIDs($dbc);
-//var_dump($sheetResult);
-							?>
-							<h3>Section 1</h3>
-							<div>
-								<p>
-									Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer
+							$project->getSheetsByType($dbc, Sheet::eInternalBidSheet);
+						
+//include_once 'includes/debugging-helper-functions.inc.php';
+//varDump("project.php", "returnSheetRow()", $result);
+
+							while($result = $project->returnSheetRow()){
+								echo "<h3>" . $result['Name'] . "</h3>\n";
+								echo "<div><p>\n";
+								echo "Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer
 									ut neque. Vivamus nisi metus, molestie vel, gravida in, condimentum sit
 									amet, nunc. Nam a nibh. Donec suscipit eros. Nam mi. Proin viverra leo ut
-									odio. Curabitur malesuada. Vestibulum a velit eu ante scelerisque vulputate.
-								</p>
-							</div>
-							<h3>Section 2</h3>
-							<div>
-								<p>
-									Sed non urna. Donec et ante. Phasellus eu ligula. Vestibulum sit amet
-									purus. Vivamus hendrerit, dolor at aliquet laoreet, mauris turpis porttitor
-									velit, faucibus interdum tellus libero ac justo. Vivamus non quam. In
-									suscipit faucibus urna.
-								</p>
-							</div>
+									odio. Curabitur malesuada. Vestibulum a velit eu ante scelerisque vulputate.\n";
+								echo "</p></div>\n";
+							}
+							?>
+
 
 						</div> <!-- end of accordion -->
 					</div>
@@ -122,124 +118,47 @@
 					<button><a href="#">Save As</a></button>
 				</div>
 				<div id="tab4">
-					<?php
-					//require_once 'includes/project-tab4.inc.php';
-					?>
-					<!-- <div class="scroller">
- 						<div class="division">
-							<label><input type="checkbox" name="checkbox" value="division1">Division1</label>
-						</div>
+					<div class="scroller">
+						<div class="accordion">
+							<?php
+							$project->getSheetsByType($dbc, Sheet::eExternalBidSheet);
+						
+//include_once 'includes/debugging-helper-functions.inc.php';
+//varDump("project.php", "returnSheetRow()", $result);
 
-						<div class="division1 box">
-
-							<form method="post" action="#">
-								<table>
-									<tr>
-										<th>Item Number</th>
-										<th>Description of Work</th>
-										<th>Amount</th>
-									</tr>
-									<tr>
-										<td>1</td>
-										<td>Description of work being done will go here<span class="ui-icon ui-icon-info" title="Project information goes here."></span></td>
-										<td>$5000</td>
-									</tr>
-									<tr>
-										<td>2</td>
-										<td>Description of work being done will go here <span class="ui-icon ui-icon-info" title="Project information goes here."></span></td>
-										<td>$1000</td>
-									</tr>
-								</table>
-								<input class="login_button" type="submit" value="Login" tabindex=4>
-							</form>
-						</div>
-						<div class="division">
-							<label><input type="checkbox" name="checkbox" value="division2">Division2</label>
-						</div>
-
-						<div class="division2 box">
-
-							<form method="post" action="#">
-								<table>
-									<tr>
-										<th>Item Number</th>
-										<th>Description of Work</th>
-										<th>Amount</th>
-									</tr>
-									<tr>
-										<td>1</td>
-										<td>Description of work being done will go here<span class="ui-icon ui-icon-info" title="Project information goes here."></span></td>
-										<td>$5000</td>
-									</tr>
-								</table>
-								<input class="login_button" type="submit" value="Login" tabindex=4>
-							</form>
+							while($result = $project->returnSheetRow()){
+								echo "<h3>" . $result['Name'] . "</h3>\n";
+								echo "<div><p>\n";
+								echo "Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer
+									ut neque. Vivamus nisi metus, molestie vel, gravida in, condimentum sit
+									amet, nunc. Nam a nibh. Donec suscipit eros. Nam mi. Proin viverra leo ut
+									odio. Curabitur malesuada. Vestibulum a velit eu ante scelerisque vulputate.\n";
+								echo "</p></div>\n";
+							}
+							?>
 						</div>
 					</div>
-					<button><a href="#">Version</a></button>
-					<button><a href="#">Save</a></button>
-					<button><a href="#">Save As</a></button> -->
 				</div>
 				<div id="tab5">
-					<?php
-					//require_once 'includes/project-tab2.inc.php';
-					?>
+					<div class="scroller">
+						<div class="accordion">
+							<?php
+							$project->getSheetsByType($dbc, Sheet::eChangeBidSheet);
+//include_once 'includes/debugging-helper-functions.inc.php';
+//varDump("project.php", "returnSheetRow()", $result);
 
-<!-- 					<div class="scroller">
-						<div class="division">
-							<label><input type="checkbox" name="checkbox" value="division1">Division1</label>
-						</div>
-
-						<div class="division1 box">
-
-							<form method="post" action="#">
-								<table>
-									<tr>
-										<th>Item Number</th>
-										<th>Description of Work</th>
-										<th>Amount</th>
-									</tr>
-									<tr>
-										<td>1</td>
-										<td>Description of work being done will go here<span class="ui-icon ui-icon-info" title="Project information goes here."></span></td>
-										<td>$5000</td>
-									</tr>
-									<tr>
-										<td>2</td>
-										<td>Description of work being done will go here <span class="ui-icon ui-icon-info" title="Project information goes here."></span></td>
-										<td>$1000</td>
-									</tr>
-								</table>
-								<input class="login_button" type="submit" value="Login" tabindex=4>
-							</form>
-						</div>
-						<div class="division">
-							<label><input type="checkbox" name="checkbox" value="division2">Division2</label>
-						</div>
-
-						<div class="division2 box">
-
-							<form method="post" action="#">
-								<table>
-									<tr>
-										<th>Item Number</th>
-										<th>Description of Work</th>
-										<th>Amount</th>
-									</tr>
-									<tr>
-										<td>1</td>
-										<td>Description of work being done will go here<span class="ui-icon ui-icon-info" title="Project information goes here."></span></td>
-										<td>$5000</td>
-									</tr>
-								</table>
-								<input class="login_button" type="submit" value="Login" tabindex=4>
-							</form>
-
+							while($result = $project->returnSheetRow()){
+								echo "<h3>" . $result['Name'] . "</h3>\n";
+								echo "<div><p>\n";
+								echo "Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer
+									ut neque. Vivamus nisi metus, molestie vel, gravida in, condimentum sit
+									amet, nunc. Nam a nibh. Donec suscipit eros. Nam mi. Proin viverra leo ut
+									odio. Curabitur malesuada. Vestibulum a velit eu ante scelerisque vulputate.\n";
+								echo "</p></div>\n";
+							}
+							?>
 						</div>
 					</div>
-					<button><a href="#">Version</a></button>
-					<button><a href="#">Save</a></button>
-					<button><a href="#">Save As</a></button> -->
 				</div>
 			</div>
 		</div>
