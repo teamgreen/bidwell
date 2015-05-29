@@ -168,34 +168,32 @@
 									<label for="project_notes">Project Notes</label>
 									<textarea id="project_notes" name="project_notes" rows="5" cols="25" maxlength="4000"></textarea>
 								</div>
-								<div>
-									<input type="submit" id="submit" value="Submit">
-								</div>
 							</div>
 						</div>
 					</form>
 					<div id="home-form_dashboard">
 						<hr>
-						<p>Completion Percentage</p>
+						<p>Form Progress</p>
 						<div id="progress-bar"></div>
 						<div id="progress-buttons">
 							<div class="active">
 								<span>Page 1 of 4</span>
-								<input type="button" class="next" id="next1" value="Next" onclick="nextDiv('#next1')">
+								<input type="button" class="next form-buttons" id="next1" value="Next" onclick="nextDiv('#next1')">
 							</div>
 							<div>
-								<input type="button" class="prev" id="prev1" value="Previous" onclick="prevDiv('#prev1')">
+								<input type="button" class="prev form-buttons" id="prev1" value="Previous" onclick="prevDiv('#prev1')">
 								<span>Page 2 of 4</span>
-								<input type="button" class="next" id="next2" value="Next" onclick="nextDiv('#next2')">
+								<input type="button" class="next form-buttons" id="next2" value="Next" onclick="nextDiv('#next2')">
 							</div>
 							<div>
-								<input type="button" class="prev" id="prev2" value="Previous" onclick="prevDiv('#prev2')">
+								<input type="button" class="prev form-buttons" id="prev2" value="Previous" onclick="prevDiv('#prev2')">
 								<span>Page 3 of 4</span>
-								<input type="button" class="next" id="next3" value="Next" onclick="nextDiv('#next3')">
+								<input type="button" class="next form-buttons" id="next3" value="Next" onclick="nextDiv('#next3')">
 							</div>
 							<div>
-								<input type="button" class="prev" id="prev3" value="Previous" onclick="prevDiv('#prev3')">
+								<input type="button" class="prev form-buttons" id="prev3" value="Previous" onclick="prevDiv('#prev3')">
 								<span>Page 4 of 4</span>
+								<input type="submit" id="submit" form="home-form" value="Submit">
 							</div>
 						</div>
 					</div>
