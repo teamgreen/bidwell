@@ -26,11 +26,13 @@
 	<!-- Custom jQuery UI Library Stylesheets - 1.11.4 -->
 	<link rel="stylesheet" href="libs/jquery-ui-1.11.4.custom/jquery-ui.min.css">
 	<link rel="stylesheet" href="libs/jquery-ui-1.11.4.custom/jquery-ui.theme.min.css">
-
 	<!-- jQuery Library - Google CDN -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<!-- Custom jQuery UI Library - 1.11.4 -->
 	<script src="libs/jquery-ui-1.11.4.custom/jquery-ui.min.js"></script>
+	<!-- jQuery Validate Plugin files -->
+    <script type="text/javascript" src="libs/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="libs/additional-methods.min.js"></script>
 </head>
 <body>
 
@@ -85,6 +87,7 @@
 							echo "<p>Currently there are no projects in this tab.</p>";
 							echo "<p>Care to create a new project in the next tab?</p>";
 						} else {
+							echo "<div class=\"scroller\">\n";
 							echo "<table>\n";
 							echo "<tr>\n";
 							echo "<th>Project Number</th>";
@@ -97,14 +100,15 @@
 							while($row_project = @mysqli_fetch_array($result_project)) {
 								echo "<tr>\n";
 								echo "<td>" . $row_project['ProjectID'] . "</td>";
-								echo "<td>" . $row_project['ProjectName'] . "<span class=\"ui-icon ui-icon-info\" title=\"" . $row_project['ProjectName'] . "\"></span></td>";
+								echo "<td>" . $row_project['ProjectName'] . "</td>";
 								echo "<td>" . $row_project['SiteAddressID'] . "</td>";
 								echo "<td>" . $row_project['ProjectDueDate'] . "</td>";
-								echo "<td>" . $row_project['ProjectStatusID'] . "<span class=\"ui-icon ui-icon-info\" title=\"" . $row_project['ProjectStatusID'] . "\"></span></td>";
+								echo "<td>" . $row_project['ProjectStatusID'] . "</td>";
 								echo "</tr>\n";
 							}
 
 							echo "</table>\n";
+							echo "</div>\n";
 						};
 
 					?>
@@ -135,6 +139,7 @@
 							echo "<p>Currently there are no completed projects in this tab.</p>";
 							echo "<p>Care to create a new project in the previous tab?</p>";
 						} else {
+							echo "<div class=\"scroller\">\n";
 							echo "<table>\n";
 							echo "<tr>\n";
 							echo "<th>Project Number</th>";
@@ -147,14 +152,15 @@
 							while($row_completed_project = @mysqli_fetch_array($result_completed_project)) {
 								echo "<tr>\n";
 								echo "<td>" . $row_completed_project['ProjectID'] . "</td>";
-								echo "<td>" . $row_completed_project['ProjectName'] . "<span class=\"ui-icon ui-icon-info\" title=\"" . $row_completed_project['ProjectName'] . "\"></span></td>";
+								echo "<td>" . $row_completed_project['ProjectName'] . "</td>";
 								echo "<td>" . $row_completed_project['SiteAddressID'] . "</td>";
 								echo "<td>" . $row_completed_project['ProjectDueDate'] . "</td>";
-								echo "<td>" . $row_completed_project['ProjectStatusID'] . "<span class=\"ui-icon ui-icon-info\" title=\"" . $row_completed_project['ProjectStatusID'] . "\"></span></td>";
+								echo "<td>" . $row_completed_project['ProjectStatusID'] . "</td>";
 								echo "</tr>\n";
 							}
 
 							echo "</table>\n";
+							echo "</div>\n";
 						};
 
 					?>

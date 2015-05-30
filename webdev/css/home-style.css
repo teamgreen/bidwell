@@ -10,9 +10,14 @@
 	margin: 10px auto 30px auto;
 }
 
+.scroller {
+	height: 325px;
+	overflow-y: scroll;
+	overflow-x: hidden;
+}
+
 #home-form {
 	width: 90%;
-	height: 450px; /* Remove if you want div's height to change with content*/
 	display: block;
 	margin: 0 auto;
 	text-align: left;
@@ -34,12 +39,29 @@ label {
 	display: inline-block;
 	text-align: left;
 }
+.owner_architect_checkbox {
+	display: inline-block;
+	margin: 0 0 0 300px;
+}
+#owner_architect {
+	margin: 0 10px;
+}
 input[type="text"], input[type="email"], textarea, select {
 	background-color: #dcf5ae;
 	border: 1px solid #c3db95;
 }
 textarea, select {
 	margin: 10px 0 0 0;
+}
+input.error, select.error {
+	color: #ff0000;
+	background: #efefef;
+	border: solid 1px #ff0000;
+}
+label.error {
+	color: #ff0000;
+	padding: 5px 0;
+	width: 225px;
 }
 #home-form_dashboard {
 	width: 80%;

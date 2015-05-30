@@ -54,7 +54,7 @@
 								<div>
 									<label for="state_owner">State</label>
 									<select name="state_owner" id="state_owner">
-										<option value="-">Select a State</option>
+										<option value="">Select a State</option>
 										<?php 
 
 											// SQL statement to select everything from state table to populate options in select form element
@@ -75,7 +75,11 @@
 							</div>
 						</div>
 						<div>
-							<p>Architect Information</p>
+							<p>Architect Information 
+								<label class="owner_architect_checkbox" for="owner_architect">Same as Owner
+									<input type="checkbox" id="owner_architect" name="owner_architect">
+								</label>
+							</p>
 							<hr>
 							<div class="form-half">
 								<div>
@@ -108,7 +112,7 @@
 								<div>
 									<label for="state_architect">State</label>
 									<select name="state_architect" id="state_architect">
-										<option value="-">Select a State</option>
+										<option value="">Select a State</option>
 										<?php 
 
 											// SQL statement to select everything from state table to populate options in select form element
@@ -144,7 +148,7 @@
 								<div>
 									<label for="state_location">State</label>
 									<select name="state_location" id="state_location">
-										<option value="-">Select a State</option>
+										<option value="">Select a State</option>
 										<?php 
 
 											// SQL statement to select everything from state table to populate options in select form element
@@ -178,17 +182,17 @@
 						<div id="progress-buttons">
 							<div class="active">
 								<span>Page 1 of 4</span>
-								<input type="button" class="next form-buttons" id="next1" value="Next" onclick="nextDiv('#next1')">
+								<input type="button" class="next form-buttons" id="next1" value="Next">
 							</div>
 							<div>
 								<input type="button" class="prev form-buttons" id="prev1" value="Previous" onclick="prevDiv('#prev1')">
 								<span>Page 2 of 4</span>
-								<input type="button" class="next form-buttons" id="next2" value="Next" onclick="nextDiv('#next2')">
+								<input type="button" class="next form-buttons" id="next2" value="Next">
 							</div>
 							<div>
 								<input type="button" class="prev form-buttons" id="prev2" value="Previous" onclick="prevDiv('#prev2')">
 								<span>Page 3 of 4</span>
-								<input type="button" class="next form-buttons" id="next3" value="Next" onclick="nextDiv('#next3')">
+								<input type="button" class="next form-buttons" id="next3" value="Next">
 							</div>
 							<div>
 								<input type="button" class="prev form-buttons" id="prev3" value="Previous" onclick="prevDiv('#prev3')">
@@ -258,16 +262,8 @@
 
 							$_POST = array(); // should clear all fields
 
-							?>
-
-							
-							<script type="text/javascript">
-								newURL = document.location.href;
-
-								<?php header("Location: " . $newURL); ?>
-							</script>
-
-							<?php
+							header("Location: project.php");
+							exit;
 
 						};
 		
