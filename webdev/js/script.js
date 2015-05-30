@@ -59,32 +59,32 @@ $(document).ready(function(){
 	// Authored by Alex Chaudoin
 	/////////////////////////////
 
-	// For the click function below:
+	// For the click functions below:
 	// ------------------------------------------
-	// When clicking on a row in the admin table,
-	// the text values of children elements of that 
-	// selected row (td) will be assigned to an array 
-	// called "cells". Then a variable named "accountID" 
-	// will hold the first element of that array.
+	// When you click on the pencil next to the 
+	// Account ID, the anchor event should not 
+	// go to another page or activate altogether.
 	// Also, that row will be highlighted and the 
 	// "New" button will change to "Edit".
 	// The pointer events on other rows will be
 	// disabled until the selected row is clicked
 	// on again.
 
-	$('#tab-a tr:not(:first-child)').click(function(){
+	$('#tab-a tr:not(:first-child) a').click(function(){
 
-		if ($('.new-edit').attr('value') === 'New') {
-			$(this).css('background-color', '#ffffff');
-			$(this).siblings('tr:not(:first-child)').css('pointer-events', 'none');
-			$('.new-edit').attr('value', 'Edit');
+		if ($('.new-edit').attr('value') === 'Add New Account') {
+			$(this).parent().parent().css('background-color', '#ffffff');
+			$(this).parent().parent().siblings('tr:not(:first-child)').css('pointer-events', 'none');
+			$('.new-edit').attr('value', 'Edit Selected Account');
 			$('.delete').show();
 		} else {
 			$('.delete').hide();
-			$('.new-edit').attr('value', 'New');
-			$(this).siblings('tr:not(:first-child)').css('pointer-events', 'auto');
-			$(this).css('background-color', '#dcf6ac');
+			$('.new-edit').attr('value', 'Add New Account');
+			$(this).parent().parent().siblings('tr:not(:first-child)').css('pointer-events', 'auto');
+			$(this).parent().parent().css('background-color', '#dcf6ac');
 		};
+
+		return false;
 
 	}); // end click
 
@@ -108,45 +108,195 @@ $(document).ready(function(){
 
 
 	var addDialog = $('#add-account').dialog({
-			autoOpen: false,
-			minHeight: 500,
-			width: 350,
-			modal: true,
-			buttons: { 
-				Cancel: function(){
-					addDialog.dialog('close');
+		autoOpen: false,
+		minHeight: 500,
+		width: 350,
+		modal: true,
+		submit: function(){
+
+			//////////////////////////////
+			// jQuery Validate Plugin 
+			// for Admin Page
+			// ------------------------
+			// Created 5/30/2015
+			// Authored by Alex Chaudoin
+			// ------------------------
+			// The forms on the admin page 
+			// will be validated using the 
+			// "validate" function. 
+			//////////////////////////////
+
+			// Validate Add Account Dialog form
+			$('#add-form').validate({
+				rules : {
+					add_username: "required",
+					add_email: {
+						required : true,
+						email : true
+					},
+					add_preset: "required"
 				},
-				Save: function(){
-					addDialog.dialog('close'); 
-					$('#add-form').submit();
+				messages : {
+					add_username: "Please enter a username for the account",
+					add_email: {
+						required: "Please enter an email address",
+						email: "Please enter a valid email address, like example@email.com"
+					},
+					add_preset: "Please select a preset"
+				},
+				submitHandler: function(form) {
+					$(this).dialog('close');
+					$(addDialog).dialog('open');
 				}
+			}); // end validate
+		},
+		buttons: {
+			Cancel: function(){
+				$(this).dialog('close');
+			},
+			'Submit': function(){
+				$('#add-form').valid();
 			}
-		}); // end dialog
+		}
+	}); // end dialog
 
 	var editDialog = $('#edit-account').dialog({
-			autoOpen: false,
-			minHeight: 500,
-			width: 350,
-			modal: true,
-			buttons: { 
-				Cancel: function(){
-					editDialog.dialog('close');
+		autoOpen: false,
+		minHeight: 500,
+		width: 350,
+		modal: true,
+		save: function(){
+			// Validate Edit Account Dialog form
+			$('#edit-form').validate({
+				rules : {
+					edit_username: "required",
+					edit_email: {
+						required : true,
+						email : true
+					},
+					edit_preset: "required"
 				},
-				Save: function(){
-					editDialog.dialog('close'); 
-					$('#edit-form').submit();
+				messages : {
+					edit_username: "Please enter a username for the account",
+					edit_email: {
+						required: "Please enter an email address",
+						email: "Please enter a valid email address, like example@email.com"
+					},
+					edit_preset: "Please select a preset"
+				},
+				submitHandler: function(form) {
+					$(this).dialog('close');
+					$(editDialog).dialog('open');
 				}
+			}); // end validate
+		},
+		buttons: {
+			Cancel: function(){
+				$(this).dialog('close');
+			},
+			'Save': function(){
+				$('#edit-form').valid();
 			}
-		}); // end dialog
+		}
+	}); // end dialog
+
+	var passDialog = $('#edit-pass').dialog({
+		autoOpen: false,
+		minHeight: 500,
+		width: 350,
+		modal: true,
+		reset: function(){
+			// Validate Reset Password Dialog form
+			$('#pass-form').validate({
+				rules : {
+					new_password: "required",
+					new_confirm_password: {
+						required : true,
+						equalTo : "password"
+					}
+				},
+				messages : {
+					new_password: "Please enter a password",
+					new_confirm_password: {
+						required: "Please enter the password again",
+						equalTo: "Please make sure both passwords match"
+					}
+				},
+				submitHandler: function(form) {
+					$(this).dialog('close');
+					$(passDialog).dialog('open');
+				}
+			}); // end validate
+		},
+		buttons: {
+			Cancel: function(){
+				$(this).dialog('close');
+			},
+			Reset: function(){
+				$('#pass-form').valid();
+			}
+		}
+	}); // end dialog
+
+	var add_successDialog = $('#add-success').dialog({
+		autoOpen: false,
+		modal: true,
+		buttons: {
+			Ok: function(){
+				$(this).dialog('close');
+			}
+		}
+	}); // end dialog
+
+	var edit_successDialog = $('#edit-success').dialog({
+		autoOpen: false,
+		modal: true,
+		buttons: {
+			Ok: function(){
+				$(this).dialog('close');
+			}
+		}
+	}); // end dialog
+
+	var pass_successDialog = $('#pass-success').dialog({
+		autoOpen: false,
+		modal: true,
+		buttons: {
+			Ok: function(){
+				$(this).dialog('close');
+			}
+		}
+	}); // end dialog
 
 	$('.new-edit').click(function(){
 		var buttonVal = $(this).attr('value');
-		if (buttonVal === "New") {
+		if (buttonVal === "Add New Account") {
 			addDialog.dialog('open');
 		} else {
 			editDialog.dialog('open');
 		};
 	}); // end click
+
+	$('.reset-pass').click(function(){
+		passDialog.dialog("open");
+	}); // end click
+
+	// If the Custom preset is chosen 
+	// from the "add_preset" select
+	// form element, then a div with an
+	// ID of "permissions" will appear,
+	// holding checkboxes with permissions.
+	// If any other preset is selected,
+	// this div will either remain hidden
+	// or disappear.
+	$('#add_preset').change(function(){
+		var value = $('#add_preset option:selected').val();
+		if (value === "Custom") {
+			$('#permissions').show();
+		} else {
+			$('#permissions').hide();
+		};
+	}); // end change
 
 	/////////////////////////////
 	// jQuery for Project Page:
@@ -279,11 +429,17 @@ function prevDiv(button) {
 	$('#progress-bar').progressbar('option', 'value', current-=25)
 } // end function
 
-// jQuery Validate Plugin functions
-// --------------------------------
-// The form on the home page will be
-// validated using the "validate" 
-// function. 
+//////////////////////////////
+// jQuery Validate Plugin 
+// for Home Page
+// ------------------------
+// Created 5/29/2015
+// Authored by Alex Chaudoin
+// ------------------------
+// The form on the home page 
+// will be validated using the 
+// "validate"  function. 
+//////////////////////////////
 
 $('#home-form').validate({
 	rules : {
@@ -425,3 +581,20 @@ $('#next3').click(function(){
 		return false;
 	};
 }); // end click
+//$('#submit').click(function(){
+	//if ($('#home-form').valid()) {
+	//	nextDiv('#next3');
+	//} else {
+	//	form_successDialog.dialog('open');
+	//};
+//}); // end click
+
+var form_successDialog = $('#form-success').dialog({
+	autoOpen: false,
+	modal: true,
+	buttons: {
+		Ok: function(){
+			$(this).dialog('close');
+		}
+	}
+}); // end dialog

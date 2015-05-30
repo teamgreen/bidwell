@@ -268,3 +268,7 @@
 						};
 		
 					?>
+
+					<div id="form-success" title="Success">
+						<p>You successfully created a new project!</p>
+					</div>

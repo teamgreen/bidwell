@@ -112,7 +112,7 @@
 	//			necessary.
 	///////////////////////////////////////
 
-# PHP file for additional functions
+	# PHP file for additional functions
 
 	function assignIfNotEmpty($field, $default) {
 		return (isset($_POST[$field])) ? $_POST[$field] : $default;
