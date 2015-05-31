@@ -87,6 +87,8 @@
 						$project->getSheetsByType($dbc, Sheet::eProjectDescriptionSheet);
 
 						while($row = $project->returnSheetRow()){
+							echo "<div>\n";
+							$sheet = new ProjectDescriptionSheet();
 							$sheet->loadSheetFromResult($dbc, $row);
 							$sheet->generateLinesTableHTML($dbc);
 							echo "</div>\n";
