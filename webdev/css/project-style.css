@@ -15,17 +15,21 @@
 	margin: 0 auto;
 	text-align: left;
 }
+
 #home-form > div {
 	display: none;
 }
+
 #home-form > div.active-form {
 	display: block;
 }
+
 .form-half {
 	width: 41%;
 	margin: 0 4%;
 	display: inline-block;
 }
+
 label {
 	width: 125px;
 	display: inline-block;
@@ -33,16 +37,16 @@ label {
 	padding-left: 15px;
 	padding-bottom: 15px;
 }
+
 input[type="text"], select {
 	width: 60%;
 	background-color: #efefef;
 	border: 1px solid #dddddd;
 }
+
 input[type="text"] {
 	border-radius: 10px;
 }
-
-
 
 #home-form_dashboard {
 	width: 80%;
@@ -81,19 +85,16 @@ input[type="text"] {
 	width: 100%;
 }
 
-.description-cont 
-{
+.description-cont {
 	float: left;
 	width: 50%;
 }
 
-.project-info 
-{
+.project-info {
 	text-align: left;
 }
 
-.description-left 
-{
+.description-left {
 	text-align: left;
 	background-color: lightgray;
 	width: 90%;
@@ -101,13 +102,11 @@ input[type="text"] {
 	float: left;
 }
 
-.description-left-title 
-{
+.description-left-title {
 	text-align: left;
 }
 
-.description-right 
-{
+.description-right {
 	text-align: left;
 	background-color: lightgray;
 	width: 90%;
@@ -115,29 +114,11 @@ input[type="text"] {
 	float: left;
 }
 
-.description-right-title 
-{
+.description-right-title {
 	text-align: left;
 }
 
-[type=checkbox] 
-{
-display: none;
-}
-
-:checked + div {
-    display: block !important;
-    
- }
-
-.box
-{
-    
-    display: none;
- }
-
- .division 
- {
+ .division  {
  	width: 100%;
  	background-color: #387929;
  	text-align: left;
@@ -148,8 +129,7 @@ display: none;
  }
 
  .division1, .division2, .division3, .division4, .division5, .division6, .division7, 
- .division8, .division9, .division10 
-{ 
+ .division8, .division9, .division10 { 
 	background: #90C32E;
 	text-align: center;
 	margin-bottom: 5px;
