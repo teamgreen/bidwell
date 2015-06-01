@@ -8,9 +8,12 @@ $(document).ready(function(){
 			active: false
 		});
 	});
-	$(function() {
-    	$( ".box" ).accordion();
-  	});
+
+	// and the tabs
+  	$('#home-tabs').tabs();
+
+  	// and the tooltip
+  	$('span.ui-icon').tooltip();
 
 
 	$('input[type="checkbox"]').click(function(){

@@ -25,7 +25,7 @@
 	<meta charset="UTF-8">
 	<title>Project | Bid-Well</title>
 
-<!-- Main Stylesheet and Home Page Stylesheet -->
+	<!-- Main Stylesheet and Home Page Stylesheet -->
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" href="css/project-style.css">
 	<!-- Custom jQuery UI Library Stylesheets - 1.11.4 -->
@@ -84,7 +84,7 @@
 						<div class="accordion">
 							<?php
 							$project->getSheetsByType($dbc, Sheet::eInternalBidSheet);
-						
+
 //include_once 'includes/debugging-helper-functions.inc.php';
 //varDump("project.php", "returnSheetRow()", $result);
 
@@ -110,7 +110,7 @@
 						<div class="accordion">
 							<?php
 							$project->getSheetsByType($dbc, Sheet::eExternalBidSheet);
-						
+
 // include_once 'includes/debugging-helper-functions.inc.php';
 // varDump("project.php", 'getSheetsByType()', $project);
 
@@ -118,7 +118,7 @@
 								echo "<h3>" . $row['Name'] . "</h3>\n";
 								echo "<div>\n";
 								$sheet = new ExternalBidSheet();
-	 							$sheet->loadSheetFromResult($dbc, $row);
+								$sheet->loadSheetFromResult($dbc, $row);
  // include_once 'includes/debugging-helper-functions.inc.php';
  // varDump("project.php", "tab 4", $sheet);
 								$sheet->generateLinesTableHTML($dbc);
@@ -152,9 +152,9 @@
 				</div>
 			</div>
 		</div>
+		<?php @require_once "includes/footer.inc.php"; ?>
 	</div>
-	<?php @require_once "includes/footer.inc.php"; ?>
 	<!-- JavaScript/jQuery script file -->
-	<script src="js/script.js"></script>
+	<!-- <script src="js/script.js"></script>-->
 </body>
 </html>

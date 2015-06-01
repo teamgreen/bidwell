@@ -41,7 +41,7 @@ class Sheet{
 
 	function loadSheetFromDatabase($a_dbc, $a_sheetID)
 	{
-varDump(__FUNCTION__, "a_sheetID", $a_sheetID);
+//varDump(__FUNCTION__, "a_sheetID", $a_sheetID);
 
 		$this->sheetID = $a_sheetID;
 
