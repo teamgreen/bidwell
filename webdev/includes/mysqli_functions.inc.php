@@ -118,25 +118,4 @@
 		return (isset($_POST[$field])) ? $_POST[$field] : $default;
 	} // end function
 
-	function addAddress($name, $address1, $address2, $city, $state, $zip) {
-		$sql = "INSERT INTO `address` (Name, Address1, Address2, City, State, ZipCode)
-				VALUES ('$name', '$address1', '$address2', '$city', '$state', '$zip')";
-		$result = @mysqli_query($dbc, $sql);
-		
-		$num_rows = @mysqli_num_rows($result);
-		if ($num_rows === 0) {
-			return 0;
-		} else {
-			$id = mysqli_query('SELECT LAST_INSERT_ID()');
-			addAddressID($id);
-		};
-	} // end function
-
-	function addAddressID($id) {
-		$sql = "SELECT 'AddressID' FROM `address` WHERE AddressID = '$id';
-				UPDATE `project` SET project.OwnerAddressID = address.AddressID WHERE address.AddressID = '$id'";
-		$result = @mysqli_store_result($dbc, $sql);
-	} // end function
-
-
 ?>

@@ -106,134 +106,151 @@ $(document).ready(function(){
 	// buttonval = holds the "value" attribute
 	//			of the "new/edit" button.
 
+	//////////////////////////////
+	// jQuery Validate Plugin 
+	// for Admin Page
+	// ------------------------
+	// Created 5/30/2015
+	// Authored by Alex Chaudoin
+	// ------------------------
+	// The forms on the admin page 
+	// will be validated using the 
+	// "validate" function. 
+	//////////////////////////////
+
+	// Validate Add Account Dialog form
+	$('#add-form').validate({
+		rules : {
+			add_username: "required",
+			add_email: {
+				required : true,
+				email : true
+			},
+			add_preset: "required",
+			add_password: "required",
+			add_confirm_password: {
+				required : true,
+				equalTo : "#add_password"
+			}
+		},
+		messages : {
+			add_username: "Please enter a username for the account",
+			add_email: {
+				required: "Please enter an email address",
+				email: "Please enter a valid email address, like example@email.com"
+			},
+			add_preset: "Please select a preset",
+			add_password: "Please enter a password",
+			add_confirm_password: {
+				required: "Please enter the password again",
+				equalTo: "Please make sure both passwords match"
+			}
+		}
+	}); // end validate
 
 	var addDialog = $('#add-account').dialog({
 		autoOpen: false,
 		minHeight: 500,
 		width: 350,
 		modal: true,
-		submit: function(){
-
-			//////////////////////////////
-			// jQuery Validate Plugin 
-			// for Admin Page
-			// ------------------------
-			// Created 5/30/2015
-			// Authored by Alex Chaudoin
-			// ------------------------
-			// The forms on the admin page 
-			// will be validated using the 
-			// "validate" function. 
-			//////////////////////////////
-
-			// Validate Add Account Dialog form
-			$('#add-form').validate({
-				rules : {
-					add_username: "required",
-					add_email: {
-						required : true,
-						email : true
-					},
-					add_preset: "required"
-				},
-				messages : {
-					add_username: "Please enter a username for the account",
-					add_email: {
-						required: "Please enter an email address",
-						email: "Please enter a valid email address, like example@email.com"
-					},
-					add_preset: "Please select a preset"
-				},
-				submitHandler: function(form) {
-					$(this).dialog('close');
-					$(addDialog).dialog('open');
-				}
-			}); // end validate
+		close: function() {
+			$('#add-form').validate().resetForm();
+			$('#add-form > label, input, select').removeClass('error');
+			$('#add-form').trigger('reset');
 		},
 		buttons: {
 			Cancel: function(){
 				$(this).dialog('close');
 			},
-			'Submit': function(){
-				$('#add-form').valid();
+			Submit: function(){
+				if($('#add-form').valid()) {
+					$('#add-form').submit();
+					addDialog.dialog('close');
+				};
 			}
 		}
 	}); // end dialog
+	
+	// Validate Edit Account Dialog form
+	$('#edit-form').validate({
+		rules : {
+			edit_username: "required",
+			edit_email: {
+				required : true,
+				email : true
+			},
+			edit_preset: "required"
+		},
+		messages : {
+			edit_username: "Please enter a username for the account",
+			edit_email: {
+				required: "Please enter an email address",
+				email: "Please enter a valid email address, like example@email.com"
+			},
+			edit_preset: "Please select a preset"
+		}
+	}); // end validate
 
 	var editDialog = $('#edit-account').dialog({
 		autoOpen: false,
 		minHeight: 500,
 		width: 350,
 		modal: true,
-		save: function(){
-			// Validate Edit Account Dialog form
-			$('#edit-form').validate({
-				rules : {
-					edit_username: "required",
-					edit_email: {
-						required : true,
-						email : true
-					},
-					edit_preset: "required"
-				},
-				messages : {
-					edit_username: "Please enter a username for the account",
-					edit_email: {
-						required: "Please enter an email address",
-						email: "Please enter a valid email address, like example@email.com"
-					},
-					edit_preset: "Please select a preset"
-				},
-				submitHandler: function(form) {
-					$(this).dialog('close');
-					$(editDialog).dialog('open');
-				}
-			}); // end validate
+		close: function() {
+			$('#edit-form').validate().resetForm();
+			$('#edit-form > label, input, select').removeClass('error');
+			$('#edit-form').trigger('reset');
 		},
 		buttons: {
 			Cancel: function(){
 				$(this).dialog('close');
 			},
-			'Save': function(){
-				$('#edit-form').valid();
+			Save: function(){
+				if($('#edit-form').valid()) {
+					$('#edit-form').submit();
+					editDialog.dialog('close');
+				};
 			}
 		}
 	}); // end dialog
+
+	// Validate Reset Password Dialog form
+	$('#pass-form').validate({
+		rules : {
+			new_password: "required",
+			new_confirm_password: {
+				required : true,
+				equalTo : "#new_password"
+			}
+		},
+		messages : {
+			new_password: "Please enter a password",
+			new_confirm_password: {
+				required: "Please enter the password again",
+				equalTo: "Please make sure both passwords match"
+			}
+		}
+	}); // end validate
 
 	var passDialog = $('#edit-pass').dialog({
 		autoOpen: false,
 		minHeight: 500,
 		width: 350,
 		modal: true,
-		reset: function(){
-			// Validate Reset Password Dialog form
-			$('#pass-form').validate({
-				rules : {
-					new_password: "required",
-					new_confirm_password: {
-						required : true,
-						equalTo : "password"
-					}
-				},
-				messages : {
-					new_password: "Please enter a password",
-					new_confirm_password: {
-						required: "Please enter the password again",
-						equalTo: "Please make sure both passwords match"
-					}
-				},
-				submitHandler: function(form) {
-					$(this).dialog('close');
-					$(passDialog).dialog('open');
-				}
-			}); // end validate
+		close: function() {
+			$('#pass-form').validate().resetForm();
+			$('#pass-form > label, input, select').removeClass('error');
+			$('#pass-form').trigger('reset');
 		},
 		buttons: {
 			Cancel: function(){
 				$(this).dialog('close');
 			},
 			Reset: function(){
-				$('#pass-form').valid();
+				if($('#pass-form').valid()) {
+					$('#pass-form').submit();
+					passDialog.dialog('close');
+				};
 			}
 		}
 	}); // end dialog
@@ -438,7 +455,7 @@ function prevDiv(button) {
 // ------------------------
 // The form on the home page 
 // will be validated using the 
-// "validate"  function. 
+// "validate" function. 
 //////////////////////////////
 
 $('#home-form').validate({
@@ -558,7 +575,7 @@ $('#home-form').validate({
 			minlength: "Please enter at least 5 digits for a zipcode",
 			number: "Please enter numbers only"
 		}
-	},
+	}
 }); // end validate
 $('#next1').click(function(){
 	if ($('#home-form').valid()) {
@@ -598,3 +615,4 @@ var form_successDialog = $('#form-success').dialog({
 		}
 	}
 }); // end dialog
+

@@ -39,13 +39,6 @@ label {
 	display: inline-block;
 	text-align: left;
 }
-.owner_architect_checkbox {
-	display: inline-block;
-	margin: 0 0 0 300px;
-}
-#owner_architect {
-	margin: 0 10px;
-}
 input[type="text"], input[type="email"], textarea, select {
 	background-color: #dcf5ae;
 	border: 1px solid #c3db95;

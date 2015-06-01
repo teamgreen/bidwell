@@ -93,21 +93,58 @@
 
 				if($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-					$username = $_POST['add_username'];
-					$email = $_POST['add_email'];
-					$preset = $_POST['add_preset'];
-					$password = $_POST['add_password'];
+					if($_POST['add_preset'] !== 'Custom') {
 
-					$sql_add = "INSERT INTO `account` (LoginName, Email, PresetName, Password)
-								VALUES ('$username', '$email', $preset, '$password')";
-					$result_add = @mysqli_query($dbc, $sql_add);
+						$username = $_POST['add_username'];
+						$email = $_POST['add_email'];
+						$preset = $_POST['add_preset'];
+						$password = $_POST['add_password'];
 
-					$num_rows_add = @mysqli_num_rows($result_add);
-					if ($num_rows_add === 0) {
-					 	echo "<p>We apologize for the inconvenience but a new account could not be added.</p>\n";
+						$sql_add = "INSERT INTO `account` (LoginName, Email, PresetName, Password)
+									VALUES ('$username', '$email', $preset, '$password')";
+						$result_add = @mysqli_query($dbc, $sql_add);
+
+						$num_rows_add = @mysqli_num_rows($result_add);
+						if ($num_rows_add === 0) {
+						 	echo "<p>We apologize for the inconvenience but a new account could not be added.</p>\n";
+						};
+
+						$_POST = array(); // should clear all fields
+
+					} else {
+
+						$username = $_POST['add_username'];
+						$email = $_POST['add_email'];
+						$preset = $_POST['add_preset'];
+
+						if (is_array($_POST['add_permission'])) {
+							foreach ($_POST['add_permission'] as $value) {
+								$sql_permission = "INSERT INTO `account|permission` (PermissionID) VALUES ('$value'"; // do I need WHERE account = ?
+								$result_permission = @mysqli_query($dbc, $sql_permission);
+
+								$num_rows_permission = @mysqli_num_rows($result_permission);
+								if ($num_rows_permission === 0) {
+								 	echo "<p>We apologize for the inconvenience but a permission was not added.</p>\n";
+								};
+							};
+						} else {
+							$permissions = $_POST['add_permission'];
+						};
+
+						$password = $_POST['add_password'];
+
+						$sql_add = "INSERT INTO `account` (LoginName, Email, PresetName, Password)
+									VALUES ('$username', '$email', $preset, '$password')";
+						$result_add = @mysqli_query($dbc, $sql_add);
+
+						$num_rows_add = @mysqli_num_rows($result_add);
+						if ($num_rows_add === 0) {
+						 	echo "<p>We apologize for the inconvenience but a new account could not be added.</p>\n";
+						};
+
+						$_POST = array(); // should clear all fields
+
 					};
-
-					$_POST = array(); // should clear all fields
 
 					?>
 
