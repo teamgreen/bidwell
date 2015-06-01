@@ -71,10 +71,7 @@
 					<li><a href="#tab5">Change<br>Bid Sheets</a></li>
 				</ul>
 				<div id="tab1">
-					<?php
-					//require_once 'includes/project-tab1.inc.php';
-					?>
-					<p class="project-info">This tab will contain either multiple pages or sub-tabs to allow the user to view the information that was input on project creation.  The ability to assign the project to a person will most likely go here as well.  Adam's tab.</p>
+					<?php require_once 'includes/project-tab1.inc.php';	?>
 				</div>
 
 				<div id="tab2">
@@ -89,9 +86,9 @@
 						<p class="description-right-title">Files Uploaded:</p>
 						<p class="description-right">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas gravida ut purus id ullamcorper. Praesent fringilla eros tortor, nec mollis nunc cursus eget. Vivamus odio leo, lacinia id faucibus id, viverra sed nunc. Aenean id posuere orci. Duis vehicula laoreet nulla ac rutrum. Ut consectetur elit in risus aliquam, vel iaculis justo commodo. Sed imperdiet malesuada libero, ac consequat orci lacinia sed.</p>
 					</div>
-					<button><a href="#">Upload</a></button>
-					<button><a href="#">Save Changes</a></button>
-					<button><a href="#">Print</a></button>
+					<button name="upload" value="upload" type="button">Upload</button>
+					<button name="save-changes" value="save-changes" type="button">Save Changes</button>
+					<button name="print" value="print" type="button">Print</button>
 				</div>
 				<div id="tab3">
 					<div class="scroller">
