@@ -17,6 +17,7 @@
 //			
 // Project Page 
 // Updated: by Adam Duthie on 5/24 @ 3:00PM - 2:21AM on 5/25
+// Updated: by Adam Duthie on 5/31 @ 8:00PM
 /////////////////////////////////////////
 
 -->
@@ -76,31 +77,7 @@
 				</div>
 
 				<div id="tab2">
-					<?php
-	//				require_once 'includes/project-tab2.inc.php';
-					?>
-					<div class="description-cont">
-						<?php
-						$project->getSheetsByType($dbc, Sheet::eProjectDescriptionSheet);
-
-						while($row = $project->returnSheetRow()){
-							echo "<div>\n";
-							$sheet = new ProjectDescriptionSheet();
-							$sheet->loadSheetFromResult($dbc, $row);
-							$sheet->generateLinesTableHTML($dbc);
-							echo "</div>\n";
-						}
-
-						?>
-
-					</div>
-					<div class="description-cont">
-						<p class="description-right-title">Files Uploaded:</p>
-						<p class="description-right">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas gravida ut purus id ullamcorper. Praesent fringilla eros tortor, nec mollis nunc cursus eget. Vivamus odio leo, lacinia id faucibus id, viverra sed nunc. Aenean id posuere orci. Duis vehicula laoreet nulla ac rutrum. Ut consectetur elit in risus aliquam, vel iaculis justo commodo. Sed imperdiet malesuada libero, ac consequat orci lacinia sed.</p>
-					</div>
-					<button name="upload" value="upload" type="button">Upload</button>
-					<button name="save-changes" value="save-changes" type="button">Save Changes</button>
-					<button name="print" value="print" type="button">Print</button>
+					<?php require_once 'includes/project-tab2.inc.php';	?>
 				</div>
 				<div id="tab3">
 					<div class="scroller">
