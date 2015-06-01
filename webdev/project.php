@@ -50,6 +50,7 @@
 			@require_once 'includes/mysqli_connect.inc.php';
 			$dbc = SQLConnect();
 
+
 			// set up the project class.
 			@require_once "includes/project-class.inc.php";
 
@@ -79,8 +80,19 @@
 	//				require_once 'includes/project-tab2.inc.php';
 					?>
 					<div class="description-cont">
-						<p class="description-left-title">Description:</p>
-						<p class="description-left">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas gravida ut purus id ullamcorper. Praesent fringilla eros tortor, nec mollis nunc cursus eget. Vivamus odio leo, lacinia id faucibus id, viverra sed nunc. Aenean id posuere orci. Duis vehicula laoreet nulla ac rutrum. Ut consectetur elit in risus aliquam, vel iaculis justo commodo. Sed imperdiet malesuada libero, ac consequat orci lacinia sed.</p>
+						<?php
+						$project->getSheetsByType($dbc, Sheet::eProjectDescriptionSheet);
+
+						while($row = $project->returnSheetRow()){
+							echo "<div>\n";
+							$sheet = new ProjectDescriptionSheet();
+							$sheet->loadSheetFromResult($dbc, $row);
+							$sheet->generateLinesTableHTML($dbc);
+							echo "</div>\n";
+						}
+
+						?>
+
 					</div>
 					<div class="description-cont">
 						<p class="description-right-title">Files Uploaded:</p>
@@ -102,7 +114,7 @@
 							while($row = $project->returnSheetRow()){
 								echo "<h3>" . $row['Name'] . "</h3>\n";
 								echo "<div>\n";
-								$sheet = new Sheet();
+								$sheet = new InternalBidSheet();
 								$sheet->loadSheetFromResult($dbc, $row);
 								$sheet->generateLinesTableHTML($dbc);
 								echo "</div>\n";
@@ -122,16 +134,16 @@
 							<?php
 							$project->getSheetsByType($dbc, Sheet::eExternalBidSheet);
 						
-//include_once 'includes/debugging-helper-functions.inc.php';
-//varDump("project.php", "returnSheetRow()", $result);
+// include_once 'includes/debugging-helper-functions.inc.php';
+// varDump("project.php", 'getSheetsByType()', $project);
 
 							while($row = $project->returnSheetRow()){
 								echo "<h3>" . $row['Name'] . "</h3>\n";
 								echo "<div>\n";
-								$sheet = new Sheet();
-								$sheet->loadSheetFromResult($dbc, $row);
-// include_once 'includes/debugging-helper-functions.inc.php';
-// varDump("project.php", "tab 4", $sheet);
+								$sheet = new ExternalBidSheet();
+	 							$sheet->loadSheetFromResult($dbc, $row);
+ // include_once 'includes/debugging-helper-functions.inc.php';
+ // varDump("project.php", "tab 4", $sheet);
 								$sheet->generateLinesTableHTML($dbc);
 								echo "</div>\n";
 							}
@@ -150,7 +162,7 @@
 							while($row = $project->returnSheetRow()){
 								echo "<h3>" . $row['Name'] . "</h3>\n";
 								echo "<div>\n";
-								$sheet = new Sheet();
+								$sheet = new ChangeBidSheet();
 								$sheet->loadSheetFromResult($dbc, $row);
 // include_once 'includes/debugging-helper-functions.inc.php';
 // varDump("project.php", "tab 5", $sheet);

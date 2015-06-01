@@ -33,8 +33,16 @@ class Sheet{
 	function setName($var){ $this->name=$var ; }
 	function setDescription($var){ $this->description=$var ; }
 
+	// empty functions that any inheritors should define.
+	function generateLineHMTL($a_row) {}
+	function generateTableHeaderHTML() {}
+	function displayTotal($a_amount){}
+
+
 	function loadSheetFromDatabase($a_dbc, $a_sheetID)
 	{
+varDump(__FUNCTION__, "a_sheetID", $a_sheetID);
+
 		$this->sheetID = $a_sheetID;
 
 		if($this->sheetID){
@@ -94,97 +102,6 @@ class Sheet{
 		return @mysqli_fetch_array($this->sheetLinesResults);
 	}
 
-	private function generateExternalTableHeaderHTML()
-	{
-		echo "<tr>\n";
-		echo "<th>Item #</th>\n";
-		echo "<th>Description of Work</th>\n";
-		echo "<th>Amount</th>\n";
-		echo "</tr>\n";
-	}
-
-	private function generateExternalLineHTML($a_row)
-	{
-//varDump(__FUNCTION__, '$a_row', $a_row);
-		echo "<tr>\n";
-		echo "<td>1</td>\n";
-		echo '<td>' . $a_row['WorkDescription'] . "</td>\n";
-//		echo '<td>' . $a_row['WorkDescription'] . '<span class="ui-icon ui-icon-info" title="Project information goes here."></span></td>' . "\n";
-		echo '<td>$' . $a_row['Amount'] . "</td>\n";
-		echo "</tr>\n";
-	}
-
-	private function generateInternalTableHeaderHTML()
-	{
-		echo "<tr>\n";
-		echo "<th>Task ID</th>\n";
-		echo "<th>Task Name</th>\n";
-		echo "<th>Subcontractor</th>\n";
-		echo "<th>Amount</th>\n";
-		echo "<th>Notes</th>\n";
-		echo "</tr>\n";
-	}
-
-	private function generateInternalLineHTML($a_row)
-	{
-//varDump(__FUNCTION__, '$a_row', $a_row);
-		echo "<tr>\n";
-	 	echo "<td>{$a_row['ConstructionSpecID']}</td>";
-		echo "<td>Lorem Ipsum <span class='ui-icon ui-icon-info' title='Info about what type of things this task heading covers here.'></span></td>\n";
-		echo "<td>{$a_row['SubcontractorBidUsed']}</td>\n";
-		echo "<td>{$a_row['Amount']}</td>\n";
-		echo "<td>{$a_row['GeneralNotes']}<span class='ui-icon ui-icon-info' title='Notes about this task.'></span></td>\n";
-		echo "</tr>\n";
-	}
-
-	private function generateDescriptionTableHeaderHTML()
-	{
-
-	}
-
-	private function generateDescriptionLineHTML($a_row)
-	{
-
-	}
-
-	function generateLineHTML($a_row)
-	{
-		switch ($this->sheetType){
-			case Sheet::eExternalBidSheet:
-			case Sheet::eChangeBidSheet:
-				$this->generateExternalLineHTML($a_row);
-			break;
-			case Sheet::eInternalBidSheet:
-//varDump(__FUNCTION__, "a_row", $a_row);
-				$this->generateInternalLineHTML($a_row);
-			break;
-			case Sheet::eProjectDescriptionSheet:
-				$this->generateDescriptionLineHTML($a_row);
-			break;
-			default:
-				//should cause an error here, because we shouldn't be here.
-			break;
-		}
-	}
-
-	function generateTableHeaderHTML()
-	{
-		switch ($this->sheetType){
-			case Sheet::eExternalBidSheet:
-			case Sheet::eChangeBidSheet:
-				$this->generateExternalTableHeaderHTML();
-			break;
-			case Sheet::eInternalBidSheet:
-				$this->generateInternalTableHeaderHTML();
-			break;
-			case Sheet::eProjectDescriptionSheet:
-				$this->generateDescriptionTableHeaderHTML();
-			break;
-			default:
-				//should cause an error here, because we shouldn't be here.
-			break;
-		}
-	}
 
 	function generateLinesTableHTML($a_dbc)
 	{
@@ -197,12 +114,19 @@ class Sheet{
 		// start a table.
 		echo "<table>\n";
 
+		$lineCount=0;
+		$total=0;
+
 		//add the header
 		$this->generateTableHeaderHTML();
 		while($row = $this->returnLineRow())
 		{
-			$this->generateLineHTML($row);
+			$lineCount++;
+			$total += $this->generateLineHTML($row, $lineCount);
 		}
+
+		//now display the total if needed.
+		$this->displayTotal($total);
 
 		// and close the table
 		echo "</table>\n";
@@ -219,7 +143,172 @@ class Sheet{
 //
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
-class Project{
+class ProjectDescriptionSheet extends Sheet
+{
+	function generateLinesTableHTML($a_dbc)
+	{
+		// get our lines.
+		$this->getLines($a_dbc);
+
+		$this->generateTableHeaderHTML();
+		// all of this in a form.
+		echo "<form>\n";
+	 	echo "<div class='description-left'>\n";
+
+
+		//add the header
+		while($row = $this->returnLineRow())
+		{
+			$this->generateLineHTML($row);
+		}
+
+		// close the div
+		echo "</div>";
+
+		// and the form.
+		echo "</form>\n";
+	}
+
+	function generateTableHeaderHTML()
+	{
+		echo "<p class='description-left-title'>Description:</p>\n";
+	}
+
+	function generateLineHTML($a_row)
+	{
+//varDump(__FUNCTION__, '$a_row', $a_row);
+	 	echo "<p>{$a_row['Text']}</p>\n";
+	 	return 0;
+	}
+}
+
+//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
+//
+//
+//
+//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
+class InternalBidSheet extends Sheet
+{
+	function generateTableHeaderHTML()
+	{
+		echo "<tr>\n";
+		echo "<th>Task ID</th>\n";
+		echo "<th>Task Name</th>\n";
+		echo "<th>Subcontractor</th>\n";
+		echo "<th>Amount</th>\n";
+		echo "<th>Notes</th>\n";
+		echo "</tr>\n";
+	}
+
+	function generateLineHTML($a_row, $a_lineCount)
+	{
+//varDump(__FUNCTION__, '$a_row', $a_row);
+		echo "<tr>\n";
+	 	echo "<td>{$a_row['ConstructionSpecID']}</td>";
+		echo "<td>Lorem Ipsum <span class='ui-icon ui-icon-info' title='Info about what type of things this task heading covers here.'></span></td>\n";
+		echo "<td>{$a_row['SubcontractorBidUsed']}</td>\n";
+		echo "<td>{$a_row['Amount']}</td>\n";
+		echo "<td>{$a_row['GeneralNotes']}<span class='ui-icon ui-icon-info' title='Notes about this task.'></span></td>\n";
+		echo "</tr>\n";
+		return $a_row['Amount'];
+	}
+
+	function displayTotal($a_amount){
+
+	}
+
+}
+
+//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
+//
+//
+//
+//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
+class ChangeBidSheet extends Sheet
+{
+	function generateTableHeaderHTML()
+	{
+		echo "<tr>\n";
+		echo "<th class='chTableCol1'>Item #</th>\n";
+		echo "<th class='chTableCol2'>Description of Work</th>\n";
+		echo "<th class='chTableCol3'>Amount</th>\n";
+		echo "</tr>\n";
+	}
+
+	function generateLineHTML($a_row, $a_lineCount)
+	{
+// varDump(__FUNCTION__, 'ChangeBidSheet: $a_row', $a_row);
+		echo "<tr>\n";
+		echo "<td>{$a_lineCount}</td>\n";
+		echo "<td class='chTableData'><input class='chDescInput' type='text' maxlength='400' name='fname' value='" . $a_row['WorkDescription'] . "'></td>\n";
+		echo "<td><input class='chAmtInput' type='number' name='fname' value='" . $a_row['Amount'] . "'></td>\n";
+		echo "</tr>\n";
+		return $a_row['Amount'];
+	}
+
+	function displayTotal($a_amount){
+		echo "<tr>\n";
+		echo "<td></td>\n";
+		echo "<td class='chTableTotal'>Total:</td>\n";
+		echo '<td>$' . $a_amount . "</td>\n";
+		echo "</tr>\n";
+	}
+
+}
+
+//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
+//
+//
+//
+//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
+class ExternalBidSheet extends Sheet
+{
+	function generateTableHeaderHTML()
+	{
+		echo "<tr class='exTableRow'>\n";
+		echo "<th class='exTableCol1'>Item #</th>\n";
+		echo "<th class='exTableCol2'>Description of Work</th>\n";
+		echo "<th class='exTableCol3'>Amount</th>\n";
+		echo "</tr>\n";
+	}
+
+	function generateLineHTML($a_row, $a_lineCount)
+	{
+//varDump(__FUNCTION__, 'ExternalBidSheet: $a_row', $a_row);
+		echo "<tr>\n";
+		echo "<td>{$a_lineCount}</td>\n";
+		echo "<td class='exTableData'><input class='exDescInput' type='text' maxlength='400' name='fname' value='" . $a_row['WorkDescription'] . "'></td>\n";
+		echo "<td><input class='exAmtInput' type='number' name='fname' value='" . $a_row['Amount'] . "'></td>\n";
+		echo "</tr>\n";
+
+		return $a_row['Amount'];
+	}
+
+	function displayTotal($a_amount)
+	{
+		echo "<tr>\n";
+		echo "<td></td>\n";
+		echo "<td class='exTableTotal'>Total:</td>\n";
+		echo '<td>$' . $a_amount . "</td>\n";
+		echo "</tr>\n";
+	}
+}
+
+//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
+//
+//
+//
+//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
+class Project
+{
 	const eOwnerAddress = 1;
 	const eArchitectAddress = 2;
 	const eSiteAddress =3;
@@ -391,7 +480,7 @@ class Project{
 		// get the sheets that go with this project
 		$this->getSheetIDs($a_dbc);
 		$row_sheet = @mysqli_fetch_array($this->lastGetSheetIDsResults);
-//varDump(__FUNCTION__, "row_sheet", $row_sheet);
+// varDump(__FUNCTION__, "row_sheet", $row_sheet);
 		// if we found nothing...
 		if(!$row_sheet)
 			return null;
@@ -415,7 +504,7 @@ class Project{
 	}
 
 	function returnSheetRow(){
-//varDump(__FUNCTION__, 'lastGetSheetsByTypeResults', $this->lastGetSheetsByTypeResults);
+// varDump(__FUNCTION__, 'lastGetSheetsByTypeResults', $this->lastGetSheetsByTypeResults);
 		return @mysqli_fetch_array($this->lastGetSheetsByTypeResults);
 	}
 }  // end project class.
