@@ -185,3 +185,25 @@ button:hover{
 	overflow-y: scroll;
 	overflow-x: hidden;
 }
+
+/*start Table related CSS*/
+.exTableCol1, .chTableCol1{
+	width: 100px;	
+}
+
+.exTableCol3, .chTableCol3{
+	width: 150px;
+}
+
+.exTableRow, .chTableRow{
+	padding:0px;
+	margin:0px;
+}
+
+.exTableData, .chTableData{
+	text-align:left;
+}
+
+.exTableTotal, .chTableTotal{
+	text-align:right;
+}

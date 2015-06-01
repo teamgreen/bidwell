@@ -33,6 +33,12 @@ class Sheet{
 	function setName($var){ $this->name=$var ; }
 	function setDescription($var){ $this->description=$var ; }
 
+	// empty functions that any inheritors should define.
+	function generateLineHMTL($a_row) {}
+	function generateTableHeaderHTML() {}
+	function displayTotal($a_amount){}
+
+
 	function loadSheetFromDatabase($a_dbc, $a_sheetID)
 	{
 varDump(__FUNCTION__, "a_sheetID", $a_sheetID);
@@ -96,13 +102,6 @@ varDump(__FUNCTION__, "a_sheetID", $a_sheetID);
 		return @mysqli_fetch_array($this->sheetLinesResults);
 	}
 
-	function generateLineHMTL($a_row)
-	{
-	}
-
-	function generateTableHeaderHTML()
-	{
-	}
 
 	function generateLinesTableHTML($a_dbc)
 	{
@@ -115,12 +114,19 @@ varDump(__FUNCTION__, "a_sheetID", $a_sheetID);
 		// start a table.
 		echo "<table>\n";
 
+		$lineCount=0;
+		$total=0;
+
 		//add the header
 		$this->generateTableHeaderHTML();
 		while($row = $this->returnLineRow())
 		{
-			$this->generateLineHTML($row);
+			$lineCount++;
+			$total += $this->generateLineHTML($row, $lineCount);
 		}
+
+		//now display the total if needed.
+		$this->displayTotal($total);
 
 		// and close the table
 		echo "</table>\n";
@@ -172,6 +178,7 @@ class ProjectDescriptionSheet extends Sheet
 	{
 //varDump(__FUNCTION__, '$a_row', $a_row);
 	 	echo "<p>{$a_row['Text']}</p>\n";
+	 	return 0;
 	}
 }
 
@@ -195,7 +202,7 @@ class InternalBidSheet extends Sheet
 		echo "</tr>\n";
 	}
 
-	function generateLineHTML($a_row)
+	function generateLineHTML($a_row, $a_lineCount)
 	{
 //varDump(__FUNCTION__, '$a_row', $a_row);
 		echo "<tr>\n";
@@ -205,7 +212,13 @@ class InternalBidSheet extends Sheet
 		echo "<td>{$a_row['Amount']}</td>\n";
 		echo "<td>{$a_row['GeneralNotes']}<span class='ui-icon ui-icon-info' title='Notes about this task.'></span></td>\n";
 		echo "</tr>\n";
+		return $a_row['Amount'];
 	}
+
+	function displayTotal($a_amount){
+
+	}
+
 }
 
 //////////////////////////////////////////////////////////////
@@ -220,22 +233,32 @@ class ChangeBidSheet extends Sheet
 	function generateTableHeaderHTML()
 	{
 		echo "<tr>\n";
-		echo "<th>Item #</th>\n";
-		echo "<th>Description of Work</th>\n";
-		echo "<th>Amount</th>\n";
+		echo "<th class='chTableCol1'>Item #</th>\n";
+		echo "<th class='chTableCol2'>Description of Work</th>\n";
+		echo "<th class='chTableCol3'>Amount</th>\n";
 		echo "</tr>\n";
 	}
 
-	function generateLineHTML($a_row)
+	function generateLineHTML($a_row, $a_lineCount)
 	{
 // varDump(__FUNCTION__, 'ChangeBidSheet: $a_row', $a_row);
 		echo "<tr>\n";
-		echo "<td>1</td>\n";
-		echo '<td>' . $a_row['WorkDescription'] . "</td>\n";
+		echo "<td>{$a_lineCount}</td>\n";
+		echo "<td class='chTableData'>" . $a_row['WorkDescription'] . "</td>\n";
 //		echo '<td>' . $a_row['WorkDescription'] . '<span class="ui-icon ui-icon-info" title="Project information goes here."></span></td>' . "\n";
 		echo '<td>$' . $a_row['Amount'] . "</td>\n";
 		echo "</tr>\n";
+		return $a_row['Amount'];
 	}
+
+	function displayTotal($a_amount){
+		echo "<tr>\n";
+		echo "<td></td>\n";
+		echo "<td class='chTableTotal'>Total:</td>\n";
+		echo '<td>$' . $a_amount . "</td>\n";
+		echo "</tr>\n";
+	}
+
 }
 
 //////////////////////////////////////////////////////////////
@@ -249,21 +272,32 @@ class ExternalBidSheet extends Sheet
 {
 	function generateTableHeaderHTML()
 	{
-		echo "<tr>\n";
-		echo "<th>Item #</th>\n";
-		echo "<th>Description of Work</th>\n";
-		echo "<th>Amount</th>\n";
+		echo "<tr class='exTableRow'>\n";
+		echo "<th class='exTableCol1'>Item #</th>\n";
+		echo "<th class='exTableCol2'>Description of Work</th>\n";
+		echo "<th class='exTableCol3'>Amount</th>\n";
 		echo "</tr>\n";
 	}
 
-	function generateLineHTML($a_row)
+	function generateLineHTML($a_row, $a_lineCount)
 	{
 //varDump(__FUNCTION__, 'ExternalBidSheet: $a_row', $a_row);
 		echo "<tr>\n";
-		echo "<td>1</td>\n";
-		echo '<td>' . $a_row['WorkDescription'] . "</td>\n";
+		echo "<td>{$a_lineCount}</td>\n";
+		echo "<td class='exTableData'>" . $a_row['WorkDescription'] . "</td>\n";
 //		echo '<td>' . $a_row['WorkDescription'] . '<span class="ui-icon ui-icon-info" title="Project information goes here."></span></td>' . "\n";
 		echo '<td>$' . $a_row['Amount'] . "</td>\n";
+		echo "</tr>\n";
+
+		return $a_row['Amount'];
+	}
+
+	function displayTotal($a_amount)
+	{
+		echo "<tr>\n";
+		echo "<td></td>\n";
+		echo "<td class='exTableTotal'>Total:</td>\n";
+		echo '<td>$' . $a_amount . "</td>\n";
 		echo "</tr>\n";
 	}
 }
