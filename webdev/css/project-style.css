@@ -4,28 +4,40 @@
 // Authored by Tim Willbanks
 * ///////////////////// */
 
+.content {
+	padding: 5px 0px;
+}
+
+h2{
+	margin: 5px 0;
+}
+
 #home-tabs {
-	width: 85%;
+	width: 95%;
 	margin: 10px auto 30px auto;
 }
 
 #home-form {
-	width: 90%;
+	width: 100%;
 	display: block;
 	margin: 0 auto;
 	text-align: left;
 }
+
 #home-form > div {
 	display: none;
 }
+
 #home-form > div.active-form {
 	display: block;
 }
+
 .form-half {
 	width: 41%;
 	margin: 0 4%;
 	display: inline-block;
 }
+
 label {
 	width: 125px;
 	display: inline-block;
@@ -33,16 +45,16 @@ label {
 	padding-left: 15px;
 	padding-bottom: 15px;
 }
-input[type="text"], select {
+
+/*input[type="text"], select {
 	width: 60%;
 	background-color: #efefef;
 	border: 1px solid #dddddd;
 }
+
 input[type="text"] {
 	border-radius: 10px;
-}
-
-
+}*/
 
 #home-form_dashboard {
 	width: 80%;
@@ -81,19 +93,16 @@ input[type="text"] {
 	width: 100%;
 }
 
-.description-cont 
-{
+.description-cont {
 	float: left;
 	width: 50%;
 }
 
-.project-info 
-{
+.project-info {
 	text-align: left;
 }
 
-.description-left 
-{
+.description-left {
 	text-align: left;
 	background-color: lightgray;
 	width: 90%;
@@ -101,13 +110,11 @@ input[type="text"] {
 	float: left;
 }
 
-.description-left-title 
-{
+.description-left-title {
 	text-align: left;
 }
 
-.description-right 
-{
+.description-right {
 	text-align: left;
 	background-color: lightgray;
 	width: 90%;
@@ -115,29 +122,11 @@ input[type="text"] {
 	float: left;
 }
 
-.description-right-title 
-{
+.description-right-title {
 	text-align: left;
 }
 
-[type=checkbox] 
-{
-display: none;
-}
-
-:checked + div {
-    display: block !important;
-    
- }
-
-.box
-{
-    
-    display: none;
- }
-
- .division 
- {
+ .division  {
  	width: 100%;
  	background-color: #387929;
  	text-align: left;
@@ -148,8 +137,7 @@ display: none;
  }
 
  .division1, .division2, .division3, .division4, .division5, .division6, .division7, 
- .division8, .division9, .division10 
-{ 
+ .division8, .division9, .division10 { 
 	background: #90C32E;
 	text-align: center;
 	margin-bottom: 5px;
@@ -196,4 +184,44 @@ button:hover{
 	height: 325px;
 	overflow-y: scroll;
 	overflow-x: hidden;
+}
+
+/**/
+/*start Table related CSS*/
+/**/
+.exTableCol1, .chTableCol1{
+	width: 100px;	
+}
+
+.exTableCol3, .chTableCol3{
+	width: 150px;
+}
+
+.exTableRow, .chTableRow{
+	padding:0px;
+	margin:0px;
+}
+
+.exTableData, .chTableData{
+	text-align:left;
+}
+
+.exTableTotal, .chTableTotal{
+	text-align:right;
+}
+
+.exDescInput, .chDescInput{
+	width:100%;
+	background-color: #dcf6ac;
+	padding:0;
+	margin:0;
+}
+
+.exAmtInput, .chAmtInput{
+	width:100%;
+	/*width:135px;*/
+	text-align:right;
+	background-color: #dcf6ac;
+	padding:0;
+	margin:0;
 }

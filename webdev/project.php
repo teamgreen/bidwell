@@ -17,6 +17,7 @@
 //			
 // Project Page 
 // Updated: by Adam Duthie on 5/24 @ 3:00PM - 2:21AM on 5/25
+// Updated: by Adam Duthie on 5/31 @ 8:00PM
 /////////////////////////////////////////
 
 -->
@@ -50,6 +51,7 @@
 			@require_once 'includes/mysqli_connect.inc.php';
 			$dbc = SQLConnect();
 
+
 			// set up the project class.
 			@require_once "includes/project-class.inc.php";
 
@@ -71,27 +73,11 @@
 					<li><a href="#tab5">Change<br>Bid Sheets</a></li>
 				</ul>
 				<div id="tab1">
-					<?php
-					//require_once 'includes/project-tab1.inc.php';
-					?>
-					<p class="project-info">This tab will contain either multiple pages or sub-tabs to allow the user to view the information that was input on project creation.  The ability to assign the project to a person will most likely go here as well.  Adam's tab.</p>
+					<?php require_once 'includes/project-tab1.inc.php';	?>
 				</div>
 
 				<div id="tab2">
-					<?php
-	//				require_once 'includes/project-tab2.inc.php';
-					?>
-					<div class="description-cont">
-						<p class="description-left-title">Description:</p>
-						<p class="description-left">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas gravida ut purus id ullamcorper. Praesent fringilla eros tortor, nec mollis nunc cursus eget. Vivamus odio leo, lacinia id faucibus id, viverra sed nunc. Aenean id posuere orci. Duis vehicula laoreet nulla ac rutrum. Ut consectetur elit in risus aliquam, vel iaculis justo commodo. Sed imperdiet malesuada libero, ac consequat orci lacinia sed.</p>
-					</div>
-					<div class="description-cont">
-						<p class="description-right-title">Files Uploaded:</p>
-						<p class="description-right">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas gravida ut purus id ullamcorper. Praesent fringilla eros tortor, nec mollis nunc cursus eget. Vivamus odio leo, lacinia id faucibus id, viverra sed nunc. Aenean id posuere orci. Duis vehicula laoreet nulla ac rutrum. Ut consectetur elit in risus aliquam, vel iaculis justo commodo. Sed imperdiet malesuada libero, ac consequat orci lacinia sed.</p>
-					</div>
-					<button><a href="#">Upload</a></button>
-					<button><a href="#">Save Changes</a></button>
-					<button><a href="#">Print</a></button>
+					<?php require_once 'includes/project-tab2.inc.php';	?>
 				</div>
 				<div id="tab3">
 					<div class="scroller">
@@ -105,7 +91,7 @@
 							while($row = $project->returnSheetRow()){
 								echo "<h3>" . $row['Name'] . "</h3>\n";
 								echo "<div>\n";
-								$sheet = new Sheet();
+								$sheet = new InternalBidSheet();
 								$sheet->loadSheetFromResult($dbc, $row);
 								$sheet->generateLinesTableHTML($dbc);
 								echo "</div>\n";
@@ -125,16 +111,16 @@
 							<?php
 							$project->getSheetsByType($dbc, Sheet::eExternalBidSheet);
 						
-//include_once 'includes/debugging-helper-functions.inc.php';
-//varDump("project.php", "returnSheetRow()", $result);
+// include_once 'includes/debugging-helper-functions.inc.php';
+// varDump("project.php", 'getSheetsByType()', $project);
 
 							while($row = $project->returnSheetRow()){
 								echo "<h3>" . $row['Name'] . "</h3>\n";
 								echo "<div>\n";
-								$sheet = new Sheet();
-								$sheet->loadSheetFromResult($dbc, $row);
-// include_once 'includes/debugging-helper-functions.inc.php';
-// varDump("project.php", "tab 4", $sheet);
+								$sheet = new ExternalBidSheet();
+	 							$sheet->loadSheetFromResult($dbc, $row);
+ // include_once 'includes/debugging-helper-functions.inc.php';
+ // varDump("project.php", "tab 4", $sheet);
 								$sheet->generateLinesTableHTML($dbc);
 								echo "</div>\n";
 							}
@@ -153,7 +139,7 @@
 							while($row = $project->returnSheetRow()){
 								echo "<h3>" . $row['Name'] . "</h3>\n";
 								echo "<div>\n";
-								$sheet = new Sheet();
+								$sheet = new ChangeBidSheet();
 								$sheet->loadSheetFromResult($dbc, $row);
 // include_once 'includes/debugging-helper-functions.inc.php';
 // varDump("project.php", "tab 5", $sheet);
