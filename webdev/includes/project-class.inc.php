@@ -244,9 +244,8 @@ class ChangeBidSheet extends Sheet
 // varDump(__FUNCTION__, 'ChangeBidSheet: $a_row', $a_row);
 		echo "<tr>\n";
 		echo "<td>{$a_lineCount}</td>\n";
-		echo "<td class='chTableData'>" . $a_row['WorkDescription'] . "</td>\n";
-//		echo '<td>' . $a_row['WorkDescription'] . '<span class="ui-icon ui-icon-info" title="Project information goes here."></span></td>' . "\n";
-		echo '<td>$' . $a_row['Amount'] . "</td>\n";
+		echo "<td class='chTableData'><input class='chDescInput' type='text' maxlength='400' name='fname' value='" . $a_row['WorkDescription'] . "'></td>\n";
+		echo "<td><input class='chAmtInput' type='number' name='fname' value='" . $a_row['Amount'] . "'></td>\n";
 		echo "</tr>\n";
 		return $a_row['Amount'];
 	}
@@ -284,9 +283,8 @@ class ExternalBidSheet extends Sheet
 //varDump(__FUNCTION__, 'ExternalBidSheet: $a_row', $a_row);
 		echo "<tr>\n";
 		echo "<td>{$a_lineCount}</td>\n";
-		echo "<td class='exTableData'>" . $a_row['WorkDescription'] . "</td>\n";
-//		echo '<td>' . $a_row['WorkDescription'] . '<span class="ui-icon ui-icon-info" title="Project information goes here."></span></td>' . "\n";
-		echo '<td>$' . $a_row['Amount'] . "</td>\n";
+		echo "<td class='exTableData'><input class='exDescInput' type='text' maxlength='400' name='fname' value='" . $a_row['WorkDescription'] . "'></td>\n";
+		echo "<td><input class='exAmtInput' type='number' name='fname' value='" . $a_row['Amount'] . "'></td>\n";
 		echo "</tr>\n";
 
 		return $a_row['Amount'];

@@ -46,7 +46,7 @@ label {
 	padding-bottom: 15px;
 }
 
-input[type="text"], select {
+/*input[type="text"], select {
 	width: 60%;
 	background-color: #efefef;
 	border: 1px solid #dddddd;
@@ -54,7 +54,7 @@ input[type="text"], select {
 
 input[type="text"] {
 	border-radius: 10px;
-}
+}*/
 
 #home-form_dashboard {
 	width: 80%;
@@ -186,7 +186,9 @@ button:hover{
 	overflow-x: hidden;
 }
 
+/**/
 /*start Table related CSS*/
+/**/
 .exTableCol1, .chTableCol1{
 	width: 100px;	
 }
@@ -206,4 +208,20 @@ button:hover{
 
 .exTableTotal, .chTableTotal{
 	text-align:right;
+}
+
+.exDescInput, .chDescInput{
+	width:100%;
+	background-color: #dcf6ac;
+	padding:0;
+	margin:0;
+}
+
+.exAmtInput, .chAmtInput{
+	width:100%;
+	/*width:135px;*/
+	text-align:right;
+	background-color: #dcf6ac;
+	padding:0;
+	margin:0;
 }
