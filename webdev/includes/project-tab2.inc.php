@@ -1,3 +1,6 @@
+<!DOCTYPE html>
+<html lang="en">
+
 <!-- //////////////////////////////////////
 // Project Page Tab 2 Include Page
 // Authored by Adam Duthie
@@ -13,6 +16,13 @@
 // Created: by Adam Duthie on 5/26 @ 2PM 
 // Updated: by Adam Duthie on 5/31 @ 8PM
 //////////////////////////////////////// -->
+
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="css/project-tab2.css">
+	<title>Project-Tab2 PHP Include File</title>
+</head>
+
 <?php
 require_once 'includes/upload_class.inc.php';; 
 $folder = $_SERVER['DOCUMENT_ROOT']."/files/";
@@ -157,13 +167,8 @@ if(isset($_POST['Submit'])) {
 }
 		
 ?> 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<link rel="stylesheet" type="text/css" href="css/project-tab2.css">
-	<title>Document</title>
-</head>
+
+
 <div class="description-cont">
 	<?php
 	$project->getSheetsByType($dbc, Sheet::eProjectDescriptionSheet);
@@ -177,13 +182,14 @@ if(isset($_POST['Submit'])) {
 	}
 
 	?>
-</div>
+
+</div>	
 
 <div class="description-cont">
 	<div id="main">
   <p class="left">Upload Files:</p>
   <p class="center">(File upload/download and show directory)</p>
-  <p class=left>Max. filesize: <b><?php echo $max_size/1024; ?> KB</b><br>
+  <p class=left>Max. filesize: <b><?php echo $max_size/1024; ?> KB</b></p>
   <?php 
   $ext = "<p class='left'>Allowed extensions are:</p><pre class='left'>(";
   foreach ($my_upload->extensions as $val) {
@@ -191,7 +197,7 @@ if(isset($_POST['Submit'])) {
   } 
   echo rtrim($ext, ", ").")</pre>";
   ?>
-  </p>
+  
   <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" enctype="multipart/form-data" name="form1">
 	<input type="hidden" name="MAX_FILE_SIZE" value="<?php echo $max_size; ?>">
 	<p class="center"><input type="file" name="upload" id="upload" size="25"></p>
@@ -210,3 +216,5 @@ if(isset($_POST['Submit'])) {
 
 <button name="save-changes" value="save-changes" type="button">Save Changes</button>
 <button name="print" value="print" type="button">Print</button>
+
+</html>
