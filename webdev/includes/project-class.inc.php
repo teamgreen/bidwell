@@ -2,20 +2,43 @@
 
 @include_once 'includes/debugging-helper-functions.inc.php';
 
-class Sheet{
+//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
+// Line - abstract base class for the various line types.
+//
+//	Created by FVDS
+//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
+abstract class Line
+{
+	function SaveSheet(){}
+	function LoadLine(){}
+	function DisplayLine(){}
+}
+
+//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
+// Sheet - base class for the various sheets.
+//
+//	Created by FVDS
+//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
+class Sheet
+{
 	const eExternalBidSheet = "ExternalBidSheet";
 	const eInternalBidSheet = "InternalBidSheet";
 	const eChangeBidSheet = "ChangeBidSheet";
 	const eProjectDescriptionSheet = "ProjectDescriptionSheet";
 
-	private $sheetID; 	//int(32) 	No  	  	 
-	private $date; 	//date 	No  	  	 
-	private $contractorFee; 	//decimal(16,0) 	No  	  	 
-	private $sheetType; 	//varchar(40) 	No  	  	 
-	private $name; 	//varchar(100) 	No  	  	 
-	private $description; 	//varchar(1000)
+	protected $sheetID; 	//int(32) 	No  	  	 
+	protected $date; 	//date 	No  	  	 
+	protected $contractorFee; 	//decimal(16,0) 	No  	  	 
+	protected $sheetType; 	//varchar(40) 	No  	  	 
+	protected $name; 	//varchar(100) 	No  	  	 
+	protected $description; 	//varchar(1000)
+	protected $lastUpdate;  //timedate
 
-	private $sheetLinesResults = null;
+	protected $sheetLinesResults = null;
 
 	// get functions
 	function getSheetID(){ return $this->sheetID; }
@@ -37,8 +60,14 @@ class Sheet{
 	function generateLineHMTL($a_row) {}
 	function generateTableHeaderHTML() {}
 	function displayTotal($a_amount){}
+	function getLines($a_dbc){}
 
-
+	//////////////////////////////////////
+	// loadSheetFromDatabase - given a sheet ID, will initialize the class instance
+	// 		with the variables from the database.
+	// a_dbc - the database
+	// a_sheetID - the ID number of the sheet we want to load.
+	//////////////////////////////////////
 	function loadSheetFromDatabase($a_dbc, $a_sheetID)
 	{
 //varDump(__FUNCTION__, "a_sheetID", $a_sheetID);
@@ -55,13 +84,21 @@ class Sheet{
 			$this->sheetType = $sheet['SheetType'];
 			$this->name = $sheet['Name'];
 			$this->description = $sheet['Description'];
+			$this->lastUpdate = $sheet['LastUpdate'];
+//varDump(__FUNCTION__, "this sheet", $this);
+//require_once('Doesnotexist.txt');
 		}
 	}
 
+	//////////////////////////////////////
+	// loadSheetFromResult - given a sheet result, will initialize the class instance
+	// 		with the variables from the database.
+	// a_dbc - the database
+	// a_result - a result that is a sheet from the database
+	//////////////////////////////////////
 	function loadSheetFromResult($a_dbc, $a_result)
 	{
 //varDump(__FUNCTION__, '$a_dbc', $a_dbc );
-
 //varDump(__FUNCTION__, '$a_result', $a_result );
 		if($a_result){
 			$this->sheetID = $a_result['SheetID'];
@@ -70,39 +107,38 @@ class Sheet{
 			$this->sheetType = $a_result['SheetType'];
 			$this->name = $a_result['Name'];
 			$this->description = $a_result['Description'];
+			$this->lastUpdate = $a_result['LastUpdate'];
+//varDump(__FUNCTION__, "this sheet", $this);
 		}
 	}
 
-	function getLines($a_dbc)
+	//////////////////////////////////////
+	// saveSheetToDatabase - will update the database with the sheet's current values,
+	// 		including any lines associated with the sheet
+	// a_dbc - the database
+	//////////////////////////////////////
+	function saveSheetToDatabase($a_dbc)
 	{
-		switch ($this->sheetType){
-			case Sheet::eExternalBidSheet:
-			case Sheet::eChangeBidSheet:
-				$sql="SELECT * FROM `externalbidsheetline` WHERE `SheetID`=$this->sheetID";
-			break;
-			case Sheet::eInternalBidSheet:
-				$sql="SELECT * FROM `internalbidsheetline` WHERE `SheetID`=$this->sheetID";
-			break;
-			case Sheet::eProjectDescriptionSheet:
-				$sql="SELECT * FROM `projectdescriptionline` WHERE `SheetID`=$this->sheetID";
-			break;
-			default:
-				//should cause an error here, because we shouldn't be here.
-			break;
-		}
-//varDump(__FUNCTION__, '$sql', $sql);
-
-		$this->sheetLinesResults = @mysqli_query($a_dbc, $sql);
-//varDump(__FUNCTION__, '$this->sheetLinesResults', $this->sheetLinesResults);
+		// function not complete yet.
+		// sql to set the current time to now.
+		$sql = "UPDATE `Bid-well`.`sheet` SET `LastUpdate` =now() WHERE `sheet`.`SheetID` =1;";
 	}
 
+	//////////////////////////////////////
+	// returnLineRow  -fetches the next line for this sheet
+	// returns: the next line.
+	//////////////////////////////////////
 	function returnLineRow()
 	{
 //varDump(__FUNCTION__, 'sheetLinesResults', $this->sheetLinesResults);
 		return @mysqli_fetch_array($this->sheetLinesResults);
 	}
 
-
+	//////////////////////////////////////
+	// generateLinesTableHTML - builds a table using data grabbed from the database.
+	// $a_dbc - the database
+	// created by FVDS
+	//////////////////////////////////////
 	function generateLinesTableHTML($a_dbc)
 	{
 		// get our lines.
@@ -138,13 +174,30 @@ class Sheet{
 
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
-//
-//
-//
+//	ProjectDescriptionSheet - class to handle the various things PDS's need to do.
+//	- inherits from Sheet
+//	Created by FVDS
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
 class ProjectDescriptionSheet extends Sheet
 {
+	//////////////////////////////////////
+	// getLines - grabs the lines related to this sheet from the database.
+	// 		Stores the results in sheetLinesResults.
+	// created by FVDS
+	//////////////////////////////////////
+	function getLines($a_dbc)
+	{
+		$sql="SELECT * FROM `projectdescriptionline` WHERE `SheetID`=$this->sheetID";
+		$this->sheetLinesResults = @mysqli_query($a_dbc, $sql);
+	}
+
+	//////////////////////////////////////
+	// generateLinesTableHTML - builds the html data grabbed from the database.
+	// - NOTE: contrary to the name, this is not a table for this sheet type
+	// $a_dbc - the database
+	// created by FVDS
+	//////////////////////////////////////
 	function generateLinesTableHTML($a_dbc)
 	{
 		// get our lines.
@@ -154,7 +207,6 @@ class ProjectDescriptionSheet extends Sheet
 		// all of this in a form.
 		echo "<form>\n";
 	 	echo "<div class='description-left'>\n";
-
 
 		//add the header
 		while($row = $this->returnLineRow())
@@ -169,11 +221,21 @@ class ProjectDescriptionSheet extends Sheet
 		echo "</form>\n";
 	}
 
+	//////////////////////////////////////
+	// generateTableHeaderHTML - Adds a starting paragraph header.
+	// - NOTE: contrary to function name, does not make anything table related.
+	// created by FVDS
+	//////////////////////////////////////
 	function generateTableHeaderHTML()
 	{
 		echo "<p class='description-left-title'>Description:</p>\n";
 	}
 
+	//////////////////////////////////////
+	// generateLineHTML - builds a table fow using data grabbed from the database.
+	// $a_row - a row from a previous result
+	// created by FVDS
+	//////////////////////////////////////
 	function generateLineHTML($a_row)
 	{
 //varDump(__FUNCTION__, '$a_row', $a_row);
@@ -184,13 +246,28 @@ class ProjectDescriptionSheet extends Sheet
 
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
-//
-//
-//
+// InternalBidSheet - class to handle functionality specific to IBS's
+//	- Inherits from Sheet
+//	Created by FVDS
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
 class InternalBidSheet extends Sheet
 {
+	//////////////////////////////////////
+	// getLines - grabs the lines related to this sheet from the database.
+	// 		Stores the results in sheetLinesResults.
+	// created by FVDS
+	//////////////////////////////////////
+	function getLines($a_dbc)
+	{
+		$sql="SELECT * FROM `internalbidsheetline` WHERE `SheetID`=$this->sheetID";
+		$this->sheetLinesResults = @mysqli_query($a_dbc, $sql);
+	}
+
+	//////////////////////////////////////
+	// generateTableHeaderHTML - generates the header row for the table.
+	// created by FVDS
+	//////////////////////////////////////
 	function generateTableHeaderHTML()
 	{
 		echo "<tr>\n";
@@ -202,6 +279,12 @@ class InternalBidSheet extends Sheet
 		echo "</tr>\n";
 	}
 
+	//////////////////////////////////////
+	// generateLineHTML - builds a table row using data grabbed from the database.
+	// $a_row - a row from a previous result
+	// $a_lineCount - the current line
+	// created by FVDS
+	//////////////////////////////////////
 	function generateLineHTML($a_row, $a_lineCount)
 	{
 //varDump(__FUNCTION__, '$a_row', $a_row);
@@ -215,6 +298,11 @@ class InternalBidSheet extends Sheet
 		return $a_row['Amount'];
 	}
 
+	//////////////////////////////////////
+	// displayTotal - builds a table row for a total amount.
+	// $a_amount - the total to show
+	// created by FVDS
+	//////////////////////////////////////
 	function displayTotal($a_amount){
 
 	}
@@ -223,13 +311,28 @@ class InternalBidSheet extends Sheet
 
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
-//
-//
-//
+// ChangeBidSheet - class to handle functionality of CBS's
+//	- Inherits from Sheet
+//	Created by FVDS
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
 class ChangeBidSheet extends Sheet
 {
+	//////////////////////////////////////
+	// getLines - grabs the lines related to this sheet from the database.
+	// 		Stores the results in sheetLinesResults.
+	// created by FVDS
+	//////////////////////////////////////
+	function getLines($a_dbc)
+	{
+		$sql="SELECT * FROM `externalbidsheetline` WHERE `SheetID`=$this->sheetID";
+		$this->sheetLinesResults = @mysqli_query($a_dbc, $sql);
+	}
+
+	//////////////////////////////////////
+	// generateTableHeaderHTML - generates the header row for the table.
+	// created by FVDS
+	//////////////////////////////////////
 	function generateTableHeaderHTML()
 	{
 		echo "<tr>\n";
@@ -239,6 +342,12 @@ class ChangeBidSheet extends Sheet
 		echo "</tr>\n";
 	}
 
+	//////////////////////////////////////
+	// generateLineHTML - builds a table row using data grabbed from the database.
+	// $a_row - a row from a previous result
+	// $a_lineCount - the current line
+	// created by FVDS
+	//////////////////////////////////////
 	function generateLineHTML($a_row, $a_lineCount)
 	{
 // varDump(__FUNCTION__, 'ChangeBidSheet: $a_row', $a_row);
@@ -250,25 +359,45 @@ class ChangeBidSheet extends Sheet
 		return $a_row['Amount'];
 	}
 
-	function displayTotal($a_amount){
+	//////////////////////////////////////
+	// displayTotal - builds a table row for a total amount.
+	// $a_amount - the total to show
+	// created by FVDS
+	//////////////////////////////////////
+	function displayTotal($a_amount)
+	{
 		echo "<tr>\n";
 		echo "<td></td>\n";
 		echo "<td class='chTableTotal'>Total:</td>\n";
 		echo '<td>$' . $a_amount . "</td>\n";
 		echo "</tr>\n";
 	}
-
 }
 
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
-//
-//
-//
+//	ExternalBidSheet - class to handle functionality of EBS's
+//	- Inherits from Sheet
+//	Created by FVDS
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
 class ExternalBidSheet extends Sheet
 {
+	//////////////////////////////////////
+	// getLines - grabs the lines related to this sheet from the database.
+	// 		Stores the results in sheetLinesResults.
+	// created by FVDS
+	//////////////////////////////////////
+	function getLines($a_dbc)
+	{
+		$sql="SELECT * FROM `externalbidsheetline` WHERE `SheetID`=$this->sheetID";
+		$this->sheetLinesResults = @mysqli_query($a_dbc, $sql);
+	}
+
+	//////////////////////////////////////
+	// generateTableHeaderHTML - generates the header row for the table.
+	// created by FVDS
+	//////////////////////////////////////
 	function generateTableHeaderHTML()
 	{
 		echo "<tr class='exTableRow'>\n";
@@ -278,6 +407,12 @@ class ExternalBidSheet extends Sheet
 		echo "</tr>\n";
 	}
 
+	//////////////////////////////////////
+	// generateLineHTML - builds a table row using data grabbed from the database.
+	// $a_row - a row from a previous result
+	// $a_lineCount - the current line
+	// created by FVDS
+	//////////////////////////////////////
 	function generateLineHTML($a_row, $a_lineCount)
 	{
 //varDump(__FUNCTION__, 'ExternalBidSheet: $a_row', $a_row);
@@ -290,6 +425,11 @@ class ExternalBidSheet extends Sheet
 		return $a_row['Amount'];
 	}
 
+	//////////////////////////////////////
+	// displayTotal - builds a table row for a total amount.
+	// $a_amount - the total to show
+	// created by FVDS
+	//////////////////////////////////////
 	function displayTotal($a_amount)
 	{
 		echo "<tr>\n";
@@ -302,9 +442,10 @@ class ExternalBidSheet extends Sheet
 
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
+//	Project - class to store variables found in the project table, with the ability
+// 		to grab values from the server, and to update the values found there.
 //
-//
-//
+//	Created by FVDS
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
 class Project
@@ -334,7 +475,8 @@ class Project
 	private $companyID; 	//int(32)
 
 	private $lastGetSheetIDsResults=null;
-	private $lastGetSheetsByTypeResults = null;
+	private $lastSheetResult=null;
+	private $curSheet=null;
 
 	// constructor
 	public function  __construct($a_id)
@@ -382,8 +524,59 @@ class Project
 	function setArchitectEmail($value){ $this->architectEmail = $value; } 	  	 
 	function setSiteAddressID($value){ $this->siteAddressID = $value; } 	  	 
 	function setProjectNotes($value){ $this->projectNotes = $value; }
-	function setCompanyID($value){ $this->companyID = $value; } 	
+	function setCompanyID($value){ $this->companyID = $value; }
 
+	//////////////////////////////////////
+	// displayProjectSheetOfType - displays the latest sheet of a given type or with
+	//		a particular ID.
+	// $a_dbc - the database.
+	// $a_type - the type of sheet to get
+	// $a_sheetID - the sheet to get.  If this is null, will get all sheets of the given type
+	//		and use the most recently updated one.
+	// created by FVDS
+	//////////////////////////////////////
+	function displayProjectSheetOfType($a_dbc, $a_type, $a_sheetID)
+	{	
+		if($a_sheetID == null)
+			$this->getSheetsByType($a_dbc, $a_type);
+		else
+			$this->getSheetByID($a_dbc, $a_sheetID);
+
+// varDump("project.php", 'getSheetsByType()', $project);
+
+		$row = $this->returnSheetRow();
+
+		echo "<h3>" . $row['Name'] . "</h3>\n";
+		echo "<div>\n";
+
+		switch ($a_type){
+			case Sheet::eExternalBidSheet:
+				$curSheet = new ExternalBidSheet();
+			case Sheet::eChangeBidSheet:
+				$curSheet = new ChangeBidSheet();
+				break;
+			case Sheet::eInternalBidSheet:
+				$curSheet = new InternalBidSheet();
+				break;
+			case Sheet::eProjectDescriptionSheet:
+				$curSheet = new ProjectDescriptionSheet();
+				break;
+			default:
+				//Should not get here.
+				break;
+		}
+		$curSheet->loadSheetFromResult($a_dbc, $row);
+// varDump("project.php", "tab 4", $sheet);
+		$curSheet->generateLinesTableHTML($a_dbc);
+		echo "</div>\n";
+	}	
+
+	//////////////////////////////////////
+	// loadProjectFromDatabase - grabs the values for the project's ID from the database
+	// 		and stores them in the class's variables.
+	// $a_dbc - the database
+	// created by FVDS
+	//////////////////////////////////////
 	public function loadProjectFromDatabase($a_dbc)
 	{
 		if($this->projectID){
@@ -418,6 +611,11 @@ class Project
 		}
 	}
 
+	//////////////////////////////////////
+	// addProjectToDatabase - adds the project to the database
+	// WARNING: out of date with some new values.  Check with Alex before using
+	// created by FVDS
+	//////////////////////////////////////
 	function addProjectToDatabase($a_dbc)
 	{
 		// add the current date in there.
@@ -434,13 +632,23 @@ class Project
 		}
 	}
 
-	// need function to deal with the addresses
+	//////////////////////////////////////
+	// addAddress - This function should add an address to the database
+	// created by FVDS
+	//////////////////////////////////////
 	function addAddress($a_dbc, $slot, $address1, $address2, $city, $state, $zipcode)
 	{
 
 	}
 
-	function getAddress($a_dbc, $slot)
+	//////////////////////////////////////
+	// getAddress - this function gets an address from the database
+	// $a_dbc - the database
+	// $a_slot - the type of address.  Use the enum in Project for values.
+	// return: the search result.
+	// created by FVDS
+	//////////////////////////////////////
+	function getAddress($a_dbc, $a_slot)
 	{
 		$addressId = null;
 		switch($slot){
@@ -469,12 +677,28 @@ class Project
 //varDump(__FUNCTION__, "lastGetSheetIDsResults", $this->lastGetSheetIDsResults);
 	}
 
-	function returnNextSheet($a_dbc){
-		$row_sheet = @mysqli_fetch_array($this->lastGetSheetIDsResults);
-		$sql_sheet = "SELECT * FROM `sheet` WHERE `SheetID`=" . $row_sheet['SheetID'];
-		return @mysqli_query($a_dbc, $sql_sheet);
+	//////////////////////////////////////
+	// getSheetByID - gets a sheet with a given ID.  stores the sheet in lastSheetResult
+	// $a_dbc - the database.
+	// $a_sheetID - the ID of the sheet to get.
+	// return: the result of the search
+	// created by FVDS
+	//////////////////////////////////////
+	function getSheetByID($a_dbc, $a_sheetID)
+	{
+		$sql = "SELECT * FROM `sheet` WHERE `SheetID`='" . $a_sheetID . "'";
+		$this->lastSheetResult =  @mysqli_query($a_dbc, $sql);
+		return $this->lastSheetResult;
 	}
 
+	//////////////////////////////////////
+	// getSheetsByType - builds an sql result of all sheets of a given type for
+	//		this project.  Save the value in lastSheetResult
+	// $a_dbc - the database
+	// $a_sheetType - the type of sheet.  Use the enum from the Sheet class.
+	// return: the result of the search
+	// created by FVDS
+	//////////////////////////////////////
 	function getSheetsByType($a_dbc, $a_sheetType)
 	{
 		// get the sheets that go with this project
@@ -495,18 +719,57 @@ class Project
 		while($row_sheet = @mysqli_fetch_array($this->lastGetSheetIDsResults)){
 			$sql = $sql . " OR `SheetID`=" . $row_sheet['SheetID'];
 		}
-		// add ending parentheses.
-		$sql = $sql . ")";
+		// add ending parentheses and sort it desc so last changed doc is first.
+		$sql = $sql . ") ORDER BY `LastUpdate` DESC";
 //varValue(__FUNCTION__,'$sql', $sql);
-		$this->lastGetSheetsByTypeResults = @mysqli_query($a_dbc, $sql);
-//varDump(__FUNCTION__, '$this->lastGetSheetsByTypeResults', $this->lastGetSheetsByTypeResults);
-		return $this->lastGetSheetsByTypeResults;
+		$this->lastSheetResult = @mysqli_query($a_dbc, $sql);
+//varDump(__FUNCTION__, '$this->lastSheetResult', $this->lastSheetResult);
+		return $this->lastSheetResult;
 	}
 
+	//////////////////////////////////////
+	// returnSheetRow - returns the next sheet row
+	// return: the next sheet
+	// created by FVDS
+	//////////////////////////////////////
 	function returnSheetRow(){
-// varDump(__FUNCTION__, 'lastGetSheetsByTypeResults', $this->lastGetSheetsByTypeResults);
-		return @mysqli_fetch_array($this->lastGetSheetsByTypeResults);
+ //varDump(__FUNCTION__, 'lastSheetResult', $this->lastSheetResult);
+		return @mysqli_fetch_array($this->lastSheetResult);
 	}
+
+	//////////////////////////////////////
+	// generateLoadSelectHTML - builds html to display a select box to load EBSs from.
+	// $a_dbc - the database
+	// $a_sheetType - the type of sheet.  Use the enum from the Sheet class.
+	// created by FVDS
+	//////////////////////////////////////
+	function generateLoadSelectHTML($a_dbc, $a_sheetType)
+	{
+		$this->getSheetsByType($a_dbc, $a_sheetType);
+		echo "<div class='loadSheetDiv'>\n";
+		echo "<select class='loadSheetSelect'>\n";
+ 		echo "<option value='-'>- Load different sheet -</option>";
+
+ 		while($row = $this->returnSheetRow())
+ 		{
+ 			echo "<option value='" . $row['SheetID'] . "'>{$row['Name']}</option>";
+		}
+		echo "</select>\n";
+		echo "</div>\n";
+	}
+
+	//////////////////////////////////////
+	// generateSaveHTML - builds html to display a button for saving.
+	// $a_script - the script to call when button is pressed
+	// created by FVDS
+	//////////////////////////////////////
+	function generateSaveHTML($a_script)
+	{
+		echo "<div class='saveSheetDiv'>\n";
+		echo "<button type='button'>Save</button>";
+		echo "</div>\n";
+	}
+
 }  // end project class.
 
 ?>
