@@ -144,7 +144,6 @@ input[type="text"] {
 }
 
 button {
-	
 	background-color: #b4e753;
 	width: 150px;
 	height: 45px;
@@ -189,15 +188,15 @@ button:hover{
 /**/
 /*start Table related CSS*/
 /**/
-.exTableCol1, .chTableCol1{
+.exTableColLineNum, .chTableColLineNum, .inTableColTaskID{
 	width: 100px;	
 }
 
-.exTableCol3, .chTableCol3{
+.exTableColAmount, .chTableColAmount, .inTableColAmount{
 	width: 150px;
 }
 
-.exTableRow, .chTableRow{
+.exTableRow, .chTableRow, .inTableRow{
 	padding:0px;
 	margin:0px;
 }
