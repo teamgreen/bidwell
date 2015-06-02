@@ -109,6 +109,8 @@
 					<div>
 						<?php
 						$project->displayProjectSheetOfType($dbc, Sheet::eExternalBidSheet, null);
+						$project->generateLoadSelectHTML($dbc, Sheet::eExternalBidSheet);
+						$project->generateSaveHTML(null);
 						?>
 					</div>
 				</div>

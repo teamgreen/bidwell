@@ -475,7 +475,8 @@ class Project
 	private $companyID; 	//int(32)
 
 	private $lastGetSheetIDsResults=null;
-	private $lastSheetResult = null;
+	private $lastSheetResult=null;
+	private $curSheet=null;
 
 	// constructor
 	public function  __construct($a_id)
@@ -550,23 +551,23 @@ class Project
 
 		switch ($a_type){
 			case Sheet::eExternalBidSheet:
-				$sheet = new ExternalBidSheet();
+				$curSheet = new ExternalBidSheet();
 			case Sheet::eChangeBidSheet:
-				$sheet = new ChangeBidSheet();
+				$curSheet = new ChangeBidSheet();
 				break;
 			case Sheet::eInternalBidSheet:
-				$sheet = new InternalBidSheet();
+				$curSheet = new InternalBidSheet();
 				break;
 			case Sheet::eProjectDescriptionSheet:
-				$sheet = new ProjectDescriptionSheet();
+				$curSheet = new ProjectDescriptionSheet();
 				break;
 			default:
 				//Should not get here.
 				break;
 		}
-		$sheet->loadSheetFromResult($a_dbc, $row);
+		$curSheet->loadSheetFromResult($a_dbc, $row);
 // varDump("project.php", "tab 4", $sheet);
-		$sheet->generateLinesTableHTML($a_dbc);
+		$curSheet->generateLinesTableHTML($a_dbc);
 		echo "</div>\n";
 	}	
 
@@ -732,9 +733,43 @@ class Project
 	// created by FVDS
 	//////////////////////////////////////
 	function returnSheetRow(){
-// varDump(__FUNCTION__, 'lastSheetResult', $this->lastSheetResult);
+ //varDump(__FUNCTION__, 'lastSheetResult', $this->lastSheetResult);
 		return @mysqli_fetch_array($this->lastSheetResult);
 	}
+
+	//////////////////////////////////////
+	// generateLoadSelectHTML - builds html to display a select box to load EBSs from.
+	// $a_dbc - the database
+	// $a_sheetType - the type of sheet.  Use the enum from the Sheet class.
+	// created by FVDS
+	//////////////////////////////////////
+	function generateLoadSelectHTML($a_dbc, $a_sheetType)
+	{
+		$this->getSheetsByType($a_dbc, $a_sheetType);
+		echo "<div class='loadSheetDiv'>\n";
+		echo "<select class='loadSheetSelect'>\n";
+ 		echo "<option value='-'>- Load different sheet -</option>";
+
+ 		while($row = $this->returnSheetRow())
+ 		{
+ 			echo "<option value='" . $row['SheetID'] . "'>{$row['Name']}</option>";
+		}
+		echo "</select>\n";
+		echo "</div>\n";
+	}
+
+	//////////////////////////////////////
+	// generateSaveHTML - builds html to display a button for saving.
+	// $a_script - the script to call when button is pressed
+	// created by FVDS
+	//////////////////////////////////////
+	function generateSaveHTML($a_script)
+	{
+		echo "<div class='saveSheetDiv'>\n";
+		echo "<button type='button'>Save</button>";
+		echo "</div>\n";
+	}
+
 }  // end project class.
 
 ?>
