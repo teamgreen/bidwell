@@ -11,9 +11,15 @@
 //////////////////////////////////////////////////////////////
 abstract class Line
 {
-	function saveLine()
+	//////////////////////////////////////
+	// saveLine  - loads values to database
+	// $a_dbc - the database
+	// $a_sheetID  - sheet ID used if $sheetID is 0 (new line)
+	// return: Returns true if successful, false if failed.
+	// created by FVDS
+	//////////////////////////////////////
+	function saveLine($a_dbc, $a_sheetID)
 	{
-
 	}
 
 	//////////////////////////////////////
@@ -23,8 +29,6 @@ abstract class Line
 	//////////////////////////////////////
 	function loadLine($a_row)
 	{
-		$this->sheetID=$a_row['SheetID'];
-		$this->text=$a_row['Text'];
 	}
 
 	//////////////////////////////////////
@@ -35,12 +39,7 @@ abstract class Line
 	//////////////////////////////////////
 	function displayLine($a_lineCount)
 	{
-	 	echo "<p>{$this->text}</p>\n";
-		return null;
 	}
-
-	protected $sheetID=0;
-	protected $text="";
 }
 
 //////////////////////////////////////////////////////////////
@@ -52,9 +51,39 @@ abstract class Line
 //////////////////////////////////////////////////////////////
 class ExternalBidSheetLine extends Line
 {
-	function saveLine()
-	{
+	protected $lineID=0;
+	protected $sheetID = 0;
+	protected $workDescription="";
+	protected $amount=0;
 
+	//////////////////////////////////////
+	// saveLine  - loads values to database
+	// $a_dbc - the database
+	// $a_sheetID  - sheet ID used if $sheetID is 0 (new line)
+	// return: Returns true if successful, false if failed.
+	// created by FVDS
+	//////////////////////////////////////
+	function saveLine($a_dbc, $a_sheetID)
+	{
+		// if this is an existing line...
+		if($this->sheetID){
+			$sql = "UPDATE `externalbidsheetline`
+				SET `WorkDescription`=$this->workDescription, `Amount`=$this->amount
+				WHERE `LineID`=$this->lineID";
+
+		} else{ // new line.
+			$sql = "INSERT INTO `externalbidsheetline` (SheetID, WorkDescription, Amount)
+				VALUES ('$this->sheetID', '$this->workDescription', '$this->amount')";
+		}
+
+		// update the database
+		$result_form_project = @mysqli_query($a_dbc, $sql);
+
+		// check how many rows were impacted.  If 0, it failed.
+		if (@mysqli_num_rows($result_form_project) == 0)
+		 	return false;
+		else
+			return true;
 	}
 
 	//////////////////////////////////////
@@ -64,6 +93,7 @@ class ExternalBidSheetLine extends Line
 	//////////////////////////////////////
 	function loadLine($a_row)
 	{
+		$this->lineID=$a_row['LineID'];
 		$this->sheetID=$a_row['SheetID'];
 		$this->workDescription=$a_row['WorkDescription'];
 		$this->amount=$a_row['Amount'];
@@ -86,22 +116,53 @@ class ExternalBidSheetLine extends Line
 
 		return $this->amount;
 	}
-
-	protected $sheetID = 0;
-	protected $workDescription="";
-	protected $amount=0;
 }
 
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
-// Line - abstract base class for the various line types.
+// InternalBidSheetLine - handles the lines for internal bid sheets
 //
 //	Created by FVDS
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
 class InternalBidSheetLine extends Line
 {
-	function saveLine(){}
+	protected $lineID=0;
+	protected $sheetID=0;
+	protected $constructionSpecID=0;
+	protected $amount=0;
+	protected $subcontractorBidUsed="";
+	protected $generalNotes="";
+
+	//////////////////////////////////////
+	// saveLine  - loads values to database
+	// $a_dbc - the database
+	// $a_sheetID  - sheet ID used if $sheetID is 0 (new line)
+	// return: Returns true if successful, false if failed.
+	// created by FVDS
+	//////////////////////////////////////
+	function saveLine($a_dbc, $a_sheetID)
+	{
+		// if this is an existing line...
+		if($this->sheetID){
+			$sql = "UPDATE `internalbidsheetline`
+				SET `ConstructionSpecID`=$this->constructionSpecID, `Amount`=$this->amount, `SubcontractorBidUsed`=$this->subcontractorBidUsed, `GeneralNotes`=$this->generalNotes
+				WHERE `LineID`=$this->lineID";
+
+		} else{ // new line.
+			$sql = "INSERT INTO `internalbidsheetline` (SheetID, ConstructionSpecID, Amount, SubcontractorBidUsed, GeneralNotes)
+				VALUES ('$this->sheetID', '$this->constructionSpecID', '$this->amount', '$this->subcontractorBidUsed', '$this->generalNotes')";
+		}
+
+		// update the database
+		$result_form_project = @mysqli_query($a_dbc, $sql);
+
+		// check how many rows were impacted.  If 0, it failed.
+		if (@mysqli_num_rows($result_form_project) == 0)
+		 	return false;
+		else
+			return true;
+	}
 
 	//////////////////////////////////////
 	// loadLine  - sets values from database
@@ -110,6 +171,7 @@ class InternalBidSheetLine extends Line
 	//////////////////////////////////////
 	function loadLine($a_row)
 	{
+		$this->lineID=$a_row['LineID'];
 		$this->sheetID= $a_row['SheetID'];
 		$this->constructionSpecID= $a_row['ConstructionSpecID'];
 		$this->amount= $a_row['Amount'];
@@ -134,24 +196,50 @@ class InternalBidSheetLine extends Line
 		echo "</tr>\n";
 		return $this->amount;
 	}
-
-	protected $sheetID=0;
-	protected $constructionSpecID=0;
-	protected $amount=0;
-	protected $subcontractorBidUsed="";
-	protected $generalNotes="";
 }
 
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
-// Line - abstract base class for the various line types.
+// ProjectDescriptionLine - a line from a project description sheet.
 //
 //	Created by FVDS
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
-class DescriptionDescriptionLine extends Line
+class ProjectDescriptionLine extends Line
 {
-	function saveLine(){}
+	protected $lineID=0;
+	protected $sheetID=0;
+	protected $text="";
+
+	//////////////////////////////////////
+	// saveLine  - loads values to database
+	// $a_dbc - the database
+	// $a_sheetID  - sheet ID used if $sheetID is 0 (new line)
+	// return: Returns true if successful, false if failed.
+	// created by FVDS
+	//////////////////////////////////////
+	function saveLine($a_dbc, $a_sheetID)
+	{
+		// if this is an existing line...
+		if($this->sheetID){
+			$sql = "UPDATE `projectdescriptionline`
+				SET `Text`=$this->text
+				WHERE `LineID`=$this->lineID";
+
+		} else{ // new line.
+			$sql = "INSERT INTO `projectdescriptionline` (`SheetID`, `Text`)
+				VALUES ('$this->sheetID', '$this->text')";
+		}
+
+		// update the database
+		$result_form_project = @mysqli_query($a_dbc, $sql);
+
+		// check how many rows were impacted.  If 0, it failed.
+		if (@mysqli_num_rows($result_form_project) == 0)
+		 	return false;
+		else
+			return true;
+	}
 
 	//////////////////////////////////////
 	// loadLine  - sets values from database
@@ -160,7 +248,9 @@ class DescriptionDescriptionLine extends Line
 	//////////////////////////////////////
 	function loadLine($a_row)
 	{
-
+		$this->lineID=$a_row['LineID'];
+		$this->sheetID=$a_row['SheetID'];
+		$this->text=$a_row['Text'];
 	}
 
 	//////////////////////////////////////
@@ -171,7 +261,8 @@ class DescriptionDescriptionLine extends Line
 	//////////////////////////////////////
 	function displayLine($a_lineCount)
 	{
-
+	 	echo "<p>{$this->text}</p>\n";
+		return null;
 	}
 }
 
@@ -253,7 +344,6 @@ class Sheet
 
 			//now load the lines.
 			$this->loadLinesFromDatabase($a_dbc);
-
 		}
 	}
 
@@ -298,7 +388,7 @@ class Sheet
 
 		// and now its lines.
 		foreach ($this->lines as $i) {
-			$i->saveLine();
+			$i->saveLine($this->sheetID);
 		}
 	}
 
@@ -366,7 +456,7 @@ class ProjectDescriptionSheet extends Sheet
 		$results = @mysqli_query($a_dbc, $sql);
 
 		while($row=@mysqli_fetch_array($results)){
-			$newLine = new DescriptionDescriptionLine();
+			$newLine = new ProjectDescriptionLine();
 			$newLine->loadLine($row);
 			$this->lines[count($this->lines)] = $newLine;			
 		}
@@ -401,18 +491,6 @@ class ProjectDescriptionSheet extends Sheet
 		foreach ($this->lines as $i) {
 			$i->displayLine(0);
 		}
-
-		// REMOVE FROM HERE
-		// outdated code that can go away once Adam updates to new methods
-		// get our lines.
-		$this->getLines($a_dbc);
-
-		//add the header
-		while($row = $this->returnLineRow())
-		{
-			$this->generateLineHTML($row);
-		}
-		// REMOVE TO HERE
 
 		// close the div
 		echo "</div>";
