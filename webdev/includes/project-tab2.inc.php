@@ -1,6 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
 <!-- //////////////////////////////////////
 // Project Page Tab 2 Include Page
 // Authored by Adam Duthie
@@ -17,11 +14,6 @@
 // Updated: by Adam Duthie on 5/31 @ 8PM
 //////////////////////////////////////// -->
 
-<head>
-	<meta charset="UTF-8">
-	<link rel="stylesheet" type="text/css" href="css/project-tab2.css">
-	<title>Project-Tab2 PHP Include File</title>
-</head>
 
 <?php
 require_once 'includes/upload_class.inc.php';; 
@@ -217,4 +209,3 @@ if(isset($_POST['Submit'])) {
 <button name="save-changes" value="save-changes" type="button">Save Changes</button>
 <button name="print" value="print" type="button">Print</button>
 
-</html>

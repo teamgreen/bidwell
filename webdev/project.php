@@ -28,6 +28,7 @@
 	<!-- Main Stylesheet and Home Page Stylesheet -->
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" href="css/project-style.css">
+	<link rel="stylesheet" href="css/project-tab2.css">
 	<!-- Custom jQuery UI Library Stylesheets - 1.11.4 -->
 	<link rel="stylesheet" href="libs/jquery-ui-1.11.4.custom/jquery-ui.min.css">
 	<link rel="stylesheet" href="libs/jquery-ui-1.11.4.custom/jquery-ui.theme.min.css">
