@@ -175,5 +175,6 @@
 
 	<!-- JavaScript/jQuery script file -->
 	<script src="js/script.js"></script>
+	<script src="js/home-valid-script.js"></script>
 </body>
 </html>

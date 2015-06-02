@@ -239,7 +239,7 @@
 							$projectNotes = assignIfNotEmpty('project_notes', 'Here are the project notes.');
 
 							$sql_form_project = "INSERT INTO `project` (ProjectName, ProjectDescription, ProjectDateEntered, ProjectDueDate, Owner, OwnerPhone, OwnerCellPhone, OwnerEmail, Architect, ArchitectPhone, ArchitectCellPhone, ArchitectEmail, ProjectNotes)
-										VALUES ('$projectName', '$projectDescription', $projectCurrentDate', '$projectDueDate', '$ownerName', '$ownerPhone', '$ownerCellphone', '$ownerEmail', '$architectName', '$architectPhone', '$architectCellphone', '$architectEmail', '$projectNotes')";
+										VALUES ('$projectName', '$projectDescription', '$projectCurrentDate', '$projectDueDate', '$ownerName', '$ownerPhone', '$ownerCellphone', '$ownerEmail', '$architectName', '$architectPhone', '$architectCellphone', '$architectEmail', '$projectNotes')";
 							$result_form_project = @mysqli_query($dbc, $sql_form_project);
 
 							$num_rows_form_project = @mysqli_num_rows($result_form_project);
