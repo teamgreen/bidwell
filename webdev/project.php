@@ -106,26 +106,10 @@
 					<button><a href="#">Save As</a></button> -->
 				</div>
 				<div id="tab4">
-					<div class="scroller">
-						<div class="accordion">
-							<?php
-							$project->getSheetsByType($dbc, Sheet::eExternalBidSheet);
-
-// include_once 'includes/debugging-helper-functions.inc.php';
-// varDump("project.php", 'getSheetsByType()', $project);
-
-							while($row = $project->returnSheetRow()){
-								echo "<h3>" . $row['Name'] . "</h3>\n";
-								echo "<div>\n";
-								$sheet = new ExternalBidSheet();
-								$sheet->loadSheetFromResult($dbc, $row);
- // include_once 'includes/debugging-helper-functions.inc.php';
- // varDump("project.php", "tab 4", $sheet);
-								$sheet->generateLinesTableHTML($dbc);
-								echo "</div>\n";
-							}
-							?>
-						</div>
+					<div>
+						<?php
+						$project->displayProjectSheetOfType($dbc, Sheet::eExternalBidSheet, null);
+						?>
 					</div>
 				</div>
 				<div id="tab5">
