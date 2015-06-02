@@ -104,7 +104,6 @@ input[type="text"] {
 
 .description-left {
 	text-align: left;
-	background-color: lightgray;
 	width: 90%;
 	padding: 10px;
 	float: left;
@@ -116,7 +115,6 @@ input[type="text"] {
 
 .description-right {
 	text-align: left;
-	background-color: lightgray;
 	width: 90%;
 	padding: 10px;
 	float: left;
