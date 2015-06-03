@@ -186,12 +186,24 @@ button:hover{
 /**/
 /*start Table related CSS*/
 /**/
-.exTableColLineNum, .chTableColLineNum, .inTableColTaskID{
+.exTableColLineNum, .chTableColLineNum{
 	width: 100px;	
+}
+
+.inTableColTaskID{
+	width:80px;
+}
+
+.taskIDSelect, .taskIDSelect option{
+	width:250px;
 }
 
 .exTableColAmount, .chTableColAmount, .inTableColAmount{
 	width: 150px;
+}
+
+.inTableColTaskName{
+	width:300px;
 }
 
 .exTableRow, .chTableRow, .inTableRow{
@@ -221,4 +233,13 @@ button:hover{
 	background-color: #dcf6ac;
 	padding:0;
 	margin:0;
+}
+
+#tab3, #tab3 div, #tab3 form, #tab3 table{
+	padding:0;
+	margin:0;
+}
+
+#tab3 table{
+	width:100%;
 }

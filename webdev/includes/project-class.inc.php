@@ -33,11 +33,12 @@ abstract class Line
 
 	//////////////////////////////////////
 	// displayLine  - writes out table row for this line
+	// $a_dbc - the database
 	// $a_lineCount - which line this is. Not used here.
 	// returns: null
 	// created by FVDS
 	//////////////////////////////////////
-	function displayLine($a_lineCount)
+	function displayLine($a_dbc, $a_lineCount)
 	{
 	}
 }
@@ -101,11 +102,12 @@ class ExternalBidSheetLine extends Line
 
 	//////////////////////////////////////
 	// displayLine  - writes out table row for this line
+	// $a_dbc - the database
 	// $a_lineCount - which line this is.
 	// returns: $this->amount
 	// created by FVDS
 	//////////////////////////////////////
-	function displayLine($a_lineCount)
+	function displayLine($a_dbc, $a_lineCount)
 	{
 //varDump(__FUNCTION__, 'ExternalBidSheet: $a_row', $a_row);
 		echo "<tr>\n";
@@ -181,20 +183,54 @@ class InternalBidSheetLine extends Line
 
 	//////////////////////////////////////
 	// displayLine  - writes out table row for this line
+	// $a_dbc - the database
 	// $a_lineCount - which line this is.  Not used for Internal lines.
 	// returns: $this->amount
 	// created by FVDS
 	//////////////////////////////////////
-	function displayLine($a_lineCount)
+	function displayLine($a_dbc, $a_lineCount)
 	{
 		echo "<tr>\n";
-	 	echo "<td>{$this->constructionSpecID}</td>";
-		echo "<td>Lorem Ipsum <span class='ui-icon ui-icon-info' title='Info about what type of things this task heading covers here.'></span></td>\n";
+	 	echo "<td>{$this->constructionSpecID}</td>\n";
+		echo "<td>";
+	 	$this->taskIDSelectBox($a_dbc, $this->constructionSpecID);
+		echo "</td>\n";
 		echo "<td>{$this->subcontractorBidUsed}</td>\n";
 		echo "<td><input class='exAmtInput' type='number' name='fname' value='" . $this->amount . "'></td>\n";
 		echo "<td>{$this->generalNotes}<span class='ui-icon ui-icon-info' title='Notes about this task.'></span></td>\n";
 		echo "</tr>\n";
 		return $this->amount;
+	}
+
+	//////////////////////////////////////
+	// taskIDSelectBox  - writes out select box
+	// $a_dbc - the database
+	// $a_specID - current value.
+	// created by FVDS
+	//////////////////////////////////////
+	function taskIDSelectBox($a_dbc, $a_specID)
+	{
+//varDump(__FUNCTION__, 'a_specID', $a_specID);
+ 		$div =  (int)($a_specID/1000);
+//varDump(__FUNCTION__, 'div', $div);
+
+ 		$sql = "SELECT * FROM `task` WHERE `taskDivision`=" . $div;
+ 		$result = @mysqli_query($a_dbc, $sql);
+//varDump(__FUNCTION__, 'result', $result);
+
+		echo "<select class='taskIDSelect'>\n";
+
+ 		while($row = @mysqli_fetch_array($result))
+ 		{
+ 			// if current value, make it selected.
+ 			if($row['TaskID'] == $a_specID){
+ 				echo "<option value='" . $row['TaskName'] . "' selected>{$row['TaskName']}</option>\n";
+ 			}
+			else
+  				echo "<option value='" . $row['TaskName'] . "'>{$row['TaskName']}</option>\n";
+		}
+		echo "</select>\n";
+  		echo "<span class='ui-icon ui-icon-info' title='" . $row['TaskDescription'] . "'></span>";
 	}
 }
 
@@ -255,11 +291,12 @@ class ProjectDescriptionLine extends Line
 
 	//////////////////////////////////////
 	// displayLine  - writes out table row for this line
+	// $a_dbc - the database
 	// $a_lineCount - which line this is.  Not used for project description lines.
 	// returns: $this->amount
 	// created by FVDS
 	//////////////////////////////////////
-	function displayLine($a_lineCount)
+	function displayLine($a_dbc, $a_lineCount)
 	{
 	 	echo "<p>{$this->text}</p>\n";
 		return null;
@@ -424,7 +461,7 @@ class Sheet
 
 		// display the lines and keep track of the total
 		foreach ($this->lines as $i) {
-			$total+=$i->displayLine(++$lineCount);
+			$total+=$i->displayLine($a_dbc, ++$lineCount);
 		}
 
 		//now display the total if needed.
@@ -490,7 +527,7 @@ class ProjectDescriptionSheet extends Sheet
 
 	 	//write the paragraphs
 		foreach ($this->lines as $i) {
-			$i->displayLine(0);
+			$i->displayLine(null, 0);
 		}
 
 		// close the div
@@ -570,7 +607,7 @@ class InternalBidSheet extends Sheet
 	{
 		echo "<tr class='inTableRow'>\n";
 		echo "<th class='inTableColTaskID'>Task ID</th>\n";
-		echo "<th>Task Name</th>\n";
+		echo "<th class='inTableColTaskName'>Task Name</th>\n";
 		echo "<th>Subcontractor</th>\n";
 		echo "<th class='chTableColAmount'>Amount</th>\n";
 		echo "<th>Notes</th>\n";
