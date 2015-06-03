@@ -33,6 +33,14 @@ pre.left{
 
 }
 
+.description-left {
+	text-align: left;
+	width: 90%;
+	padding: 10px;
+	float: left;
+	clear: both;
+}
+
 #upload{
 	background-color: #d7f3a1;
 	border-radius:5px;

@@ -19,4 +19,7 @@ $(document).ready(function(){
 	$('input[type="checkbox"]').click(function(){
 		$("."+$(this).attr("value")).slideToggle();
 	});
+	
+	
 });
+

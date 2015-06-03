@@ -15,8 +15,23 @@
 //////////////////////////////////////// -->
 
 
-<?php
-require_once 'includes/upload_class.inc.php';; 
+<?php 
+//////////////////////////////////////
+// Project Page Tab 2 Uploader Demo PHP
+// Authored by Tim Willbanks
+// Purpose: To provide a page where
+// 			the user can access project
+// 			information, project descriptions 
+//			and create/edit Internal/External
+//			Bid sheets as well as Change Bids
+//			for projects.
+//
+//			
+// Project Page Tab 2 Uploader Demo PHP 
+// Created: by Tim Willbanks on 5/26 
+// Updated: by Adam Duthie on 6/1 @ 9:30PM
+//////////////////////////////////////// 
+require_once 'includes/upload_class.inc.php'; 
 $folder = $_SERVER['DOCUMENT_ROOT']."/files/";
 error_reporting(E_ALL);
 function select_files($dir) {
@@ -162,6 +177,7 @@ if(isset($_POST['Submit'])) {
 
 
 <div class="description-cont">
+	<div class=".description-left">
 	<?php
 	$project->getSheetsByType($dbc, Sheet::eProjectDescriptionSheet);
 
@@ -174,7 +190,8 @@ if(isset($_POST['Submit'])) {
 	}
 
 	?>
-
+	
+	</div>
 </div>	
 
 <div class="description-cont">
