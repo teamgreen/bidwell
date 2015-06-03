@@ -422,8 +422,9 @@ class Sheet
 		//add the header
 		$this->generateTableHeaderHTML();
 
+		// display the lines and keep track of the total
 		foreach ($this->lines as $i) {
-			$i->displayLine(++$lineCount);
+			$total+=$i->displayLine(++$lineCount);
 		}
 
 		//now display the total if needed.
