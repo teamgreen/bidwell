@@ -14,7 +14,10 @@
 $('#home-form').validate({
 	rules : {
 		project_name: "required",
-		project_due_date: "required",
+		project_due_date: {
+			required: true,
+			date: true
+		},
 		name_owner: "required",
 		phone_owner: {
 			required: true,

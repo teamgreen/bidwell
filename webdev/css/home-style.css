@@ -10,12 +10,6 @@
 	margin: 10px auto 30px auto;
 }
 
-.scroller {
-	height: 325px;
-	overflow-y: scroll;
-	overflow-x: hidden;
-}
-
 #home-form {
 	width: 90%;
 	display: block;
@@ -55,6 +49,9 @@ label.error {
 	color: #ff0000;
 	padding: 5px 0;
 	width: 225px;
+}
+td {
+	word-wrap: break-word;
 }
 #home-form_dashboard {
 	width: 80%;

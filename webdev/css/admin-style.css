@@ -10,12 +10,6 @@
 	margin: 10px auto 30px auto;
 }
 
-.scroller {
-	height: 325px;
-	overflow-y: scroll;
-	overflow-x: hidden;
-}
-
 .form-half {
 	width: 41%;
 	margin: 0 4% 5%;
@@ -69,6 +63,9 @@ label.error {
 	color: #ff0000;
 	padding: 5px 0;
 	width: 225px;
+}
+td {
+	word-wrap: break-word;
 }
 
 .submit-button {

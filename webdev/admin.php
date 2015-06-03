@@ -65,7 +65,6 @@
 								echo "<p>Currently there are no accounts in this tab.</p>";
 								echo "<p>Care to create a new account by clicking 'New' below?</p>";
 							} else {
-								echo "<div class=\"scroller\">\n";
 								echo "<table>\n";
 								echo "<tr>\n";
 								echo "<th>Account ID</th>";
@@ -88,7 +87,6 @@
 							};
 
 							echo "</table>\n";
-							echo "</div>\n";
 
 							// $admin_company = retrieved [CompanyName] from login info
 							// return $admin_company;

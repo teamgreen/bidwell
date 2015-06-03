@@ -87,7 +87,6 @@
 							echo "<p>Currently there are no projects in this tab.</p>";
 							echo "<p>Care to create a new project in the next tab?</p>";
 						} else {
-							echo "<div class=\"scroller\">\n";
 							echo "<table>\n";
 							echo "<tr>\n";
 							echo "<th>Project Number</th>";
@@ -108,7 +107,6 @@
 							}
 
 							echo "</table>\n";
-							echo "</div>\n";
 						};
 
 					?>
@@ -139,7 +137,6 @@
 							echo "<p>Currently there are no completed projects in this tab.</p>";
 							echo "<p>Care to create a new project in the previous tab?</p>";
 						} else {
-							echo "<div class=\"scroller\">\n";
 							echo "<table>\n";
 							echo "<tr>\n";
 							echo "<th>Project Number</th>";
@@ -160,7 +157,6 @@
 							}
 
 							echo "</table>\n";
-							echo "</div>\n";
 						};
 
 					?>
