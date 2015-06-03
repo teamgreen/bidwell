@@ -28,6 +28,7 @@
 	<!-- Main Stylesheet and Home Page Stylesheet -->
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" href="css/project-style.css">
+	<link rel="stylesheet" href="css/project-tab2.css">
 	<!-- Custom jQuery UI Library Stylesheets - 1.11.4 -->
 	<link rel="stylesheet" href="libs/jquery-ui-1.11.4.custom/jquery-ui.min.css">
 	<link rel="stylesheet" href="libs/jquery-ui-1.11.4.custom/jquery-ui.theme.min.css">
@@ -80,30 +81,13 @@
 					<?php require_once 'includes/project-tab2.inc.php';	?>
 				</div>
 				<div id="tab3">
-					<div class="scroller">
-						<div class="accordion">
-							<?php
-							$project->getSheetsByType($dbc, Sheet::eInternalBidSheet);
-
-//include_once 'includes/debugging-helper-functions.inc.php';
-//varDump("project.php", "returnSheetRow()", $result);
-
-							while($row = $project->returnSheetRow()){
-								echo "<h3>" . $row['Name'] . "</h3>\n";
-								echo "<div>\n";
-								$sheet = new InternalBidSheet();
-								$sheet->loadSheetFromResult($dbc, $row);
-								$sheet->generateLinesTableHTML($dbc);
-								echo "</div>\n";
-							}
-							?>
-
-
-						</div> <!-- end of accordion -->
+					<div>
+						<?php
+						$project->displayProjectSheetOfType($dbc, Sheet::eInternalBidSheet, null);
+						$project->generateLoadSelectHTML($dbc, Sheet::eInternalBidSheet);
+						$project->generateSaveHTML(null);
+						?>
 					</div>
-<!-- 					<button><a href="#">Version</a></button>
-					<button><a href="#">Save</a></button>
-					<button><a href="#">Save As</a></button> -->
 				</div>
 				<div id="tab4">
 					<div>
@@ -115,25 +99,12 @@
 					</div>
 				</div>
 				<div id="tab5">
-					<div class="scroller">
-						<div class="accordion">
-							<?php
-							$project->getSheetsByType($dbc, Sheet::eChangeBidSheet);
-//include_once 'includes/debugging-helper-functions.inc.php';
-//varDump("project.php", "returnSheetRow()", $result);
-
-							while($row = $project->returnSheetRow()){
-								echo "<h3>" . $row['Name'] . "</h3>\n";
-								echo "<div>\n";
-								$sheet = new ChangeBidSheet();
-								$sheet->loadSheetFromResult($dbc, $row);
-// include_once 'includes/debugging-helper-functions.inc.php';
-// varDump("project.php", "tab 5", $sheet);
-								$sheet->generateLinesTableHTML($dbc);
-								echo "</div>\n";
-							}
-							?>
-						</div>
+					<div>
+						<?php
+						$project->displayProjectSheetOfType($dbc, Sheet::eChangeBidSheet, null);
+						$project->generateLoadSelectHTML($dbc, Sheet::eChangeBidSheet);
+						$project->generateSaveHTML(null);
+						?>
 					</div>
 				</div>
 			</div>
