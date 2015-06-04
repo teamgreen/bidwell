@@ -15,5 +15,11 @@
 				<li><a href="project.php" title="project">Project</a></li>
 			</ul>
 		<!-- End of links -->
+		<?php 
+			// Set session variables
+			$_SESSION["username"] = "username";
+			$_SESSION["company"] = "company";
+			$_SESSION["password"] = "password";
+		?>
 
 		</footer>

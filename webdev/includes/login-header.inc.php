@@ -1,4 +1,6 @@
-
+<?php 
+	session_start();
+ ?>
 		<header>
 			<div>
 				<ul class="top-nav">

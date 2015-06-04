@@ -33,7 +33,7 @@
 					<label for="company">Company:</label>
 					<input type="text" name="company" tabindex=2 required><br>
 					<label for="password">Password:</label>
-					<input type="text" name="password" tabindex=3 required><br><br>
+					<input type="password" name="password" tabindex=3 required><br><br>
 					<input type="submit" value="Login" tabindex=4><br><br>
 					</form>
 				</div>
