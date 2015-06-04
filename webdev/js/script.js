@@ -50,115 +50,6 @@ $(document).ready(function(){
 	/////////////////////////////
 	$('#admin-tabs').tabs();
 
-
-	// ---------------------------------- //
-	// ---------------------------------- //
-
-	/////////////////////////////
-	// Admin Page Functions
-	// --------------------
-	// Created 5/17/2015
-	// Authored by Alex Chaudoin
-	/////////////////////////////
-
-	// For the click functions below:
-	// ------------------------------------------
-	// When you click on the pencil next to the 
-	// Account ID, the anchor event should not 
-	// go to another page or activate altogether.
-	// Also, that row will be highlighted and the 
-	// "New" button will change to "Edit".
-	// The pointer events on other rows will be
-	// disabled until the selected row is clicked
-	// on again.
-
-	$('#tab-a tr:not(:first-child) a').click(function(){
-
-		if ($('.new-edit').attr('value') === 'Add New Account') {
-			$(this).parent().parent().css('background-color', '#ffffff');
-			$(this).parent().parent().siblings('tr:not(:first-child)').css('pointer-events', 'none');
-			$('.new-edit').attr('value', 'Edit Selected Account');
-			$('.delete').show();
-		} else {
-			$('.delete').hide();
-			$('.new-edit').attr('value', 'Add New Account');
-			$(this).parent().parent().siblings('tr:not(:first-child)').css('pointer-events', 'auto');
-			$(this).parent().parent().css('background-color', '#dcf6ac');
-		};
-
-		return false;
-
-	}); // end click
-
-	/////////////////////////////
-	// jQuery for Project Page:
-	// division slideToggle
-	// ------------------------
-	// Created 5/25/2015
-	// Authored by Tim Willbanks and Adam Duthie
-	/////////////////////////////
-
-	$('input[type="checkbox"]').click(function(){
-
-		if($(this).attr("value")=="division1"){
-
-			$(".division1").slideToggle();
-		}
-
-		if($(this).attr("value")=="division2"){
-
-			$(".division2").slideToggle();
-
-		}
-
-		if($(this).attr("value")=="division3"){
-
-			$(".division3").slideToggle();
-
-		}
-
-		if($(this).attr("value")=="division4"){
-
-			$(".division4").slideToggle();
-
-		}
-
-		if($(this).attr("value")=="division5"){
-
-			$(".division5").slideToggle();
-
-		}
-
-		if($(this).attr("value")=="division6"){
-
-			$(".division6").slideToggle();
-
-		}
-
-		if($(this).attr("value")=="division7"){
-
-			$(".division7").slideToggle();
-
-		}
-
-		if($(this).attr("value")=="division8"){
-
-			$(".division8").slideToggle();
-
-		}
-
-		if($(this).attr("value")=="division9"){
-
-			$(".division9").slideToggle();
-
-		}
-
-		if($(this).attr("value")=="division10"){
-
-			$(".division10").slideToggle();
-
-		}
-	}); // end of Project Page jQuery
 }); // end of document.ready
 
 
@@ -220,4 +111,54 @@ function prevDiv(button) {
 	var current = $('#progress-bar').progressbar('option', 'value');
 	$('#progress-bar').progressbar('option', 'value', current-=25)
 } // end function
+
+/////////////////////////////
+// Admin Page Functions
+// --------------------
+// Created 5/17/2015
+// Edited 6/3/2015
+// Authored by Alex Chaudoin
+/////////////////////////////
+
+// For the sendID function below:
+// When the user clicks on one of the
+// three buttons in the Admin Table-
+// Edit Account, Password Reset, or
+// Delete Account- this function will
+// retrieve the account ID number from
+// the anchor tag wrapped around the 
+// button and send that number with
+// AJAX for a specified PHP file.
+// ---------------------------------
+// button_class = class of button to
+//				be selected for function.
+// url = local URL path to PHP file to
+//		to use the account ID number.
+
+function sendID(button_class, url){
+	$(button_class).click(function(){
+		var data = $(this).parent('a').attr('href');
+		var id = data.split('=');
+		id = id[1];
+		$.ajax({
+			url: url,
+			type: 'get',
+			data: {'id': id},
+			success: function(data) {
+				console.log("It works " + data);
+			},
+			error: function(xhr, desc, err) {
+		        console.log(xhr);
+		        console.log("Details: " + desc + "\nError:" + err);
+		    }
+		}); // end ajax
+		return false;
+	}); // end click
+} // end function
+
+sendID('.edit-account', 'includes/admin-edit-account.php');
+sendID('.reset-pass', 'includes/admin-reset-password.php');
+// deleting account will be determined later
+//sendID('.delete-acc', 'includes/admin-reset-password.php');
+
 

@@ -67,20 +67,22 @@
 							} else {
 								echo "<table>\n";
 								echo "<tr>\n";
-								echo "<th>Account ID</th>";
 								echo "<th>Username</th>";
 								echo "<th>Email</th>";
 								echo "<th>Preset</th>";
-								echo "<th>Password</th>";
+								echo "<th>Modify Account</th>";
 								echo "</tr>\n";
 
 								while($row_account = @mysqli_fetch_array($result_account)) {
 									echo "<tr>\n";
-									echo "<td>" . $row_account['AccountID'] . "<input type=\"hidden\" name=\"Edit\" value=\"" . $row_account['AccountID'] . "\"><input type=\"button\" class=\"edit-account\" href=\"#\" value=\"Edit\"></td>";
 									echo "<td>" . $row_account['LoginName'] . "</td>";
 									echo "<td>" . $row_account['Email'] . "</td>";
 									echo "<td>" . $row_account['PresetName'] . "</td>";
-									echo "<td><input type=\"hidden\" name=\"id\" value=\"" . $row_account['AccountID'] . "\"><input type=\"button\" class=\"reset-pass\" href=\"#\" value=\"Reset\"></td>";
+									echo "<td>
+											<a href=\"id=" . $row_account['AccountID'] . "\"><input type=\"button\" class=\"edit-account\" href=\"#\" value=\"Edit Account\"></a>
+											<a href=\"id=" . $row_account['AccountID'] . "\"><input type=\"button\" class=\"reset-pass\" href=\"#\" value=\"Password Reset\"></a>
+											<a href=\"id=" . $row_account['AccountID'] . "\"><input type=\"button\" class=\"delete-acc\" href=\"#\" value=\"Delete Account\" disabled></a>
+										</td>";
 									echo "</tr>\n";
 								};
 
@@ -93,17 +95,8 @@
 
 						?>
 
-						<!--<script type="text/javascript">
-							$('.reset-pass').click(function(){
-								var data = $(this).prev().val();
-								$.get('http://localhost:8888/webdev/includes/admin-reset-password.php', // change url to ftp files
-									data);
-							}); // end click
-						</script>-->
-
 					<div id="admin-table_dashboard">
 						<input type="button" class="new-account" href="#" value="Add New Account">
-						<input type="button" class="delete" href="#" value="Delete">
 					</div>
 				</div>
 				<div id="tab-b">

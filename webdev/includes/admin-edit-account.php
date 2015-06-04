@@ -4,11 +4,16 @@
 			<hr>
 				<?php
 
-					if (isset($_GET['id'])) {
-						$_SESSION['id'] = $_GET['id'];
-					};	
+					var_dump($_GET);
 
-					$sql_edit = "SELECT * FROM `account` INNER JOIN `company` ON account.CompanyID = company.CompanyID WHERE account.AccountID = '{$_SESSION['id']}'";
+					if(isset($_GET['id'])) {
+						echo "ok";
+						$edit_id = $_GET['id'];
+					} else {
+						echo "ERROR";
+					}	
+
+					$sql_edit = "SELECT * FROM `account` INNER JOIN `company` ON account.CompanyID = company.CompanyID WHERE account.AccountID = '$edit_id'";
 					$result_edit = @mysqli_query($dbc, $sql_edit);
 
 					$num_rows_edit = @mysqli_num_rows($result_edit);

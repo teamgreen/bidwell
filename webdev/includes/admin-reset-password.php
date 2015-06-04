@@ -3,16 +3,20 @@
 			<p>Reset Password</p>
 			<hr>
 			<?php
-					
-				$pass_id = $_GET['id'];	
+				
+				var_dump($_GET['id']);
+				var_dump($dbc);
+
+				if(isset($_GET['id'])) {
+					$pass_id = $_GET['id'];	
+				} else {
+					echo "ERROR";
+				}	
 
 				$sql_pass = "SELECT Password FROM `account` WHERE AccountID = '$pass_id'";
 				$result_pass = @mysqli_query($dbc, $sql_pass);
-				if ($num_rows_pass > 0) {
-					while($row_pass = @mysqli_fetch_array($result_pass)) {
-						$old_pass = $row_pass['Password'];
-					};
-				};
+				$row_pass = @mysqli_fetch_assoc($result_pass);
+				$old_pass = $row_pass['Password'];
 
 			?>
 			<div>
