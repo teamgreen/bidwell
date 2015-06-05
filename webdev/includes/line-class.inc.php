@@ -41,6 +41,8 @@ abstract class Line
 	function displayLine($a_dbc, $a_lineCount)
 	{
 	}
+
+	static function generateTableHeaderHTML(){}
 }
 
 //////////////////////////////////////////////////////////////
@@ -98,6 +100,19 @@ class ExternalBidSheetLine extends Line
 		$this->sheetID=$a_row['SheetID'];
 		$this->workDescription=$a_row['WorkDescription'];
 		$this->amount=$a_row['Amount'];
+	}
+
+	//////////////////////////////////////
+	// generateTableHeaderHTML - generates the header row for the table.
+	// created by FVDS
+	//////////////////////////////////////
+	static function generateTableHeaderHTML()
+	{
+		echo "<tr class='exTableRow'>\n";
+		echo "<th class='exTableColLineNum'>Item #</th>\n";
+		echo "<th class='exTableColDesc'>Description of Work</th>\n";
+		echo "<th class='exTableColAmount'>Amount</th>\n";
+		echo "</tr>\n";
 	}
 
 	//////////////////////////////////////
@@ -179,6 +194,21 @@ class InternalBidSheetLine extends Line
 		$this->amount= $a_row['Amount'];
 		$this->subcontractorBidUsed= $a_row['SubcontractorBidUsed'];
 		$this->generalNotes= $a_row['GeneralNotes'];
+	}
+
+	//////////////////////////////////////
+	// generateTableHeaderHTML - generates the header row for the table.
+	// created by FVDS
+	//////////////////////////////////////
+	static function generateTableHeaderHTML()
+	{
+		echo "<tr class='inTableRow'>\n";
+		echo "<th class='inTableColTaskID'>Task ID</th>\n";
+		echo "<th class='inTableColTaskName'>Task Name</th>\n";
+		echo "<th>Subcontractor</th>\n";
+		echo "<th class='chTableColAmount'>Amount</th>\n";
+		echo "<th>Notes</th>\n";
+		echo "</tr>\n";
 	}
 
 	//////////////////////////////////////
@@ -300,6 +330,16 @@ class ProjectDescriptionLine extends Line
 	{
 	 	echo "<p>{$this->text}</p>\n";
 		return null;
+	}
+
+	//////////////////////////////////////
+	// generateTableHeaderHTML - Adds a starting paragraph header.
+	// - NOTE: contrary to function name, does not make anything table related.
+	// created by FVDS
+	//////////////////////////////////////
+	static function generateTableHeaderHTML()
+	{
+		echo "<p class='description-left-title'>Description:</p>\n";
 	}
 }
 

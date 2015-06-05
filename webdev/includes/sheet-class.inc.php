@@ -248,7 +248,7 @@ class ProjectDescriptionSheet extends Sheet
 	//////////////////////////////////////
 	function generateTableHeaderHTML()
 	{
-		echo "<p class='description-left-title'>Description:</p>\n";
+		ProjectDescriptionLine::generateTableHeaderHTML();
 	}
 
 	//////////////////////////////////////
@@ -309,13 +309,7 @@ class InternalBidSheet extends Sheet
 	//////////////////////////////////////
 	function generateTableHeaderHTML()
 	{
-		echo "<tr class='inTableRow'>\n";
-		echo "<th class='inTableColTaskID'>Task ID</th>\n";
-		echo "<th class='inTableColTaskName'>Task Name</th>\n";
-		echo "<th>Subcontractor</th>\n";
-		echo "<th class='chTableColAmount'>Amount</th>\n";
-		echo "<th>Notes</th>\n";
-		echo "</tr>\n";
+		InternalBidSheetLine::generateTableHeaderHTML();
 	}
 
 	//////////////////////////////////////
@@ -375,11 +369,7 @@ class ChangeBidSheet extends Sheet
 	//////////////////////////////////////
 	function generateTableHeaderHTML()
 	{
-		echo "<tr class='chTableRow'>\n";
-		echo "<th class='chTableColLineNum'>Item #</th>\n";
-		echo "<th class='chTableColDesc'>Description of Work</th>\n";
-		echo "<th class='chTableColAmount'>Amount</th>\n";
-		echo "</tr>\n";
+		ExternalBidSheetLine::generateTableHeaderHTML();
 	}
 
 	//////////////////////////////////////
@@ -443,11 +433,7 @@ class ExternalBidSheet extends Sheet
 	//////////////////////////////////////
 	function generateTableHeaderHTML()
 	{
-		echo "<tr class='exTableRow'>\n";
-		echo "<th class='exTableColLineNum'>Item #</th>\n";
-		echo "<th class='exTableColDesc'>Description of Work</th>\n";
-		echo "<th class='exTableColAmount'>Amount</th>\n";
-		echo "</tr>\n";
+		ExternalBidSheetLine::generateTableHeaderHTML();
 	}
 
 	//////////////////////////////////////
