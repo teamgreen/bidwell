@@ -1,7 +1,7 @@
 <?php 
 	session_start();
 	if($filename != "login.php") {
-		if( !(isset($_SESSION['username']) AND $_SESSION['username']) ) {
+		if( !(isset($_SESSION['loginname']) AND $_SESSION['loginname']) ) {
 			header("Location:login.php");
 		}
 	}
