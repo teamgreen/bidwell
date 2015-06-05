@@ -87,7 +87,9 @@
 									echo "<td>
 											<a href=\"id=" . $row_account['AccountID'] . "\"><button class=\"edit-account admin-buttons\" title=\"Edit Account\"><i class=\"fa fa-pencil\"></i></button></a>
 											<a href=\"id=" . $row_account['AccountID'] . "\"><button class=\"reset-pass admin-buttons\" title=\"Reset Password\"><i class=\"fa fa-key\"></i></button></a>
-											<a href=\"id=" . $row_account['AccountID'] . "\"><button class=\"delete-account admin-buttons\" title=\"Delete Account\" disabled><i class=\"fa fa-trash\"></i></button></a>
+											<a href=\"id=" . $row_account['AccountID'] . "\"><button class=\"delete-account admin-buttons\" title=\"Delete Account\"><i class=\"fa fa-trash\"></i></button></a>
+											<a href=\"id=" . $row_account['AccountID'] . "\"><button class=\"save-cancel save admin-buttons\" title=\"Save Changes\"><i class=\"fa fa-floppy-o\"></i></button></a>
+											<a href=\"id=" . $row_account['AccountID'] . "\"><button class=\"save-cancel cancel admin-buttons\" title=\"Cancel Changes\"><i class=\"fa fa-ban\"></i></button></a>
 										</td>";
 									echo "</tr>\n";
 								};
@@ -104,14 +106,6 @@
 					<div id="admin-table_dashboard">
 						<button class="new-account" href="#">
 							<i class="fa fa-plus"></i> Add New Account
-						</button>
-					</div>
-					<div id="save-cancel">
-						<button value="Save Changes">
-							<i class="fa fa-floppy-o"></i> Save Changes
-						</button>
-						<button value="Cancel">
-							<i class="fa fa-ban"></i> Cancel
 						</button>
 					</div>
 				</div>

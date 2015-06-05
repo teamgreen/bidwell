@@ -121,8 +121,6 @@ table {
 	border: 1px solid #e3c28d;
 }
 
-#save-cancel {
-	padding: 10px;
-	background: #efefef;
+.save-cancel {
 	display: none;
 }

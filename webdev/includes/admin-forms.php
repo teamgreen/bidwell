@@ -28,13 +28,14 @@
 								// $('#pass-form').hide();
 							};
 
+							// make else if for .delete-account
+
 							return false;
 
 						}); // end click
 
-						$('.admin-table').focus(function(){
-							$(this).append('#save-change');
-							$('#save-change').show();
+						$('input[type="text"].admin-table').click(function(){
+							$('.save-cancel').show(); // get specificity to work by having the nearest .save-cancel buttons to $this show up
 						}); // end focus
 
 					</script>
