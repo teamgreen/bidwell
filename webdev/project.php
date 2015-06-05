@@ -89,7 +89,7 @@
 					<div>
 						<?php
 						$project->displayProjectSheetOfType($dbc, Sheet::eInternalBidSheet, null);
-						$project->generateLoadSelectHTML($dbc, Sheet::eInternalBidSheet);
+						//$project->generateLoadSelectHTML($dbc, Sheet::eInternalBidSheet);
 						$project->generateSaveHTML(null);
 						?>
 					</div>
@@ -98,7 +98,7 @@
 					<div>
 						<?php
 						$project->displayProjectSheetOfType($dbc, Sheet::eExternalBidSheet, null);
-						$project->generateLoadSelectHTML($dbc, Sheet::eExternalBidSheet);
+						//$project->generateLoadSelectHTML($dbc, Sheet::eExternalBidSheet);
 						$project->generateSaveHTML(null);
 						?>
 					</div>
@@ -107,7 +107,7 @@
 					<div>
 						<?php
 						$project->displayProjectSheetOfType($dbc, Sheet::eChangeBidSheet, null);
-						$project->generateLoadSelectHTML($dbc, Sheet::eChangeBidSheet);
+						//$project->generateLoadSelectHTML($dbc, Sheet::eChangeBidSheet);
 						$project->generateSaveHTML(null);
 						?>
 					</div>

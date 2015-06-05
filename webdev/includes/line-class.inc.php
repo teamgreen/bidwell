@@ -203,7 +203,7 @@ class InternalBidSheetLine extends Line
 	static function generateTableHeaderHTML()
 	{
 		echo "<tr class='inTableRow'>\n";
-		echo "<th class='inTableColTaskID'>Task ID</th>\n";
+//		echo "<th class='inTableColTaskID'>Task ID</th>\n";
 		echo "<th class='inTableColTaskName'>Task Name</th>\n";
 		echo "<th>Subcontractor</th>\n";
 		echo "<th class='chTableColAmount'>Amount</th>\n";
@@ -221,7 +221,7 @@ class InternalBidSheetLine extends Line
 	function displayLine($a_dbc, $a_lineCount)
 	{
 		echo "<tr>\n";
-	 	echo "<td>{$this->constructionSpecID}</td>\n";
+//	 	echo "<td>{$this->constructionSpecID}</td>\n";
 		echo "<td>";
 	 	$this->taskIDSelectBox($a_dbc, $this->constructionSpecID);
 		echo "</td>\n";
@@ -254,10 +254,10 @@ class InternalBidSheetLine extends Line
  		{
  			// if current value, make it selected.
  			if($row['TaskID'] == $a_specID){
- 				echo "<option value='" . $row['TaskName'] . "' selected>{$row['TaskName']}</option>\n";
+ 				echo "<option value='" . $row['TaskID'] . "' selected>" . $row['TaskID']. "-" . htmlspecialchars($row['TaskName']) . "</option>\n";
  			}
 			else
-  				echo "<option value='" . $row['TaskName'] . "'>{$row['TaskName']}</option>\n";
+  				echo "<option value='" . $row['TaskID'] . "'>" . $row['TaskID']. "-" . htmlspecialchars($row['TaskName']) . "</option>\n";
 		}
 		echo "</select>\n";
   		echo "<span class='ui-icon ui-icon-info' title='" . $row['TaskDescription'] . "'></span>";
