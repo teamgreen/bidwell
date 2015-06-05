@@ -64,8 +64,10 @@
 								$row_company = @mysqli_fetch_array($result_company);
 								if($row_account['CompanyID'] === $row_company['CompanyID']) {
 									// Set session variables
-									$_SESSION["username"] = "username";
-									$_SESSION["company"] = "company"; 
+									$_SESSION["loginname"] = $row_account['LoginName'];
+									$_SESSION['accountid'] = $row_account['AccountID'];
+									$_SESSION["companyname"] = $row_company['CompanyName'];
+									$_SESSION["companyid"] = $row_company['CompanyID']; 
 
 									// if admin user go to admin page or goto projects
 									if ($row_account['PresetName'] === 'Admin') {
