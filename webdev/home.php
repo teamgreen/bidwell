@@ -81,22 +81,7 @@
 						$dbc = SQLConnect();
 
 						// SQL statement to select everything from project table to populate table with rows and cells		
-						$sql_project = "SELECT 'ProjectID', 'ProjectName', 'SiteAddressID', 'ProjectDueDate', 'ProjectStatusID' 
-							FROM `project`"; 
-						$sql_project .= "SELECT 'ProjectStatusName'"
-
-
-						var_dump($dbc);
-
-						if (mysqli_multi_query($dbc, $sql_project)) {
-							do 
-								{
-									if ($result = mysqli_store_result($dbc)) {
-										while ($)
-									}
-
-								}
-						}
+						$sql_project = "SELECT * FROM `project`"; 
 
 						$result_project = @mysqli_multi_query($dbc, $sql_project);
 

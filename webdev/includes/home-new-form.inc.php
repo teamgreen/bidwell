@@ -178,22 +178,22 @@
 						<div id="progress-buttons">
 							<div class="active">
 								<span>Page 1 of 4</span>
-								<input type="button" class="next form-buttons" id="next1" value="Next">
+								<button class="next form-buttons" id="next1" value="Next"><i class="fa fa-search"></i></button>
 							</div>
 							<div>
-								<input type="button" class="prev form-buttons" id="prev1" value="Previous" onclick="prevDiv('#prev1')">
+								<button class="prev form-buttons" id="prev1" value="Previous" onclick="prevDiv('#prev1')"><i class="fa fa-search"></i></button>
 								<span>Page 2 of 4</span>
-								<input type="button" class="next form-buttons" id="next2" value="Next">
+								<button class="next form-buttons" id="next2" value="Next"><i class="fa fa-search"></i></button>
 							</div>
 							<div>
-								<input type="button" class="prev form-buttons" id="prev2" value="Previous" onclick="prevDiv('#prev2')">
+								<button class="prev form-buttons" id="prev2" value="Previous" onclick="prevDiv('#prev2')"><i class="fa fa-search"></i></button>
 								<span>Page 3 of 4</span>
-								<input type="button" class="next form-buttons" id="next3" value="Next">
+								<button class="next form-buttons" id="next3" value="Next"><i class="fa fa-search"></i></button>
 							</div>
 							<div>
-								<input type="button" class="prev form-buttons" id="prev3" value="Previous" onclick="prevDiv('#prev3')">
+								<button class="prev form-buttons" id="prev3" value="Previous" onclick="prevDiv('#prev3')"><i class="fa fa-search"></i></button>
 								<span>Page 4 of 4</span>
-								<input type="submit" id="submit" form="home-form" value="Submit">
+								<button id="submit" form="home-form" value="Submit"><i class="fa fa-search"></i></button>
 							</div>
 						</div>
 					</div>
