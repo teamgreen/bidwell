@@ -32,13 +32,27 @@ textarea.project-tab1-textarea{
 	width: 100px;
 }
 
+div.project-active-form {
+	display: block;
+}
+
 div.left{
 	display: inline-block;
-	width: 150px;
+	width: 140px;
 }
 .left label{
 	text-align: left;
-	width: 220px;
+	width: 210px;
+}
+
+div.left2{
+	text-align: left;
+	display: inline-block;
+	width: 100px;
+}
+.left2 label{
+	text-align: left;
+	width: 210px;
 }
 
 #select-box {
@@ -251,7 +265,7 @@ button:hover{
 }
 
 .project-tab1-ta{
-	width: 30%;
+	width: 40%;
 	display: table-cell;
 }
 
