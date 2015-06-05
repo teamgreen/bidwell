@@ -39,7 +39,9 @@
 
 	<div class="wrapper">
 
-	<?php @require_once "includes/header.inc.php"; ?>
+	<?php 
+	$filename=basename(__FILE__);
+	@require_once "includes/header.inc.php"; ?>
 
 		<div class="content">
 			

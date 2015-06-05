@@ -1,5 +1,12 @@
 <?php 
 	session_start();
+	var_dump($_SESSION); 
+	var_dump($filename);
+	if($filename != "login.php") {
+		if( !(isset($_SESSION['username']) AND $_SESSION['username']) ) {
+			header("Location:login.php");
+		}
+	}
  ?>
 		<header>
 			<div>

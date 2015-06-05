@@ -19,7 +19,9 @@
 </head>
 <body>
 <div class="wrapper">
-	<?php @require_once "includes/login-header.inc.php"; ?>
+	<?php 
+	$filename=basename(__FILE__);
+	@require_once "includes/login-header.inc.php"; ?>
 	<div class="content">
 		<h2>Login Page</h2><br><br>
 		<div class="admin">
@@ -61,6 +63,11 @@
 								$row_account = @mysqli_fetch_array($result_account);
 								$row_company = @mysqli_fetch_array($result_company);
 								if($row_account['CompanyID'] === $row_company['CompanyID']) {
+									// Set session variables
+									$_SESSION["username"] = "username";
+									$_SESSION["company"] = "company"; 
+
+									// if admin user go to admin page or goto projects
 									if ($row_account['PresetName'] === 'Admin') {
 										header("Location:admin.php");
 									} else {
