@@ -23,9 +23,10 @@ $(document).ready(function(){
 	// Tooltip
 	// ------------------------
 	// Created 5/15/2015
+	// Edited 6/4/2015
 	// Authored by Alex Chaudoin
 	/////////////////////////////
-	$('span.ui-icon').tooltip();
+	$('.admin-buttons').tooltip();
 
 	/////////////////////////////
 	// jQuery UI for Home Page:
@@ -135,30 +136,30 @@ function prevDiv(button) {
 // url = local URL path to PHP file to
 //		to use the account ID number.
 
-function sendID(button_class, url){
-	$(button_class).click(function(){
-		var data = $(this).parent('a').attr('href');
-		var id = data.split('=');
-		id = id[1];
-		$.ajax({
-			url: url,
-			type: 'get',
-			data: {'id': id},
-			success: function(data) {
-				console.log("It works " + data);
-			},
-			error: function(xhr, desc, err) {
-		        console.log(xhr);
-		        console.log("Details: " + desc + "\nError:" + err);
-		    }
-		}); // end ajax
-		return false;
-	}); // end click
-} // end function
+// function sendID(button_class, url){
+// 	$(button_class).click(function(){
+// 		var data = $(this).parent('a').attr('href');
+// 		var id = data.split('=');
+// 		id = id[1];
+// 		$.ajax({
+// 			url: url,
+// 			type: 'get',
+// 			data: {'id': id},
+// 			success: function(data) {
+// 				console.log("It works " + data);
+// 			},
+// 			error: function(xhr, desc, err) {
+// 		        console.log(xhr);
+// 		        console.log("Details: " + desc + "\nError:" + err);
+// 		    }
+// 		}); // end ajax
+// 		return false;
+// 	}); // end click
+// } // end function
 
-sendID('.edit-account', 'includes/admin-edit-account.php');
-sendID('.reset-pass', 'includes/admin-reset-password.php');
+// sendID('.edit-account', 'includes/admin-edit-account.php');
+// sendID('.reset-pass', 'includes/admin-reset-password.php');
 // deleting account will be determined later
-//sendID('.delete-acc', 'includes/admin-reset-password.php');
+//sendID('.delete-accaount', 'includes/admin-reset-password.php');
 
 

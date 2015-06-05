@@ -37,7 +37,9 @@
 <body>
 
 	<div class="wrapper">
-
+	
+	<?php $filename = basename(__FILE__); ?>
+	
 	<?php @require_once "includes/header.inc.php"; ?>
 	
 		<div class="content">
@@ -79,8 +81,24 @@
 						$dbc = SQLConnect();
 
 						// SQL statement to select everything from project table to populate table with rows and cells		
-						$sql_project = "SELECT * FROM `project`";
-						$result_project = @mysqli_query($dbc, $sql_project);
+						$sql_project = "SELECT 'ProjectID', 'ProjectName', 'SiteAddressID', 'ProjectDueDate', 'ProjectStatusID' 
+							FROM `project`"; 
+						$sql_project .= "SELECT 'ProjectStatusName'"
+
+
+						var_dump($dbc);
+
+						if (mysqli_multi_query($dbc, $sql_project)) {
+							do 
+								{
+									if ($result = mysqli_store_result($dbc)) {
+										while ($)
+									}
+
+								}
+						}
+
+						$result_project = @mysqli_multi_query($dbc, $sql_project);
 
 						$num_rows_project = @mysqli_num_rows($result_project);
 						if ($num_rows_project == 0) {
@@ -102,7 +120,7 @@
 								echo "<td>" . $row_project['ProjectName'] . "</td>";
 								echo "<td>" . $row_project['SiteAddressID'] . "</td>";
 								echo "<td>" . $row_project['ProjectDueDate'] . "</td>";
-								echo "<td>" . $row_project['ProjectStatusID'] . "</td>";
+								echo "<td>" . $row_project['ProjectStatusName'] . "</td>";
 								echo "</tr>\n";
 							}
 

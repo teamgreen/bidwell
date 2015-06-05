@@ -6,7 +6,7 @@
 * ///////////////////// */
 
 #home-tabs {
-	width: 85%;
+	width: 95%;
 	margin: 10px auto 30px auto;
 }
 
@@ -52,6 +52,9 @@ label.error {
 }
 td {
 	word-wrap: break-word;
+}
+table {
+	width: 100%;
 }
 #home-form_dashboard {
 	width: 80%;

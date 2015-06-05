@@ -1,33 +1,41 @@
 
 					<script type="text/javascript">
 
-						$('input[type="button"]').click(function(){
+						$('.admin-table').attr('disabled', 'disabled');
 
-							var buttonVal = $(this).prop('value');
+						$('.admin-buttons').click(function(){
 
-							if (buttonVal === "Add New Account") { 
-								$('#add-form').show();
-								$('#edit-form').hide();
-								$('#pass-form').hide();
-								$('#admin-form-default').hide();
-							} else if (buttonVal === "Edit") {
-								$('#edit-form').show();
-								$('#add-form').hide();
-								$('#pass-form').hide();
-								$('#admin-form-default').hide();
-							} else if (buttonVal === "Reset") {
-								$('#pass-form').show();
-								$('#add-form').hide();
-								$('#edit-form').hide();
-								$('#admin-form-default').hide();
+							if ($(this).hasClass('add-account') === true) { 
+								// $('#add-form').show();
+								// $('#edit-form').hide();
+								// $('#pass-form').hide();
+								// $('#admin-form-default').hide();
+							} else if ($(this).hasClass('edit-account') === true) {
+								$('.admin-table').removeAttr('disabled');
+								// $('#edit-form').show();
+								// $('#add-form').hide();
+								// $('#pass-form').hide();
+								// $('#admin-form-default').hide();
+							} else if ($(this).hasClass('reset-pass') === true) {
+								// $('#pass-form').show();
+								// $('#add-form').hide();
+								// $('#edit-form').hide();
+								// $('#admin-form-default').hide();
 							} else {
-								$('#admin-form-default').show();
-								$('#add-form').hide();
-								$('#edit-form').hide();
-								$('#pass-form').hide();
+								// $('#admin-form-default').show();
+								// $('#add-form').hide();
+								// $('#edit-form').hide();
+								// $('#pass-form').hide();
 							};
 
+							return false;
+
 						}); // end click
+
+						$('.admin-table').focus(function(){
+							$(this).append('#save-change');
+							$('#save-change').show();
+						}); // end focus
 
 					</script>
 

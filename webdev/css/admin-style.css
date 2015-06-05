@@ -6,7 +6,7 @@
 * ///////////////////// */
 
 #admin-tabs {
-	width: 85%;
+	width: 95%;
 	margin: 10px auto 30px auto;
 }
 
@@ -64,8 +64,25 @@ label.error {
 	padding: 5px 0;
 	width: 225px;
 }
+td, th {
+	padding: 0;
+	margin: 0;
+	width: 100%;
+}
 td {
 	word-wrap: break-word;
+}
+td > input[type="text"] {
+	width: 90%;
+	padding: 5px;
+	margin: 10px 0;
+	background-color: #efefef;
+}
+th {
+	padding: 5px;
+}
+table {
+	width: 100%;
 }
 
 .submit-button {
@@ -87,19 +104,25 @@ td {
 	width: 80%;
 	margin: 20px auto;
 }
-#admin-table_dashboard > input[type="button"] {
+#admin-table_dashboard > button {
 	background-color: #b4e753;
 	border: 1px solid #97d423;
 	border-radius: 10px;
 	padding: 5px;
 	margin: 0 20px;
 }
-#admin-table_dashboard > input[type="button"]:hover {
+#admin-table_dashboard > button:hover {
 	background-color: #d7f3a1;
 	border: 1px solid #beea68;
 }
-#admin-table_dashboard > input[type="button"].delete {
+#admin-table_dashboard > button.delete {
 	display: none;
 	background-color: #fdd79a;
 	border: 1px solid #e3c28d;
+}
+
+#save-cancel {
+	padding: 10px;
+	background: #efefef;
+	display: none;
 }

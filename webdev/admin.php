@@ -34,10 +34,16 @@
 	<!-- jQuery Validate Plugin files -->
     <script type="text/javascript" src="libs/jquery.validate.min.js"></script>
     <script type="text/javascript" src="libs/additional-methods.min.js"></script>
+
+    <!-- Font Awesome Bootstrap CDN -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
 </head>
 <body>
 
 	<div class="wrapper">
+
+	<?php $filename = basename(__FILE__); ?>
 
 	<?php @require_once "includes/header.inc.php"; ?>
 
@@ -75,13 +81,13 @@
 
 								while($row_account = @mysqli_fetch_array($result_account)) {
 									echo "<tr>\n";
-									echo "<td>" . $row_account['LoginName'] . "</td>";
-									echo "<td>" . $row_account['Email'] . "</td>";
-									echo "<td>" . $row_account['PresetName'] . "</td>";
+									echo "<td><input type=\"text\" class=\"admin-table\" value=\"" . $row_account['LoginName'] . "\"></td>";
+									echo "<td><input type=\"text\" class=\"admin-table\" value=\"" . $row_account['Email'] . "\"></td>";
+									echo "<td><input type=\"text\" class=\"admin-table\" value=\"" . $row_account['PresetName'] . "\"></td>";
 									echo "<td>
-											<a href=\"id=" . $row_account['AccountID'] . "\"><input type=\"button\" class=\"edit-account\" href=\"#\" value=\"Edit Account\"></a>
-											<a href=\"id=" . $row_account['AccountID'] . "\"><input type=\"button\" class=\"reset-pass\" href=\"#\" value=\"Password Reset\"></a>
-											<a href=\"id=" . $row_account['AccountID'] . "\"><input type=\"button\" class=\"delete-acc\" href=\"#\" value=\"Delete Account\" disabled></a>
+											<a href=\"id=" . $row_account['AccountID'] . "\"><button class=\"edit-account admin-buttons\" title=\"Edit Account\"><i class=\"fa fa-pencil\"></i></button></a>
+											<a href=\"id=" . $row_account['AccountID'] . "\"><button class=\"reset-pass admin-buttons\" title=\"Reset Password\"><i class=\"fa fa-key\"></i></button></a>
+											<a href=\"id=" . $row_account['AccountID'] . "\"><button class=\"delete-account admin-buttons\" title=\"Delete Account\" disabled><i class=\"fa fa-trash\"></i></button></a>
 										</td>";
 									echo "</tr>\n";
 								};
@@ -96,7 +102,17 @@
 						?>
 
 					<div id="admin-table_dashboard">
-						<input type="button" class="new-account" href="#" value="Add New Account">
+						<button class="new-account" href="#">
+							<i class="fa fa-plus"></i> Add New Account
+						</button>
+					</div>
+					<div id="save-cancel">
+						<button value="Save Changes">
+							<i class="fa fa-floppy-o"></i> Save Changes
+						</button>
+						<button value="Cancel">
+							<i class="fa fa-ban"></i> Cancel
+						</button>
 					</div>
 				</div>
 				<div id="tab-b">
