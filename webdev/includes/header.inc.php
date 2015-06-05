@@ -1,5 +1,10 @@
 <?php 
 	session_start();
+	if($filename != "login.php") {
+		if( !(isset($_SESSION['username']) AND $_SESSION['username']) ) {
+			header("Location:login.php");
+		}
+	}
  ?>
 		<header>
 			<div>
@@ -15,8 +20,7 @@
 						<img src="images/greenwell.jpg" alt="Greenwell Logo">
 					</a>
 			</div>
-			<div>
-				
+			<div>		
 				<div class="title">
 					<h1>Bid-Well Application</h1>
 					<h2>Greenwell Bank</h2>

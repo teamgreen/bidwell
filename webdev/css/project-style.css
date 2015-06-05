@@ -21,9 +21,43 @@ h2{
 
 textarea.project-tab1-textarea{
 	background-color: #d7f3a1;
+	
+	height: 400px;
 	margin-left: 10px;
 	padding: 10px;
 	line-height: 1.5em;
+}
+
+.project-tab1-form-labels{
+	width: 100px;
+}
+
+div.left{
+	display: inline-block;
+	width: 150px;
+}
+.left label{
+	text-align: left;
+	width: 220px;
+}
+
+#select-box {
+	margin-left: 10px;
+	background-color: #d7f3a1;
+	text-align: left;
+	width: 225px;
+}
+
+#select-box option{
+	text-align: left;
+	width: 225px;
+}
+
+
+.left-description{
+	text-align: left;
+	line-height:1em;
+	padding-left: 30px;
 }
 
 .border-top-div{
@@ -191,7 +225,7 @@ button:hover{
 }
 
 #project_description{
-	width: 700px;
+	width: 400px;
 	height: auto;
 }
 
@@ -210,7 +244,20 @@ button:hover{
 	overflow-y: scroll;
 	overflow-x: hidden;
 }
+.project-tab1{
+	display: table-cell;
+	width: 40%;
+	/*float: left;*/
+}
 
+.project-tab1-ta{
+	width: 30%;
+	display: table-cell;
+}
+
+.div-table{
+	display: table;
+}
 /**/
 /*start Table related CSS*/
 /**/
@@ -271,3 +318,7 @@ button:hover{
 #tab3 table{
 	width:100%;
 }
+
+/**/
+/*end Table related CSS*/
+/**/
