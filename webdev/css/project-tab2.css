@@ -47,9 +47,27 @@ pre.left{
 	cursor:pointer;
 }
 
-.description-cont{
+.description-cont1{
+	width: 400px;
+	height: 600px;
+	padding: 10px;
 	margin-bottom: 40px;
+	border: 1px solid #d7f3a1;
+	margin-right: 20px;
+	float: left;
 }
+
+.description-cont2{
+	width: 435px;
+	height: 600px;
+	padding: 10px;
+	margin-right: -15px;
+	margin-bottom: 40px;
+	border: 1px solid #d7f3a1;
+	float: left;
+}
+
+
 
 input[type=submit]{
 	background-color: #b4e753;

@@ -176,8 +176,8 @@ if(isset($_POST['Submit'])) {
 ?> 
 
 
-<div class="description-cont">
-	<div class=".description-left">
+<div class="description-cont1">
+	<!-- <div class=".description-left"> -->
 	<?php
 	$project->getSheetsByType($dbc, Sheet::eProjectDescriptionSheet);
 
@@ -191,11 +191,11 @@ if(isset($_POST['Submit'])) {
 
 	?>
 	
-	</div>
+	<!-- </div> -->
 </div>	
 
-<div class="description-cont">
-	<div id="main">
+<div class="description-cont2">
+	<!-- <div id="main"> -->
   <p class="left">Upload Files:</p>
   <p class="center">(File upload/download and show directory)</p>
   <p class=left>Max. filesize: <b><?php echo $max_size/1024; ?> KB</b></p>
@@ -219,9 +219,9 @@ if(isset($_POST['Submit'])) {
   </form>
   <p><?php echo $my_upload->show_error_string(); ?></p>
   <?php echo select_files($folder); ?>
-  
+  <!-- 
 </div>  
-</div>
+ --></div>
 
 <button name="save-changes" value="save-changes" type="button">Save Changes</button>
 <button name="print" value="print" type="button">Print</button>
