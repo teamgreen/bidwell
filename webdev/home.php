@@ -119,7 +119,7 @@
 		
 						@require_once 'includes/mysqli_functions.inc.php';
 
-						$hasPermission = HasPermission($dbc, 2, Permissions::ePROJECT_CREATE);
+						$hasPermission = HasPermission($dbc, $_SESSION['accountid'], Permissions::ePROJECT_CREATE);
 						if ($hasPermission == false) {
 							echo "<p>We are sorry to report that you do not have the permission to create a project.</p>";
 						} else {
