@@ -54,11 +54,11 @@ div.left{
 }
 
 
-.left-description{
+/*.left-description{
 	text-align: left;
 	line-height:1em;
 	padding-left: 30px;
-}
+}*/
 
 .border-top-div{
 	border-top: 1px;
@@ -143,40 +143,40 @@ input[type="text"] {
 	margin: 0 20px;
 }
 
-#tab2{
+/*#tab2{
 	width: 100%;
 	height: 100%;
-}
+}*/
 
-.description-cont {
+/*.description-cont{
 	float: left;
 	width: 50%;
-}
+}*/
 
 .project-info {
 	text-align: left;
 }
 
-.description-left {
+/*.description-left {
 	text-align: left;
 	width: 90%;
 	padding: 10px;
 	float: left;
 	clear: both;
-}
+}*/
 
 .description-left-title {
 	text-align: left;
 }
 
-.description-right {
+/*.description-right {
 	text-align: left;
 	width: 90%;
 	padding: 10px;
 	float: left;
 	clear:both;
 }
-
+*/
 .description-right-title {
 	text-align: left;
 }
@@ -310,13 +310,21 @@ button:hover{
 	margin:0;
 }
 
-#tab3, #tab3 div, #tab3 form, #tab3 table{
+#tab3, #tab3 div, #tab3 form, #tab3 table,
+#tab4, #tab4 div, #tab4 form, #tab4 table,
+#tab5, #tab5 div, #tab5 form, #tab5 table{
 	padding:0;
 	margin:0;
 }
 
-#tab3 table{
+#tab3 table, #tab4 table, #tab5 table{
 	width:100%;
+}
+
+.loadsheet_h3{
+	display:inline;
+	display:inline-block;
+	text-align: left;
 }
 
 /**/

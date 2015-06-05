@@ -112,29 +112,36 @@ class Project
 
 		$row = $this->returnSheetRow();
 
-		echo "<h3>" . $row['Name'] . "</h3>\n";
-		echo "<div>\n";
-
+		// create the right type of sheet
 		switch ($a_type){
 			case Sheet::eExternalBidSheet:
-				$curSheet = new ExternalBidSheet();
+				$this->curSheet = new ExternalBidSheet();
 				break;
 			case Sheet::eChangeBidSheet:
-				$curSheet = new ChangeBidSheet();
+				$this->curSheet = new ChangeBidSheet();
 				break;
 			case Sheet::eInternalBidSheet:
-				$curSheet = new InternalBidSheet();
+				$this->curSheet = new InternalBidSheet();
 				break;
 			case Sheet::eProjectDescriptionSheet:
-				$curSheet = new ProjectDescriptionSheet();
+				$this->curSheet = new ProjectDescriptionSheet();
 				break;
 			default:
 				//Should not get here.
 				break;
 		}
-		$curSheet->loadSheetFromResult($a_dbc, $row);
+
+		//load the sheet
+		$this->curSheet->loadSheetFromResult($a_dbc, $row);
+
+		// generate the select box.
+		echo "<h3 class='loadsheet_h3'>Current Sheet: ";
+		echo $this->generateLoadSelectHTML($a_dbc, $a_type);
+		echo "</h3>";
+		echo "<div>\n";
+
 // varDump("project.php", "tab 4", $sheet);
-		$curSheet->generateLinesTableHTML($a_dbc);
+		$this->curSheet->generateLinesTableHTML($a_dbc);
 		echo "</div>\n";
 	}	
 
@@ -313,16 +320,22 @@ class Project
 	function generateLoadSelectHTML($a_dbc, $a_sheetType)
 	{
 		$this->getSheetsByType($a_dbc, $a_sheetType);
-		echo "<div class='loadSheetDiv'>\n";
+//varDump(__FUNCTION__, "sheetID", $this->curSheet->getSheetID());
+		//echo "<div class='loadSheetDiv'>\n";
 		echo "<select class='loadSheetSelect'>\n";
- 		echo "<option value='-'>- Load different sheet -</option>";
+ 		echo "<option value='-'>New sheet</option>";
 
  		while($row = $this->returnSheetRow())
  		{
- 			echo "<option value='" . $row['SheetID'] . "'>{$row['Name']}</option>";
+ 			// we want to set selected for our current sheet.
+ 			//if(1)
+ 			if($this->curSheet->getSheetID() == $row['SheetID'])
+ 				echo "<option value='" . $row['SheetID'] . "' selected>" . htmlspecialchars($row['Name']) . "</option>";
+ 			else
+ 				echo "<option value='" . $row['SheetID'] . "'>" . htmlspecialchars($row['Name']) . "</option>";
 		}
 		echo "</select>\n";
-		echo "</div>\n";
+		//echo "</div>\n";
 	}
 
 	//////////////////////////////////////
