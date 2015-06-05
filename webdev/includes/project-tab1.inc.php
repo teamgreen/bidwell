@@ -46,29 +46,29 @@
 			<div class='div-table'>
 				<div class='project-tab1'>
 					<div class="left2"><label>Name:</label></div>
-					<input class="project-tab1-inputs" type="text" id="name_owner" name="name_owner" maxlength="200" value='<?php echo $project->getOwner();?>'>
+					<input class="project-tab1-inputs1" type="text" id="name_owner" name="name_owner" maxlength="200" value='<?php echo $project->getOwner();?>'>
 					<!-- <input type="text" id="name_owner" name="name_owner" maxlength="200"> -->
 				
 					<div class="left2"><label>Phone:</label></div>
-					<input class="project-tab1-inputs" type="text" id="phone_owner" name="phone_owner" maxlength="40" value='<?php echo $project->getOwnerPhone();?>'>
+					<input class="project-tab1-inputs1" type="text" id="phone_owner" name="phone_owner" maxlength="40" value='<?php echo $project->getOwnerPhone();?>'>
 				
 					<div class="left2"><label>CellPhone:</label></div>
-					<input class="project-tab1-inputs" type="text" id="cellphone_owner" name="cellphone_owner" maxlength="40" value='<?php echo $project->getOwnerCellPhone(); ?>'>
+					<input class="project-tab1-inputs1" type="text" id="cellphone_owner" name="cellphone_owner" maxlength="40" value='<?php echo $project->getOwnerCellPhone(); ?>'>
 				
 					<div class="left2"><label>Email:</label></div>
-					<input class="project-tab1-inputs" type="email" id="email_owner" name="email_owner" maxlength="40" value='<?php echo $project->getOwnerEmail();?>'></p>
+					<input class="project-tab1-inputs1" type="email" id="email_owner" name="email_owner" maxlength="40" value='<?php echo $project->getOwnerEmail();?>'></p>
 				</div>
 				<div class='project-tab1'>
 					<div class="left2"><label>Address:</label></div>
-					<input class="project-tab1-inputs" type="text" id="address_owner" name="address_owner" maxlength="100" value='<?php echo $project->getOwnerAddressID();?>'>
+					<input class="project-tab1-inputs1" type="text" id="address_owner" name="address_owner" maxlength="100" value='<?php echo $project->getOwnerAddressID();?>'>
 					<div class="left2"><label>Address 2:</label></div>
-					<input class="project-tab1-inputs" type="text" id="address1_owner" name="address1_owner" maxlength="100" value='<?php echo $project->getOwnerAddressID();?>'>
+					<input class="project-tab1-inputs1" type="text" id="address1_owner" name="address1_owner" maxlength="100" value='<?php echo $project->getOwnerAddressID();?>'>
 					<div class='left2'><label>City:</label></div> 
-					<input class="project-tab1-inputs" type="text" id="city_owner" name="city_owner" maxlength="20" value=''>
+					<input class="project-tab1-inputs1" type="text" id="city_owner" name="city_owner" maxlength="20" value=''>
 					<div class='left2'><label>State:</label></div> 
-					<input class="project-tab1-inputs" type="text" id="state_owner" name="state_owner" maxlength="20" value=''>
+					<input class="project-tab1-inputs1" type="text" id="state_owner" name="state_owner" maxlength="20" value=''>
 					<div class='left2'><label>Zip:</label></div> 
-					<input class="project-tab1-inputs" type="text" id="zip_owner" name="zip_owner" maxlength="20" value=''></p>
+					<input class="project-tab1-inputs1" type="text" id="zip_owner" name="zip_owner" maxlength="20" value=''></p>
 				</div>
 			</div>
 		</div>	
@@ -79,32 +79,32 @@
 		<div class='div-table'>
 			<div class='project-tab1'>
 				<div class="left2"><label>Name:</label></div>
-				<input class="project-tab1-inputs" type="text" id="name_architect" name="name_architect" maxlength="200" value='<?php echo $project->getArchitect();?>'>
+				<input class="project-tab1-inputs1" type="text" id="name_architect" name="name_architect" maxlength="200" value='<?php echo $project->getArchitect();?>'>
 							
 				<div class="left2"><label>Phone:</label></div>
-				<input class="project-tab1-inputs" type="text" id="phone_architect" name="phone_architect" maxlength="40" value='<?php echo $project->getArchitectPhone();?>'>
+				<input class="project-tab1-inputs1" type="text" id="phone_architect" name="phone_architect" maxlength="40" value='<?php echo $project->getArchitectPhone();?>'>
 			
 				<div class="left2"><label>CellPhone:</label></div>
-				<input class="project-tab1-inputs" type="text" id="cellphone_architect" name="cellphone_architect" maxlength="40" value='<?php echo $project->getArchitectCellPhone(); ?>'>
+				<input class="project-tab1-inputs1" type="text" id="cellphone_architect" name="cellphone_architect" maxlength="40" value='<?php echo $project->getArchitectCellPhone(); ?>'>
 			
 				<div class="left2"><label>Email:</label></div>
-				<input class="project-tab1-inputs" type="email" id="email_architect" name="email_architect" maxlength="100" value='<?php echo $project->getArchitectEmail();?>'></p>
+				<input class="project-tab1-inputs1" type="email" id="email_architect" name="email_architect" maxlength="100" value='<?php echo $project->getArchitectEmail();?>'></p>
 			</div>
 			<div class='project-tab1'>
 				<div class="left2"><label>Address:</label></div>
-				<input class="project-tab1-inputs" type="text" id="address_architect" name="address_architect" maxlength="100" value='<?php echo $project->getArchitectAddressID();?>'>
+				<input class="project-tab1-inputs1" type="text" id="address_architect" name="address_architect" maxlength="100" value='<?php echo $project->getArchitectAddressID();?>'>
 			
 				<div class="left2"><label>Address 2:</label></div>
-				<input class="project-tab1-inputs" type="text" id="address1_architect" name="address1_architect" maxlength="100" value='<?php echo $project->getArchitectAddressID();?>'>
+				<input class="project-tab1-inputs1" type="text" id="address1_architect" name="address1_architect" maxlength="100" value='<?php echo $project->getArchitectAddressID();?>'>
 			
 				<div class='left2'><label>City:</label></div> 
-				<input class="project-tab1-inputs" type="text" id="city_architect" name="city_architect" maxlength="20">
+				<input class="project-tab1-inputs1" type="text" id="city_architect" name="city_architect" maxlength="20">
 				
 				<div class='left2'><label>State:</label></div> 
-				<input class="project-tab1-inputs" type="text" id="state_architect" name="state_architect" maxlength="20" value=''>
+				<input class="project-tab1-inputs1" type="text" id="state_architect" name="state_architect" maxlength="20" value=''>
 				
 				<div class='left2'><label>Zip:</label></div> 
-				<input class="project-tab1-inputs" type="text" id="zip_architect" name="zip_architect" maxlength="20" value=''>
+				<input class="project-tab1-inputs1" type="text" id="zip_architect" name="zip_architect" maxlength="20" value=''>
 			</div>
 		</div>
 	</div>
@@ -114,20 +114,20 @@
 		<div class='div-table'>
 			<div class='project-tab1'>
 				<div class="left2"><label>Address:</label></div>
-				<input class="project-tab1-inputs" type="text" id="project_address_location" name="address1_location" maxlength="100" value='<?php echo $project->getSiteAddressID();?>'>
+				<input class="project-tab1-inputs1" type="text" id="project_address_location" name="address1_location" maxlength="100" value='<?php echo $project->getSiteAddressID();?>'>
 			
 				<div class="left2"><label>Address 2:</label></div>
-				<input class="project-tab1-inputs" type="text" id="address1_location" name="address1_location" maxlength="100" value='<?php echo $project->getSiteAddressID();?>'>
+				<input class="project-tab1-inputs1" type="text" id="address1_location" name="address1_location" maxlength="100" value='<?php echo $project->getSiteAddressID();?>'>
 			</div>
 			<div class='project-tab1'>
 				<div class='left2'><label>City:</label></div> 
-				<input class="project-tab1-inputs" type="text" id="project_city_location" name="project_city_location" maxlength="20">
+				<input class="project-tab1-inputs1" type="text" id="project_city_location" name="project_city_location" maxlength="20">
 			
 				<div class='left2'><label>State:</label></div> 
-				<input class="project-tab1-inputs" type="text" id="project_state_location" name="project_state_location" maxlength="20" value=''>
+				<input class="project-tab1-inputs1" type="text" id="project_state_location" name="project_state_location" maxlength="20" value=''>
 			
 				<div class='left2'><label>Zip:</label></div> 
-				<input class="project-tab1-inputs" type="text" id="project_zip_location" name="project_zip_location" maxlength="20" value=''>
+				<input class="project-tab1-inputs1" type="text" id="project_zip_location" name="project_zip_location" maxlength="20" value=''>
 			</div>
 		</div>
 		<!-- <div>
