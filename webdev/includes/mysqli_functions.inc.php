@@ -8,6 +8,8 @@
 // 5/25/2015
 ///////////////////////////////////////////////
 
+@include_once 'includes/debugging-helper-functions.inc.php';
+
 	abstract class Permissions
 	{
 		// these MUST match the permission table, plus have the terminator at the end, which must always be
@@ -47,13 +49,18 @@
 	////////////////////////////////////////////
 	function HasPermission($a_dbc, $a_AccountID, $a_ePermissions)
 	{
+//varDump(__FUNCTION__, '$a_AccountID', $a_AccountID);
 		// fetch our account
 		$sql = "SELECT * FROM account WHERE AccountID='" . $a_AccountID . "'";
+//varDump(__FUNCTION__, '$sql', $sql);
+
+
 		$result = @mysqli_query($a_dbc, $sql);
 		$permissions = null;
+//varDump(__FUNCTION__, '$result', $result);
 
 		// if we have an account...
-		if(mysqli_num_rows($result) == 1){
+		if($result != false && mysqli_num_rows($result) == 1){
 			$account = @mysqli_fetch_array($result);
 
 			// if not custom, we'll use the preset permissions.

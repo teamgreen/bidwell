@@ -38,9 +38,15 @@
 
 	<div class="wrapper">
 	
-	<?php $filename = basename(__FILE__); ?>
-	
-	<?php @require_once "includes/header.inc.php"; ?>
+	<?php
+@include_once 'includes/debugging-helper-functions.inc.php';
+
+		$filename = basename(__FILE__);
+		@require_once "includes/header.inc.php"; 
+
+		@require_once 'includes/mysqli_connect.inc.php';
+		$dbc = SQLConnect();
+	?>
 	
 		<div class="content">
 
@@ -75,11 +81,6 @@
 
 					?> -->
 					<?php
-		
-						require 'includes/mysqli_connect.inc.php';
-
-						$dbc = SQLConnect();
-
 						if (isset($_GET["pageNum"])) {
 							$pageNum = $_GET["pageNum"];
 						} else {
@@ -106,8 +107,16 @@
 
 						// SQL statement to select everything from project table to populate table with rows and cells		
 						$sql_project = "SELECT * FROM `project` $limit"; 
+//varDump("home.php " . __LINE__, '$sql_project', $sql_project);
 
-						$result_project = @mysqli_multi_query($dbc, $sql_project);
+						$result_project = @mysqli_query($dbc, $sql_project);
+
+						// This breaks our database link.  If used, will need to call the connect function again.
+						// Also, a multi_query does NOT return a result.  Look up function documentation for an
+						// example of correct implementation.
+						//$result_project = @mysqli_multi_query($dbc, $sql_project);
+//varDump("home.php " . __LINE__, '$result_project', $result_project);
+//varDump("home.php " . __LINE__, '$dbc', $dbc);
 
 						$num_rows_project = @mysqli_num_rows($result_project);
 						if ($num_rows_project == 0) {
@@ -129,7 +138,7 @@
 								echo "<td>" . $row_project['ProjectName'] . "</td>";
 								echo "<td>" . $row_project['SiteAddressID'] . "</td>";
 								echo "<td>" . $row_project['ProjectDueDate'] . "</td>";
-								echo "<td>" . $row_project['ProjectStatusName'] . "</td>";
+								echo "<td></td>";// . $row_project['ProjectStatusName'] . "</td>";
 								echo "</tr>\n";
 							}
 
@@ -154,6 +163,7 @@
 							echo "</div>";
 
 						};
+varDump("home.php " . __LINE__, '$dbc', $dbc);
 
 					?>
 				</div>
@@ -161,7 +171,6 @@
 					<?php
 		
 						@require_once 'includes/mysqli_functions.inc.php';
-
 						$hasPermission = HasPermission($dbc, $_SESSION['accountid'], Permissions::ePROJECT_CREATE);
 						if ($hasPermission == false) {
 							echo "<p>We are sorry to report that you do not have the permission to create a project.</p>";
