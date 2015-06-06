@@ -121,6 +121,39 @@ table {
 	border: 1px solid #e3c28d;
 }
 
+.pagination {
+	margin: 40px auto;
+	width: 50%;
+}
+
 .save-cancel {
+	display: none;
+}
+
+#add-reset_bg {
+	display: none;
+	height: 100%;
+	width: 100%;
+	position: fixed;
+	background: rgba(100,100,100,0.8);
+	z-index: 500;
+}
+#add-reset_dialog {
+	display: none;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+	height: 600px;
+	width: 600px;
+	z-index: 1000;
+	background: #90c32e;
+	border: 1px solid #387929;
+	padding: 10px;
+}
+
+#add-dialog, #reset-dialog, #delete-dialog {
 	display: none;
 }

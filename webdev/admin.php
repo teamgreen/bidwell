@@ -41,6 +41,22 @@
 </head>
 <body>
 
+	<div id="add-reset_bg"></div>
+	<div id="add-reset_dialog">
+		<div id="add-dialog">
+			<?php @include_once "includes/admin-add-account.php"; ?>
+			<p>Add account!</p>
+		</div>
+		<div id="reset-dialog">
+			<?php @include_once "includes/admin-reset-password.php"; ?>
+			<p>Reset password</p>
+		</div>
+		<div id="delete-dialog">
+			<!-- NEED CONFIRMATION FOR DELETE -->
+			<p>Are you sure about this?</p>
+		</div>
+	</div>
+
 	<div class="wrapper">
 
 	<?php 
@@ -52,8 +68,7 @@
 			<div id="admin-tabs">
 				<ul>
 					<li><a href="#tab-a">Accounts</a></li>
-					<li><a href="#tab-b">Add/Change Accounts</a></li>
-					<li><a href="#tab-c">System Settings</a></li>
+					<li><a href="#tab-b">System Settings</a></li>
 				</ul>
 				<div id="tab-a">
 						<?php
@@ -62,8 +77,32 @@
 
 							$dbc = SQLConnect();
 
+							if (isset($_GET["pageNum"])) {
+								$pageNum = $_GET["pageNum"];
+							} else {
+								$pageNum = 1;
+							};
+
+							$sql_account = "SELECT COUNT(*) FROM `account`";
+							$result_account = @mysqli_query($dbc, $sql_account);
+
+							$rows = @mysqli_fetch_row($result_account);
+							$totalResults = $rows[0];
+							$numRows = 5;
+							$lastPage = ceil($totalResults / $numRows);
+
+							$pageNum = (int)$pageNum;
+							if ($pageNum > $lastPage) {
+								$pageNum = $lastPage;
+							}
+							if ($pageNum < 1) {
+								$pageNum = 1;
+							}
+
+							$limit = 'LIMIT ' . ($pageNum - 1) * $numRows . ", " . $numRows;
+
 							// SQL statement to select everything from account table to populate table with rows and cells		
-							$sql_account = "SELECT * FROM `account`";
+							$sql_account = "SELECT * FROM `account` $limit";
 							$result_account = @mysqli_query($dbc, $sql_account);
 
 							$num_rows_account = @mysqli_num_rows($result_account);
@@ -101,27 +140,44 @@
 							// $admin_company = retrieved [CompanyName] from login info
 							// return $admin_company;
 
+							echo "<div class='pagination'>\n";
+							
+							if ($pageNum == 1) {
+								echo " FIRST PREV ";
+							} else {
+								echo " <a href='{$_SERVER['PHP_SELF']}?pageNum=1'>FIRST</a> ";
+								$previous = $pageNum - 1;
+								echo " <a href='{$_SERVER['PHP_SELF']}?pageNum=$previous'>PREV</a> ";
+							};
+
+							echo " ( Page $pageNum of $lastPage ) ";
+
+							if ($pageNum == $lastPage) {
+								echo " NEXT LAST ";
+							} else {
+								$next = $pageNum + 1;
+								echo " <a href='{$_SERVER['PHP_SELF']}?pageNum=$next'>NEXT</a> ";
+								echo " <a href='{$_SERVER['PHP_SELF']}?pageNum=$lastPage'>LAST</a> ";
+							};
+
+							echo "</div>";
+
 						?>
 
+						<?php @include_once 'includes/admin-forms.php'; ?>
+
 					<div id="admin-table_dashboard">
-						<button class="new-account" href="#">
+						<button class="add-account admin-buttons">
 							<i class="fa fa-plus"></i> Add New Account
 						</button>
 					</div>
 				</div>
 				<div id="tab-b">
-					<?php @include_once 'includes/admin-forms.php'; ?>
-				</div>
-				<div id="tab-c">
 					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate obcaecati porro eum repudiandae possimus repellat cumque asperiores magni architecto esse sed minima dolorum deserunt, quo animi quod omnis, earum! Veniam.</p>
 				</div>
 			</div>
 
 		</div>
-		
-		<!-- For success dialogs -->
-		<?php @include_once 'includes/admin-dialogs.php'; ?>
-		<!-- For success dialogs -->
 
 	<?php @require_once "includes/footer.inc.php"; ?>
 		

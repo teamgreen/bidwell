@@ -80,8 +80,32 @@
 
 						$dbc = SQLConnect();
 
+						if (isset($_GET["pageNum"])) {
+							$pageNum = $_GET["pageNum"];
+						} else {
+							$pageNum = 1;
+						};
+
+						$sql_project = "SELECT COUNT(*) FROM `project`";
+						$result_project = @mysqli_query($dbc, $sql_project);
+
+						$rows = @mysqli_fetch_row($result_project);
+						$totalResults = $rows[0];
+						$numRows = 5;
+						$lastPage = ceil($totalResults / $numRows);
+
+						$pageNum = (int)$pageNum;
+						if ($pageNum > $lastPage) {
+							$pageNum = $lastPage;
+						}
+						if ($pageNum < 1) {
+							$pageNum = 1;
+						}
+
+						$limit = 'LIMIT ' . ($pageNum - 1) * $numRows . ", " . $numRows;
+
 						// SQL statement to select everything from project table to populate table with rows and cells		
-						$sql_project = "SELECT * FROM `project`"; 
+						$sql_project = "SELECT * FROM `project` $limit"; 
 
 						$result_project = @mysqli_multi_query($dbc, $sql_project);
 
@@ -110,6 +134,29 @@
 							}
 
 							echo "</table>\n";
+
+							echo "<div class='pagination'>\n";
+							
+							if ($pageNum == 1) {
+								echo " FIRST PREV ";
+							} else {
+								echo " <a href='{$_SERVER['PHP_SELF']}?pageNum=1'>FIRST</a> ";
+								$previous = $pageNum - 1;
+								echo " <a href='{$_SERVER['PHP_SELF']}?pageNum=$previous'>PREV</a> ";
+							};
+
+							echo " ( Page $pageNum of $lastPage ) ";
+
+							if ($pageNum == $lastPage) {
+								echo " NEXT LAST ";
+							} else {
+								$next = $pageNum + 1;
+								echo " <a href='{$_SERVER['PHP_SELF']}?pageNum=$next'>NEXT</a> ";
+								echo " <a href='{$_SERVER['PHP_SELF']}?pageNum=$lastPage'>LAST</a> ";
+							};
+
+							echo "</div>";
+
 						};
 
 					?>
@@ -131,8 +178,32 @@
 				<div id="tab3">
 					<?php
 
+						if (isset($_GET["pageNum"])) {
+							$pageNum = $_GET["pageNum"];
+						} else {
+							$pageNum = 1;
+						};
+
+						$sql_completed_project = "SELECT COUNT(*) FROM `project`";
+						$result_completed_project = @mysqli_query($dbc, $sql_completed_project);
+
+						$rows = @mysqli_fetch_row($result_completed_project);
+						$totalResults = $rows[0];
+						$numRows = 5;
+						$lastPage = ceil($totalResults / $numRows);
+
+						$pageNum = (int)$pageNum;
+						if ($pageNum > $lastPage) {
+							$pageNum = $lastPage;
+						}
+						if ($pageNum < 1) {
+							$pageNum = 1;
+						}
+
+						$limit = 'LIMIT ' . ($pageNum - 1) * $numRows . ", " . $numRows;
+
 						// SQL statement to select everything from project table to populate table with rows and cells		
-						$sql_completed_project = "SELECT * FROM `project`";
+						$sql_completed_project = "SELECT * FROM `project` $limit";
 						$result_completed_project = @mysqli_query($dbc, $sql_completed_project);
 
 						$num_rows_completed_project = @mysqli_num_rows($result_completed_project);
@@ -160,6 +231,29 @@
 							}
 
 							echo "</table>\n";
+
+							echo "<div class='pagination'>\n";
+							
+							if ($pageNum == 1) {
+								echo " FIRST PREV ";
+							} else {
+								echo " <a href='{$_SERVER['PHP_SELF']}?pageNum=1'>FIRST</a> ";
+								$previous = $pageNum - 1;
+								echo " <a href='{$_SERVER['PHP_SELF']}?pageNum=$previous'>PREV</a> ";
+							};
+
+							echo " ( Page $pageNum of $lastPage ) ";
+
+							if ($pageNum == $lastPage) {
+								echo " NEXT LAST ";
+							} else {
+								$next = $pageNum + 1;
+								echo " <a href='{$_SERVER['PHP_SELF']}?pageNum=$next'>NEXT</a> ";
+								echo " <a href='{$_SERVER['PHP_SELF']}?pageNum=$lastPage'>LAST</a> ";
+							};
+
+							echo "</div>";
+
 						};
 
 					?>

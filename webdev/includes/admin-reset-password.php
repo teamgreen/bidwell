@@ -1,24 +1,25 @@
 
+		<?php
+			
+			// var_dump($_GET['id']);
+			// var_dump($dbc);
+
+			// if(isset($_GET['id'])) {
+			// 	$pass_id = $_GET['id'];	
+			// } else {
+			// 	echo "ERROR";
+			// }	
+
+			$sql_pass = "SELECT Password FROM `account` WHERE AccountID = '$pass_id'";
+			$result_pass = @mysqli_query($dbc, $sql_pass);
+			$row_pass = @mysqli_fetch_assoc($result_pass);
+			$old_pass = $row_pass['Password'];
+
+		?>
+
 		<form action="admin.php" method="post" id="pass-form">
 			<p>Reset Password</p>
 			<hr>
-			<?php
-				
-				var_dump($_GET['id']);
-				var_dump($dbc);
-
-				if(isset($_GET['id'])) {
-					$pass_id = $_GET['id'];	
-				} else {
-					echo "ERROR";
-				}	
-
-				$sql_pass = "SELECT Password FROM `account` WHERE AccountID = '$pass_id'";
-				$result_pass = @mysqli_query($dbc, $sql_pass);
-				$row_pass = @mysqli_fetch_assoc($result_pass);
-				$old_pass = $row_pass['Password'];
-
-			?>
 			<div>
 				<label for="new_password">Password</label>
 				<input type="password" name="new_password" id="new_password" value="<?php echo $old_pass; ?>" class="text ui-widget-content ui-corner-all">

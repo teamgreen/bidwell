@@ -1,31 +1,33 @@
 	
+		
+		<?php
+
+			// var_dump($_GET);
+
+			// if(isset($_GET['id'])) {
+			// 	echo "ok";
+			// 	$edit_id = $_GET['id'];
+			// } else {
+			// 	echo "ERROR";
+			// }	
+
+			$sql_edit = "SELECT * FROM `account` INNER JOIN `company` ON account.CompanyID = company.CompanyID WHERE account.AccountID = '$edit_id'";
+			$result_edit = @mysqli_query($dbc, $sql_edit);
+
+			$num_rows_edit = @mysqli_num_rows($result_edit);
+			if ($num_rows_edit > 0) {
+				while($row_edit = @mysqli_fetch_array($result_edit)) {
+					$username = $row_edit['LoginName'];
+					$email = $row_edit['Email'];
+					$company = $row_edit['CompanyName'];
+				};
+			};
+
+		?>
+
 		<form action="admin.php" method="post" id="edit-form">
 			<p>Edit Account</p>
 			<hr>
-				<?php
-
-					var_dump($_GET);
-
-					if(isset($_GET['id'])) {
-						echo "ok";
-						$edit_id = $_GET['id'];
-					} else {
-						echo "ERROR";
-					}	
-
-					$sql_edit = "SELECT * FROM `account` INNER JOIN `company` ON account.CompanyID = company.CompanyID WHERE account.AccountID = '$edit_id'";
-					$result_edit = @mysqli_query($dbc, $sql_edit);
-
-					$num_rows_edit = @mysqli_num_rows($result_edit);
-					if ($num_rows_edit > 0) {
-						while($row_edit = @mysqli_fetch_array($result_edit)) {
-							$username = $row_edit['LoginName'];
-							$email = $row_edit['Email'];
-							$company = $row_edit['CompanyName'];
-						};
-					};
-
-				?>
 			<div class="form-half">
 				<label for="edit_username">Username</label>
 				<input type="text" name="edit_username" id="edit_username" value="<?php echo $username; ?>" class="text ui-widget-content ui-corner-all">
