@@ -125,6 +125,9 @@ table {
 	margin: 40px auto;
 	width: 50%;
 }
+.page-span {
+	margin: 0 10px;
+}
 
 .save-cancel {
 	display: none;

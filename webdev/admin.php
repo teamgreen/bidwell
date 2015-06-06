@@ -68,7 +68,6 @@
 			<div id="admin-tabs">
 				<ul>
 					<li><a href="#tab-a">Accounts</a></li>
-					<li><a href="#tab-b">System Settings</a></li>
 				</ul>
 				<div id="tab-a">
 						<?php
@@ -142,22 +141,18 @@
 
 							echo "<div class='pagination'>\n";
 							
-							if ($pageNum == 1) {
-								echo " FIRST PREV ";
-							} else {
-								echo " <a href='{$_SERVER['PHP_SELF']}?pageNum=1'>FIRST</a> ";
+							if ($pageNum != 1) {
+								echo " <a href='{$_SERVER['PHP_SELF']}?pageNum=1'><button class=\"page-buttons\" title=\"First\">First Page</button></a> ";
 								$previous = $pageNum - 1;
-								echo " <a href='{$_SERVER['PHP_SELF']}?pageNum=$previous'>PREV</a> ";
+								echo " <a href='{$_SERVER['PHP_SELF']}?pageNum=$previous'><button class=\"page-buttons\" title=\"Previous\"><i class=\"fa fa-arrow-left\"></i></button></a> ";
 							};
 
-							echo " ( Page $pageNum of $lastPage ) ";
+							echo "<span class='page-span'>Page $pageNum of $lastPage</span>";
 
-							if ($pageNum == $lastPage) {
-								echo " NEXT LAST ";
-							} else {
+							if ($pageNum != $lastPage) {
 								$next = $pageNum + 1;
-								echo " <a href='{$_SERVER['PHP_SELF']}?pageNum=$next'>NEXT</a> ";
-								echo " <a href='{$_SERVER['PHP_SELF']}?pageNum=$lastPage'>LAST</a> ";
+								echo " <a href='{$_SERVER['PHP_SELF']}?pageNum=$next'><button class=\"page-buttons\" title=\"Next\"><i class=\"fa fa-arrow-right\"></i></button></a> ";
+								echo " <a href='{$_SERVER['PHP_SELF']}?pageNum=$lastPage'><button class=\"page-buttons\" title=\"Last\">Last Page</button></a> ";
 							};
 
 							echo "</div>";
@@ -171,9 +166,6 @@
 							<i class="fa fa-plus"></i> Add New Account
 						</button>
 					</div>
-				</div>
-				<div id="tab-b">
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate obcaecati porro eum repudiandae possimus repellat cumque asperiores magni architecto esse sed minima dolorum deserunt, quo animi quod omnis, earum! Veniam.</p>
 				</div>
 			</div>
 
