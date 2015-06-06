@@ -60,7 +60,7 @@ class ExternalBidSheetLine extends Line
 	protected $amount=0;
 
 	//////////////////////////////////////
-	// saveLine  - loads values to database
+	// saveLine  - saves  values to database
 	// $a_dbc - the database
 	// $a_sheetID  - sheet ID used if $sheetID is 0 (new line)
 	// return: Returns true if successful, false if failed.
@@ -74,9 +74,9 @@ class ExternalBidSheetLine extends Line
 				SET `WorkDescription`=$this->workDescription, `Amount`=$this->amount
 				WHERE `LineID`=$this->lineID";
 
-		} else{ // new line.
+		} else if ( $this->amount != 0 || $this->workDescription != "" ) { // new line with content.
 			$sql = "INSERT INTO `externalbidsheetline` (SheetID, WorkDescription, Amount)
-				VALUES ('$this->sheetID', '$this->workDescription', '$this->amount')";
+				VALUES ('$a_sheetID', '$this->workDescription', '$this->amount')";
 		}
 
 		// update the database
@@ -152,7 +152,7 @@ class InternalBidSheetLine extends Line
 	protected $generalNotes="";
 
 	//////////////////////////////////////
-	// saveLine  - loads values to database
+	// saveLine  - saves values to database
 	// $a_dbc - the database
 	// $a_sheetID  - sheet ID used if $sheetID is 0 (new line)
 	// return: Returns true if successful, false if failed.
@@ -166,9 +166,9 @@ class InternalBidSheetLine extends Line
 				SET `ConstructionSpecID`=$this->constructionSpecID, `Amount`=$this->amount, `SubcontractorBidUsed`=$this->subcontractorBidUsed, `GeneralNotes`=$this->generalNotes
 				WHERE `LineID`=$this->lineID";
 
-		} else{ // new line.
+		} else if ( $this->generalNotes != "" || $this->subcontractorBidUsed != "" || $this->Amount != 0 || $this->constructionSpecID !=0) { // new line with content.
 			$sql = "INSERT INTO `internalbidsheetline` (SheetID, ConstructionSpecID, Amount, SubcontractorBidUsed, GeneralNotes)
-				VALUES ('$this->sheetID', '$this->constructionSpecID', '$this->amount', '$this->subcontractorBidUsed', '$this->generalNotes')";
+				VALUES ('$a_sheetID', '$this->constructionSpecID', '$this->amount', '$this->subcontractorBidUsed', '$this->generalNotes')";
 		}
 
 		// update the database
@@ -278,7 +278,7 @@ class ProjectDescriptionLine extends Line
 	protected $text="";
 
 	//////////////////////////////////////
-	// saveLine  - loads values to database
+	// saveLine  - saves values to database
 	// $a_dbc - the database
 	// $a_sheetID  - sheet ID used if $sheetID is 0 (new line)
 	// return: Returns true if successful, false if failed.
@@ -288,13 +288,15 @@ class ProjectDescriptionLine extends Line
 	{
 		// if this is an existing line...
 		if($this->sheetID){
-			$sql = "UPDATE `projectdescriptionline`
-				SET `Text`=$this->text
-				WHERE `LineID`=$this->lineID";
-
-		} else{ // new line.
+			// should do something with deleted lines.  However, don't want to delete them.  Rather flag them.
+			if(1) { //$this->text != ""){
+				$sql = "UPDATE `projectdescriptionline`
+					SET `Text`=$this->text
+					WHERE `LineID`=$this->lineID";
+			}
+		} else if( $this->text != "" ) { // new line with content
 			$sql = "INSERT INTO `projectdescriptionline` (`SheetID`, `Text`)
-				VALUES ('$this->sheetID', '$this->text')";
+				VALUES ('$a_sheetID', '$this->text')";
 		}
 
 		// update the database

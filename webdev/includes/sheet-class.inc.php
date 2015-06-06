@@ -56,7 +56,8 @@ class Sheet
 	function displayTotal($a_amount){}
 	function getLines($a_dbc){}
 	function loadLinesFromDatabase($a_dbc){}
-
+	function addNewLine(){}
+	
 	//////////////////////////////////////
 	// loadSheetFromDatabase - given a sheet ID, will initialize the class instance
 	// 		with the variables from the database.
@@ -110,6 +111,7 @@ class Sheet
 
 			//now load the lines.
 			$this->loadLinesFromDatabase($a_dbc);
+			$this->addNewLine();
 		}
 	}
 
@@ -205,6 +207,16 @@ class ProjectDescriptionSheet extends Sheet
 	}
 
 	//////////////////////////////////////
+	// addNewLine  - adds a new line for this sheet
+	// created by FVDS
+	//////////////////////////////////////
+	function addNewLine()
+	{
+		$newLine = new ProjectDescriptionLine();
+		$this->lines[count($this->lines)] = $newLine;
+	}
+
+	//////////////////////////////////////
 	// getLines - grabs the lines related to this sheet from the database.
 	// 		Stores the results in sheetLinesResults.
 	// created by FVDS
@@ -274,7 +286,7 @@ class ProjectDescriptionSheet extends Sheet
 class InternalBidSheet extends Sheet
 {
 	//////////////////////////////////////
-	// loadLinesFromDatabase  -fetches the next line for this sheet
+	// loadLinesFromDatabase - loads the lines for this sheet from the database
 	// a_dbc - the database
 	// created by FVDS
 	//////////////////////////////////////
@@ -290,6 +302,16 @@ class InternalBidSheet extends Sheet
 //varDump(__FUNCTION__, '$newLine', $newLine);
 		}
 //varDump(__FUNCTION__, '$this->lines', $this->lines);
+	}
+
+	//////////////////////////////////////
+	// addNewLine  - adds a new line for this sheet
+	// created by FVDS
+	//////////////////////////////////////
+	function addNewLine()
+	{
+		$newLine = new InternalBidSheetLine();
+		$this->lines[count($this->lines)] = $newLine;
 	}
 
 	//////////////////////////////////////
@@ -333,7 +355,7 @@ class InternalBidSheet extends Sheet
 class ChangeBidSheet extends Sheet
 {
 	//////////////////////////////////////
-	// loadLinesFromDatabase  -fetches the next line for this sheet
+	// loadLinesFromDatabase - loads the lines for this sheet from the database
 	// a_dbc - the database
 	// created by FVDS
 	//////////////////////////////////////
@@ -350,6 +372,16 @@ class ChangeBidSheet extends Sheet
 
 		}
 //varDump(__FUNCTION__, '$this->lines', $this->lines);
+	}
+
+	//////////////////////////////////////
+	// addNewLine  - adds a new line for this sheet
+	// created by FVDS
+	//////////////////////////////////////
+	function addNewLine()
+	{
+		$newLine = new ExternalBidSheetLine();
+		$this->lines[count($this->lines)] = $newLine;
 	}
 
 	//////////////////////////////////////
@@ -397,7 +429,7 @@ class ChangeBidSheet extends Sheet
 class ExternalBidSheet extends Sheet
 {
 	//////////////////////////////////////
-	// loadLinesFromDatabase  -fetches the next line for this sheet
+	// loadLinesFromDatabase - loads the lines for this sheet from the database
 	// a_dbc - the database
 	// created by FVDS
 	//////////////////////////////////////
@@ -414,6 +446,16 @@ class ExternalBidSheet extends Sheet
 
 		}
 //varDump(__FUNCTION__, '$this->lines', $this->lines);
+	}
+
+	//////////////////////////////////////
+	// addNewLine  - adds a new line for this sheet
+	// created by FVDS
+	//////////////////////////////////////
+	function addNewLine()
+	{
+		$newLine = new ExternalBidSheetLine();
+		$this->lines[count($this->lines)] = $newLine;
 	}
 
 	//////////////////////////////////////

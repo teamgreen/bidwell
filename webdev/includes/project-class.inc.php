@@ -135,7 +135,7 @@ class Project
 		$this->curSheet->loadSheetFromResult($a_dbc, $row);
 
 		// generate the select box.
-		echo "<h3 class='loadsheet_h3'>Current Sheet: ";
+		echo "<h3 class='loadsheet_h3'>Sheet: ";
 		echo $this->generateLoadSelectHTML($a_dbc, $a_type);
 		echo "</h3>";
 		echo "<div>\n";
