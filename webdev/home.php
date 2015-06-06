@@ -163,7 +163,6 @@
 							echo "</div>";
 
 						};
-varDump("home.php " . __LINE__, '$dbc', $dbc);
 
 					?>
 				</div>
