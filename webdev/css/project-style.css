@@ -64,6 +64,15 @@ div.left2{
 	margin-left: -30px;
 }
 
+.state-select select{
+	background-color: #d7f3a1;
+	width: 230px; 
+	text-align: left;
+	display: inline-block;
+	margin-left: -50px;
+	/*margin-right: 13px;*/
+}
+
 
 #select-box {
 	margin-left: 10px;

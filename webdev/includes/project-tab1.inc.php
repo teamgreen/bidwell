@@ -67,7 +67,7 @@
 
 					<input class="project-tab1-inputs1" type="text" id="city_owner" name="city_owner" maxlength="20" value='<?php echo $project->getAddress(Project::eOwnerAddress)->getCity(); ?>'>
 					
-					<div>
+					<div class='state-select'>
 						<div class='left2'><label>State:</label></div> 
 					<!--<input class="project-tab1-inputs1" type="text" id="state_owner" name="state_owner" maxlength="20" value=''>-->
 						<?php $project->getAddress(Project::eOwnerAddress)->createStateSelect($dbc);?>
@@ -106,7 +106,7 @@
 				<div class='left2'><label>City:</label></div> 
 				<input class="project-tab1-inputs1" type="text" id="city_architect" name="city_architect" maxlength="20" value='<?php echo $project->getAddress(Project::eArchitectAddress)->getCity();?>'>
 				
-				<div>
+				<div class='state-select'>
 					<div class='left2'><label>State:</label></div> 
 				<!--<input class="project-tab1-inputs1" type="text" id="state_owner" name="state_owner" maxlength="20" value=''>-->
 					<?php $project->getAddress(Project::eArchitectAddress)->createStateSelect($dbc);?>
@@ -132,7 +132,7 @@
 				<div class='left2'><label>City:</label></div> 
 				<input class="project-tab1-inputs1" type="text" id="project_city_location" name="project_city_location" maxlength="20" value='<?php echo $project->getAddress(Project::eSiteAddress)->getCity();?>'>
 			
-				<div>
+				<div class='state-select'>
 					<div class='left2'><label>State:</label></div> 
 				<!--<input class="project-tab1-inputs1" type="text" id="state_owner" name="state_owner" maxlength="20" value=''>-->
 					<?php $project->getAddress(Project::eSiteAddress)->createStateSelect($dbc);?>
