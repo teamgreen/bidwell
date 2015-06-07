@@ -72,13 +72,13 @@ class Address {
 		echo "<option value=''>Select a State</option>\n";
 
 		// SQL statement to select everything from state table to populate options in select form element
-		$sql_states = "SELECT * FROM `state`";
+		$sql_states = "SELECT * FROM `state` ORDER BY `fullStateName`";
 //varDump(__FUNCTION__, __LINE__, $result_states);
 		$result_states = @mysqli_query($a_dbc, $sql_states);
 //varDump(__FUNCTION__, __LINE__, $result_states);
 
 		while($row_states = @mysqli_fetch_array($result_states)) {
-			if( $this->state == $row_states['fullStateName']){
+			if( $this->state == $row_states['abbrevName']){
 				echo "<option value='" . $row_states['abbrevName'] . "' selected>" .$row_states['fullStateName'] . "</option>\n";
 			}
 			else{
