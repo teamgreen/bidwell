@@ -2,8 +2,6 @@
 
 @include_once 'includes/debugging-helper-functions.inc.php';
 
-
-
 class Address {
 
 	protected $addressID = 0;
@@ -67,6 +65,29 @@ class Address {
 	// 	}
 
 	// }
+
+	function createStateSelect($a_dbc)
+	{
+		echo "<select name='state_location' class='state_location'>\n";
+		echo "<option value=''>Select a State</option>\n";
+
+		// SQL statement to select everything from state table to populate options in select form element
+		$sql_states = "SELECT * FROM `state`";
+//varDump(__FUNCTION__, __LINE__, $result_states);
+		$result_states = @mysqli_query($a_dbc, $sql_states);
+//varDump(__FUNCTION__, __LINE__, $result_states);
+
+		while($row_states = @mysqli_fetch_array($result_states)) {
+			if( $this->state == $row_states['fullStateName']){
+				echo "<option value='" . $row_states['abbrevName'] . "' selected>" .$row_states['fullStateName'] . "</option>\n";
+			}
+			else{
+				echo "<option value='" . $row_states['abbrevName'] . "'>" .$row_states['fullStateName'] . "</option>\n";
+			}
+		}
+
+		echo "</select>\n";
+	}
 }
 
 ?>
