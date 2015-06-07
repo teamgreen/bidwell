@@ -64,11 +64,11 @@
 					<div class="left2"><label>Address 2:</label></div>
 					<input class="project-tab1-inputs1" type="text" id="address1_owner" name="address1_owner" maxlength="100" value='<?php echo $project->getAddress(Project::eOwnerAddress)->getAddress2(); ?>'>
 					<div class='left2'><label>City:</label></div> 
-					<input class="project-tab1-inputs1" type="text" id="city_owner" name="city_owner" maxlength="20" value=''>
+					<input class="project-tab1-inputs1" type="text" id="city_owner" name="city_owner" maxlength="20" value='<?php echo $project->getAddress(Project::eOwnerAddress)->getCity(); ?>'>
 					<div class='left2'><label>State:</label></div> 
-					<input class="project-tab1-inputs1" type="text" id="state_owner" name="state_owner" maxlength="20" value=''>
+					<input class="project-tab1-inputs1" type="text" id="state_owner" name="state_owner" maxlength="20" value='<?php echo $project->getAddress(Project::eOwnerAddress)->getState(); ?>'>
 					<div class='left2'><label>Zip:</label></div> 
-					<input class="project-tab1-inputs1" type="text" id="zip_owner" name="zip_owner" maxlength="20" value=''></p>
+					<input class="project-tab1-inputs1" type="text" id="zip_owner" name="zip_owner" maxlength="20" value='<?php echo $project->getAddress(Project::eOwnerAddress)->getZipCode1(); ?>'></p>
 				</div>
 			</div>
 		</div>	
@@ -92,19 +92,19 @@
 			</div>
 			<div class='project-tab1'>
 				<div class="left2"><label>Address:</label></div>
-				<input class="project-tab1-inputs1" type="text" id="address_architect" name="address_architect" maxlength="100" value='<?php echo $project->getArchitectAddressID();?>'>
+				<input class="project-tab1-inputs1" type="text" id="address_architect" name="address_architect" maxlength="100" value='<?php echo $project->getAddress(Project::eArchitectAddress)->getAddress1();?>'>
 			
 				<div class="left2"><label>Address 2:</label></div>
-				<input class="project-tab1-inputs1" type="text" id="address1_architect" name="address1_architect" maxlength="100" value='<?php echo $project->getArchitectAddressID();?>'>
+				<input class="project-tab1-inputs1" type="text" id="address1_architect" name="address1_architect" maxlength="100" value='<?php echo $project->getAddress(Project::eArchitectAddress)->getAddress2();?>'>
 			
 				<div class='left2'><label>City:</label></div> 
-				<input class="project-tab1-inputs1" type="text" id="city_architect" name="city_architect" maxlength="20">
+				<input class="project-tab1-inputs1" type="text" id="city_architect" name="city_architect" maxlength="20" value='<?php echo $project->getAddress(Project::eArchitectAddress)->getCity();?>'>
 				
 				<div class='left2'><label>State:</label></div> 
-				<input class="project-tab1-inputs1" type="text" id="state_architect" name="state_architect" maxlength="20" value=''>
+				<input class="project-tab1-inputs1" type="text" id="state_architect" name="state_architect" maxlength="20" value='<?php echo $project->getAddress(Project::eArchitectAddress)->getState();?>'>
 				
 				<div class='left2'><label>Zip:</label></div> 
-				<input class="project-tab1-inputs1" type="text" id="zip_architect" name="zip_architect" maxlength="20" value=''>
+				<input class="project-tab1-inputs1" type="text" id="zip_architect" name="zip_architect" maxlength="20" value='<?php echo $project->getAddress(Project::eArchitectAddress)->getZipCode1();?>'>
 			</div>
 		</div>
 	</div>
@@ -114,20 +114,20 @@
 		<div class='div-table'>
 			<div class='project-tab1'>
 				<div class="left2"><label>Address:</label></div>
-				<input class="project-tab1-inputs1" type="text" id="project_address_location" name="address1_location" maxlength="100" value='<?php echo $project->getSiteAddressID();?>'>
+				<input class="project-tab1-inputs1" type="text" id="project_address_location" name="address1_location" maxlength="100" value='<?php echo $project->getAddress(Project::eSiteAddress)->getAddress1();?>'>
 			
 				<div class="left2"><label>Address 2:</label></div>
-				<input class="project-tab1-inputs1" type="text" id="address1_location" name="address1_location" maxlength="100" value='<?php echo $project->getSiteAddressID();?>'>
+				<input class="project-tab1-inputs1" type="text" id="address1_location" name="address1_location" maxlength="100" value='<?php echo $project->getAddress(Project::eSiteAddress)->getAddress2();?>'>
 			</div>
 			<div class='project-tab1'>
 				<div class='left2'><label>City:</label></div> 
-				<input class="project-tab1-inputs1" type="text" id="project_city_location" name="project_city_location" maxlength="20">
+				<input class="project-tab1-inputs1" type="text" id="project_city_location" name="project_city_location" maxlength="20" value='<?php echo $project->getAddress(Project::eSiteAddress)->getCity();?>'>
 			
 				<div class='left2'><label>State:</label></div> 
-				<input class="project-tab1-inputs1" type="text" id="project_state_location" name="project_state_location" maxlength="20" value=''>
+				<input class="project-tab1-inputs1" type="text" id="project_state_location" name="project_state_location" maxlength="20" value='<?php echo $project->getAddress(Project::eSiteAddress)->getState();?>'>
 			
 				<div class='left2'><label>Zip:</label></div> 
-				<input class="project-tab1-inputs1" type="text" id="project_zip_location" name="project_zip_location" maxlength="20" value=''>
+				<input class="project-tab1-inputs1" type="text" id="project_zip_location" name="project_zip_location" maxlength="20" value='<?php echo $project->getAddress(Project::eSiteAddress)->getZipCode1();?>'>
 			</div>
 		</div>
 		<!-- <div>
