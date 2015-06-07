@@ -60,9 +60,9 @@
 				</div>
 				<div class='project-tab1'>
 					<div class="left2"><label>Address:</label></div>
-					<input class="project-tab1-inputs1" type="text" id="address_owner" name="address_owner" maxlength="100" value='<?php echo $project->getOwnerAddressID();?>'>
+					<input class="project-tab1-inputs1" type="text" id="address_owner" name="address_owner" maxlength="100" value='<?php echo $project->getAddress(Project::eOwnerAddress)->getAddress1();?>'>
 					<div class="left2"><label>Address 2:</label></div>
-					<input class="project-tab1-inputs1" type="text" id="address1_owner" name="address1_owner" maxlength="100" value='<?php echo $project->getOwnerAddressID();?>'>
+					<input class="project-tab1-inputs1" type="text" id="address1_owner" name="address1_owner" maxlength="100" value='<?php echo $project->getAddress(Project::eOwnerAddress)->getAddress2(); ?>'>
 					<div class='left2'><label>City:</label></div> 
 					<input class="project-tab1-inputs1" type="text" id="city_owner" name="city_owner" maxlength="20" value=''>
 					<div class='left2'><label>State:</label></div> 

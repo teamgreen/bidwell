@@ -64,8 +64,6 @@
 			// FIX THIS: the 23 should be taken from a session variable.
 			$project = new Project(23);
 			$project->loadProjectFromDatabase($dbc);
-//var_dump($project);
-//echo "<p>Testing, testing: " . $project->getProjectName() . "</p>"
 			?>
 
 			<h2><?php echo $project->getProjectName(); ?></h2>

@@ -1,4 +1,3 @@
-
 <?php
 
 @include_once 'includes/debugging-helper-functions.inc.php';
@@ -26,12 +25,24 @@ class Address {
 	function setState($value){$this->state=$value;}
 	function setZipCode1($value){$this->zipCode=$value;}
 
+	//////////////////////////////////////
+	// addAddress - This function should add an address to the database
+	// created by FVDS
+	//////////////////////////////////////
+	function setEntireAddress($address1, $address2, $city, $state, $zipCode)
+	{
+		$this->setAddress1($address1);
+		$this->setAddress2($address2);
+		$this->setCity($city);
+		$this->setState($state);
+		$this->setZipCode($zipCode);
+	}
+
 	function loadFromDatabase($a_dbc, $a_addressID) 
 	{
-
 		// $address1 = null;
 
-		$sql = "SELECT * FROM `address` WHERE AddressID='" . $address1 . "'";
+		$sql = "SELECT * FROM `address` WHERE AddressID='" . $a_addressID . "'";
 		$result = @mysqli_query($a_dbc, $sql);
 		if ($result != false) {
 			$row = @mysqli_fetch_array($result);

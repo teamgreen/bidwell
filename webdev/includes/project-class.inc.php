@@ -4,7 +4,7 @@
 
 // include other classes necessary for project class.
 @include_once 'includes/sheet-class.inc.php';
-
+@include_once 'includes/address-class.inc.php';
 
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
@@ -16,9 +16,10 @@
 //////////////////////////////////////////////////////////////
 class Project
 {
-	const eOwnerAddress = 1;
-	const eArchitectAddress = 2;
-	const eSiteAddress =3;
+	const eOwnerAddress = 0;
+	const eArchitectAddress = 1;
+	const eSiteAddress =2;
+	const eAddressCount=3;
 
 	private $projectID=0; 	//int(32)  	  	 
 	private $projectName="projectclass"; 	//varchar(100)  	  	 
@@ -43,6 +44,8 @@ class Project
 	private $lastGetSheetIDsResults=null;
 	private $lastSheetResult=null;
 	private $curSheet=null;
+
+	private $addressArray = array();
 
 	// constructor
 	public function  __construct($a_id)
@@ -182,6 +185,9 @@ class Project
 			$this->siteAddressID=$project['SiteAddressID']; 	//int(32) 	  	 
 			$this->projectNotes=$project['ProjectNotes']; 	//varchar(4000) 	  	 
 			$this->companyID=$project['CompanyID']; 	//int(32) 
+
+			// and now the addresses.
+			$this->CreateAndLoadAddresses($a_dbc);
 		}
 	}
 
@@ -207,44 +213,70 @@ class Project
 	}
 
 	//////////////////////////////////////
-	// addAddress - This function should add an address to the database
+	// addAddress - This function updates the values of an address class
 	// created by FVDS
 	//////////////////////////////////////
-	function addAddress($a_dbc, $slot, $address1, $address2, $city, $state, $zipcode)
+	function addAddress($a_slot, $address1, $address2, $city, $state, $zipCode)
 	{
+		if(count($this->addressArray) > $a_slot)
+		{
+			$this->addressArray[$a_slot]->setEntireAddress($address1, $address2, $city, $state, $zipCode);
+		}
+	}
 
+	//////////////////////////////////////
+	// loadAddresses - creates instances of the Address class and loads their info from the database.
+	// $a_dbc - the database
+	// created by FVDS
+	//////////////////////////////////////
+	function CreateAndLoadAddresses($a_dbc)
+	{
+		// loop through the possible addresses
+		for($i=0;$i<Project::eAddressCount;$i++){
+			$addressID = 0;
+
+			switch($i){
+				case Project::eOwnerAddress:
+					$addressID = $this->ownerAddressID;
+					break;
+				case Project::eArchitectAddress:
+					$addressID = $this->architectAddressID;
+					break;
+				case Project::eSiteAddress:
+					$addressID = $this->siteAddressID;
+					break;
+				default: // id is already 0, so we won't try to load.
+					break;
+			}
+			//create an instance of the address
+			$this->addressArray[$i]=new Address();
+
+			// if we have an addressID, load it from the database.
+			if($addressID != 0){
+				$this->addressArray[$i]->loadFromDatabase($a_dbc, $addressID);
+			}
+		}			
 	}
 
 	//////////////////////////////////////
 	// getAddress - this function gets an address from the database
-	// $a_dbc - the database
 	// $a_slot - the type of address.  Use the enum in Project for values.
 	// return: the search result.
 	// created by FVDS
 	//////////////////////////////////////
-	function getAddress($a_dbc, $a_slot)
+	function getAddress($a_slot)
 	{
-		$addressId = null;
-		switch($slot){
-			case Project::eOwnerAddress:
-				$addressId = $this->ownerAddressID;
-				break;
-			case Project::eArchitectAddress:
-				$addressId = $this->architectAddressID;
-				break;
-			case Project::eSiteAddress:
-				$addressId = $this->siteAddressID;
-				break;
-			default:
-				return null;
-				break;
-		}
-
-		$sql = "SELECT * FROM `address` WHERE AddressID='" . $addressId . "'";
-		return @mysqli_query($a_dbc, $sql);
+		if(count($this->addressArray) > $a_slot)
+			return  $this->addressArray[$a_slot];
 	}
 
-	private function getSheetIDs($a_dbc){
+	//////////////////////////////////////
+	// getSheetIDs - gets the sheets associated with this project. Stores the sheet in lastGetSheetIDsResults
+	// $a_dbc - the database.
+	// created by FVDS
+	//////////////////////////////////////
+	private function getSheetIDs($a_dbc)
+	{
 		$sql="SELECT * FROM `project|sheet` WHERE `ProjectID`=" . $this->projectID;
 //varDump(__FUNCTION__, "sql", $sql);
 		$this->lastGetSheetIDsResults = @mysqli_query($a_dbc, $sql);
@@ -348,6 +380,15 @@ class Project
 		echo "<div class='saveSheetDiv'>\n";
 		echo "<button type='button'>Save</button>";
 		echo "</div>\n";
+	}
+
+	//////////////////////////////////////
+	// addLineToSheet - tells sheet to add a new line.
+	// created by FVDS
+	//////////////////////////////////////
+	function addNewLineToSheet()
+	{
+		$this->curSheet->addNewLine();
 	}
 
 }  // end project class.
