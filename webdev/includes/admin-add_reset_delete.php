@@ -207,14 +207,17 @@
 		?>
 	</div>
 	<div id="reset-dialog">
-		<!--<?php
-		
-			//$sql_pass = "SELECT Password FROM `account` WHERE AccountID = '$pass_id'";
-			//$result_pass = @mysqli_query($dbc, $sql_pass);
-			//$row_pass = @mysqli_fetch_assoc($result_pass);
-			//$old_pass = $row_pass['Password'];
+		<?php
+			
+			if (isset($_GET['id'])) {
+				$pass_id = $_GET['id'];
+				$sql_pass = "SELECT Password FROM `account` WHERE AccountID = '$pass_id'";
+				$result_pass = @mysqli_query($dbc, $sql_pass);
+				$row_pass = @mysqli_fetch_assoc($result_pass);
+				$old_pass = $row_pass['Password'];
+			};
 
-		?>-->
+		?>
 
 		<form action="admin.php" method="post" id="pass-form">
 			<p>Reset Password</p>
@@ -242,14 +245,14 @@
 
 				$password = $_POST['new_password'];
 
-				$sql_newpass = "UPDATE `account` (Password)
-							VALUES ('$password')
+				$sql_newpass = "UPDATE `account`
+							SET Password = '$password'
 							WHERE AccountID = '$pass_id'";
 				$result_newpass = @mysqli_query($dbc, $sql_newpass);
 
 				$num_rows_newpass = @mysqli_num_rows($result_newpass);
 				if ($num_rows_newpass === 0) {
-				 	echo "<p>We apologize for the inconvenience but the account was not changed.</p>\n";
+				 	echo "<p>We apologize for the inconvenience but the password was not changed.</p>\n";
 				};
 
 				$_POST = array(); // should clear all fields
@@ -274,15 +277,17 @@
 		</form>
 		<?php
 
+			if (isset($_GET['id'])) {
+				$delete_id = $_GET['id'];
+			};
+
 			# If the above form has been submitted,
 			# this PHP code will run and all the form
 			# values will be sent to the database.
 
 			if($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-				$id_delete = $_POST['AccountID'];
-
-				$sql_delete = "DELETE FROM `account` WHERE AccountID = '$id_delete' LIMIT 1";
+				$sql_delete = "DELETE FROM `account` WHERE AccountID = '$delete_id' LIMIT 1";
 
 				$result_delete = @mysqli_query($dbc, $sql_delete);
 
