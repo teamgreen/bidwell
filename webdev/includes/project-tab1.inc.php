@@ -64,18 +64,15 @@
 					<div class="left2"><label>Address 2:</label></div>
 					<input class="project-tab1-inputs1" type="text" id="address1_owner" name="address1_owner" maxlength="100" value='<?php echo $project->getAddress(Project::eOwnerAddress)->getAddress2(); ?>'>
 					<div class='left2'><label>City:</label></div> 
-<<<<<<< HEAD
+
 					<input class="project-tab1-inputs1" type="text" id="city_owner" name="city_owner" maxlength="20" value='<?php echo $project->getAddress(Project::eOwnerAddress)->getCity(); ?>'>
-					<div class='left2'><label>State:</label></div> 
-					<input class="project-tab1-inputs1" type="text" id="state_owner" name="state_owner" maxlength="20" value='<?php echo $project->getAddress(Project::eOwnerAddress)->getState(); ?>'>
-=======
-					<input class="project-tab1-inputs1" type="text" id="city_owner" name="city_owner" maxlength="20" value=''>
+					
 					<div>
 						<div class='left2'><label>State:</label></div> 
 					<!--<input class="project-tab1-inputs1" type="text" id="state_owner" name="state_owner" maxlength="20" value=''>-->
 						<?php $project->getAddress(Project::eOwnerAddress)->createStateSelect($dbc);?>
 					</div>
->>>>>>> origin/master
+
 					<div class='left2'><label>Zip:</label></div> 
 					<input class="project-tab1-inputs1" type="text" id="zip_owner" name="zip_owner" maxlength="20" value='<?php echo $project->getAddress(Project::eOwnerAddress)->getZipCode1(); ?>'></p>
 				</div>
@@ -109,8 +106,11 @@
 				<div class='left2'><label>City:</label></div> 
 				<input class="project-tab1-inputs1" type="text" id="city_architect" name="city_architect" maxlength="20" value='<?php echo $project->getAddress(Project::eArchitectAddress)->getCity();?>'>
 				
-				<div class='left2'><label>State:</label></div> 
-				<input class="project-tab1-inputs1" type="text" id="state_architect" name="state_architect" maxlength="20" value='<?php echo $project->getAddress(Project::eArchitectAddress)->getState();?>'>
+				<div>
+					<div class='left2'><label>State:</label></div> 
+				<!--<input class="project-tab1-inputs1" type="text" id="state_owner" name="state_owner" maxlength="20" value=''>-->
+					<?php $project->getAddress(Project::eArchitectAddress)->createStateSelect($dbc);?>
+				</div>
 				
 				<div class='left2'><label>Zip:</label></div> 
 				<input class="project-tab1-inputs1" type="text" id="zip_architect" name="zip_architect" maxlength="20" value='<?php echo $project->getAddress(Project::eArchitectAddress)->getZipCode1();?>'>
@@ -132,8 +132,11 @@
 				<div class='left2'><label>City:</label></div> 
 				<input class="project-tab1-inputs1" type="text" id="project_city_location" name="project_city_location" maxlength="20" value='<?php echo $project->getAddress(Project::eSiteAddress)->getCity();?>'>
 			
-				<div class='left2'><label>State:</label></div> 
-				<input class="project-tab1-inputs1" type="text" id="project_state_location" name="project_state_location" maxlength="20" value='<?php echo $project->getAddress(Project::eSiteAddress)->getState();?>'>
+				<div>
+					<div class='left2'><label>State:</label></div> 
+				<!--<input class="project-tab1-inputs1" type="text" id="state_owner" name="state_owner" maxlength="20" value=''>-->
+					<?php $project->getAddress(Project::eSiteAddress)->createStateSelect($dbc);?>
+				</div>
 			
 				<div class='left2'><label>Zip:</label></div> 
 				<input class="project-tab1-inputs1" type="text" id="project_zip_location" name="project_zip_location" maxlength="20" value='<?php echo $project->getAddress(Project::eSiteAddress)->getZipCode1();?>'>
