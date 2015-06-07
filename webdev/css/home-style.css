@@ -53,9 +53,16 @@ label.error {
 td {
 	word-wrap: break-word;
 }
+tr:not(:first-child) {
+	cursor: pointer;
+}
+tr:not(:first-child):hover {
+	background-color: #ebfacf;
+}
 table {
 	width: 100%;
 }
+
 #home-form_dashboard {
 	width: 80%;
 	margin: 0 auto;
@@ -104,5 +111,12 @@ table {
 	width: 50%;
 }
 .page-span {
+	margin: 0 10px;
+}
+
+.go-to-project {
+	display: none;
+}
+.view-btn {
 	margin: 0 10px;
 }

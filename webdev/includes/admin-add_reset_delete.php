@@ -1,4 +1,6 @@
 
+	<div id="add-reset_bg"></div>
+	<div id="add-dialog">
 		<form action="admin.php" method="post" id="add-form">
 			<p>Add New Account</p>
 			<hr>
@@ -107,6 +109,7 @@
 			</div>
 			<div class="submit-button">
 				<input type="submit" id="add-submit" form="add-form" value="Submit">
+				<input type="button" id="add-cancel" value="Cancel">
 			</div>
 		</form>
 		<?php
@@ -197,15 +200,102 @@
 
 				};
 
-				?>
-
-				<script type="text/javascript">
-					newURL = document.location.href;
-
-					<?php header("Location: " . $newURL); ?>
-				</script>
-				<?php
+				header("Location: admin.php");
 
 			};
 
 		?>
+	</div>
+	<div id="reset-dialog">
+		<!--<?php
+		
+			//$sql_pass = "SELECT Password FROM `account` WHERE AccountID = '$pass_id'";
+			//$result_pass = @mysqli_query($dbc, $sql_pass);
+			//$row_pass = @mysqli_fetch_assoc($result_pass);
+			//$old_pass = $row_pass['Password'];
+
+		?>-->
+
+		<form action="admin.php" method="post" id="pass-form">
+			<p>Reset Password</p>
+			<hr>
+			<div>
+				<label for="new_password">Password</label>
+				<input type="password" name="new_password" id="new_password" value="<?php echo $old_pass; ?>" class="text ui-widget-content ui-corner-all">
+			</div>
+			<div>
+				<label for="new_confirm_password">Confirm Password</label>
+				<input type="password" name="new_confirm_password" id="new_confirm_password" value="<?php echo $old_pass; ?>" class="text ui-widget-content ui-corner-all">
+			</div>
+			<div class="submit-button">
+				<input type="submit" id="reset-submit" form="pass-form" value="Submit">
+				<input type="button" id="reset-cancel" value="Cancel">
+			</div>
+		</form>
+		<?php
+
+			# If the above form has been submitted,
+			# this PHP code will run and all the form
+			# values will be sent to the database.
+
+			if($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+				$password = $_POST['new_password'];
+
+				$sql_newpass = "UPDATE `account` (Password)
+							VALUES ('$password')
+							WHERE AccountID = '$pass_id'";
+				$result_newpass = @mysqli_query($dbc, $sql_newpass);
+
+				$num_rows_newpass = @mysqli_num_rows($result_newpass);
+				if ($num_rows_newpass === 0) {
+				 	echo "<p>We apologize for the inconvenience but the account was not changed.</p>\n";
+				};
+
+				$_POST = array(); // should clear all fields
+
+				header("Location: admin.php");
+
+			};
+
+		?>
+	</div>
+	<div id="delete-dialog">
+		<form action="admin.php" method="post" id="delete-form">
+			<p>Delete Account</p>
+			<hr>
+			<div>
+				<p>Are you sure you want to delete this account? This action cannot be undone.</p>
+			</div>
+			<div class="submit-button">
+				<input type="submit" id="delete-submit" form="delete-form" value="Submit">
+				<input type="button" id="delete-cancel" value="Cancel">
+			</div>
+		</form>
+		<?php
+
+			# If the above form has been submitted,
+			# this PHP code will run and all the form
+			# values will be sent to the database.
+
+			if($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+				$id_delete = $_POST['AccountID'];
+
+				$sql_delete = "DELETE FROM `account` WHERE AccountID = '$id_delete' LIMIT 1";
+
+				$result_delete = @mysqli_query($dbc, $sql_delete);
+
+				$num_rows_delete = @mysqli_num_rows($result_delete);
+				if ($num_rows_delete === 0) {
+				 	echo "<p>We apologize for the inconvenience but this account has not been deleted.</p>\n";
+				};
+
+				$_POST = array(); // should clear all fields
+
+				header("Location: admin.php");
+
+			};
+
+		?>
+	</div>

@@ -322,12 +322,8 @@
 
 							$_POST = array(); // should clear all fields
 
-							?>
-							<script type="text/javascript">
-								window.location = "http://localhost:8888/webdev/project.php";
-								// change path when files are on server
-							</script>
-							<?php
+							header("Location: home.php");
+							
 						};
 		
 					?>

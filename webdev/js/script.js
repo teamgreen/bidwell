@@ -51,115 +51,91 @@ $(document).ready(function(){
 	/////////////////////////////
 	$('#admin-tabs').tabs();
 
+
+	////////////////////////////////
+	// Home Page Functions
+	// --------------------
+	// Created 5/15/2015
+	// Authored by Alex Chaudoin
+	////////////////////////////////
+
+	// For the click row event below:
+	// -------------------------------
+	// When a user clicks on one of the
+	// rows (not the heading row) of the
+	// home table, then the hidden tr
+	// below the selected row will be
+	// toggled (either shown or hidden).
+
+	$('table.home-table > tbody > tr:not(:first-child)').click(function(){
+		$(this).next().toggle();
+	}); // end click
+
+	/////////////////////////////
+	// Admin Page Functions
+	// --------------------
+	// Created 5/17/2015
+	// Edited 6/3/2015
+	// Authored by Alex Chaudoin
+	/////////////////////////////
+
+	// The input fields in the admin table
+	// are disabled by default
+	$('.admin-table').attr('disabled', 'disabled');
+
+	// For the click events below:
+	// ---------------------------
+	// If the user clicks on a button
+	// with a specified class, either
+	// divs will be revealed or hidden,
+	// or the input fields in the admin
+	// table will be enabled.
+
+	$('.add-account').click(function(){
+		$('#add-reset_bg').show();
+		$('#add-dialog').show();
+		return false;
+	}); // end click
+	$('.edit-account').click(function(){
+		$('.admin-table').removeAttr('disabled');
+		return false;
+	}); // end click
+	$('.reset-pass').click(function(){
+		$('#add-reset_bg').show();
+		$('#reset-dialog').show();
+		return false;
+	}); // end click
+	$('.delete-account').click(function(){
+		$('#add-reset_bg').show();
+		$('#delete-dialog').show();
+		return false;
+	}); // end click
+
+	// If the user clicks "Cancel" in any
+	// of the dialogs, the dialogs and modal
+	// background will be hidden.
+	$('#add-cancel').click(function(){
+		$('#add-form').data('validator').resetForm();
+		$('#add-reset_bg').hide();
+		$('#add-dialog').hide();
+	}); // end click
+	$('#reset-cancel').click(function(){
+		$('#pass-form').data('validator').resetForm();
+		$('#add-reset_bg').hide();
+		$('#reset-dialog').hide();
+	}); // end click
+	$('#delete-cancel').click(function(){
+		$('#add-reset_bg').hide();
+		$('#delete-dialog').hide();
+	}); // end click
+
+	// If the user clicks on an enabled text
+	// input field, the Save/Cancel buttons 
+	// appear right beside the existing buttons.
+	$('input[type="text"].admin-table').click(function(){
+		$('.save-cancel').show(); // get specificity to work by having the nearest .save-cancel buttons to $this show up
+	}); // end focus
+
 }); // end of document.ready
-
-
-////////////////////////////////
-// Home Page Functions
-// --------------------
-// Created 5/15/2015
-// Authored by Alex Chaudoin
-////////////////////////////////
-
-// For the two button functions below:
-// ------------------------------------
-// These two functions are called as
-// onclick events by the "Previous" and 
-// "Next" buttons on the Home Page.
-// When the "Next" button is clicked,
-// the "active" class on its parent div
-// gets removed and added to the next div,
-// making the parent div disappear and the
-// next div visible. Also, the "active-form"
-// class is removed from the form div with
-// the class and that class is then placed
-// on the next div, making the former div
-// disappear while the latter div appears.
-// With each subsequent click on the "Next"
-// button, the current value of the progress
-// bar will be incremented by 25.
-//
-// Clicking the "Previous" button works in 
-// the same way except the "active" class 
-// is placed on the previous div instead, 
-// making the parent div disappear and the 
-// previous div visible. The "active-form" 
-// class also gets placed on the previous div
-// instead and the progress bar is decremented
-// by 25 with each subsequent click of the
-// "Previous" button.
-//
-// nextSibling = holds the next sibling element
-//			of the div with the "active-form" class.
-// prevSibling = holds the previous sibling element
-//			of the div with the "active-form" class.
-
-function nextDiv(button) {
-	$(button).parent('div').removeClass('active');
-	$(button).parent('div').next().addClass('active');
-	var nextSibling = $('div.active-form').next();
-	$('div.active-form').removeClass('active-form');
-	nextSibling.addClass('active-form');
-	var current = $('#progress-bar').progressbar('option', 'value');
-	$('#progress-bar').progressbar('option', 'value', current+=25)
-} // end function
-function prevDiv(button) {
-	$(button).parent('div').removeClass('active');
-	$(button).parent('div').prev().addClass('active');
-	var prevSibling = $('div.active-form').prev();
-	$('div.active-form').removeClass('active-form');
-	prevSibling.addClass('active-form');
-	var current = $('#progress-bar').progressbar('option', 'value');
-	$('#progress-bar').progressbar('option', 'value', current-=25)
-} // end function
-
-/////////////////////////////
-// Admin Page Functions
-// --------------------
-// Created 5/17/2015
-// Edited 6/3/2015
-// Authored by Alex Chaudoin
-/////////////////////////////
-
-// For the sendID function below:
-// When the user clicks on one of the
-// three buttons in the Admin Table-
-// Edit Account, Password Reset, or
-// Delete Account- this function will
-// retrieve the account ID number from
-// the anchor tag wrapped around the 
-// button and send that number with
-// AJAX for a specified PHP file.
-// ---------------------------------
-// button_class = class of button to
-//				be selected for function.
-// url = local URL path to PHP file to
-//		to use the account ID number.
-
-// function sendID(button_class, url){
-// 	$(button_class).click(function(){
-// 		var data = $(this).parent('a').attr('href');
-// 		var id = data.split('=');
-// 		id = id[1];
-// 		$.ajax({
-// 			url: url,
-// 			type: 'get',
-// 			data: {'id': id},
-// 			success: function(data) {
-// 				console.log("It works " + data);
-// 			},
-// 			error: function(xhr, desc, err) {
-// 		        console.log(xhr);
-// 		        console.log("Details: " + desc + "\nError:" + err);
-// 		    }
-// 		}); // end ajax
-// 		return false;
-// 	}); // end click
-// } // end function
-
-// sendID('.edit-account', 'includes/admin-edit-account.php');
-// sendID('.reset-pass', 'includes/admin-reset-password.php');
-// deleting account will be determined later
-//sendID('.delete-accaount', 'includes/admin-reset-password.php');
 
 

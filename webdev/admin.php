@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -41,21 +40,7 @@
 </head>
 <body>
 
-	<div id="add-reset_bg"></div>
-	<div id="add-reset_dialog">
-		<div id="add-dialog">
-			<?php @include_once "includes/admin-add-account.php"; ?>
-			<p>Add account!</p>
-		</div>
-		<div id="reset-dialog">
-			<?php @include_once "includes/admin-reset-password.php"; ?>
-			<p>Reset password</p>
-		</div>
-		<div id="delete-dialog">
-			<!-- NEED CONFIRMATION FOR DELETE -->
-			<p>Are you sure about this?</p>
-		</div>
-	</div>
+	<?php include 'includes/admin-add_reset_delete.php'; ?>
 
 	<div class="wrapper">
 
@@ -159,10 +144,8 @@
 
 						?>
 
-						<?php @include_once 'includes/admin-forms.php'; ?>
-
 					<div id="admin-table_dashboard">
-						<button class="add-account admin-buttons">
+						<button class="add-account">
 							<i class="fa fa-plus"></i> Add New Account
 						</button>
 					</div>
