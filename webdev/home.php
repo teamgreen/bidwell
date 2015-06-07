@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,6 +34,10 @@
 	<!-- jQuery Validate Plugin files -->
     <script type="text/javascript" src="libs/jquery.validate.min.js"></script>
     <script type="text/javascript" src="libs/additional-methods.min.js"></script>
+
+     <!-- Font Awesome Bootstrap CDN -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
 </head>
 <body>
 
@@ -107,23 +112,14 @@
 
 						// SQL statement to select everything from project table to populate table with rows and cells		
 						$sql_project = "SELECT * FROM `project` $limit"; 
-//varDump("home.php " . __LINE__, '$sql_project', $sql_project);
-
 						$result_project = @mysqli_query($dbc, $sql_project);
-
-						// This breaks our database link.  If used, will need to call the connect function again.
-						// Also, a multi_query does NOT return a result.  Look up function documentation for an
-						// example of correct implementation.
-						//$result_project = @mysqli_multi_query($dbc, $sql_project);
-//varDump("home.php " . __LINE__, '$result_project', $result_project);
-//varDump("home.php " . __LINE__, '$dbc', $dbc);
 
 						$num_rows_project = @mysqli_num_rows($result_project);
 						if ($num_rows_project == 0) {
 							echo "<p>Currently there are no projects in this tab.</p>";
 							echo "<p>Care to create a new project in the next tab?</p>";
 						} else {
-							echo "<table>\n";
+							echo "<table class=\"home-table\">\n";
 							echo "<tr>\n";
 							echo "<th>Project Number</th>";
 							echo "<th>Project Name</th>";
@@ -138,8 +134,15 @@
 								echo "<td>" . $row_project['ProjectName'] . "</td>";
 								echo "<td>" . $row_project['SiteAddressID'] . "</td>";
 								echo "<td>" . $row_project['ProjectDueDate'] . "</td>";
-								echo "<td></td>";// . $row_project['ProjectStatusName'] . "</td>";
+								echo "<td>" . $row_project['ProjectStatusID'] . "</td>";
 								echo "</tr>\n";
+								echo "<tr class=\"go-to-project\">\n";
+								echo "<td colspan=\"5\">
+										<p>Would you like to view this project?
+											<a href='{$_SERVER['PHP_SELF']}?projectid=" . $row_project['ProjectID'] . "'><button class=\"view-btn\" title=\"Go To Project\"><i class=\"fa fa-eye\"></i> View Project</button></a>
+						
+									</td>";
+								echo"</tr>\n";
 							}
 
 							echo "</table>\n";
@@ -215,7 +218,7 @@
 							echo "<p>Currently there are no completed projects in this tab.</p>";
 							echo "<p>Care to create a new project in the previous tab?</p>";
 						} else {
-							echo "<table>\n";
+							echo "<table class=\"home-table\">\n";
 							echo "<tr>\n";
 							echo "<th>Project Number</th>";
 							echo "<th>Project Name</th>";
@@ -232,6 +235,13 @@
 								echo "<td>" . $row_completed_project['ProjectDueDate'] . "</td>";
 								echo "<td>" . $row_completed_project['ProjectStatusID'] . "</td>";
 								echo "</tr>\n";
+								echo "<tr class=\"go-to-project\">\n";
+								echo "<td colspan=\"5\">
+										<p>Would you like to view this project?
+											<a href='{$_SERVER['PHP_SELF']}?projectid=" . $row_project['ProjectID'] . "'><button class=\"view-btn\" title=\"Go To Project\"><i class=\"fa fa-eye\"></i> View Project</button></a>
+						
+									</td>";
+								echo"</tr>\n";
 							}
 
 							echo "</table>\n";
@@ -261,6 +271,15 @@
 			</div>
 
 		</div>
+
+	<?php 
+		# set up projectid SESSION variable
+		# for use in project page
+		if (isset($_GET['projectid'])) {
+			$_SESSION['projectid'] = $_GET['projectid'];
+			header("Location: project.php");
+		} 
+	?>
 
 	<?php @require_once "includes/footer.inc.php"; ?>
 

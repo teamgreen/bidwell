@@ -154,20 +154,56 @@ $('#next3').click(function(){
 		return false;
 	};
 }); // end click
-//$('#submit').click(function(){
-	//if ($('#home-form').valid()) {
-	//	nextDiv('#next3');
-	//} else {
-	//	form_successDialog.dialog('open');
-	//};
-//}); // end click
 
-var form_successDialog = $('#form-success').dialog({
-	autoOpen: false,
-	modal: true,
-	buttons: {
-		Ok: function(){
-			$(this).dialog('close');
-		}
-	}
-}); // end dialog
+// For the two button functions below:
+// ------------------------------------
+// These two functions are called as
+// onclick events by the "Previous" and 
+// "Next" buttons on the Home Page.
+// When the "Next" button is clicked,
+// the "active" class on its parent div
+// gets removed and added to the next div,
+// making the parent div disappear and the
+// next div visible. Also, the "active-form"
+// class is removed from the form div with
+// the class and that class is then placed
+// on the next div, making the former div
+// disappear while the latter div appears.
+// With each subsequent click on the "Next"
+// button, the current value of the progress
+// bar will be incremented by 25.
+//
+// Clicking the "Previous" button works in 
+// the same way except the "active" class 
+// is placed on the previous div instead, 
+// making the parent div disappear and the 
+// previous div visible. The "active-form" 
+// class also gets placed on the previous div
+// instead and the progress bar is decremented
+// by 25 with each subsequent click of the
+// "Previous" button.
+//
+// nextSibling = holds the next sibling element
+//			of the div with the "active-form" class.
+// prevSibling = holds the previous sibling element
+//			of the div with the "active-form" class.
+
+function nextDiv(button) {
+	$(button).parent('div').removeClass('active');
+	$(button).parent('div').next().addClass('active');
+	var nextSibling = $('div.active-form').next();
+	$('div.active-form').removeClass('active-form');
+	nextSibling.addClass('active-form');
+	var current = $('#progress-bar').progressbar('option', 'value');
+	$('#progress-bar').progressbar('option', 'value', current+=25)
+} // end function
+function prevDiv(button) {
+	$(button).parent('div').removeClass('active');
+	$(button).parent('div').prev().addClass('active');
+	var prevSibling = $('div.active-form').prev();
+	$('div.active-form').removeClass('active-form');
+	prevSibling.addClass('active-form');
+	var current = $('#progress-bar').progressbar('option', 'value');
+	$('#progress-bar').progressbar('option', 'value', current-=25)
+} // end function
+
