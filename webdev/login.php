@@ -77,7 +77,8 @@
 									}
 								}
 							} 
-							echo "Not valid";
+							echo '<script type="text/javascript">alert("Invalid logon credentials"); </script>';
+;
 								
 						}
 			?>
