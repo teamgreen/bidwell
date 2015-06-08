@@ -39,6 +39,7 @@
 	<!-- Custom jQuery UI Library - 1.11.4 -->
 	<script src="libs/jquery-ui-1.11.4.custom/jquery-ui.min.js"></script>
 	<script src='js/project-tab1-script.js'></script>
+	<script src='js/helper_functions.js'></script>
 	<script src="js/project-script.js"></script>
 </head>
 <body>
