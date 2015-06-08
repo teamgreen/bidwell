@@ -1,4 +1,3 @@
-<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,7 +39,14 @@
 
 </head>
 <body>
-
+	<?php 
+		# set up projectid SESSION variable
+		# for use in project page
+		if (isset($_GET['projectid'])) {
+			$_SESSION['projectid'] = $_GET['projectid'];
+			header("Location:project.php");
+		} 
+	?>
 	<div class="wrapper">
 	
 	<?php
@@ -62,29 +68,6 @@
 					<li><a href="#tab3">Completed Projects</a></li>
 				</ul>
 				<div id="tab1">
-					<!-- test PHP function to read account permissions
-					<?php
-	
-						// require 'includes/mysqli_connect.inc.php';
-
-						// $dbc = SQLConnect();
-
-						// $sql_test = "SELECT * FROM `account|permission`";
-						// $result_test = @mysqli_query($dbc, $sql_test);
-
-						// while($row_test = @mysqli_fetch_array($result_test)) {
-						// 	testPermissions($row_test['AccountID'], $row_test['PermissionID']);
-						// }
-
-						// function testPermissions($accountID, $permissionID) {
-						// 	if ($accountPermission === $permissionID) {
-						// 		return 1;
-						// 	} else {
-						// 		return 0;
-						// 	};
-						// }
-
-					?> -->
 					<?php
 						if (isset($_GET["pageNum"])) {
 							$pageNum = $_GET["pageNum"];
@@ -271,15 +254,6 @@
 			</div>
 
 		</div>
-
-	<?php 
-		# set up projectid SESSION variable
-		# for use in project page
-		if (isset($_GET['projectid'])) {
-			$_SESSION['projectid'] = $_GET['projectid'];
-			header("Location: project.php");
-		} 
-	?>
 
 	<?php @require_once "includes/footer.inc.php"; ?>
 

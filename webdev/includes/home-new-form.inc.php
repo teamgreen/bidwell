@@ -193,7 +193,7 @@
 							<div>
 								<button class="prev form-buttons" id="prev3" value="Previous" onclick="prevDiv('#prev3')"><i class="fa fa-arrow-left"></i></button>
 								<span>Page 4 of 4</span>
-								<button id="submit" form="home-form" value="Submit"><i class="fa fa-paper-plane"></i></button>
+								<button id="submit" form="home-form" value="Submit"><i class="fa fa-paper-plane"></i> Submit</button>
 							</div>
 						</div>
 					</div>
@@ -203,7 +203,7 @@
 						# this PHP code will run and all the form
 						# values will be sent to the database.
 
-						if($_SERVER['REQUEST_METHOD'] == 'POST') { // changed from !empty($_POST)
+						if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 							$projectName = assignIfNotEmpty('project_name', 'Project');
 							$projectDescription = assignIfNotEmpty('project_description', 'Here is the project description.');
@@ -321,8 +321,6 @@
 							};
 
 							$_POST = array(); // should clear all fields
-
-							header("Location: home.php");
 							
 						};
 		

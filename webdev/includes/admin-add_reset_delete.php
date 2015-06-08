@@ -200,8 +200,6 @@
 
 				};
 
-				header("Location: admin.php");
-
 			};
 
 		?>
@@ -257,8 +255,6 @@
 
 				$_POST = array(); // should clear all fields
 
-				header("Location: admin.php");
-
 			};
 
 		?>
@@ -297,8 +293,6 @@
 				};
 
 				$_POST = array(); // should clear all fields
-
-				header("Location: admin.php");
 
 			};
 
