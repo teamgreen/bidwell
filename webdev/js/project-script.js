@@ -53,11 +53,11 @@ $(document).ready(function(){
 			// and now the sheet we want.
 			//$(this).find(':selected').val();
 			if(active==2)
-				setSessionVariable('InternalBidSheetID', $(this).find(':selected').val());
+				setSessionVariableAndReload('InternalBidSheetID', $(this).find(':selected').val());
 			else if (active==3)
-				setSessionVariable('ExternalBidSheetID', $(this).find(':selected').val());
+				setSessionVariableAndReload('ExternalBidSheetID', $(this).find(':selected').val());
 			else if(active==4)
-				setSessionVariable('ChangeBidSheetID', $(this).find(':selected').val());
+				setSessionVariableAndReload('ChangeBidSheetID', $(this).find(':selected').val());
 		}
 	);
 });

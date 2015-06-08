@@ -65,6 +65,33 @@ function setSessionVariable(a_var, a_value)
 }
 
 ///////////////////////////////////////
+// setSessionVariableAndReload - uses Ajax to set the session variable by
+// calling a php script, then reloads the page on success.
+// a_var - the name of the session variable we want
+// a_value - the value to set it to
+// return: the contents of the variable.  Null if not valid.
+///////////////////////////////////////
+function setSessionVariableAndReload(a_var, a_value)
+{
+	console.log("setting " + a_var);
+	$.ajax({
+		url: 'phpscripts/AjaxHelper.php',
+		type: 'post',
+		data: {'setSessionVariable': a_var,
+				'value': a_value},
+		success: function(data, status) {
+			// do something here.
+			console.log("setSessionVariable success.  Set "+a_var+" to "+a_value);
+			location.reload(true);
+		},
+		error: function(xhr, desc, err) {
+			console.log(xhr);
+			console.log("Details: " + desc + "\nError:" + err);
+		}
+	}); // end ajax call
+}
+
+///////////////////////////////////////
 // unsetSessionVariable - uses Ajax to unset the session variable by
 // calling a php script.
 // a_var - the name of the session variable we want
