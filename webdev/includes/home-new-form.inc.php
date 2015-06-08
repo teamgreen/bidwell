@@ -193,7 +193,7 @@
 							<div>
 								<button class="prev form-buttons" id="prev3" value="Previous" onclick="prevDiv('#prev3')"><i class="fa fa-arrow-left"></i></button>
 								<span>Page 4 of 4</span>
-								<button id="submit" form="home-form" value="Submit"><i class="fa fa-paper-plane"></i> Submit</button>
+								<button type="submit" id="submit" form="home-form" value="Submit"><i class="fa fa-paper-plane"></i> Submit</button>
 							</div>
 						</div>
 					</div>
@@ -321,6 +321,8 @@
 							};
 
 							$_POST = array(); // should clear all fields
+
+							header('location:home.php');
 							
 						};
 		
