@@ -14,5 +14,8 @@ session_start();
  	else if ($_POST['setSessionVariable']){
  			$_SESSION[$_POST['setSessionVariable']] = $_POST['value'];
  	}
+ 	else if($_POST['unsetSessionVariable']){
+ 		unset($_SESSION[$_POST['unsetSessionVariable']]);
+ 	}
 
 ?>

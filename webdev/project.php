@@ -55,7 +55,20 @@
 		$projectid =23;
 		if (isset($_SESSION['projectid'])) {
 			$projectid = $_SESSION['projectid'];
+
+			// if our project has changed, clear the tab related stuff.
+			if(!$_SESSION['prevprojectid'] || $_SESSION['prevprojectid'] != $projectid){
+				// unset the session variables
+				unset($_SESSION['InternalBidSheetID']);
+				unset($_SESSION['ExternalBidSheetID']);
+				unset($_SESSION['ChangeBidSheetID']);
+				unset($_SESSION['activetab']);
+				// store the page for the next time.
+				$_SESSION['prevprojectid'] = $projectid;
+			}
 		}
+
+
 	?>
 
 	<div class="wrapper">

@@ -63,3 +63,27 @@ function setSessionVariable(a_var, a_value)
 		}
 	}); // end ajax call
 }
+
+///////////////////////////////////////
+// unsetSessionVariable - uses Ajax to unset the session variable by
+// calling a php script.
+// a_var - the name of the session variable we want
+///////////////////////////////////////
+function unsetSessionVariable(a_var)
+{
+	console.log("unsetting " + a_var);
+	$.ajax({
+		url: 'phpscripts/AjaxHelper.php',
+		type: 'post',
+		data: {'unsetSessionVariable': a_var},
+		success: function(data, status) {
+			// do something here.
+			console.log("unsetSessionVariable success.  Unset "+a_var);
+		},
+		error: function(xhr, desc, err) {
+			console.log(xhr);
+			console.log("Details: " + desc + "\nError:" + err);
+		}
+	}); // end ajax call
+}
+

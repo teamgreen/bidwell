@@ -60,6 +60,4 @@ $(document).ready(function(){
 				setSessionVariable('ChangeBidSheetID', $(this).find(':selected').val());
 		}
 	);
-
 });
-
