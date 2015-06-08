@@ -173,9 +173,6 @@
 							$sql_permission = "INSERT INTO `account|permission` (PermissionID) VALUES ('$value') WHERE AccountID = '$p_id'";
 							$result_permission = @mysqli_query($dbc, $sql_permission);
 
-							var_dump($dbc);
-							var_dump($sql_permission);
-
 							$num_rows_permission = @mysqli_num_rows($result_permission);
 							if ($num_rows_permission == 0) {
 							 	echo "<p>We apologize for the inconvenience but a permission was not added.</p>\n";
@@ -187,9 +184,6 @@
 						$sql_permission = "INSERT INTO `account|permission` (PermissionID) VALUES ('$permissions') WHERE AccountID = '$p_id'";
 						$result_permission = @mysqli_query($dbc, $sql_permission);
 
-						var_dump($dbc);
-						var_dump($sql_permission);
-
 						$num_rows_permission = @mysqli_num_rows($result_permission);
 						if ($num_rows_permission == 0) {
 						 	echo "<p>We apologize for the inconvenience but a permission was not added.</p>\n";
@@ -197,6 +191,8 @@
 					};
 
 					$_POST = array(); // should clear all fields
+
+					header('location:admin.php');
 
 				};
 
@@ -255,6 +251,8 @@
 
 				$_POST = array(); // should clear all fields
 
+				header('location:admin.php');
+
 			};
 
 		?>
@@ -294,6 +292,8 @@
 
 				$_POST = array(); // should clear all fields
 
+				header('location:admin.php');
+				
 			};
 
 		?>

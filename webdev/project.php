@@ -40,9 +40,23 @@
 	<script src="libs/jquery-ui-1.11.4.custom/jquery-ui.min.js"></script>
 	<script src='js/project-tab1-script.js'></script>
 	<script src='js/helper_functions.js'></script>
+	 <!-- <script src='js/project-tab1-script.js'></script> -->
+	<script type="text/javascript" src="libs/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="libs/additional-methods.min.js"></script>
 	<script src="js/project-script.js"></script>
+	
 </head>
 <body>
+	<?php
+
+		session_start(); 
+		# set up projectid SESSION variable
+		# for use in project page
+		$projectid =23;
+		if (isset($_SESSION['projectid'])) {
+			$projectid = $_SESSION['projectid'];
+		}
+	?>
 
 	<div class="wrapper">
 
@@ -63,7 +77,8 @@
 			@require_once "includes/project-class.inc.php";
 
 			// FIX THIS: the 23 should be taken from a session variable.
-			$project = new Project(23);
+			
+			$project = new Project($projectid);
 			$project->loadProjectFromDatabase($dbc);
 			?>
 

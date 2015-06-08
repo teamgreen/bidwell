@@ -206,6 +206,9 @@ if(isset($_POST['Submit'])) {
   } 
   echo rtrim($ext, ", ").")</pre>";
   ?>
+
+
+  
   
   <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" enctype="multipart/form-data" name="form1">
 	<input type="hidden" name="MAX_FILE_SIZE" value="<?php echo $max_size; ?>">
@@ -217,6 +220,44 @@ if(isset($_POST['Submit'])) {
 
 	<p><input type="submit" name="Submit" id="Submit" value="Submit"></p>
   </form>
+  <!--<script type="text/javascript">
+ //      $(form).submit(function(event) {
+ //    // Stop the browser from submitting the form.
+	//    		event.preventDefault();
+
+	//     // TODO
+
+	//     	$.ajax({
+	//             url : project.php,
+	//             type : 'POST',
+	//             data : {
+	//             file: file_uploaded,
+	//             },
+	            
+	//           });
+	// 	});
+          
+
+          
+
+ //  //     $('#submit').click(function()
+	// 	// {
+	// 	//     $.ajax({
+	// 	//         url: send_email.php,
+	// 	//         type:'POST',
+	// 	//         data:
+	// 	//         {
+	// 	//             email: email_address,
+	// 	//             message: message
+	// 	//         },
+	// 	//         success: function(msg)
+	// 	//         {
+	// 	//             alert('Email Sent');
+	// 	//         }               
+	// 	//     });
+	// 	// });
+	//</s cript> -->
+  
   <p><?php echo $my_upload->show_error_string(); ?></p>
   <?php echo select_files($folder); ?>
   <!-- 
