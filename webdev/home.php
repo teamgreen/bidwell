@@ -42,6 +42,7 @@
 	<?php 
 		# set up projectid SESSION variable
 		# for use in project page
+		session_start();
 		if (isset($_GET['projectid'])) {
 			$_SESSION['projectid'] = $_GET['projectid'];
 			header("Location:project.php");
