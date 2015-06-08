@@ -106,9 +106,10 @@ class Project
 	//////////////////////////////////////
 	function displayProjectSheetOfType($a_dbc, $a_type, $a_sheetID)
 	{	
-		if($a_sheetID == null)
-			$this->getSheetsByType($a_dbc, $a_type);
-		else
+		if($a_sheetID == null){
+			$this->getSheetUsingSession($a_dbc, $a_type);
+			//$this->getSheetsByType($a_dbc, $a_type);
+		} else
 			$this->getSheetByID($a_dbc, $a_sheetID);
 
 // varDump("project.php", 'getSheetsByType()', $project);
@@ -298,6 +299,21 @@ class Project
 	}
 
 	//////////////////////////////////////
+	// getSheetByID - gets a sheet with a given ID.  stores the sheet in lastSheetResult
+	// $a_dbc - the database.
+	// $a_sheetType - the type of sheet.  Use the enum from the Sheet class.
+	// $a_sheetID - the ID of the sheet to get.
+	// return: the result of the search
+	// created by FVDS
+	//////////////////////////////////////
+	function getSheetByTypeAndID($a_dbc, $a_sheetType, $a_sheetID)
+	{
+		$sql = "SELECT * FROM `sheet` WHERE `SheetType`='" . $a_sheetType . "' AND (`SheetID`=" . $a_sheetID . ")"; 
+		$this->lastSheetResult =  @mysqli_query($a_dbc, $sql);
+		return $this->lastSheetResult;
+	}
+
+	//////////////////////////////////////
 	// getSheetsByType - builds an sql result of all sheets of a given type for
 	//		this project.  Save the value in lastSheetResult
 	// $a_dbc - the database
@@ -334,11 +350,35 @@ class Project
 	}
 
 	//////////////////////////////////////
+	// getSheetsByType - finds a sheet of a given type if its id matches the session variable
+	//		Save the value in lastSheetResult
+	// $a_dbc - the database
+	// $a_sheetType - the type of sheet.  Use the enum from the Sheet class.
+	// return: the result of the search
+	// created by FVDS
+	//////////////////////////////////////
+	function getSheetUsingSession($a_dbc, $a_sheetType)
+	{
+		if (isset($_SESSION[$a_sheetType . "ID"])) {
+			$projectid = $_SESSION[$a_sheetType . "ID"];
+
+			$this->getSheetByTypeAndID($a_dbc, $a_sheetType, $projectid);
+//varDump(__FUNCTION__, '$this->lastSheetResult', $this->lastSheetResult);
+			if(!$this->lastSheetResult || !@mysqli_num_rows($this->lastSheetResult)){
+				$this->getSheetsByType($a_dbc, $a_sheetType);
+			}
+		}
+		else
+			return $this->getSheetsByType($a_dbc, $a_sheetType);
+	}
+
+	//////////////////////////////////////
 	// returnSheetRow - returns the next sheet row
 	// return: the next sheet
 	// created by FVDS
 	//////////////////////////////////////
-	function returnSheetRow(){
+	function returnSheetRow()
+	{
  //varDump(__FUNCTION__, 'lastSheetResult', $this->lastSheetResult);
 		return @mysqli_fetch_array($this->lastSheetResult);
 	}

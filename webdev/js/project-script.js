@@ -9,6 +9,7 @@ $(document).ready(function(){
 	// 	});
 	// });
 
+	// set the active tab if session variable is set.
 	$.ajax({
 		url: 'phpscripts/AjaxHelper.php',
 		type: 'post',
@@ -23,21 +24,13 @@ $(document).ready(function(){
 		error: function(xhr, desc, err) {
 			console.log(xhr);
 			console.log("Details: " + desc + "\nError:" + err);
-			a_value = null;
 		}
 	});
-	//var activeTab = getSessionVariable('activetab');
-	
-
 
   	// and the tooltip
   	$('span.ui-icon').tooltip();
 
-
-	// $('input[type="checkbox"]').click(function(){
-	// 	$("."+$(this).attr("value")).slideToggle();
-	// });
-
+  	// if an empty line has been changed, add a new empty line at the bottom.
 	$('.newLine').change(
 		function(evt)
 		{
@@ -49,6 +42,7 @@ $(document).ready(function(){
 		}
 	);
 	
+	// user has elected to change the current sheet.
 	$('.loadSheetSelect').change(
 		function(evt)
 		{
@@ -58,7 +52,12 @@ $(document).ready(function(){
 
 			// and now the sheet we want.
 			//$(this).find(':selected').val();
-			setSessionVariable('sheet', $(this).find(':selected').val());
+			if(active==2)
+				setSessionVariable('InternalBidSheetID', $(this).find(':selected').val());
+			else if (active==3)
+				setSessionVariable('ExternalBidSheetID', $(this).find(':selected').val());
+			else if(active==4)
+				setSessionVariable('ChangeBidSheetID', $(this).find(':selected').val());
 		}
 	);
 
