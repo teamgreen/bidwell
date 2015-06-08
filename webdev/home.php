@@ -39,15 +39,6 @@
 
 </head>
 <body>
-	<?php 
-		# set up projectid SESSION variable
-		# for use in project page
-		session_start();
-		if (isset($_GET['projectid'])) {
-			$_SESSION['projectid'] = $_GET['projectid'];
-			header("Location:project.php");
-		} 
-	?>
 	<div class="wrapper">
 	
 	<?php
@@ -58,6 +49,13 @@
 
 		@require_once 'includes/mysqli_connect.inc.php';
 		$dbc = SQLConnect();
+
+		# set up projectid SESSION variable
+		# for use in project page
+		if (isset($_GET['projectid'])) {
+			$_SESSION['projectid'] = $_GET['projectid'];
+			header("Location:project.php");
+		}
 	?>
 	
 		<div class="content">

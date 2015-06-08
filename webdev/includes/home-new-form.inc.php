@@ -62,7 +62,7 @@
 											$result_states = @mysqli_query($dbc, $sql_states);
 
 											while($row_states = @mysqli_fetch_array($result_states)) {
-												echo "<option value='" . $row_states['fullStateName'] . "'>" .$row_states['abbrevName'] . "</option>\n";
+												echo "<option value='"  .$row_states['abbrevName']. "'>" . $row_states['fullStateName'] . "</option>\n";
 											}
 
 										?>
@@ -116,7 +116,7 @@
 											$result_states = @mysqli_query($dbc, $sql_states);
 
 											while($row_states = @mysqli_fetch_array($result_states)) {
-												echo "<option value='" . $row_states['fullStateName'] . "'>" .$row_states['abbrevName'] . "</option>\n";
+												echo "<option value='" . $row_states['abbrevName'] . "'>" .$row_states['fullStateName'] . "</option>\n";
 											}
 
 										?>
@@ -152,7 +152,7 @@
 											$result_states = @mysqli_query($dbc, $sql_states);
 
 											while($row_states = @mysqli_fetch_array($result_states)) {
-												echo "<option value='" . $row_states['fullStateName'] . "'>" .$row_states['abbrevName'] . "</option>\n";
+												echo "<option value='" . $row_states['abbrevName'] . "'>" .$row_states['fullStateName'] . "</option>\n";
 											}
 
 										?>
@@ -207,7 +207,7 @@
 
 							$projectName = assignIfNotEmpty('project_name', 'Project');
 							$projectDescription = assignIfNotEmpty('project_description', 'Here is the project description.');
-							$projectCurrentDate = date('\'Y-m-d');
+							$projectCurrentDate = date('Y-m-d');
 							$projectDueDate = assignIfNotEmpty('project_due_date', 'TBD');
 							$projectDueDate = rearrangeDate($projectDueDate);
 				
@@ -240,6 +240,7 @@
 
 							$sql_form_project = "INSERT INTO `project` (ProjectName, ProjectDescription, ProjectDateEntered, ProjectDueDate, Owner, OwnerPhone, OwnerCellPhone, OwnerEmail, Architect, ArchitectPhone, ArchitectCellPhone, ArchitectEmail, ProjectNotes)
 										VALUES ('$projectName', '$projectDescription', '$projectCurrentDate', '$projectDueDate', '$ownerName', '$ownerPhone', '$ownerCellphone', '$ownerEmail', '$architectName', '$architectPhone', '$architectCellphone', '$architectEmail', '$projectNotes')";
+
 							$result_form_project = @mysqli_query($dbc, $sql_form_project);
 
 							$num_rows_form_project = @mysqli_num_rows($result_form_project);
