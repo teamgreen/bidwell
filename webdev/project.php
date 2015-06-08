@@ -98,7 +98,7 @@
 			<h2><?php echo $project->getProjectName(); ?></h2>
 
 			<div id="home-tabs">
-				<ul>
+				<ul id='tab-markers'>
 					<li><a href="#tab1">Project<br>Information</a></li>
 					<li><a href="#tab2">Project<br>Description</a></li>
 					<li><a href="#tab3">Internal<br>Bid Sheets</a></li>

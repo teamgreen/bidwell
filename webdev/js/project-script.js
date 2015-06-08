@@ -30,6 +30,15 @@ $(document).ready(function(){
   	// and the tooltip
   	$('span.ui-icon').tooltip();
 
+  	$('#tab-markers').click(
+  		function(evt)
+  		{
+  			// set session var for active tab
+			var active = $( "#home-tabs" ).tabs( "option", "active" );
+			setSessionVariable('activetab', active);
+  		}
+  	);
+
   	// if an empty line has been changed, add a new empty line at the bottom.
 	$('.newLine').change(
 		function(evt)
