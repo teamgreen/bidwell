@@ -125,8 +125,12 @@ class ExternalBidSheetLine extends Line
 	function displayLine($a_dbc, $a_lineCount)
 	{
 //varDump(__FUNCTION__, 'ExternalBidSheet: $a_row', $a_row);
-		echo "<tr>\n";
-		echo "<td>{$a_lineCount}</td>\n";
+		// lines without an idea are new.  Class 'em so the js script knows it
+		if($this->lineID)
+			echo "<tr>\n";
+		else
+			echo "<tr class='newLine'>\n";
+		echo "<td class='exLineNum'>{$a_lineCount}</td>\n";
 		echo "<td class='exTableData'><input class='exDescInput' type='text' maxlength='400' name='fname' value='" . $this->workDescription . "'></td>\n";
 		echo "<td><input class='exAmtInput' type='number' name='fname' value='" . $this->amount . "'></td>\n";
 		echo "</tr>\n";
@@ -220,7 +224,11 @@ class InternalBidSheetLine extends Line
 	//////////////////////////////////////
 	function displayLine($a_dbc, $a_lineCount)
 	{
-		echo "<tr>\n";
+		// lines without an idea are new.  Class 'em so the js script knows it
+		if($this->lineID)
+			echo "<tr>\n";
+		else
+			echo "<tr class='newLine'>\n";
 //	 	echo "<td>{$this->constructionSpecID}</td>\n";
 		echo "<td>";
 	 	$this->taskIDSelectBox($a_dbc, $this->constructionSpecID);
@@ -242,6 +250,9 @@ class InternalBidSheetLine extends Line
 	{
 //varDump(__FUNCTION__, 'a_specID', $a_specID);
  		$div =  (int)($a_specID/1000);
+
+ 		if($div == 0)
+ 			$div = 1;
 //varDump(__FUNCTION__, 'div', $div);
 
  		$sql = "SELECT * FROM `task` WHERE `taskDivision`=" . $div;
@@ -330,7 +341,11 @@ class ProjectDescriptionLine extends Line
 	//////////////////////////////////////
 	function displayLine($a_dbc, $a_lineCount)
 	{
-	 	echo "<p>{$this->text}</p>\n";
+		if($this->lineID)
+			echo "<p class='newLine'>{$this->text}</p>\n";
+		else
+		 	echo "<p>{$this->text}</p>\n";
+
 		return null;
 	}
 
