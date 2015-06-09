@@ -166,6 +166,9 @@
 	</div>
 	</form>	
 
+	<button name="save-changes" value="save-changes" type="button">Save Changes</button>
+	
+
 <!-- <div id="home-form_dashboard">
 	<hr>
 	<p>Project Information</p>
