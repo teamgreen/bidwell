@@ -11,6 +11,8 @@
 //////////////////////////////////////////////////////////////
 abstract class Line
 {
+	static function generateTableHeaderHTML(){}
+	static function displayTotal($a_amount){}
 	//////////////////////////////////////
 	// saveLine  - loads values to database
 	// $a_dbc - the database
@@ -42,7 +44,6 @@ abstract class Line
 	{
 	}
 
-	static function generateTableHeaderHTML(){}
 }
 
 //////////////////////////////////////////////////////////////
@@ -137,7 +138,22 @@ class ExternalBidSheetLine extends Line
 
 		return $this->amount;
 	}
+
+	//////////////////////////////////////
+	// displayTotal - builds a table row for a total amount.
+	// $a_amount - the total to show
+	// created by FVDS
+	//////////////////////////////////////
+	static function displayTotal($a_amount)
+	{
+		echo "<tr>\n";
+		echo "<td></td>\n";
+		echo "<td class='exTableTotal'>Total:</td>\n";
+		echo '<td>$' . $a_amount . "</td>\n";
+		echo "</tr>\n";
+	}
 }
+// end ExternalBidSheetLine
 
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
@@ -221,6 +237,22 @@ class InternalBidSheetLine extends Line
 	}
 
 	//////////////////////////////////////
+	// generateTableHeaderHTML - generates the header row for the table.
+	// $a_div - the div we are on.
+	// created by FVDS
+	//////////////////////////////////////
+	static function generateTotalHTML($a_amount)
+	{
+		echo "<tr class='inTableRow'>\n";
+//		echo "<th class='inTableColTaskID'>Task ID</th>\n";
+		echo "<th class='inTableColTaskName'></th>\n";
+		echo "<th></th>\n";
+		echo "<th class='chTableColAmount inTableTotal'>Total:</th>\n";
+		echo "<th>$a_amount</th>\n";
+		echo "</tr>\n";
+	}
+
+	//////////////////////////////////////
 	// displayLine  - writes out table row for this line
 	// $a_dbc - the database
 	// $a_lineCount - which line this is.  Not used for Internal lines.
@@ -245,6 +277,18 @@ class InternalBidSheetLine extends Line
 		echo "</tr>\n";
 		return $this->amount;
 	}
+
+	static function displayTotal($a_amount, $a_header)
+	{
+		echo "<tr>\n";
+		echo "<td></td>\n";
+		echo "<td></td>\n";
+		echo "<td class='inTableTotal'>{$a_header}:</td>\n";
+		echo '<td>$' . $a_amount . "</td>\n";
+		echo "</tr>\n";	
+	}
+
+
 
 	//////////////////////////////////////
 	// taskIDSelectBox  - writes out select box
@@ -280,6 +324,7 @@ class InternalBidSheetLine extends Line
   		echo "<span class='ui-icon ui-icon-info' title='" .  htmlspecialchars($row['TaskDescription'], ENT_QUOTES) . "'></span>";
 	}
 }
+// end InternalBidSheetLine
 
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
@@ -365,5 +410,6 @@ class ProjectDescriptionLine extends Line
 		echo "<p class='description-left-title'>Description:</p>\n";
 	}
 }
+// end ProjectDescriptionLine
 
 ?>

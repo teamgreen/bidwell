@@ -323,7 +323,7 @@ button:hover{
 	text-align:left;
 }
 
-.exTableTotal, .chTableTotal{
+.exTableTotal, .chTableTotal, .inTableTotal{
 	text-align:right;
 }
 
@@ -332,6 +332,10 @@ button:hover{
 	background-color: #dcf6ac;
 	padding:0;
 	margin:0;
+}
+
+table{
+	height:auto;
 }
 
 .exAmtInput, .chAmtInput{

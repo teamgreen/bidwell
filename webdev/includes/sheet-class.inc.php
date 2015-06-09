@@ -364,6 +364,7 @@ class InternalBidSheet extends Sheet
 
 		$lineCount=0;
 		$total=0;
+		$subtotal=0;
 		$lastDiv=999;
 		$tableStarted=false;
 		$div=0;
@@ -372,11 +373,19 @@ class InternalBidSheet extends Sheet
 		foreach ($this->lines as $i) {
 			if( $i->getTaskID() > $lastDiv ){
 				if($tableStarted){
+					// add subtotal line
+					InternalBidSheetLine::displayTotal($subtotal, "Subtotal");
+
+					//update total and reset subtotal.
+					$total +=$subtotal;
+					$subtotal=0;
+
 					// close the previous table.
 					echo "</table>\n";
 				}
 
 				// start a table.
+				$tableStarted=true;
 				echo "<table>\n";
 
 				//add the header
@@ -386,10 +395,18 @@ class InternalBidSheet extends Sheet
 				$lastDiv+=1000;
 			}
 			// add lines
-			$total+=$i->displayLine($a_dbc, ++$lineCount);
+			$subtotal+=$i->displayLine($a_dbc, ++$lineCount);
 		}
 
-		// and close the table
+
+		// finish off the last table with its subtotal and close it
+		InternalBidSheetLine::displayTotal($subtotal, "Subtotal");
+		$total +=$subtotal;
+		echo "</table>\n";
+		
+		// show the total.
+		echo "<table>\n";
+		InternalBidSheetLine::generateTotalHTML($total);
 		echo "</table>\n";
 
 		// and the form.
@@ -454,11 +471,13 @@ class ChangeBidSheet extends Sheet
 	//////////////////////////////////////
 	function displayTotal($a_amount)
 	{
-		echo "<tr>\n";
-		echo "<td></td>\n";
-		echo "<td class='chTableTotal'>Total:</td>\n";
-		echo '<td>$' . $a_amount . "</td>\n";
-		echo "</tr>\n";
+		ExternalBidSheetLine::displayTotal($a_amount);
+
+		// echo "<tr>\n";
+		// echo "<td></td>\n";
+		// echo "<td class='chTableTotal'>Total:</td>\n";
+		// echo '<td>$' . $a_amount . "</td>\n";
+		// echo "</tr>\n";
 	}
 } 
 // end ChangeBidSheet
@@ -519,11 +538,7 @@ class ExternalBidSheet extends Sheet
 	//////////////////////////////////////
 	function displayTotal($a_amount)
 	{
-		echo "<tr>\n";
-		echo "<td></td>\n";
-		echo "<td class='exTableTotal'>Total:</td>\n";
-		echo '<td>$' . $a_amount . "</td>\n";
-		echo "</tr>\n";
+		ExternalBidSheetLine::displayTotal($a_amount);
 	}
 }
 // ExternalBidSheet
