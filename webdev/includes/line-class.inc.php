@@ -131,7 +131,7 @@ class ExternalBidSheetLine extends Line
 		else
 			echo "<tr class='newLine'>\n";
 		echo "<td class='exLineNum'>{$a_lineCount}</td>\n";
-		echo "<td class='exTableData'><input class='exDescInput' type='text' maxlength='400' name='fname' value='" . $this->workDescription . "'></td>\n";
+		echo "<td class='exTableData'><input class='exDescInput' type='text' maxlength='400' name='fname' value='" . htmlspecialchars($this->workDescription, ENT_QUOTES) . "'></td>\n";
 		echo "<td><input class='exAmtInput' type='number' name='fname' value='" . $this->amount . "'></td>\n";
 		echo "</tr>\n";
 
@@ -233,9 +233,10 @@ class InternalBidSheetLine extends Line
 		echo "<td>";
 	 	$this->taskIDSelectBox($a_dbc, $this->constructionSpecID);
 		echo "</td>\n";
-		echo "<td>{$this->subcontractorBidUsed}</td>\n";
+		echo "<td class='inTableData'><input class='inSubCon' type='text' maxlength='400' name='fname' value='" . htmlspecialchars($this->subcontractorBidUsed, ENT_QUOTES) . "'></td>\n";
 		echo "<td><input class='exAmtInput' type='number' name='fname' value='" . $this->amount . "'></td>\n";
-		echo "<td>{$this->generalNotes}<span class='ui-icon ui-icon-info' title='Notes about this task.'></span></td>\n";
+		//echo "<td>{$this->generalNotes}<span class='ui-icon ui-icon-info' title='Notes about this task.'></span></td>\n";
+		echo "<td class='inTableData'><input class='inSubCon' type='text' maxlength='1000' name='fname' value='" . htmlspecialchars($this->generalNotes, ENT_QUOTES) . "'></td>\n";
 		echo "</tr>\n";
 		return $this->amount;
 	}
@@ -265,13 +266,13 @@ class InternalBidSheetLine extends Line
  		{
  			// if current value, make it selected.
  			if($row['TaskID'] == $a_specID){
- 				echo "<option value='" . $row['TaskID'] . "' selected>" . $row['TaskID']. "-" . htmlspecialchars($row['TaskName']) . "</option>\n";
+ 				echo "<option value='" . $row['TaskID'] . "' selected>" . $row['TaskID']. "-" . htmlspecialchars($row['TaskName'], ENT_QUOTES) . "</option>\n";
  			}
 			else
-  				echo "<option value='" . $row['TaskID'] . "'>" . $row['TaskID']. "-" . htmlspecialchars($row['TaskName']) . "</option>\n";
+  				echo "<option value='" . $row['TaskID'] . "'>" . $row['TaskID']. "-" . htmlspecialchars($row['TaskName'], ENT_QUOTES) . "</option>\n";
 		}
 		echo "</select>\n";
-  		echo "<span class='ui-icon ui-icon-info' title='" . $row['TaskDescription'] . "'></span>";
+  		echo "<span class='ui-icon ui-icon-info' title='" .  htmlspecialchars($row['TaskDescription'], ENT_QUOTES) . "'></span>";
 	}
 }
 

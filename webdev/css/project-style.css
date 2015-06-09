@@ -327,7 +327,7 @@ button:hover{
 	text-align:right;
 }
 
-.exDescInput, .chDescInput{
+.exDescInput, .chDescInput, .inSubCon{
 	width:100%;
 	background-color: #dcf6ac;
 	padding:0;
