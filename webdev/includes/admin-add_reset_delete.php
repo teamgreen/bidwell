@@ -135,6 +135,8 @@
 
 					$_POST = array(); // should clear all fields
 
+					header('location:admin.php');
+
 				} else {
 
 					$username = $_POST['add_username'];
@@ -189,7 +191,6 @@
 					$_POST = array(); // should clear all fields
 
 					header('location:admin.php');
-					exit;
 
 				};
 
@@ -209,7 +210,6 @@
 			};
 
 			//var_dump($_GET);
-			//var_dump($_POST);
 			//var_dump($_SERVER['argv']);
 			//var_dump($_SERVER);
 			//exit;
@@ -256,7 +256,6 @@
 				$_POST = array(); // should clear all fields
 
 				header('location:admin.php');
-				exit;
 
 			};
 
@@ -298,7 +297,6 @@
 				$_POST = array(); // should clear all fields
 
 				header('location:admin.php');
-				exit;
 				
 			};
 

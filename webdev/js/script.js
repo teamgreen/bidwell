@@ -97,7 +97,6 @@ $(document).ready(function(){
 		return false;
 	}); // end click
 	$('.edit-account').click(function(){
-		//alert('.' + 'row_' + $(this)[0].id);
 		$('.admin-table').removeAttr('disabled');
 		return false;
 	}); // end click

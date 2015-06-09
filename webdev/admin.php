@@ -40,13 +40,13 @@
 </head>
 <body>
 
+	<?php include 'includes/admin-add_reset_delete.php'; ?>
 
 	<div class="wrapper">
 
 	<?php 
 	$filename=basename(__FILE__);
 	@require_once "includes/header.inc.php"; ?>
-	<?php include 'includes/admin-add_reset_delete.php'; ?>
 
 		<div class="content">
 			
@@ -108,12 +108,11 @@
 									echo "<td><input type=\"text\" class=\"admin-table\" value=\"" . $row_account['Email'] . "\"></td>";
 									echo "<td><input type=\"text\" class=\"admin-table\" value=\"" . $row_account['PresetName'] . "\"></td>";
 									echo "<td>
-											<button id=\"account{$row_account['AccountID']}\" class=\"edit-account admin-buttons\" title=\"Edit Account\" ><i class=\"fa fa-pencil\"></i></button>
-											<button class=\"reset-pass admin-buttons\" title=\"Reset Password\" ><i class=\"fa fa-key\"></i></button>
- 											<button class=\"delete-account admin-buttons\" title=\"Delete Account\" ><i class=\"fa fa-trash\"></i></button>
-
-											<a href=\"" . $_SERVER['PHP_SELF'] . "?accountid=" . $row_account['AccountID'] . "\"><button class=\"save-cancel save admin-buttons\" title=\"Save Changes\"><i class=\"fa fa-floppy-o\"></i></button></a>
-											<a href=\"" . $_SERVER['PHP_SELF'] . "?accountid=" . $row_account['AccountID'] . "\"><button class=\"save-cancel cancel admin-buttons\" title=\"Cancel Changes\"><i class=\"fa fa-ban\"></i></button></a>
+											<button class=\"edit-account admin-buttons\" title=\"Edit Account\" onclick=\"window.location='{$_SERVER['PHP_SELF']}?accountid={$row_account['AccountID']}';\"><i class=\"fa fa-pencil\"></i></button>
+											<button class=\"reset-pass admin-buttons\" title=\"Reset Password\" onclick=\"window.location='{$_SERVER['PHP_SELF']}?accountid={$row_account['AccountID']}';\"><i class=\"fa fa-key\"></i></button>
+ 											<button class=\"delete-account admin-buttons\" title=\"Delete Account\" onclick=\"window.location='{$_SERVER['PHP_SELF']}?accountid={$row_account['AccountID']}';\"><i class=\"fa fa-trash\"></i></button>
+											<button class=\"save-cancel save admin-buttons\" title=\"Save Changes\" onclick=\"window.location='{$_SERVER['PHP_SELF']}?accountid={$row_account['AccountID']}';\"><i class=\"fa fa-floppy-o\"></i></button>
+											<button class=\"save-cancel cancel admin-buttons\" title=\"Cancel Changes\" onclick=\"window.location='{$_SERVER['PHP_SELF']}?accountid={$row_account['AccountID']}';\"><i class=\"fa fa-ban\"></i></button>
 										</td>";
 									echo "</tr>\n";
 								};
@@ -125,17 +124,17 @@
 							echo "<div class='pagination'>\n";
 							
 							if ($pageNum != 1) {
-								echo " <a href='{$_SERVER['PHP_SELF']}?pageNum=1'><button class=\"page-buttons\" title=\"First\">First Page</button></a> ";
+								echo "<button onclick=\"window.location='{$_SERVER['PHP_SELF']}?pageNum=1';\" class=\"page-buttons\" title=\"First\">First Page</button>";
 								$previous = $pageNum - 1;
-								echo " <a href='{$_SERVER['PHP_SELF']}?pageNum=$previous'><button class=\"page-buttons\" title=\"Previous\"><i class=\"fa fa-arrow-left\"></i></button></a> ";
+								echo "<button onclick=\"window.location='{$_SERVER['PHP_SELF']}?pageNum=$previous';\" class=\"page-buttons\" title=\"Previous\"><i class=\"fa fa-arrow-left\"></i></button>";
 							};
 
 							echo "<span class='page-span'>Page $pageNum of $lastPage</span>";
 
 							if ($pageNum != $lastPage) {
 								$next = $pageNum + 1;
-								echo " <a href='{$_SERVER['PHP_SELF']}?pageNum=$next'><button class=\"page-buttons\" title=\"Next\"><i class=\"fa fa-arrow-right\"></i></button></a> ";
-								echo " <a href='{$_SERVER['PHP_SELF']}?pageNum=$lastPage'><button class=\"page-buttons\" title=\"Last\">Last Page</button></a> ";
+								echo "<button onclick=\"window.location='{$_SERVER['PHP_SELF']}?pageNum=$next';\" class=\"page-buttons\" title=\"Next\"><i class=\"fa fa-arrow-right\"></i></button>";
+								echo "<button onclick=\"window.location='{$_SERVER['PHP_SELF']}?pageNum=$lastPage';\" class=\"page-buttons\" title=\"Last\">Last Page</button>";
 							};
 
 							echo "</div>";
