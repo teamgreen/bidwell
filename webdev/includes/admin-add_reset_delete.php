@@ -13,10 +13,6 @@
 					<label for="add_email">Email</label>
 					<input type="email" name="add_email" id="add_email" class="ui-widget-content ui-corner-all">
 				</div>
-				<div>
-					<label for="company">Company</label>
-					<input type="text" name="company" id="company" value="<?php echo $admin_company; ?>" class="ui-widget-content ui-corner-all" disabled="true">
-				</div>
 			</div>
 			<div class="form-half">
 				<div>
@@ -193,6 +189,7 @@
 					$_POST = array(); // should clear all fields
 
 					header('location:admin.php');
+					exit;
 
 				};
 
@@ -203,16 +200,23 @@
 	<div id="reset-dialog">
 		<?php
 			
-			if (isset($_GET['id'])) {
-				$pass_id = $_GET['id'];
+			if (isset($_GET['accountid'])) {
+				$pass_id = $_GET['accountid'];
 				$sql_pass = "SELECT Password FROM `account` WHERE AccountID = '$pass_id'";
 				$result_pass = @mysqli_query($dbc, $sql_pass);
 				$row_pass = @mysqli_fetch_assoc($result_pass);
 				$old_pass = $row_pass['Password'];
 			};
 
-		?>
+			var_dump($_GET);
+			exit;
+		
 
+			print_r('<pre>$_GET:');
+			print_r($_GET);
+			print_r('</pre>');
+
+		?>
 		<form action="admin.php" method="post" id="pass-form">
 			<p>Reset Password</p>
 			<hr>
@@ -252,6 +256,7 @@
 				$_POST = array(); // should clear all fields
 
 				header('location:admin.php');
+				exit;
 
 			};
 
@@ -293,6 +298,7 @@
 				$_POST = array(); // should clear all fields
 
 				header('location:admin.php');
+				exit;
 				
 			};
 

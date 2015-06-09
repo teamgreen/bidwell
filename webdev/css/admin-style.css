@@ -33,11 +33,6 @@ textarea, select {
 	margin: 0 auto;
 	text-align: left;
 }
-input#company {
-	color: #cdcdcd;
-	background: #efefef;
-	border: 1px solid #bbbbbb;
-}
 select {
 	display: block;
 	margin: 10px 0 20px 0;
@@ -78,7 +73,12 @@ td > input[type="text"] {
 	width: 90%;
 	padding: 5px;
 	margin: 10px 0;
-	background-color: #efefef;
+	background: #ffffff;
+	color: #387929;
+}
+td > input[type="text"]:disabled {
+	background: #efefef;
+	color: #aaaaaa;
 }
 th {
 	padding: 5px;

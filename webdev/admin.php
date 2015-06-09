@@ -56,7 +56,7 @@
 				</ul>
 				<div id="tab-a">
 						<?php
-		
+
 							require 'includes/mysqli_connect.inc.php';
 
 							$dbc = SQLConnect();
@@ -108,11 +108,11 @@
 									echo "<td><input type=\"text\" class=\"admin-table\" value=\"" . $row_account['Email'] . "\"></td>";
 									echo "<td><input type=\"text\" class=\"admin-table\" value=\"" . $row_account['PresetName'] . "\"></td>";
 									echo "<td>
-											<a href=\"id=" . $row_account['AccountID'] . "\"><button class=\"edit-account admin-buttons\" title=\"Edit Account\"><i class=\"fa fa-pencil\"></i></button></a>
-											<a href=\"id=" . $row_account['AccountID'] . "\"><button class=\"reset-pass admin-buttons\" title=\"Reset Password\"><i class=\"fa fa-key\"></i></button></a>
-											<a href=\"id=" . $row_account['AccountID'] . "\"><button class=\"delete-account admin-buttons\" title=\"Delete Account\"><i class=\"fa fa-trash\"></i></button></a>
-											<a href=\"id=" . $row_account['AccountID'] . "\"><button class=\"save-cancel save admin-buttons\" title=\"Save Changes\"><i class=\"fa fa-floppy-o\"></i></button></a>
-											<a href=\"id=" . $row_account['AccountID'] . "\"><button class=\"save-cancel cancel admin-buttons\" title=\"Cancel Changes\"><i class=\"fa fa-ban\"></i></button></a>
+											<a href=\"" . $_SERVER['PHP_SELF'] . "?accountid=" . $row_account['AccountID'] . "\"><button class=\"edit-account admin-buttons\" title=\"Edit Account\"><i class=\"fa fa-pencil\"></i></button></a>
+											<a href=\"" . $_SERVER['PHP_SELF'] . "?accountid=" . $row_account['AccountID'] . "\"><button class=\"reset-pass admin-buttons\" title=\"Reset Password\"><i class=\"fa fa-key\"></i></button></a>
+											<a href=\"" . $_SERVER['PHP_SELF'] . "?accountid=" . $row_account['AccountID'] . "\"><button class=\"delete-account admin-buttons\" title=\"Delete Account\"><i class=\"fa fa-trash\"></i></button></a>
+											<a href=\"" . $_SERVER['PHP_SELF'] . "?accountid=" . $row_account['AccountID'] . "\"><button class=\"save-cancel save admin-buttons\" title=\"Save Changes\"><i class=\"fa fa-floppy-o\"></i></button></a>
+											<a href=\"" . $_SERVER['PHP_SELF'] . "?accountid=" . $row_account['AccountID'] . "\"><button class=\"save-cancel cancel admin-buttons\" title=\"Cancel Changes\"><i class=\"fa fa-ban\"></i></button></a>
 										</td>";
 									echo "</tr>\n";
 								};
@@ -120,9 +120,6 @@
 							};
 
 							echo "</table>\n";
-
-							// $admin_company = retrieved [CompanyName] from login info
-							// return $admin_company;
 
 							echo "<div class='pagination'>\n";
 							
