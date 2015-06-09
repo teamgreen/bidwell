@@ -201,21 +201,23 @@
 	<div id="reset-dialog">
 		<?php
 			
-			if (isset($_GET['accountid'])) {
-				$pass_id = $_GET['accountid'];
-				$sql_pass = "SELECT Password FROM `account` WHERE AccountID = '$pass_id'";
-				$result_pass = @mysqli_query($dbc, $sql_pass);
-				$row_pass = @mysqli_fetch_assoc($result_pass);
-				$old_pass = $row_pass['Password'];
+			if($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+				if (isset($_POST['accountid'])) {
+					$pass_id = $_POST['accountid'];
+					$sql_pass = "SELECT Password FROM `account` WHERE AccountID = '$pass_id'";
+					$result_pass = @mysqli_query($dbc, $sql_pass);
+					$row_pass = @mysqli_fetch_assoc($result_pass);
+					$old_pass = $row_pass['Password'];
+				};
+
+				var_dump($_POST);
+				//var_dump($_SERVER['argv']);
+				//var_dump($_SERVER);
+				//exit;
+			
 			};
 
-			//var_dump($_GET);
-			//var_dump($_SERVER['argv']);
-			//var_dump($_SERVER);
-			//exit;
-		
-
-			
 		?>
 		<form action="admin.php" method="post" id="pass-form">
 			<p>Reset Password</p>
@@ -266,7 +268,7 @@
 			<p>Delete Account</p>
 			<hr>
 			<div>
-				<p>Are you sure you want to delete this account? This action cannot be undone.</p>
+				<p class="delete-warning">Are you sure you want to delete this account? This action cannot be undone.</p>
 			</div>
 			<div class="submit-button">
 				<input type="submit" id="delete-submit" form="delete-form" value="Submit">
@@ -275,15 +277,15 @@
 		</form>
 		<?php
 
-			if (isset($_GET['id'])) {
-				$delete_id = $_GET['id'];
-			};
-
 			# If the above form has been submitted,
 			# this PHP code will run and all the form
 			# values will be sent to the database.
 
 			if($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+				if (isset($_POST['accountid'])) {
+					$delete_id = $_POST['accountid'];
+				};
 
 				$sql_delete = "DELETE FROM `account` WHERE AccountID = '$delete_id' LIMIT 1";
 

@@ -140,6 +140,9 @@ table {
 .page-span {
 	margin: 0 10px;
 }
+.page-buttons {
+	margin: 0 2px;
+}
 
 .save-cancel {
 	display: none;
@@ -177,4 +180,8 @@ table {
 #delete-dialog {
 	height: 300px;
 	width: 600px;
+}
+.delete-warning {
+	margin: 40px auto 20px auto;
+	width: 375px;
 }

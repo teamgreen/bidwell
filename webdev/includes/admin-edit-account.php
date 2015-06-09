@@ -2,25 +2,23 @@
 		
 		<?php
 
-			// var_dump($_GET);
+			if($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-			// if(isset($_GET['id'])) {
-			// 	echo "ok";
-			// 	$edit_id = $_GET['id'];
-			// } else {
-			// 	echo "ERROR";
-			// }	
+				if(isset($_POST['accountid'])) {
+					$edit_id = $_POST['accountid'];
+				};	
+				$sql_edit = "SELECT * FROM `account` INNER JOIN `company` ON account.CompanyID = company.CompanyID WHERE account.AccountID = '$edit_id'";
+				$result_edit = @mysqli_query($dbc, $sql_edit);
 
-			$sql_edit = "SELECT * FROM `account` INNER JOIN `company` ON account.CompanyID = company.CompanyID WHERE account.AccountID = '$edit_id'";
-			$result_edit = @mysqli_query($dbc, $sql_edit);
-
-			$num_rows_edit = @mysqli_num_rows($result_edit);
-			if ($num_rows_edit > 0) {
-				while($row_edit = @mysqli_fetch_array($result_edit)) {
-					$username = $row_edit['LoginName'];
-					$email = $row_edit['Email'];
-					$company = $row_edit['CompanyName'];
+				$num_rows_edit = @mysqli_num_rows($result_edit);
+				if ($num_rows_edit > 0) {
+					while($row_edit = @mysqli_fetch_array($result_edit)) {
+						$username = $row_edit['LoginName'];
+						$email = $row_edit['Email'];
+						$company = $row_edit['CompanyName'];
+					};
 				};
+
 			};
 
 		?>
@@ -145,14 +143,9 @@
 
 				$_POST = array(); // should clear all fields
 
+				header('location:admin.php');
+				
 				?>
-
-				<script type="text/javascript">
-					newURL = document.location.href;
-
-					<?php header("Location: " . $newURL); ?>
-				</script>
-				<?php
 
 			};
 

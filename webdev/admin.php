@@ -108,11 +108,13 @@
 									echo "<td><input type=\"text\" class=\"admin-table\" value=\"" . $row_account['Email'] . "\"></td>";
 									echo "<td><input type=\"text\" class=\"admin-table\" value=\"" . $row_account['PresetName'] . "\"></td>";
 									echo "<td>
-											<button class=\"edit-account admin-buttons\" title=\"Edit Account\" onclick=\"window.location='{$_SERVER['PHP_SELF']}?accountid={$row_account['AccountID']}';\"><i class=\"fa fa-pencil\"></i></button>
-											<button class=\"reset-pass admin-buttons\" title=\"Reset Password\" onclick=\"window.location='{$_SERVER['PHP_SELF']}?accountid={$row_account['AccountID']}';\"><i class=\"fa fa-key\"></i></button>
- 											<button class=\"delete-account admin-buttons\" title=\"Delete Account\" onclick=\"window.location='{$_SERVER['PHP_SELF']}?accountid={$row_account['AccountID']}';\"><i class=\"fa fa-trash\"></i></button>
-											<button class=\"save-cancel save admin-buttons\" title=\"Save Changes\" onclick=\"window.location='{$_SERVER['PHP_SELF']}?accountid={$row_account['AccountID']}';\"><i class=\"fa fa-floppy-o\"></i></button>
-											<button class=\"save-cancel cancel admin-buttons\" title=\"Cancel Changes\" onclick=\"window.location='{$_SERVER['PHP_SELF']}?accountid={$row_account['AccountID']}';\"><i class=\"fa fa-ban\"></i></button>
+											<form action=\"\" method=\"post\">
+												<button type=\"submit\" class=\"edit-account admin-buttons\" title=\"Edit Account\" name=\"accountid\" value=\"{$row_account['AccountID']}\"><i class=\"fa fa-pencil\"></i></button>
+												<button type=\"submit\" class=\"reset-pass admin-buttons\" title=\"Reset Password\" name=\"accountid\" value=\"{$row_account['AccountID']}\"><i class=\"fa fa-key\"></i></button>
+	 											<button type=\"submit\" class=\"delete-account admin-buttons\" title=\"Delete Account\" name=\"accountid\" value=\"{$row_account['AccountID']}\"><i class=\"fa fa-trash\"></i></button>
+												<button type=\"submit\" class=\"save-cancel save admin-buttons\" title=\"Save Changes\" name=\"accountid\" value=\"{$row_account['AccountID']}\"><i class=\"fa fa-floppy-o\"></i></button>
+												<button type=\"submit\" class=\"save-cancel cancel admin-buttons\" title=\"Cancel Changes\" name=\"accountid\" value=\"{$row_account['AccountID']}\"><i class=\"fa fa-ban\"></i></button>
+											</form>
 										</td>";
 									echo "</tr>\n";
 								};
