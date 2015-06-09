@@ -208,14 +208,14 @@
 				$old_pass = $row_pass['Password'];
 			};
 
-			var_dump($_GET);
-			exit;
+			//var_dump($_GET);
+			//var_dump($_POST);
+			//var_dump($_SERVER['argv']);
+			//var_dump($_SERVER);
+			//exit;
 		
 
-			print_r('<pre>$_GET:');
-			print_r($_GET);
-			print_r('</pre>');
-
+			
 		?>
 		<form action="admin.php" method="post" id="pass-form">
 			<p>Reset Password</p>

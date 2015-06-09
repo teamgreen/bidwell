@@ -40,13 +40,13 @@
 </head>
 <body>
 
-	<?php include 'includes/admin-add_reset_delete.php'; ?>
 
 	<div class="wrapper">
 
 	<?php 
 	$filename=basename(__FILE__);
 	@require_once "includes/header.inc.php"; ?>
+	<?php include 'includes/admin-add_reset_delete.php'; ?>
 
 		<div class="content">
 			
@@ -103,14 +103,15 @@
 								echo "</tr>\n";
 
 								while($row_account = @mysqli_fetch_array($result_account)) {
-									echo "<tr>\n";
+									echo "<tr id=\"row_account{$row_account['AccountID']}\">\n";
 									echo "<td><input type=\"text\" class=\"admin-table\" value=\"" . $row_account['LoginName'] . "\"></td>";
 									echo "<td><input type=\"text\" class=\"admin-table\" value=\"" . $row_account['Email'] . "\"></td>";
 									echo "<td><input type=\"text\" class=\"admin-table\" value=\"" . $row_account['PresetName'] . "\"></td>";
 									echo "<td>
-											<a href=\"" . $_SERVER['PHP_SELF'] . "?accountid=" . $row_account['AccountID'] . "\"><button class=\"edit-account admin-buttons\" title=\"Edit Account\"><i class=\"fa fa-pencil\"></i></button></a>
-											<a href=\"" . $_SERVER['PHP_SELF'] . "?accountid=" . $row_account['AccountID'] . "\"><button class=\"reset-pass admin-buttons\" title=\"Reset Password\"><i class=\"fa fa-key\"></i></button></a>
-											<a href=\"" . $_SERVER['PHP_SELF'] . "?accountid=" . $row_account['AccountID'] . "\"><button class=\"delete-account admin-buttons\" title=\"Delete Account\"><i class=\"fa fa-trash\"></i></button></a>
+											<button id=\"account{$row_account['AccountID']}\" class=\"edit-account admin-buttons\" title=\"Edit Account\" ><i class=\"fa fa-pencil\"></i></button>
+											<button class=\"reset-pass admin-buttons\" title=\"Reset Password\" ><i class=\"fa fa-key\"></i></button>
+ 											<button class=\"delete-account admin-buttons\" title=\"Delete Account\" ><i class=\"fa fa-trash\"></i></button>
+
 											<a href=\"" . $_SERVER['PHP_SELF'] . "?accountid=" . $row_account['AccountID'] . "\"><button class=\"save-cancel save admin-buttons\" title=\"Save Changes\"><i class=\"fa fa-floppy-o\"></i></button></a>
 											<a href=\"" . $_SERVER['PHP_SELF'] . "?accountid=" . $row_account['AccountID'] . "\"><button class=\"save-cancel cancel admin-buttons\" title=\"Cancel Changes\"><i class=\"fa fa-ban\"></i></button></a>
 										</td>";
