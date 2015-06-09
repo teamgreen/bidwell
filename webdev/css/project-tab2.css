@@ -67,8 +67,10 @@ pre.left{
 	float: left;
 }
 
+
+
 textarea.project-tab2-textarea{
-	background-color: #d7f3a1;
+	
 	width:inherit;
 	height: 400px;
 	margin:0;
