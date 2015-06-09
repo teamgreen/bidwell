@@ -50,13 +50,12 @@ class Sheet
 	function setName($var){ $this->name=$var ; }
 	function setDescription($var){ $this->description=$var ; }
 
-	// empty functions that any inheritors should define.
+	// empty functions that any inheritors might need to define.
 	function generateLineHMTL($a_row) {}
 	function generateTableHeaderHTML() {}
 	function displayTotal($a_amount){}
-	function getLines($a_dbc){}
 	function loadLinesFromDatabase($a_dbc){}
-	function addNewLine(){}
+	function addNewLine($a_value){}
 	
 	//////////////////////////////////////
 	// loadSheetFromDatabase - given a sheet ID, will initialize the class instance
@@ -110,9 +109,20 @@ class Sheet
 //varDump(__FUNCTION__, "this sheet", $this);
 
 			//now load the lines.
-			$this->loadLinesFromDatabase($a_dbc);
-			$this->addNewLine();
+			$this->CreateAndLoadLines($a_dbc);
 		}
+	}
+
+	//////////////////////////////////////
+	// CreateAndLoadLines - creates and loads the lines for this sheet, as well as an additional
+	// empty line at the appropriate place
+	// $a_value - a value in case the new line needs a single thing set on creation
+	// a_dbc - the database
+	//////////////////////////////////////
+	function CreateAndLoadLines($a_dbc)
+	{
+		$this->loadLinesFromDatabase($a_dbc);
+		$this->addNewLine(0);
 	}
 
 	//////////////////////////////////////
@@ -180,6 +190,7 @@ class Sheet
 		echo "</form>\n";
 	}
 }
+// end Sheet
 
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
@@ -208,23 +219,13 @@ class ProjectDescriptionSheet extends Sheet
 
 	//////////////////////////////////////
 	// addNewLine  - adds a new line for this sheet
+	// $a_value - a value in case the new line needs a single thing set on creation
 	// created by FVDS
 	//////////////////////////////////////
-	function addNewLine()
+	function addNewLine($a_value)
 	{
 		$newLine = new ProjectDescriptionLine();
 		$this->lines[count($this->lines)] = $newLine;
-	}
-
-	//////////////////////////////////////
-	// getLines - grabs the lines related to this sheet from the database.
-	// 		Stores the results in sheetLinesResults.
-	// created by FVDS
-	//////////////////////////////////////
-	function getLines($a_dbc)
-	{
-		$sql="SELECT * FROM `projectdescriptionline` WHERE `SheetID`=$this->sheetID";
-		$this->sheetLinesResults = @mysqli_query($a_dbc, $sql);
 	}
 
 	//////////////////////////////////////
@@ -275,6 +276,7 @@ class ProjectDescriptionSheet extends Sheet
 	 	return 0;
 	}
 }
+// end ProjectDescriptionSheet
 
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
@@ -292,7 +294,7 @@ class InternalBidSheet extends Sheet
 	//////////////////////////////////////
 	function loadLinesFromDatabase($a_dbc)
 	{
-		$sql="SELECT * FROM `internalbidsheetline` WHERE `SheetID`=$this->sheetID";
+		$sql="SELECT * FROM `internalbidsheetline` WHERE `SheetID`=$this->sheetID ORDER BY `TaskID`";
 		$results = @mysqli_query($a_dbc, $sql);
 		// load the lines.
 		while($row=@mysqli_fetch_array($results)){
@@ -305,45 +307,96 @@ class InternalBidSheet extends Sheet
 	}
 
 	//////////////////////////////////////
+	// CreateAndLoadLines - creates and loads the lines for this sheet, as well as an additional
+	// empty lines at the appropriate place, one for each division.
+	// a_dbc - the database
+	//////////////////////////////////////
+	function CreateAndLoadLines($a_dbc)
+	{
+		$this->loadLinesFromDatabase($a_dbc);
+
+		// display the lines and keep track of the total
+		for($i=0;$i<17;){
+			// we want ones for 1-17, so increment before pass in
+			$this->addNewLine(++$i);
+		}
+
+		// and now sort the array so the blink lines appear in the proper places.
+		usort($this->lines, function($a, $b)
+		{
+   			return $a->getTaskID() > $b->getTaskID();
+		});
+	}
+
+
+	//////////////////////////////////////
 	// addNewLine  - adds a new line for this sheet
+	// $a_value - this * 1000 + 999 becomes the taskID.  needed for blank lines.  Gets reset for other ones.
 	// created by FVDS
 	//////////////////////////////////////
-	function addNewLine()
+	function addNewLine($a_value)
 	{
 		$newLine = new InternalBidSheetLine();
+		$newLine->setTaskID($a_value*1000 + 999);
 		$this->lines[count($this->lines)] = $newLine;
 	}
 
 	//////////////////////////////////////
-	// getLines - grabs the lines related to this sheet from the database.
-	// 		Stores the results in sheetLinesResults.
-	// created by FVDS
-	//////////////////////////////////////
-	function getLines($a_dbc)
-	{
-		$sql="SELECT * FROM `internalbidsheetline` WHERE `SheetID`=$this->sheetID";
-		$this->sheetLinesResults = @mysqli_query($a_dbc, $sql);
-	}
-
-	//////////////////////////////////////
 	// generateTableHeaderHTML - generates the header row for the table.
+	// $a_div - the div we are on.
 	// created by FVDS
 	//////////////////////////////////////
-	function generateTableHeaderHTML()
+	function generateTableHeaderHTML($a_div)
 	{
-		InternalBidSheetLine::generateTableHeaderHTML();
+		InternalBidSheetLine::generateTableHeaderHTML($a_div);
 	}
 
-	//////////////////////////////////////
-	// displayTotal - builds a table row for a total amount.
-	// $a_amount - the total to show
+		//////////////////////////////////////
+	// generateLinesTableHTML - builds a table using data grabbed from the database.
+	// $a_dbc - the database
 	// created by FVDS
 	//////////////////////////////////////
-	function displayTotal($a_amount){
+	function generateLinesTableHTML($a_dbc)
+	{
+		// all of this in a form.
+		echo "<form>\n";
 
+
+		$lineCount=0;
+		$total=0;
+		$lastDiv=999;
+		$tableStarted=false;
+		$div=0;
+
+		// display the lines and keep track of the total
+		foreach ($this->lines as $i) {
+			if( $i->getTaskID() > $lastDiv ){
+				if($tableStarted){
+					// close the previous table.
+					echo "</table>\n";
+				}
+
+				// start a table.
+				echo "<table>\n";
+
+				//add the header
+				$this->generateTableHeaderHTML(++$div);
+
+				// increment the lastDiv by 1000 (one div)
+				$lastDiv+=1000;
+			}
+			// add lines
+			$total+=$i->displayLine($a_dbc, ++$lineCount);
+		}
+
+		// and close the table
+		echo "</table>\n";
+
+		// and the form.
+		echo "</form>\n";
 	}
-
-}
+} 
+// end InternalBidSheet
 
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
@@ -376,23 +429,13 @@ class ChangeBidSheet extends Sheet
 
 	//////////////////////////////////////
 	// addNewLine  - adds a new line for this sheet
+	// $a_value - a value in case the new line needs a single thing set on creation
 	// created by FVDS
 	//////////////////////////////////////
-	function addNewLine()
+	function addNewLine($a_value)
 	{
 		$newLine = new ExternalBidSheetLine();
 		$this->lines[count($this->lines)] = $newLine;
-	}
-
-	//////////////////////////////////////
-	// getLines - grabs the lines related to this sheet from the database.
-	// 		Stores the results in sheetLinesResults.
-	// created by FVDS
-	//////////////////////////////////////
-	function getLines($a_dbc)
-	{
-		$sql="SELECT * FROM `externalbidsheetline` WHERE `SheetID`=$this->sheetID";
-		$this->sheetLinesResults = @mysqli_query($a_dbc, $sql);
 	}
 
 	//////////////////////////////////////
@@ -417,7 +460,8 @@ class ChangeBidSheet extends Sheet
 		echo '<td>$' . $a_amount . "</td>\n";
 		echo "</tr>\n";
 	}
-}
+} 
+// end ChangeBidSheet
 
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
@@ -450,23 +494,13 @@ class ExternalBidSheet extends Sheet
 
 	//////////////////////////////////////
 	// addNewLine  - adds a new line for this sheet
+	// $a_value - a value in case the new line needs a single thing set on creation
 	// created by FVDS
 	//////////////////////////////////////
-	function addNewLine()
+	function addNewLine($a_value)
 	{
 		$newLine = new ExternalBidSheetLine();
 		$this->lines[count($this->lines)] = $newLine;
-	}
-
-	//////////////////////////////////////
-	// getLines - grabs the lines related to this sheet from the database.
-	// 		Stores the results in sheetLinesResults.
-	// created by FVDS
-	//////////////////////////////////////
-	function getLines($a_dbc)
-	{
-		$sql="SELECT * FROM `externalbidsheetline` WHERE `SheetID`=$this->sheetID";
-		$this->sheetLinesResults = @mysqli_query($a_dbc, $sql);
 	}
 
 	//////////////////////////////////////
@@ -492,5 +526,6 @@ class ExternalBidSheet extends Sheet
 		echo "</tr>\n";
 	}
 }
+// ExternalBidSheet
 
 ?>

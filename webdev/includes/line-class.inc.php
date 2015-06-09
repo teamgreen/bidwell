@@ -150,10 +150,14 @@ class InternalBidSheetLine extends Line
 {
 	protected $lineID=0;
 	protected $sheetID=0;
-	protected $constructionSpecID=0;
+	protected $taskID=0;
 	protected $amount=0;
 	protected $subcontractorBidUsed="";
 	protected $generalNotes="";
+
+	function setTaskID($a_value){$this->taskID = $a_value;}
+	function getTaskID(){return $this->taskID;}
+
 
 	//////////////////////////////////////
 	// saveLine  - saves values to database
@@ -167,12 +171,12 @@ class InternalBidSheetLine extends Line
 		// if this is an existing line...
 		if($this->sheetID){
 			$sql = "UPDATE `internalbidsheetline`
-				SET `ConstructionSpecID`=$this->constructionSpecID, `Amount`=$this->amount, `SubcontractorBidUsed`=$this->subcontractorBidUsed, `GeneralNotes`=$this->generalNotes
+				SET `TaskID`=$this->taskcID, `Amount`=$this->amount, `SubcontractorBidUsed`=$this->subcontractorBidUsed, `GeneralNotes`=$this->generalNotes
 				WHERE `LineID`=$this->lineID";
 
-		} else if ( $this->generalNotes != "" || $this->subcontractorBidUsed != "" || $this->Amount != 0 || $this->constructionSpecID !=0) { // new line with content.
-			$sql = "INSERT INTO `internalbidsheetline` (SheetID, ConstructionSpecID, Amount, SubcontractorBidUsed, GeneralNotes)
-				VALUES ('$a_sheetID', '$this->constructionSpecID', '$this->amount', '$this->subcontractorBidUsed', '$this->generalNotes')";
+		} else if ( $this->generalNotes != "" || $this->subcontractorBidUsed != "" || $this->Amount != 0 || $this->taskID !=0) { // new line with content.
+			$sql = "INSERT INTO `internalbidsheetline` (SheetID, TaskID, Amount, SubcontractorBidUsed, GeneralNotes)
+				VALUES ('$a_sheetID', '$this->taskID', '$this->amount', '$this->subcontractorBidUsed', '$this->generalNotes')";
 		}
 
 		// update the database
@@ -194,7 +198,7 @@ class InternalBidSheetLine extends Line
 	{
 		$this->lineID=$a_row['LineID'];
 		$this->sheetID= $a_row['SheetID'];
-		$this->constructionSpecID= $a_row['ConstructionSpecID'];
+		$this->taskID= $a_row['TaskID'];
 		$this->amount= $a_row['Amount'];
 		$this->subcontractorBidUsed= $a_row['SubcontractorBidUsed'];
 		$this->generalNotes= $a_row['GeneralNotes'];
@@ -202,13 +206,14 @@ class InternalBidSheetLine extends Line
 
 	//////////////////////////////////////
 	// generateTableHeaderHTML - generates the header row for the table.
+	// $a_div - the div we are on.
 	// created by FVDS
 	//////////////////////////////////////
-	static function generateTableHeaderHTML()
+	static function generateTableHeaderHTML($a_div)
 	{
 		echo "<tr class='inTableRow'>\n";
 //		echo "<th class='inTableColTaskID'>Task ID</th>\n";
-		echo "<th class='inTableColTaskName'>Task Name</th>\n";
+		echo "<th class='inTableColTaskName'>Division {$a_div} Tasks</th>\n";
 		echo "<th>Subcontractor</th>\n";
 		echo "<th class='chTableColAmount'>Amount</th>\n";
 		echo "<th>Notes</th>\n";
@@ -229,9 +234,9 @@ class InternalBidSheetLine extends Line
 			echo "<tr>\n";
 		else
 			echo "<tr class='newLine'>\n";
-//	 	echo "<td>{$this->constructionSpecID}</td>\n";
+//	 	echo "<td>{$this->taskID}</td>\n";
 		echo "<td>";
-	 	$this->taskIDSelectBox($a_dbc, $this->constructionSpecID);
+	 	$this->taskIDSelectBox($a_dbc, $this->taskID);
 		echo "</td>\n";
 		echo "<td class='inTableData'><input class='inSubCon' type='text' maxlength='400' name='fname' value='" . htmlspecialchars($this->subcontractorBidUsed, ENT_QUOTES) . "'></td>\n";
 		echo "<td><input class='exAmtInput' type='number' name='fname' value='" . $this->amount . "'></td>\n";
