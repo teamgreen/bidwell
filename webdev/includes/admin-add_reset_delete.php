@@ -208,8 +208,8 @@
 			$old_pass = $row_pass['Password'];
 
 			//var_dump($_POST);
-			//var_dump($dbc);
-			//var_dump($sql_pass);
+			var_dump($old_pass);
+			var_dump($sql_pass);
 			//var_dump($_SERVER['argv']);
 			//var_dump($_SERVER);
 			//exit;
