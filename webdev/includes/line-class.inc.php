@@ -395,11 +395,7 @@ class ProjectDescriptionLine extends Line
 		if($this->lineID)
 			echo "<textarea class='newLine'>{$this->text}</textarea>\n";
 		else
-<<<<<<< HEAD
-		 	echo "<p class='existingLine'>{$this->text}</p>\n";
-=======
 		 	echo "<textarea class='newLine'>{$this->text}</textarea>\n";
->>>>>>> origin/master
 
 		return null;
 	}
