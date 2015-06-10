@@ -108,11 +108,21 @@
 									echo "<td><input type=\"text\" class=\"admin-table\" value=\"" . $row_account['Email'] . "\"></td>";
 									echo "<td><input type=\"text\" class=\"admin-table\" value=\"" . $row_account['PresetName'] . "\"></td>";
 									echo "<td>
-											<button type=\"button\" class=\"edit-account admin-buttons\" title=\"Edit Account\" name=\"accountid\" value=\"{$row_account['AccountID']}\"><i class=\"fa fa-pencil\"></i></button>
-											<button type=\"button\" class=\"reset-pass admin-buttons\" title=\"Reset Password\" name=\"accountid\" value=\"{$row_account['AccountID']}\"><i class=\"fa fa-key\"></i></button>
- 											<button type=\"button\" class=\"delete-account admin-buttons\" title=\"Delete Account\" name=\"accountid\" value=\"{$row_account['AccountID']}\"><i class=\"fa fa-trash\"></i></button>
-											<button type=\"button\" class=\"save-cancel save admin-buttons\" title=\"Save Changes\" name=\"accountid\" value=\"{$row_account['AccountID']}\"><i class=\"fa fa-floppy-o\"></i></button>
-											<button type=\"button\" class=\"save-cancel cancel admin-buttons\" title=\"Cancel Changes\" name=\"accountid\" value=\"{$row_account['AccountID']}\"><i class=\"fa fa-ban\"></i></button>
+											<form method=\"post\" action=\"admin.php\">
+												<button type=\"submit\" class=\"edit-account admin-buttons\" title=\"Edit Account\" name=\"accountid\" value=\"{$row_account['AccountID']}\"><i class=\"fa fa-pencil\"></i></button>
+											</form>
+											<form method=\"post\" action=\"admin.php\">
+												<button type=\"submit\" class=\"reset-pass admin-buttons\" title=\"Reset Password\" name=\"accountid\" value=\"{$row_account['AccountID']}\"><i class=\"fa fa-key\"></i></button>
+											</form>
+											<form method=\"post\" action=\"admin.php\">
+	 											<button type=\"submit\" class=\"delete-account admin-buttons\" title=\"Delete Account\" name=\"accountid\" value=\"{$row_account['AccountID']}\"><i class=\"fa fa-trash\"></i></button>
+	 										</form>
+											<form method=\"post\" action=\"admin.php\">
+												<button type=\"submit\" class=\"save-cancel save admin-buttons\" title=\"Save Changes\" name=\"accountid\" value=\"{$row_account['AccountID']}\"><i class=\"fa fa-floppy-o\"></i></button>
+											</form>
+											<form method=\"post\" action=\"admin.php\">
+												<button type=\"submit\" class=\"save-cancel cancel admin-buttons\" title=\"Cancel Changes\" name=\"accountid\" value=\"{$row_account['AccountID']}\"><i class=\"fa fa-ban\"></i></button>
+											</form>
 										</td>";
 									echo "</tr>\n";
 								};
@@ -141,25 +151,22 @@
 
 						?>
 
-					<!-- AJAX work in progress
-
 					<script type="text/javascript">
 						$(document).ready(function(){
-							$('.admin-buttons').click(function(evt){
-								evt.preventDefault;
+							$('.reset-pass').click(function(evt){
+								evt.preventDefault();
 								var accountid = $(this).val();
-								$.post({
-									url: 'includes/admin-add_reset_delete.php',
-									data: {accountid: accountid},
+								$.ajax({
+									type: 'POST',
+									url: 'includes/admin-add_reset_delete.php', 
+									data: {accountid:accountid},
 									success: function(data){
-										alert(data);
+										alert("success");
 									}
 								}); // end ajax
 							}); // end click
 						}); // end ready
 					</script>
-
-					-->
 
 					<div id="admin-table_dashboard">
 						<button class="add-account">

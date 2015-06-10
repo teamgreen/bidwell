@@ -201,18 +201,20 @@
 	<div id="reset-dialog">
 		<?php
 
-			$pass_id = $_POST['accountid'];
-			$sql_pass = "SELECT Password FROM `account` WHERE AccountID = '$pass_id'";
-			$result_pass = @mysqli_query($dbc, $sql_pass);
-			$row_pass = @mysqli_fetch_assoc($result_pass);
-			$old_pass = $row_pass['Password'];
+			if (isset($_POST['accountid'])) {
 
-			//var_dump($_POST);
-			//var_dump($dbc);
-			//var_dump($sql_pass);
-			//var_dump($_SERVER['argv']);
-			//var_dump($_SERVER);
-			//exit;
+				$pass_id = $_POST['accountid'];
+				$sql_pass = "SELECT Password FROM `account` WHERE AccountID = '$pass_id'";
+				$result_pass = @mysqli_query($dbc, $sql_pass);
+				$row_pass = @mysqli_fetch_assoc($result_pass);
+				$old_pass = $row_pass['Password'];
+
+				//var_dump($_POST);
+				//var_dump($_SERVER['argv']);
+				//var_dump($_SERVER);
+				//exit;
+
+			};
 
 		?>
 		<form action="admin.php" method="post" id="pass-form">
@@ -239,12 +241,17 @@
 
 			if($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-				$password = $_POST['new_password'];
+				if (isset($_POST['new_password'])) {
+					$password = $_POST['new_password'];
+				};
 
 				$sql_newpass = "UPDATE `account`
 							SET Password = '$password'
 							WHERE AccountID = '$pass_id'";
 				$result_newpass = @mysqli_query($dbc, $sql_newpass);
+
+				var_dump($password);
+				var_dump($sql_newpass);
 
 				$num_rows_newpass = @mysqli_num_rows($result_newpass);
 				if ($num_rows_newpass === 0) {
@@ -253,7 +260,7 @@
 
 				$_POST = array(); // should clear all fields
 
-				header('location:admin.php');
+				//header('location:admin.php');
 
 			};
 

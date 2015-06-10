@@ -128,7 +128,7 @@ class ExternalBidSheetLine extends Line
 //varDump(__FUNCTION__, 'ExternalBidSheet: $a_row', $a_row);
 		// lines without an idea are new.  Class 'em so the js script knows it
 		if($this->lineID)
-			echo "<tr>\n";
+			echo "<tr class='existingLine' data-lineID='". $this->lineID."'>\n";
 		else
 			echo "<tr class='newLine'>\n";
 		echo "<td class='exLineNum'>{$a_lineCount}</td>\n";
@@ -263,7 +263,7 @@ class InternalBidSheetLine extends Line
 	{
 		// lines without an idea are new.  Class 'em so the js script knows it
 		if($this->lineID)
-			echo "<tr>\n";
+			echo "<tr class='existingLine'>\n";
 		else
 			echo "<tr class='newLine'>\n";
 //	 	echo "<td>{$this->taskID}</td>\n";

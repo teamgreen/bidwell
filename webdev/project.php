@@ -60,7 +60,7 @@
 			$projectid = $_SESSION['projectid'];
 
 			// if our project has changed, clear the tab related stuff.
-			if(!$_SESSION['prevprojectid'] || $_SESSION['prevprojectid'] != $projectid){
+			if( !(isset($_SESSION['prevprojectid'])) || $_SESSION['prevprojectid'] != $projectid){
 				// unset the session variables
 				unset($_SESSION['InternalBidSheetID']);
 				unset($_SESSION['ExternalBidSheetID']);
@@ -110,8 +110,7 @@
 					<div>
 						<?php
 						$project->displayProjectSheetOfType($dbc, Sheet::eInternalBidSheet, null);
-						//$project->generateLoadSelectHTML($dbc, Sheet::eInternalBidSheet);
-						$project->generateSaveHTML(null);
+						$project->generateSaveHTML(Sheet::eInternalBidSheet);
 						?>
 					</div>
 				</div>
@@ -119,8 +118,7 @@
 					<div>
 						<?php
 						$project->displayProjectSheetOfType($dbc, Sheet::eExternalBidSheet, null);
-						//$project->generateLoadSelectHTML($dbc, Sheet::eExternalBidSheet);
-						$project->generateSaveHTML(null);
+						$project->generateSaveHTML(Sheet::eExternalBidSheet);
 						?>
 					</div>
 				</div>
@@ -128,8 +126,7 @@
 					<div>
 						<?php
 						$project->displayProjectSheetOfType($dbc, Sheet::eChangeBidSheet, null);
-						//$project->generateLoadSelectHTML($dbc, Sheet::eChangeBidSheet);
-						$project->generateSaveHTML(null);
+						$project->generateSaveHTML(Sheet::eChangeBidSheet);
 						?>
 					</div>
 				</div>
