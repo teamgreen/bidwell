@@ -114,3 +114,30 @@ function unsetSessionVariable(a_var)
 	}); // end ajax call
 }
 
+///////////////////////////////////////
+// goToNewSheet - uses Ajax to create a new sheet, then goes there.
+// a_sheetType - the type of sheet we want to create.
+///////////////////////////////////////
+function goToNewSheet(a_sheetType)
+{
+	console.log("creating a " + a_sheetType);
+	$.ajax({
+		url: 'phpscripts/AjaxHelper.php',
+		type: 'post',
+		data: {'createSheet': a_sheetType},
+		success: function(data) {
+			// if we got error.
+			if(data == "ERROR" || data== "ERROR2"){
+				console.log("goToNewSheet had an error: "+data);
+			}
+			else{// if we got a value, set the session and reload the page.
+				console.log("Created a new "+a_sheetType+" ID="+data);
+				setSessionVariableAndReload(a_sheetType+"ID",data);
+			}
+		},
+		error: function(xhr, desc, err) {
+			console.log(xhr);
+			console.log("Details: " + desc + "\nError:" + err);
+		}
+	}); // end ajax call}
+}

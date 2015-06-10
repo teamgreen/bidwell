@@ -55,18 +55,35 @@ $(document).ready(function(){
 	$('.loadSheetSelect').change(
 		function(evt)
 		{
-			// set session var for active tab
+			// get the active tab
 			var active = $( "#home-tabs" ).tabs( "option", "active" );
-			setSessionVariable('activetab', active);
+
+			var changeTo = $(this).find(':selected').val();
+			if(changeTo=='-'){
+				// create new sheet and go there.
+				if(active==2){
+					console.log("new InternalBidSheet needs to be created.");
+					goToNewSheet('InternalBidSheet');
+				}
+				else if (active==3){
+					console.log("new ExternalBidSheet needs to be created.");
+					goToNewSheet('ExternalBidSheet');
+				}
+				else if(active==4){
+					console.log("new ChangeBidSheet needs to be created.");
+					goToNewSheet('InternalBidSheet');
+				}
+				return;
+			}
 
 			// and now the sheet we want.
 			//$(this).find(':selected').val();
 			if(active==2)
-				setSessionVariableAndReload('InternalBidSheetID', $(this).find(':selected').val());
+				setSessionVariableAndReload('InternalBidSheetID', changeTo);
 			else if (active==3)
-				setSessionVariableAndReload('ExternalBidSheetID', $(this).find(':selected').val());
+				setSessionVariableAndReload('ExternalBidSheetID', changeTo);
 			else if(active==4)
-				setSessionVariableAndReload('ChangeBidSheetID', $(this).find(':selected').val());
+				setSessionVariableAndReload('ChangeBidSheetID', changeTo);
 		}
 	);
 });
