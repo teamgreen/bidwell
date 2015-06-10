@@ -134,15 +134,15 @@ class Project
 				break;
 		}
 
+		//load the sheet and/or create blank lines.
+		$this->curSheet->loadSheetFromResult($a_dbc, $row);
+// varDump("project.php", "tab 4", $sheet);
+
 		// generate the select box.
 		echo "<h3 class='loadsheet_h3'>Sheet: ";
 		echo $this->generateLoadSelectHTML($a_dbc, $a_type);
 		echo "</h3>";
 		echo "<div>\n";
-
-		//load the sheet and/or create blank lines.
-		$this->curSheet->loadSheetFromResult($a_dbc, $row);
-// varDump("project.php", "tab 4", $sheet);
 
 		//generate html
 		$this->curSheet->generateLinesTableHTML($a_dbc);
@@ -419,7 +419,7 @@ class Project
 	function generateSaveHTML($a_script)
 	{
 		echo "<div class='saveSheetDiv'>\n";
-		echo "<button type='button'>Save</button>";
+		echo "<button type='button' onclick='save".$a_script."()'>Save</button>";
 		echo "</div>\n";
 	}
 

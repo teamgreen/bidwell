@@ -70,3 +70,103 @@ $(document).ready(function(){
 		}
 	);
 });
+
+function saveProjectDescriptionSheet()
+{
+	//tab2
+
+}
+
+function saveInternalBidSheet()
+{
+	//tab3
+}
+
+//tab4
+function saveExternalBidSheet()
+{
+	var notfirst=false;
+
+	//step 1: get the sheetID from the load select box.  It should be the selected one.
+	var sheetid = $("#tab4 form").attr("data-sheetID");
+	// save that as a value pair and start the existing lines one.
+	var jdon_string='{ {"SheetID":'+sheetid+'},{ "existingExLines" : [';// +
+
+	// step 2: add all those existing lines.
+	// build the datapairs we'll need.
+	$("#tab4 .existingLine").each(
+		function()
+		{
+			if(notfirst){
+				jdon_string+=',';
+			}
+			// vars first in case need to deal with quotes and such.
+			var desc = $(this).find('.exDescInput').val();
+			var amt = $(this).find('.exAmtInput').val();
+			var id = $(this).attr("data-lineID");
+			//open an object
+			jdon_string+='{ ';
+			jdon_string+= '"LineID":"'+id+'", "WorkDescription":"'+desc+'", "Amount":'+amt;
+			jdon_string+='}';
+
+			notfirst=true;
+		}
+	)
+
+	//close off the string.
+	jdon_string+=']},';
+
+	// Step 3: and now for all the new lines.
+
+	// and now for the new lines
+	notfirst=false;
+	jdon_string+='{ "newExLines" : [';
+	// build the datapairs we'll need for new lines.
+	$("#tab4 .newLine").each(
+		function()
+		{
+			if(notfirst){
+				jdon_string+=',';
+			}
+			// vars first in case need to deal with quotes and such.
+			var desc = $(this).find('.exDescInput').val();
+			var amt = $(this).find('.exAmtInput').val();
+			//open an object
+			jdon_string+='{ ';
+			jdon_string+= '"WorkDescription":"'+desc+'", "Amount":'+amt;
+			jdon_string+='}';
+
+			notfirst=true;
+		}
+	)
+	//close off the string.
+	jdon_string+=']}}';
+
+	console.log(jdon_string);
+
+	// step 4: ajax time.  Off to php land we go.
+	$.ajax({
+		url: 'phpscripts/AjaxHelper.php',
+		type: 'post',
+		data: {'Variable': 'dog',
+				'value': 0},
+		success: function(data, status) {
+			// do something here.
+			console.log("stuff happened");
+		},
+		error: function(xhr, desc, err) {
+			console.log(xhr);
+			console.log("Details: " + desc + "\nError:" + err);
+		}
+	}); // end ajax call
+
+
+	event.preventDefault();
+	return false;
+}
+
+function saveChangeBidSheet()
+{
+	//tab5
+
+}

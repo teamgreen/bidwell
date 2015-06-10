@@ -164,7 +164,7 @@ class Sheet
 	function generateLinesTableHTML($a_dbc)
 	{
 		// all of this in a form.
-		echo "<form>\n";
+		echo "<form data-sheetID='".$this->sheetID."'>\n";
 
 		// start a table.
 		echo "<table>\n";
@@ -239,7 +239,7 @@ class ProjectDescriptionSheet extends Sheet
 
 		$this->generateTableHeaderHTML();
 		// all of this in a form.
-		echo "<form>\n";
+		echo "<form data-sheetID='".$this->sheetID.">\n";
 	 	echo "<div class='description-left'>\n";
 
 	 	//write the paragraphs
@@ -359,7 +359,7 @@ class InternalBidSheet extends Sheet
 	function generateLinesTableHTML($a_dbc)
 	{
 		// all of this in a form.
-		echo "<form>\n";
+		echo "<form data-sheetID='".$this->sheetID.">\n";
 
 
 		$lineCount=0;
