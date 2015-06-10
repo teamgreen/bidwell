@@ -200,23 +200,19 @@
 	</div>
 	<div id="reset-dialog">
 		<?php
-			
-			if($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-				if (isset($_POST['accountid'])) {
-					$pass_id = $_POST['accountid'];
-					$sql_pass = "SELECT Password FROM `account` WHERE AccountID = '$pass_id'";
-					$result_pass = @mysqli_query($dbc, $sql_pass);
-					$row_pass = @mysqli_fetch_assoc($result_pass);
-					$old_pass = $row_pass['Password'];
-				};
+			$pass_id = $_POST['accountid'];
+			$sql_pass = "SELECT Password FROM `account` WHERE AccountID = '$pass_id'";
+			$result_pass = @mysqli_query($dbc, $sql_pass);
+			$row_pass = @mysqli_fetch_assoc($result_pass);
+			$old_pass = $row_pass['Password'];
 
-				var_dump($_POST);
-				//var_dump($_SERVER['argv']);
-				//var_dump($_SERVER);
-				//exit;
-			
-			};
+			//var_dump($_POST);
+			//var_dump($dbc);
+			//var_dump($sql_pass);
+			//var_dump($_SERVER['argv']);
+			//var_dump($_SERVER);
+			//exit;
 
 		?>
 		<form action="admin.php" method="post" id="pass-form">

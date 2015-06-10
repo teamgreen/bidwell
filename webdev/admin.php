@@ -141,6 +141,26 @@
 
 						?>
 
+					<!-- AJAX work in progress
+
+					<script type="text/javascript">
+						$(document).ready(function(){
+							$('.admin-buttons').click(function(evt){
+								evt.preventDefault;
+								var accountid = $(this).val();
+								$.post({
+									url: 'includes/admin-add_reset_delete.php',
+									data: {accountid: accountid},
+									success: function(data){
+										alert(data);
+									}
+								}); // end ajax
+							}); // end click
+						}); // end ready
+					</script>
+
+					-->
+
 					<div id="admin-table_dashboard">
 						<button class="add-account">
 							<i class="fa fa-plus"></i> Add New Account
