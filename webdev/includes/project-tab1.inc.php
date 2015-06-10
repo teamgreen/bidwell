@@ -26,12 +26,34 @@
 				<input class="project-tab1-inputs" type="text" name="project_name" id="project_name" value='<?php echo $project->getOwner(); ?>'>
 				<div class="left"><label>Due Date:</label></div> 
 				<input class="project-tab1-inputs" type="text" id="project_due_date" name="project_due_date" value='<?php echo $project->getProjectDueDate(); ?>'>
+				<div class="project-status">
 				<div class="left"><label>Project Status:</label></div> 
-				<input class="project-tab1-inputs" type="text" id="project_status_id" name="project_status_id" value='<?php echo $project->getProjectStatusId();?>'>
-				<div class="left"><label>Assigned To:</label></div>
-				<select id="select-box">
-					<option>-</option>
-				</select>
+				<?php 
+					echo "<select name='project_status_id' class='project_status_id'>\n";
+					
+
+					// SQL statement to select everything from state table to populate options in select form element
+					$sql_project_status_select = "SELECT * FROM `projectstatus`.`ProjectStatusID`.`ProjectStatusName` ";
+					//varDump(__FUNCTION__, __LINE__, $sql_project_status_select);
+					$result = @mysqli_query($dbc, $sql_project_status_select);
+					//varDump(__FUNCTION__, __LINE__, $result_states);
+					
+					while($row_project_status_select = @mysqli_fetch_array($result)) {
+						if($this->projectStatusID == $row_project_status_select) {
+							echo '<option value=' . $row_project_status_select . ' selected>' . $row_project_status_select . "</option>\n";
+						} else {
+							
+							echo "<option value='" . $row_project_status_select['ProjectStatusID'] . "'>" . $row_project_status_select['ProjectStatusName'] . "</option>\n";
+
+						} 
+					}	
+
+					echo "</select>\n";
+
+				 ?>
+				
+				</div>
+				
 			</div>
 			<div class='project-tab1-ta'>
 		 		<p class="left-description">Description:</p><p> <textarea class="project-tab1-textarea" id="project_description" name="project_description" rows="5" cols="25" maxlength="4000" ><?php echo $project->getProjectDescription(); ?></textarea></p>
@@ -56,7 +78,7 @@
 					<input class="project-tab1-inputs1" type="text" id="cellphone_owner" name="cellphone_owner" maxlength="40" value='<?php echo $project->getOwnerCellPhone(); ?>'>
 				
 					<div class="left2"><label>Email:</label></div>
-					<input class="project-tab1-inputs1" type="email" id="email_owner" name="email_owner" maxlength="40" value='<?php echo $project->getOwnerEmail();?>'></p>
+					<input class="project-tab1-inputs1" type="email" id="email_owner" name="email_owner" maxlength="40" value='<?php echo $project->getOwnerEmail();?>'>
 				</div>
 				<div class='project-tab1'>
 					<div class="left2"><label>Address:</label></div>
@@ -74,7 +96,7 @@
 					</div>
 
 					<div class='left2'><label>Zip:</label></div> 
-					<input class="project-tab1-inputs1" type="text" id="zip_owner" name="zip_owner" maxlength="20" value='<?php echo $project->getAddress(Project::eOwnerAddress)->getZipCode1(); ?>'></p>
+					<input class="project-tab1-inputs1" type="text" id="zip_owner" name="zip_owner" maxlength="20" value='<?php echo $project->getAddress(Project::eOwnerAddress)->getZipCode1(); ?>'>
 				</div>
 			</div>
 		</div>	
@@ -94,7 +116,7 @@
 				<input class="project-tab1-inputs1" type="text" id="cellphone_architect" name="cellphone_architect" maxlength="40" value='<?php echo $project->getArchitectCellPhone(); ?>'>
 			
 				<div class="left2"><label>Email:</label></div>
-				<input class="project-tab1-inputs1" type="email" id="email_architect" name="email_architect" maxlength="100" value='<?php echo $project->getArchitectEmail();?>'></p>
+				<input class="project-tab1-inputs1" type="email" id="email_architect" name="email_architect" maxlength="100" value='<?php echo $project->getArchitectEmail();?>'>
 			</div>
 			<div class='project-tab1'>
 				<div class="left2"><label>Address:</label></div>
