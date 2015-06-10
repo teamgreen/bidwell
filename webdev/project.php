@@ -38,7 +38,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<!-- Custom jQuery UI Library - 1.11.4 -->
 	<script src="libs/jquery-ui-1.11.4.custom/jquery-ui.min.js"></script>
-	<script src='js/project-tab1-script.js'></script>
+	<!--<script src='js/project-tab1-script.js'></script>-->
 	<script src='js/helper_functions.js'></script>
 	 <!-- <script src='js/project-tab1-script.js'></script> -->
 	<script type="text/javascript" src="libs/jquery.validate.min.js"></script>
@@ -47,9 +47,12 @@
 	
 </head>
 <body>
-	<?php
+	<div class="wrapper">
 
-		session_start(); 
+<?php
+		$filename=basename(__FILE__);
+		@require_once "includes/header.inc.php";
+
 		# set up projectid SESSION variable
 		# for use in project page
 		$projectid =23;
@@ -66,16 +69,9 @@
 				// store the page for the next time.
 				$_SESSION['prevprojectid'] = $projectid;
 			}
+		} else {
+			//should redirect to home page here.
 		}
-
-
-	?>
-
-	<div class="wrapper">
-
-<?php
-		$filename=basename(__FILE__);
-		@require_once "includes/header.inc.php";
 ?>
 
 		<div class="content">
@@ -85,12 +81,10 @@
 			@require_once 'includes/mysqli_connect.inc.php';
 			$dbc = SQLConnect();
 
-
 			// set up the project class.
 			@require_once "includes/project-class.inc.php";
 
-			// FIX THIS: the 23 should be taken from a session variable.
-			
+			//create and load the project.
 			$project = new Project($projectid);
 			$project->loadProjectFromDatabase($dbc);
 			?>

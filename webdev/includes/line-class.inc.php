@@ -393,9 +393,9 @@ class ProjectDescriptionLine extends Line
 	function displayLine($a_dbc, $a_lineCount)
 	{
 		if($this->lineID)
-			echo "<p class='newLine'>{$this->text}</p>\n";
+			echo "<textarea class='newLine'>{$this->text}</textarea>\n";
 		else
-		 	echo "<p>{$this->text}</p>\n";
+		 	echo "<textarea class='newLine'>{$this->text}</textarea>\n";
 
 		return null;
 	}
@@ -407,7 +407,7 @@ class ProjectDescriptionLine extends Line
 	//////////////////////////////////////
 	static function generateTableHeaderHTML()
 	{
-		echo "<p class='description-left-title'>Description:</p>\n";
+		echo "<p class=left>Description:</p>\n";
 	}
 }
 // end ProjectDescriptionLine

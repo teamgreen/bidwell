@@ -182,22 +182,24 @@ if(isset($_POST['Submit'])) {
 
 	<!-- This php code I commented out to try and get the textarea working on the project-tab2.inc file and it seems to be working. Going to have Frank
 	   look it over when he gets a chance. -->
-	<?php
-	// $project->getSheetsByType($dbc, Sheet::eProjectDescriptionSheet);
-	// while($row = $project->returnSheetRow()){
-	// 	echo "<div>\n";
-	// 	$sheet = new ProjectDescriptionSheet($projectid);
-	// 	$sheet->loadSheetFromResult($dbc, $row);
-	// 	$sheet->generateLinesTableHTML($dbc);
-	// 	echo "</div>\n";
-	// }
-	?>
+	
 	
 	<!-- Added Form Section, Added on 6/8/2015 by Adam Duthie -->
-	<form>
-		<p class='left'>Project Description:</p>
-		<textarea class="project-tab2-textarea" id="project_description" name="project_description" rows="25" cols="15" maxlength="4000" ><?php echo $project->getProjectDescription(); ?></textarea>
-	</form>
+	
+		
+			<?php $project->getSheetsByType($dbc, Sheet::eProjectDescriptionSheet);
+				// echo '<textarea class="project-tab2-textarea" id="project_description" name="project_description" rows="25" cols="15" maxlength="4000" >';
+				while($row = $project->returnSheetRow()){
+				
+				$sheet = new ProjectDescriptionSheet($projectid);
+				$sheet->loadSheetFromResult($dbc, $row);
+			    $sheet->generateLinesTableHTML($dbc);
+				
+				} 
+				// echo '</textarea>	';
+			?>
+		
+	
 	
 	<!-- </div> -->
 </div>	
