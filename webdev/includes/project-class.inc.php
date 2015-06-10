@@ -112,9 +112,8 @@ class Project
 		} else
 			$this->getSheetByID($a_dbc, $a_sheetID);
 
-// varDump("project.php", 'getSheetsByType()', $project);
-
 		$row = $this->returnSheetRow();
+//varDump(__FUNCTION__, __LINE__, $row);
 
 		// create the right type of sheet
 		switch ($a_type){
@@ -135,17 +134,19 @@ class Project
 				break;
 		}
 
-		//load the sheet
-		$this->curSheet->loadSheetFromResult($a_dbc, $row);
-
 		// generate the select box.
 		echo "<h3 class='loadsheet_h3'>Sheet: ";
 		echo $this->generateLoadSelectHTML($a_dbc, $a_type);
 		echo "</h3>";
 		echo "<div>\n";
 
+		//load the sheet and/or create blank lines.
+		$this->curSheet->loadSheetFromResult($a_dbc, $row);
 // varDump("project.php", "tab 4", $sheet);
+
+		//generate html
 		$this->curSheet->generateLinesTableHTML($a_dbc);
+
 		echo "</div>\n";
 	}	
 

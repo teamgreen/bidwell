@@ -83,9 +83,9 @@ class Sheet
 //varDump(__FUNCTION__, "this sheet", $this);
 //require_once('Doesnotexist.txt');
 
-			//now load the lines.
-			$this->loadLinesFromDatabase($a_dbc);
 		}
+		//now load the lines and/or add any needed empty lines.
+		$this->loadLinesFromDatabase($a_dbc);
 	}
 
 	//////////////////////////////////////
@@ -107,10 +107,10 @@ class Sheet
 			$this->description = $a_result['Description'];
 			$this->lastUpdate = $a_result['LastUpdate'];
 //varDump(__FUNCTION__, "this sheet", $this);
-
-			//now load the lines.
-			$this->CreateAndLoadLines($a_dbc);
 		}
+
+		//now load the lines and/or create any needed empty lines.
+		$this->CreateAndLoadLines($a_dbc);
 	}
 
 	//////////////////////////////////////
