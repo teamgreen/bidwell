@@ -26,8 +26,8 @@
 	<!-- Custom jQuery UI Library Stylesheets - 1.11.4 -->
 	<link rel="stylesheet" href="libs/jquery-ui-1.11.4.custom/jquery-ui.min.css">
 	<link rel="stylesheet" href="libs/jquery-ui-1.11.4.custom/jquery-ui.theme.min.css">
-	<!-- jQuery Library - Google CDN -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<!-- jQuery Library - Local File -->
+	<script src="libs/jquery-1.11.3.min.js"></script>
 	<!-- Custom jQuery UI Library - 1.11.4 -->
 	<script src="libs/jquery-ui-1.11.4.custom/jquery-ui.min.js"></script>
 	<!-- jQuery Validate Plugin files -->

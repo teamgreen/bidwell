@@ -26,8 +26,8 @@
 	<link rel="stylesheet" href="libs/jquery-ui-1.11.4.custom/jquery-ui.min.css">
 	<link rel="stylesheet" href="libs/jquery-ui-1.11.4.custom/jquery-ui.theme.min.css">
 
-	<!-- jQuery Library - Google CDN -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<!-- jQuery Library - Local File -->
+	<script src="libs/jquery-1.11.3.min.js"></script>
 	<!-- Custom jQuery UI Library - 1.11.4 -->
 	<script src="libs/jquery-ui-1.11.4.custom/jquery-ui.min.js"></script>
 	<!-- jQuery Validate Plugin files -->
@@ -108,13 +108,11 @@
 									echo "<td><input type=\"text\" class=\"admin-table\" value=\"" . $row_account['Email'] . "\"></td>";
 									echo "<td><input type=\"text\" class=\"admin-table\" value=\"" . $row_account['PresetName'] . "\"></td>";
 									echo "<td>
-											<form action=\"\" method=\"post\">
-												<button type=\"submit\" class=\"edit-account admin-buttons\" title=\"Edit Account\" name=\"accountid\" value=\"{$row_account['AccountID']}\"><i class=\"fa fa-pencil\"></i></button>
-												<button type=\"submit\" class=\"reset-pass admin-buttons\" title=\"Reset Password\" name=\"accountid\" value=\"{$row_account['AccountID']}\"><i class=\"fa fa-key\"></i></button>
-	 											<button type=\"submit\" class=\"delete-account admin-buttons\" title=\"Delete Account\" name=\"accountid\" value=\"{$row_account['AccountID']}\"><i class=\"fa fa-trash\"></i></button>
-												<button type=\"submit\" class=\"save-cancel save admin-buttons\" title=\"Save Changes\" name=\"accountid\" value=\"{$row_account['AccountID']}\"><i class=\"fa fa-floppy-o\"></i></button>
-												<button type=\"submit\" class=\"save-cancel cancel admin-buttons\" title=\"Cancel Changes\" name=\"accountid\" value=\"{$row_account['AccountID']}\"><i class=\"fa fa-ban\"></i></button>
-											</form>
+											<button type=\"button\" class=\"edit-account admin-buttons\" title=\"Edit Account\" name=\"accountid\" value=\"{$row_account['AccountID']}\"><i class=\"fa fa-pencil\"></i></button>
+											<button type=\"button\" class=\"reset-pass admin-buttons\" title=\"Reset Password\" name=\"accountid\" value=\"{$row_account['AccountID']}\"><i class=\"fa fa-key\"></i></button>
+ 											<button type=\"button\" class=\"delete-account admin-buttons\" title=\"Delete Account\" name=\"accountid\" value=\"{$row_account['AccountID']}\"><i class=\"fa fa-trash\"></i></button>
+											<button type=\"button\" class=\"save-cancel save admin-buttons\" title=\"Save Changes\" name=\"accountid\" value=\"{$row_account['AccountID']}\"><i class=\"fa fa-floppy-o\"></i></button>
+											<button type=\"button\" class=\"save-cancel cancel admin-buttons\" title=\"Cancel Changes\" name=\"accountid\" value=\"{$row_account['AccountID']}\"><i class=\"fa fa-ban\"></i></button>
 										</td>";
 									echo "</tr>\n";
 								};
