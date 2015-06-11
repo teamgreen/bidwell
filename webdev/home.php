@@ -56,6 +56,19 @@
 			$_SESSION['projectid'] = $_GET['projectid'];
 			header("Location:project.php");
 		}
+
+		function getStatusNameFromID($a_dbc, $a_id)
+		{
+			// SQL statement to get the status name.
+			$sql = "SELECT `ProjectStatusName` FROM `projectstatus` WHERE `ProjectStatusID`=".$a_id;
+//varDump(__FUNCTION__, __LINE__, $sql);
+//varDump(__FUNCTION__, __LINE__, $a_dbc);
+			$result = @mysqli_query($a_dbc, $sql);
+			$row = @mysqli_fetch_array($result);
+			$retVal = $row[0];
+			mysqli_free_result($result);
+			return $retVal;
+		}
 	?>
 	
 		<div class="content">
@@ -116,7 +129,7 @@
 								echo "<td>" . $row_project['ProjectName'] . "</td>";
 								echo "<td>" . $row_project['SiteAddressID'] . "</td>";
 								echo "<td>" . $row_project['ProjectDueDate'] . "</td>";
-								echo "<td>" . $row_project['ProjectStatusID'] . "</td>";
+								echo "<td>" . getStatusNameFromID($dbc, $row_project['ProjectStatusID']) . "</td>";
 								echo "</tr>\n";
 								echo "<tr class=\"go-to-project\">\n";
 								echo "<td colspan=\"5\">
@@ -215,7 +228,7 @@
 								echo "<td>" . $row_completed_project['ProjectName'] . "</td>";
 								echo "<td>" . $row_completed_project['SiteAddressID'] . "</td>";
 								echo "<td>" . $row_completed_project['ProjectDueDate'] . "</td>";
-								echo "<td>" . $row_completed_project['ProjectStatusID'] . "</td>";
+								echo "<td>" . getStatusNameFromID($dbc, $row_completed_project['ProjectStatusID']) . "</td>";
 								echo "</tr>\n";
 								echo "<tr class=\"go-to-project\">\n";
 								echo "<td colspan=\"5\">
