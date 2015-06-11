@@ -103,9 +103,22 @@ $(document).ready(function(){
 		event.preventDefault();
 		return false;
 	}); // end click
-	$('.reset-pass').click(function(){
+	$('.reset-pass').click(function(evt){
 		$('#add-reset_bg').show();
 		$('#reset-dialog').show();
+
+		var accountid = $(this).attr('data-accountid');
+		console.log(accountid);
+		// $.ajax({
+		// 	type: 'POST',
+		// 	url: 'includes/admin-add_reset_delete.php', 
+		// 	data: {accountid:accountid},
+		// 	success: function(data){
+		// 		console.log("success");
+		// 	}
+		// }); // end ajax
+
+		evt.preventDefault();
 		return false;
 	}); // end click
 	$('.delete-account').click(function(){

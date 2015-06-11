@@ -109,10 +109,10 @@
 									echo "<td><input type=\"text\" class=\"admin-table\" value=\"" . $row_account['PresetName'] . "\"></td>";
 									echo "<td>
 											<button type=\"button\" class=\"edit-account admin-buttons\" title=\"Edit Account\"><i class=\"fa fa-pencil\"></i></button>
-											<button type=\"button\" class=\"reset-pass admin-buttons\" title=\"Reset Password\" name=\"accountid\" value=\"{$row_account['AccountID']}\"><i class=\"fa fa-key\"></i></button>
- 											<button type=\"button\" class=\"delete-account admin-buttons\" title=\"Delete Account\" name=\"accountid\" value=\"{$row_account['AccountID']}\"><i class=\"fa fa-trash\"></i></button>
-											<button type=\"button\" class=\"save-cancel save admin-buttons\" title=\"Save Changes\" name=\"accountid\" value=\"{$row_account['AccountID']}\"><i class=\"fa fa-floppy-o\"></i></button>
-											<button type=\"button\" class=\"save-cancel cancel cancel-edit admin-buttons\" title=\"Cancel Changes\" name=\"accountid\" value=\"{$row_account['AccountID']}\"><i class=\"fa fa-ban\"></i></button>
+											<button type=\"button\" class=\"reset-pass admin-buttons\" data-accountid=\"{$row_account['AccountID']}\"title=\"Reset Password\"><i class=\"fa fa-key\"></i></button>
+ 											<button type=\"button\" class=\"delete-account admin-buttons\" title=\"Delete Account\"><i class=\"fa fa-trash\"></i></button>
+											<button type=\"button\" class=\"save-cancel save admin-buttons\" title=\"Save Changes\"><i class=\"fa fa-floppy-o\"></i></button>
+											<button type=\"button\" class=\"save-cancel cancel cancel-edit admin-buttons\" title=\"Cancel Changes\"><i class=\"fa fa-ban\"></i></button>
 											</form>
 										</td>";
 									echo "</tr>\n";
@@ -141,23 +141,6 @@
 							echo "</div>";
 
 						?>
-
-					<script type="text/javascript">
-						$(document).ready(function(){
-							$('.reset-pass').click(function(evt){
-								evt.preventDefault();
-								var accountid = $(this).val();
-								$.ajax({
-									type: 'POST',
-									url: 'includes/admin-add_reset_delete.php', 
-									data: {accountid:accountid},
-									success: function(data){
-										alert("success");
-									}
-								}); // end ajax
-							}); // end click
-						}); // end ready
-					</script>
 
 					<div id="admin-table_dashboard">
 						<button class="add-account">
