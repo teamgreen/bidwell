@@ -226,9 +226,9 @@ $(document).ready(function(){
 	// If the user clicks on an enabled text
 	// input field, the Save/Cancel buttons 
 	// appear right beside the existing buttons.
-	$('input[type="text"].admin-table').click(function(){
-		$('.save-cancel').show(); // get specificity to work by having the nearest .save-cancel buttons to $this show up
-	}); // end focus
+	//$('input[type="text"].admin-table').click(function(){
+	//	$('.save-cancel').show(); // get specificity to work by having the nearest .save-cancel buttons to $this show up
+	//}); // end focus
 
 }); // end of document.ready
 
