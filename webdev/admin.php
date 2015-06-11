@@ -103,16 +103,16 @@
 								echo "</tr>\n";
 
 								while($row_account = @mysqli_fetch_array($result_account)) {
-									echo "<tr id=\"row_account{$row_account['AccountID']}\">\n";
+									echo "<tr class=\"accountRow\" data-id=\"{$row_account['AccountID']}\">\n";
 									echo "<td><input type=\"text\" class=\"admin-table\" value=\"" . $row_account['LoginName'] . "\"></td>";
 									echo "<td><input type=\"text\" class=\"admin-table\" value=\"" . $row_account['Email'] . "\"></td>";
 									echo "<td><input type=\"text\" class=\"admin-table\" value=\"" . $row_account['PresetName'] . "\"></td>";
 									echo "<td>
-											<button type=\"button\" class=\"edit-account admin-buttons\" title=\"Edit Account\" name=\"accountid\" value=\"{$row_account['AccountID']}\"><i class=\"fa fa-pencil\"></i></button>
+											<button type=\"button\" class=\"edit-account admin-buttons\" title=\"Edit Account\"><i class=\"fa fa-pencil\"></i></button>
 											<button type=\"button\" class=\"reset-pass admin-buttons\" title=\"Reset Password\" name=\"accountid\" value=\"{$row_account['AccountID']}\"><i class=\"fa fa-key\"></i></button>
  											<button type=\"button\" class=\"delete-account admin-buttons\" title=\"Delete Account\" name=\"accountid\" value=\"{$row_account['AccountID']}\"><i class=\"fa fa-trash\"></i></button>
 											<button type=\"button\" class=\"save-cancel save admin-buttons\" title=\"Save Changes\" name=\"accountid\" value=\"{$row_account['AccountID']}\"><i class=\"fa fa-floppy-o\"></i></button>
-											<button type=\"button\" class=\"save-cancel cancel admin-buttons\" title=\"Cancel Changes\" name=\"accountid\" value=\"{$row_account['AccountID']}\"><i class=\"fa fa-ban\"></i></button>
+											<button type=\"button\" class=\"save-cancel cancel cancel-edit admin-buttons\" title=\"Cancel Changes\" name=\"accountid\" value=\"{$row_account['AccountID']}\"><i class=\"fa fa-ban\"></i></button>
 											</form>
 										</td>";
 									echo "</tr>\n";

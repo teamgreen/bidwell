@@ -81,7 +81,7 @@ $(document).ready(function(){
 
 	// The input fields in the admin table
 	// are disabled by default
-	$('.admin-table').attr('disabled', 'disabled');
+	$('.accountRow :input:not("button")').attr('disabled', 'disabled');
 
 	// For the click events below:
 	// ---------------------------
@@ -97,7 +97,10 @@ $(document).ready(function(){
 		return false;
 	}); // end click
 	$('.edit-account').click(function(){
-		$('.admin-table').removeAttr('disabled');
+		var tr = $(this).parents('tr');
+		tr.find(':input').attr('disabled', false);
+		tr.find('.save-cancel').show(); // get specificity to work by having the nearest .save-cancel buttons to $this show up
+		event.preventDefault();
 		return false;
 	}); // end click
 	$('.reset-pass').click(function(){
@@ -110,6 +113,11 @@ $(document).ready(function(){
 		$('#delete-dialog').show();
 		return false;
 	}); // end click
+	$('.cancel-edit').click(function(){
+		var tr = $(this).parents('tr');
+		tr.find(':input:not("button")').attr('disabled', true);
+		tr.find('.save-cancel').hide(); // get specificity to work by having the nearest .save-cancel buttons to $this show up
+	});
 
 	// If the user clicks "Cancel" in any
 	// of the dialogs, the dialogs and modal
