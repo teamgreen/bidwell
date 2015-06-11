@@ -142,11 +142,14 @@ $(document).ready(function(){
 		var pass_a = $('#password').val();
 		var pass_b = $('#confirm_password').val();
 
+		alert(pass_a);
+		alert(pass_b);
+
 		// if both passwords are equal, then
 		// the rest of the code will be executed
 		if(pass_a === pass_b){ // if valid, send ajax.
 			var accountid = $(this).attr('data-accountid');
-			var password=$("#new_password").val();
+			var password=$("#password").val();
 //			console.log("accountID = " + accountid + " password=" + password);
 			$.ajax({
 				type: 'POST',
