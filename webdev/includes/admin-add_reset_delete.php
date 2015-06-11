@@ -199,34 +199,16 @@
 		?>
 	</div>
 	<div id="reset-dialog">
-		<?php
-
-			if (isset($_POST['accountid'])) {
-
-				$pass_id = $_POST['accountid'];
-				$sql_pass = "SELECT Password FROM `account` WHERE AccountID = '$pass_id'";
-				$result_pass = @mysqli_query($dbc, $sql_pass);
-				$row_pass = @mysqli_fetch_assoc($result_pass);
-				$old_pass = $row_pass['Password'];
-
-				//var_dump($_POST);
-				//var_dump($_SERVER['argv']);
-				//var_dump($_SERVER);
-				//exit;
-
-			};
-
-		?>
 		<form action="admin.php" method="post" id="pass-form">
 			<p>Reset Password</p>
 			<hr>
 			<div>
 				<label for="new_password">Password</label>
-				<input type="password" name="new_password" id="new_password" value="<?php echo $old_pass; ?>" class="text ui-widget-content ui-corner-all">
+				<input type="password" name="password" id="new_password" class="text ui-widget-content ui-corner-all">
 			</div>
 			<div>
 				<label for="new_confirm_password">Confirm Password</label>
-				<input type="password" name="new_confirm_password" id="new_confirm_password" value="<?php echo $old_pass; ?>" class="text ui-widget-content ui-corner-all">
+				<input type="password" name="confirm_password" id="confirm_password" class="text ui-widget-content ui-corner-all">
 			</div>
 			<div class="submit-button">
 				<input type="submit" id="reset-submit" form="pass-form" value="Submit">
@@ -241,26 +223,27 @@
 
 			if($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-				if (isset($_POST['new_password'])) {
-					$password = $_POST['new_password'];
+				if (isset($_POST['password'])) {
+					$password = $_POST['password'];
+
+					$sql_newpass = "UPDATE `account`
+								SET Password = '$password'
+								WHERE AccountID = '$pass_id'";
+					$result_newpass = @mysqli_query($dbc, $sql_pass);
+
+					var_dump($password);
+					var_dump($sql_pass);
+
+					$num_rows_pass = @mysqli_num_rows($result_pass);
+					if ($num_rows_pass === 0) {
+					 	echo "<p>We apologize for the inconvenience but the password was not changed.</p>\n";
+					};
+
+					$_POST = array(); // should clear all fields
+
+					//header('location:admin.php');
+
 				};
-
-				$sql_newpass = "UPDATE `account`
-							SET Password = '$password'
-							WHERE AccountID = '$pass_id'";
-				$result_newpass = @mysqli_query($dbc, $sql_newpass);
-
-				var_dump($password);
-				var_dump($sql_newpass);
-
-				$num_rows_newpass = @mysqli_num_rows($result_newpass);
-				if ($num_rows_newpass === 0) {
-				 	echo "<p>We apologize for the inconvenience but the password was not changed.</p>\n";
-				};
-
-				$_POST = array(); // should clear all fields
-
-				//header('location:admin.php');
 
 			};
 
