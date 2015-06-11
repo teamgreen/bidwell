@@ -211,43 +211,10 @@
 				<input type="password" name="confirm_password" id="confirm_password" class="text ui-widget-content ui-corner-all">
 			</div>
 			<div class="submit-button">
-				<input type="submit" id="reset-submit" form="pass-form" value="Submit">
+				<input type="button" id="reset-submit" data-accountid="0" form="pass-form" value="Submit">
 				<input type="button" id="reset-cancel" value="Cancel">
 			</div>
 		</form>
-		<?php
-
-			# If the above form has been submitted,
-			# this PHP code will run and all the form
-			# values will be sent to the database.
-
-			if($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-				if (isset($_POST['password'])) {
-					$password = $_POST['password'];
-
-					$sql_newpass = "UPDATE `account`
-								SET Password = '$password'
-								WHERE AccountID = '$pass_id'";
-					$result_newpass = @mysqli_query($dbc, $sql_pass);
-
-					var_dump($password);
-					var_dump($sql_pass);
-
-					$num_rows_pass = @mysqli_num_rows($result_pass);
-					if ($num_rows_pass === 0) {
-					 	echo "<p>We apologize for the inconvenience but the password was not changed.</p>\n";
-					};
-
-					$_POST = array(); // should clear all fields
-
-					//header('location:admin.php');
-
-				};
-
-			};
-
-		?>
 	</div>
 	<div id="delete-dialog">
 		<form action="admin.php" method="post" id="delete-form">

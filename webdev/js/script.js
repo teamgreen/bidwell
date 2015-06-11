@@ -103,24 +103,22 @@ $(document).ready(function(){
 		event.preventDefault();
 		return false;
 	}); // end click
+
+	// on click for the reset password button
 	$('.reset-pass').click(function(evt){
+		var button = $(this);
+
+		// set the account id on the reset password box's submit button.  We'll need it later.
+		$('#reset-submit').attr('data-accountid', button.attr('data-accountid'))
+
+		// show the reset password box.
 		$('#add-reset_bg').show();
 		$('#reset-dialog').show();
-
-		var accountid = $(this).attr('data-accountid');
-		console.log(accountid);
-		// $.ajax({
-		// 	type: 'POST',
-		// 	url: 'includes/admin-add_reset_delete.php', 
-		// 	data: {accountid:accountid},
-		// 	success: function(data){
-		// 		console.log("success");
-		// 	}
-		// }); // end ajax
 
 		evt.preventDefault();
 		return false;
 	}); // end click
+
 	$('.delete-account').click(function(){
 		$('#add-reset_bg').show();
 		$('#delete-dialog').show();
@@ -131,6 +129,36 @@ $(document).ready(function(){
 		tr.find(':input:not("button")').attr('disabled', true);
 		tr.find('.save-cancel').hide(); // get specificity to work by having the nearest .save-cancel buttons to $this show up
 	});
+
+	// handle the submit button for setting a new password.
+	$('#reset-submit').click(function(evt){
+		$('#pass-form').data('validator').resetForm();
+		$('#add-reset_bg').hide();
+		$('#reset-dialog').hide();
+
+		// TODO: Validate the password!!!!
+
+		if(1){ // if valid, send ajax.
+			var accountid = $(this).attr('data-accountid');
+			var password=$("#new_password").val();
+//			console.log("accountID = " + accountid + " password=" + password);
+			$.ajax({
+				type: 'POST',
+				url: 'phpscripts/reset-password.php', 
+				data: {'accountid':accountid, 'password':password},
+				success: function(data){
+					console.log("Password reset successfully."+data);
+				},
+				error: function(xhr, desc, err) {
+					console.log(xhr);
+					console.log("Details: " + desc + "\nError:" + err);
+				}
+			}); // end ajax
+		}
+
+		evt.preventDefault();
+		return false;
+	}); // end click
 
 	// If the user clicks "Cancel" in any
 	// of the dialogs, the dialogs and modal
