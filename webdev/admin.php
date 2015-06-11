@@ -108,20 +108,11 @@
 									echo "<td><input type=\"text\" class=\"admin-table\" value=\"" . $row_account['Email'] . "\"></td>";
 									echo "<td><input type=\"text\" class=\"admin-table\" value=\"" . $row_account['PresetName'] . "\"></td>";
 									echo "<td>
-											<form method=\"post\" action=\"admin.php\">
-												<button type=\"submit\" class=\"edit-account admin-buttons\" title=\"Edit Account\" name=\"accountid\" value=\"{$row_account['AccountID']}\"><i class=\"fa fa-pencil\"></i></button>
-											</form>
-											<form method=\"post\" action=\"admin.php\">
-												<button type=\"submit\" class=\"reset-pass admin-buttons\" title=\"Reset Password\" name=\"accountid\" value=\"{$row_account['AccountID']}\"><i class=\"fa fa-key\"></i></button>
-											</form>
-											<form method=\"post\" action=\"admin.php\">
-	 											<button type=\"submit\" class=\"delete-account admin-buttons\" title=\"Delete Account\" name=\"accountid\" value=\"{$row_account['AccountID']}\"><i class=\"fa fa-trash\"></i></button>
-	 										</form>
-											<form method=\"post\" action=\"admin.php\">
-												<button type=\"submit\" class=\"save-cancel save admin-buttons\" title=\"Save Changes\" name=\"accountid\" value=\"{$row_account['AccountID']}\"><i class=\"fa fa-floppy-o\"></i></button>
-											</form>
-											<form method=\"post\" action=\"admin.php\">
-												<button type=\"submit\" class=\"save-cancel cancel admin-buttons\" title=\"Cancel Changes\" name=\"accountid\" value=\"{$row_account['AccountID']}\"><i class=\"fa fa-ban\"></i></button>
+											<button type=\"button\" class=\"edit-account admin-buttons\" title=\"Edit Account\" name=\"accountid\" value=\"{$row_account['AccountID']}\"><i class=\"fa fa-pencil\"></i></button>
+											<button type=\"button\" class=\"reset-pass admin-buttons\" title=\"Reset Password\" name=\"accountid\" value=\"{$row_account['AccountID']}\"><i class=\"fa fa-key\"></i></button>
+ 											<button type=\"button\" class=\"delete-account admin-buttons\" title=\"Delete Account\" name=\"accountid\" value=\"{$row_account['AccountID']}\"><i class=\"fa fa-trash\"></i></button>
+											<button type=\"button\" class=\"save-cancel save admin-buttons\" title=\"Save Changes\" name=\"accountid\" value=\"{$row_account['AccountID']}\"><i class=\"fa fa-floppy-o\"></i></button>
+											<button type=\"button\" class=\"save-cancel cancel admin-buttons\" title=\"Cancel Changes\" name=\"accountid\" value=\"{$row_account['AccountID']}\"><i class=\"fa fa-ban\"></i></button>
 											</form>
 										</td>";
 									echo "</tr>\n";
