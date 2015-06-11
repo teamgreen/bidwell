@@ -104,99 +104,10 @@
 				</div>
 			</div>
 			<div class="submit-button">
-				<input type="submit" id="add-submit" form="add-form" value="Submit">
+				<input type="button" id="add-submit" value="Submit">
 				<input type="button" id="add-cancel" value="Cancel">
 			</div>
 		</form>
-		<?php
-
-			# If the above form has been submitted,
-			# this PHP code will run and all the form
-			# values will be sent to the database.
-
-			if($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-				if($_POST['add_preset'] !== 'Custom') {
-
-					$username = $_POST['add_username'];
-					$email = $_POST['add_email'];
-					$preset = $_POST['add_preset'];
-					$password = $_POST['add_password'];
-					$passdate = date('Y-m-d');
-
-					$sql_add = "INSERT INTO `account` (LoginName, Email, PresetName, Password, PasswordDate)
-								VALUES ('$username', '$email', '$preset', '$password', '$passdate')";
-					$result_add = @mysqli_query($dbc, $sql_add);
-
-					$num_rows_add = @mysqli_num_rows($result_add);
-					if ($num_rows_add == 0) {
-					 	echo "<p>We apologize for the inconvenience but a new account could not be added.</p>\n";
-					};
-
-					$_POST = array(); // should clear all fields
-
-					header('location:admin.php');
-
-				} else {
-
-					$username = $_POST['add_username'];
-					$email = $_POST['add_email'];
-					$preset = $_POST['add_preset'];
-					$password = $_POST['add_password'];
-					$passdate = date('Y-m-d');
-
-					$sql_add = "INSERT INTO `account` (LoginName, Email, PresetName, Password, PasswordDate)
-								VALUES ('$username', '$email', '$preset', '$password', '$passdate')";
-					$result_add = @mysqli_query($dbc, $sql_add);
-
-					$num_rows_add = @mysqli_num_rows($result_add);
-					if ($num_rows_add == 0) {
-					 	echo "<p>We apologize for the inconvenience but a new account could not be added.</p>\n";
-					};
-
-					$sql_p_id = "SELECT AccountID FROM `account` WHERE LoginName = '$username'";
-					$result_p_id = @mysqli_query($dbc, $sql_p_id);
-
-					$num_rows_p_id = @mysqli_num_rows($result_p_id);
-					if ($num_rows_p_id == 0) {
-					 	echo "<p>We apologize for the inconvenience but the account ID could not be retrieved</p>\n";
-					};
-
-					while($row_p_id = @mysqli_fetch_array($result_p_id)) {
-						$p_id = $row_p_id['AccountID'];
-					};
-
-					if (is_array($_POST['add_permission'])) {
-						foreach ($_POST['add_permission'] as $value) {
-							$sql_permission = "INSERT INTO `account|permission` (PermissionID) VALUES ('$value') WHERE AccountID = '$p_id'";
-							$result_permission = @mysqli_query($dbc, $sql_permission);
-
-							$num_rows_permission = @mysqli_num_rows($result_permission);
-							if ($num_rows_permission == 0) {
-							 	echo "<p>We apologize for the inconvenience but a permission was not added.</p>\n";
-							};
-						};
-					} else {
-						$permissions = $_POST['add_permission'];
-
-						$sql_permission = "INSERT INTO `account|permission` (PermissionID) VALUES ('$permissions') WHERE AccountID = '$p_id'";
-						$result_permission = @mysqli_query($dbc, $sql_permission);
-
-						$num_rows_permission = @mysqli_num_rows($result_permission);
-						if ($num_rows_permission == 0) {
-						 	echo "<p>We apologize for the inconvenience but a permission was not added.</p>\n";
-						};
-					};
-
-					$_POST = array(); // should clear all fields
-
-					header('location:admin.php');
-
-				};
-
-			};
-
-		?>
 	</div>
 	<div id="reset-dialog">
 		<form action="admin.php" method="post" id="pass-form">
@@ -252,8 +163,6 @@
 				$_POST = array(); // should clear all fields
 
 				header('location:admin.php');
-				
 			};
-
 		?>
 	</div>

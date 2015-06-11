@@ -160,6 +160,40 @@ $(document).ready(function(){
 		return false;
 	}); // end click
 
+	// handle the add-submit button being clicked.
+	$('#add-submit').click(function(evt){
+		$('#add-form').data('validator').resetForm();
+		$('#add-reset_bg').hide();
+		$('#add-dialog').hide();
+
+		// TODO: Validate the password!!!!
+
+		if(1){ // if valid, send ajax.
+			var username = $('#add-form #add_username').val();
+			var email = $('#add-form #add_email').val();
+			var preset = $('#add-form #add_preset :selected').val();
+			var password = $('#add-form #add_password').val();
+
+			$.ajax({
+				type: 'POST',
+				url: 'phpscripts/add-account.php', 
+				data: {'add_username':username, 'add_email':email, 'add_preset':preset,'add_password':password},
+				success: function(data){
+					console.log("new account added: "+data);
+					location.reload(); 
+				},
+				error: function(xhr, desc, err) {
+					console.log(xhr);
+					console.log("Details: " + desc + "\nError:" + err);
+				}
+			}); // end ajax
+		}
+
+		evt.preventDefault();
+		return false;
+	}); // end click
+
+
 	// If the user clicks "Cancel" in any
 	// of the dialogs, the dialogs and modal
 	// background will be hidden.

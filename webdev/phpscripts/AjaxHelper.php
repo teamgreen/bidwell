@@ -48,6 +48,9 @@ session_start();
 		}
 		else
 			echo "ERROR2";
+		
+		//clean up after ourselves.
+		mysqli_close($dbc);
  	}
  	else
  		echo "ERROR";

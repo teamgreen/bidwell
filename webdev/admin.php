@@ -40,13 +40,15 @@
 </head>
 <body>
 
-	<?php include 'includes/admin-add_reset_delete.php'; ?>
 
 	<div class="wrapper">
 
 	<?php 
 	$filename=basename(__FILE__);
-	@require_once "includes/header.inc.php"; ?>
+	@require_once "includes/header.inc.php"; 
+	@require_once 'includes/admin-add_reset_delete.php';
+	@include_once 'includes/debugging-helper-functions.inc.php';
+	?>
 
 		<div class="content">
 			
