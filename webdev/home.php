@@ -66,7 +66,21 @@
 			$result = @mysqli_query($a_dbc, $sql);
 			$row = @mysqli_fetch_array($result);
 			$retVal = $row[0];
-			mysqli_free_result($result);
+			@mysqli_free_result($result);
+			return $retVal;
+		}
+
+		// using a site location, returns the city.
+		function getCityFromAddressID($a_dbc, $a_id)
+		{
+			// SQL statement to get the status name.
+			$sql = "SELECT `City` FROM `address` WHERE `AddressID`=".$a_id;
+//varDump(__FUNCTION__, __LINE__, $sql);
+//varDump(__FUNCTION__, __LINE__, $a_dbc);
+			$result = @mysqli_query($a_dbc, $sql);
+			$row = @mysqli_fetch_array($result);
+			$retVal = $row[0];
+			@mysqli_free_result($result);
 			return $retVal;
 		}
 	?>
@@ -127,7 +141,7 @@
 								echo "<tr>\n";
 								echo "<td>" . $row_project['ProjectID'] . "</td>";
 								echo "<td>" . $row_project['ProjectName'] . "</td>";
-								echo "<td>" . $row_project['SiteAddressID'] . "</td>";
+								echo "<td>" . getCityFromAddressID($dbc, $row_project['SiteAddressID']) . "</td>";
 								echo "<td>" . $row_project['ProjectDueDate'] . "</td>";
 								echo "<td>" . getStatusNameFromID($dbc, $row_project['ProjectStatusID']) . "</td>";
 								echo "</tr>\n";
@@ -226,7 +240,7 @@
 								echo "<tr>\n";
 								echo "<td>" . $row_completed_project['ProjectID'] . "</td>";
 								echo "<td>" . $row_completed_project['ProjectName'] . "</td>";
-								echo "<td>" . $row_completed_project['SiteAddressID'] . "</td>";
+								echo "<td>" . getCityFromAddressID($dbc, $row_completed_project['SiteAddressID']) . "</td>";
 								echo "<td>" . $row_completed_project['ProjectDueDate'] . "</td>";
 								echo "<td>" . getStatusNameFromID($dbc, $row_completed_project['ProjectStatusID']) . "</td>";
 								echo "</tr>\n";
