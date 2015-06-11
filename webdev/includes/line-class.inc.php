@@ -391,7 +391,7 @@ class ProjectDescriptionLine extends Line
 	function displayLine($a_dbc, $a_lineCount)
 	{
 		if($this->lineID)
-			echo "<textarea class='newLine'>{$this->text}</textarea>\n";
+			echo "<textarea>{$this->text}</textarea>\n";
 		else
 		 	echo "<textarea class='newLine'>{$this->text}</textarea>\n";
 
