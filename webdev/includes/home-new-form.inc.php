@@ -204,7 +204,7 @@
 						# values will be sent to the database.
 
 						if($_SERVER['REQUEST_METHOD'] == 'POST') {
-
+							$projectid=0;
 							$projectName = assignIfNotEmpty('project_name', 'Project');
 							$projectDescription = assignIfNotEmpty('project_description', 'Here is the project description.');
 							$projectCurrentDate = date('Y-m-d');
@@ -238,93 +238,81 @@
 							$locationZip = assignIfNotEmpty('zip_location', 'TBD');
 							$projectNotes = assignIfNotEmpty('project_notes', 'Here are the project notes.');
 
-							$sql_form_project = "INSERT INTO `project` (ProjectName, ProjectDescription, ProjectDateEntered, ProjectDueDate, Owner, OwnerPhone, OwnerCellPhone, OwnerEmail, Architect, ArchitectPhone, ArchitectCellPhone, ArchitectEmail, ProjectNotes)
-										VALUES ('$projectName', '$projectDescription', '$projectCurrentDate', '$projectDueDate', '$ownerName', '$ownerPhone', '$ownerCellphone', '$ownerEmail', '$architectName', '$architectPhone', '$architectCellphone', '$architectEmail', '$projectNotes')";
+							$companyid = $_SESSION['companyid'];
 
-							$result_form_project = @mysqli_query($dbc, $sql_form_project);
+							$sql_form_project = "INSERT INTO `project` (ProjectName, ProjectDescription, ProjectDateEntered, ProjectDueDate, Owner, OwnerPhone, OwnerCellPhone, OwnerEmail, Architect, ArchitectPhone, ArchitectCellPhone, ArchitectEmail, ProjectNotes, CompanyID)
+										VALUES ('$projectName', '$projectDescription', '$projectCurrentDate', '$projectDueDate', '$ownerName', '$ownerPhone', '$ownerCellphone', '$ownerEmail', '$architectName', '$architectPhone', '$architectCellphone', '$architectEmail', '$projectNotes', '$companyid')";
 
-							$num_rows_form_project = @mysqli_num_rows($result_form_project);
-							if ($num_rows_form_project === 0) {
+							if (@mysqli_query($dbc, $sql_form_project) === FALSE) {
 							 	echo "<p>We apologize for the inconvenience, but the following information has not been received:\n";
 							 	echo "Project Information\n</p>";
-							};
+							} else { //only write address if project worked.
+								//store the id of the project for later use.
+								$projectid=mysqli_insert_id($dbc);
 
-							// Add Owner Address
-							$sql_o = "INSERT INTO `address` (Address1, Address2, City, State, ZipCode)
-									VALUES ('$ownerAddress1', '$ownerAddress2', '$ownerCity', '$ownerState', '$ownerZip')";
-							$result_o = @mysqli_query($dbc, $sql_o);
+								// Add Owner Address
+								$sql_o = "INSERT INTO `address` (Address1, Address2, City, State, ZipCode)
+										VALUES ('$ownerAddress1', '$ownerAddress2', '$ownerCity', '$ownerState', '$ownerZip')";
+								if ( @mysqli_query($dbc, $sql_o) === FALSE) {
+								 	echo "<p>We apologize for the inconvenience, but the following information has not been received:\n";
+								 	echo "Owner Address\n</p>";
+								} else {
+									// Add Owner Address ID
+									$address_id = mysqli_insert_id($dbc);
+									$sql_o_id = "UPDATE `project` 
+												SET OwnerAddressID = ($address_id)
+												WHERE project.ProjectName = '$projectName'";
 
-							$num_rows_o = @mysqli_num_rows($result_o);
-							if ($num_rows_o === 0) {
-							 	echo "<p>We apologize for the inconvenience, but the following information has not been received:\n";
-							 	echo "Owner Address\n</p>";
-							};
+									if (@mysqli_query($dbc, $sql_o_id) === FALSE) {
+									 	echo "<p>We apologize for the inconvenience, but the following information has not been received:\n";
+									 	echo "Owner Address ID\n</p>";
+									}
+								}
 
-							// Add Owner Address ID
-							$sql_o_id = "UPDATE `project` 
-										SET OwnerAddressID = (
-											SELECT AddressID FROM `address` WHERE ZipCode = '$ownerZip')
-										WHERE project.ProjectName = '$projectName'";
-							$result_o_id = @mysqli_query($dbc, $sql_o_id);
+								// Add Architect Address
+								$sql_a = "INSERT INTO `address` (Address1, Address2, City, State, ZipCode)
+										VALUES ('$architectAddress1', '$architectAddress2', '$architectCity', '$architectState', '$architectZip')";
 
-							$num_rows_o_id = @mysqli_num_rows($result_o_id);
-							if ($num_rows_o_id === 0) {
-							 	echo "<p>We apologize for the inconvenience, but the following information has not been received:\n";
-							 	echo "Owner Address ID\n</p>";
-							};
+								if (@mysqli_query($dbc, $sql_a) === FALSE) {
+								 	echo "<p>We apologize for the inconvenience, but the following information has not been received:\n";
+								 	echo "Architect Address\n</p>";
+								} else{
+									// Add Architect Address ID 
+									$address_id = mysqli_insert_id($dbc);
+									$sql_a_id = "UPDATE `project` 
+												SET ArchitectAddressID = ($address_id)
+												WHERE project.ProjectName = '$projectName'";
 
-							// Add Architect Address
-							$sql_a = "INSERT INTO `address` (Address1, Address2, City, State, ZipCode)
-									VALUES ('$architectAddress1', '$architectAddress2', '$architectCity', '$architectState', '$architectZip')";
-							$result_a = @mysqli_query($dbc, $sql_a);
+									if (@mysqli_query($dbc, $sql_a_id) === FALSE) {
+									 	echo "<p>We apologize for the inconvenience, but the following information has not been received:\n";
+									 	echo "Architect Address ID\n</p>";
+									}
+								}
 
-							$num_rows_a = @mysqli_num_rows($result_a);
-							if ($num_rows_a === 0) {
-							 	echo "<p>We apologize for the inconvenience, but the following information has not been received:\n";
-							 	echo "Architect Address\n</p>";
-							};
+								// Add Location Address
+								$sql_l = "INSERT INTO `address` (Address1, Address2, City, State, ZipCode)
+										VALUES ('$locationAddress1', '$locationAddress2', '$locationCity', '$locationState', '$locationZip')";
 
-							// Add Architect Address ID 
-							$sql_a_id = "UPDATE `project` 
-										SET ArchitectAddressID = (
-											SELECT AddressID FROM `address` WHERE ZipCode = '$architectZip')
-										WHERE project.ProjectName = '$projectName'";
-							$result_a_id = @mysqli_query($dbc, $sql_a_id);
+								if (@mysqli_query($dbc, $sql_l) === FALSE) {
+								 	echo "<p>We apologize for the inconvenience, but the following information has not been received:\n";
+								 	echo "Location Address\n</p>";
+								} else {
+									// Add Location Address ID
+									$address_id = mysqli_insert_id($dbc);
+									$sql_l_id = "UPDATE `project` 
+												SET SiteAddressID = ($address_id)
+												WHERE project.ProjectName = '$projectName'";
 
-							$num_rows_a_id = @mysqli_num_rows($result_a_id);
-							if ($num_rows_a_id === 0) {
-							 	echo "<p>We apologize for the inconvenience, but the following information has not been received:\n";
-							 	echo "Architect Address ID\n</p>";
-							};
-
-							// Add Location Address
-							$sql_l = "INSERT INTO `address` (Address1, Address2, City, State, ZipCode)
-									VALUES ('$locationAddress1', '$locationAddress2', '$locationCity', '$locationState', '$locationZip')";
-							$result_l = @mysqli_query($dbc, $sql_l);
-
-							$num_rows_l = @mysqli_num_rows($result_l);
-							if ($num_rows_l === 0) {
-							 	echo "<p>We apologize for the inconvenience, but the following information has not been received:\n";
-							 	echo "Location Address\n</p>";
-							};
-
-							// Add Location Address ID
-							$sql_l_id = "UPDATE `project` 
-										SET SiteAddressID = (
-											SELECT AddressID FROM `address` WHERE ZipCode = '$locationZip')
-										WHERE project.ProjectName = '$projectName'";
-							$result_l_id = @mysqli_query($dbc, $sql_l_id);
-
-							$num_rows_l_id = @mysqli_num_rows($result_l_id);
-							if ($num_rows_l_id === 0) {
-							 	echo "<p>We apologize for the inconvenience, but the following information has not been received:\n";
-							 	echo "Location Address ID\n</p>";
-							};
-
-							$_POST = array(); // should clear all fields
-
-							header('location:home.php');
-							
-						};
-		
+									if (@mysqli_query($dbc, $sql_l_id) === FALSE) {
+									 	echo "<p>We apologize for the inconvenience, but the following information has not been received:\n";
+									 	echo "Location Address ID\n</p>";
+									}
+								}
+								// if we made it here, success.  Should go to project page though.
+								//$_POST = array(); // should clear all fields
+								//header('location:home.php');
+								$_SESSION['projectid'] = $projectid;
+								header('location:project.php');
+							}
+						}
 					?>
