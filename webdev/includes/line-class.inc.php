@@ -284,7 +284,7 @@ class InternalBidSheetLine extends Line
 		echo "<td></td>\n";
 		echo "<td></td>\n";
 		echo "<td class='inTableTotal'>{$a_header}:</td>\n";
-		echo '<td>$' . $a_amount . "</td>\n";
+		echo '<td class="inSubTotal">$' . $a_amount . "</td>\n";
 		echo "</tr>\n";	
 	}
 

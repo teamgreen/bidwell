@@ -64,10 +64,15 @@ $(document).ready(function(){
 			function(evt)
 			{
 				var dif = $(this).val() - previous; // difference of the old and new value
+
+				// update the subtotal
+				var tr = $(this).parents('table');
+				var subtotal = tr.find('.inSubTotal');
+				var newSubtotal = parseInt(subtotal.html().match(/\d+/)) + parseInt(dif); // the new subtotal amount
+				subtotal.html("$" + newSubtotal);
+				// and now for total box
 				var total = $('#tab3 .inTotal'); //total stored here.
 				var newTotal = parseInt(total.html().match(/\d+/)) + parseInt(dif); // the new total amount
-
-				// now update the total box.
 				total.html("$" + newTotal);
 
 		        // Make sure the previous value is updated, in case they change it again.
