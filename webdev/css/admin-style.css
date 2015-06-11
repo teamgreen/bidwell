@@ -186,14 +186,14 @@ table {
 	width: 375px;
 }
 
-.post-error, .post-success {
+.post-error, .post-success, .add-error {
 	padding: 5px;
 	width: 300px;
 	height: auto;
 	margin: 20px auto;
 	display: none;
 }
-.post-error {
+.post-error, .add-error {
 	color: #9e3f3f;
 	background-color: #f7e1e1;
 }

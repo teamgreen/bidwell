@@ -50,6 +50,7 @@
 		?>
 		<div class="post-success">Success! The password has been changed.</div>
 		<div class="post-error">Error: Password could not be updated.</div>
+		<div class="add-error">Error: Account could not be added.</div>
 
 		<div class="content">
 			

@@ -131,6 +131,39 @@ $(document).ready(function(){
 		tr.find('.save-cancel').hide(); // get specificity to work by having the nearest .save-cancel buttons to $this show up
 	});
 
+	// handle the add-submit button being clicked.
+	$('#add-submit').click(function(evt){
+		$('#add-form').data('validator').resetForm();
+		$('#add-reset_bg').hide();
+		$('#add-dialog').hide();
+
+		// if form is valid, execute code
+		if($('#add-form').valid()){ // if valid, send ajax.
+			var username = $('#add-form #add_username').val();
+			var email = $('#add-form #add_email').val();
+			var preset = $('#add-form #add_preset :selected').val();
+			var password = $('#add-form #add_password').val();
+
+			$.ajax({
+				type: 'POST',
+				url: 'phpscripts/add-account.php', 
+				data: {'add_username':username, 'add_email':email, 'add_preset':preset,'add_password':password},
+				success: function(data){
+					console.log("new account added: "+data);
+					location.reload(); 
+				},
+				error: function(xhr, desc, err) {
+					console.log(xhr);
+					console.log("Details: " + desc + "\nError:" + err);
+					$('.add-error').show().delay(500).hide(5000);
+				}
+			}); // end ajax
+		}
+
+		evt.preventDefault();
+		return false;
+	}); // end click
+
 	// handle the submit button for setting a new password.
 	$('#reset-submit').click(function(evt){
 		$('#pass-form').data('validator').resetForm();
@@ -141,9 +174,6 @@ $(document).ready(function(){
 		// be compared for validation
 		var pass_a = $('#password').val();
 		var pass_b = $('#confirm_password').val();
-
-		alert(pass_a);
-		alert(pass_b);
 
 		// if both passwords are equal, then
 		// the rest of the code will be executed
@@ -174,40 +204,6 @@ $(document).ready(function(){
 		evt.preventDefault();
 		return false;
 	}); // end click
-
-	// handle the add-submit button being clicked.
-	$('#add-submit').click(function(evt){
-		$('#add-form').data('validator').resetForm();
-		$('#add-reset_bg').hide();
-		$('#add-dialog').hide();
-
-		// TODO: Validate the password!!!!
-
-		if(1){ // if valid, send ajax.
-			var username = $('#add-form #add_username').val();
-			var email = $('#add-form #add_email').val();
-			var preset = $('#add-form #add_preset :selected').val();
-			var password = $('#add-form #add_password').val();
-
-			$.ajax({
-				type: 'POST',
-				url: 'phpscripts/add-account.php', 
-				data: {'add_username':username, 'add_email':email, 'add_preset':preset,'add_password':password},
-				success: function(data){
-					console.log("new account added: "+data);
-					location.reload(); 
-				},
-				error: function(xhr, desc, err) {
-					console.log(xhr);
-					console.log("Details: " + desc + "\nError:" + err);
-				}
-			}); // end ajax
-		}
-
-		evt.preventDefault();
-		return false;
-	}); // end click
-
 
 	// If the user clicks "Cancel" in any
 	// of the dialogs, the dialogs and modal
