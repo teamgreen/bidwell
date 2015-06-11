@@ -76,6 +76,7 @@ $(document).ready(function(){
 	// --------------------
 	// Created 5/17/2015
 	// Edited 6/3/2015
+	// Edited by Frank van der Salm 6/10/2015
 	// Authored by Alex Chaudoin
 	/////////////////////////////
 
@@ -136,22 +137,36 @@ $(document).ready(function(){
 		$('#add-reset_bg').hide();
 		$('#reset-dialog').hide();
 
-		// TODO: Validate the password!!!!
+		// values of password/confirm password will
+		// be compared for validation
+		var pass_a = $('#password').val();
+		var pass_b = $('#confirm_password').val();
 
-		if(1){ // if valid, send ajax.
+		alert(pass_a);
+		alert(pass_b);
+
+		// if both passwords are equal, then
+		// the rest of the code will be executed
+		if(pass_a === pass_b){ // if valid, send ajax.
 			var accountid = $(this).attr('data-accountid');
-			var password=$("#new_password").val();
+			var password=$("#password").val();
 //			console.log("accountID = " + accountid + " password=" + password);
 			$.ajax({
 				type: 'POST',
 				url: 'phpscripts/reset-password.php', 
 				data: {'accountid':accountid, 'password':password},
 				success: function(data){
-					console.log("Password reset successfully."+data);
+					if(data == "SUCCESS") {
+						console.log("Password reset successfully."+data);
+						$('.post-success').show().delay(500).hide(5000);
+					}
 				},
 				error: function(xhr, desc, err) {
-					console.log(xhr);
-					console.log("Details: " + desc + "\nError:" + err);
+					if(data == "ERROR") {
+						console.log(xhr);
+						console.log("Details: " + desc + "\nError:" + err);
+						$('.post-error').show().delay(500).hide(5000);
+					}
 				}
 			}); // end ajax
 		}

@@ -40,15 +40,16 @@
 </head>
 <body>
 
-
 	<div class="wrapper">
 
-	<?php 
-	$filename=basename(__FILE__);
-	@require_once "includes/header.inc.php"; 
-	@require_once 'includes/admin-add_reset_delete.php';
-	@include_once 'includes/debugging-helper-functions.inc.php';
-	?>
+		<?php 
+		$filename=basename(__FILE__);
+		@require_once "includes/header.inc.php"; 
+		@require_once 'includes/admin-add_reset_delete.php';
+		@include_once 'includes/debugging-helper-functions.inc.php';
+		?>
+		<div class="post-success">Success! The password has been changed.</div>
+		<div class="post-error">Error: Password could not be updated.</div>
 
 		<div class="content">
 			

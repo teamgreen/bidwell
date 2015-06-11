@@ -185,3 +185,16 @@ table {
 	margin: 40px auto 20px auto;
 	width: 375px;
 }
+
+.post-error {
+	color: #9e3f3f;
+	padding: 5px;
+	background-color: #f7e1e1;
+	display: none;
+}
+.post-success {
+	color: #537a33;
+	padding: 5px;
+	background-color: #e4f7d5;
+	display: none;
+}

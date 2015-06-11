@@ -64,15 +64,15 @@ $('#edit-form').validate({
 // Validate Reset Password Dialog form
 $('#pass-form').validate({
 	rules : {
-		new_password: "required",
-		new_confirm_password: {
+		password: "required",
+		confirm_password: {
 			required : true,
 			equalTo : "#new_password"
 		}
 	},
 	messages : {
-		new_password: "Please enter a password",
-		new_confirm_password: {
+		password: "Please enter a password",
+		confirm_password: {
 			required: "Please enter the password again",
 			equalTo: "Please make sure both passwords match"
 		}

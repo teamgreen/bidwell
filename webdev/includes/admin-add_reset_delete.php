@@ -114,11 +114,11 @@
 			<p>Reset Password</p>
 			<hr>
 			<div>
-				<label for="new_password">Password</label>
-				<input type="password" name="password" id="new_password" class="text ui-widget-content ui-corner-all">
+				<label for="password">Password</label>
+				<input type="password" name="password" id="password" class="text ui-widget-content ui-corner-all">
 			</div>
 			<div>
-				<label for="new_confirm_password">Confirm Password</label>
+				<label for="confirm_password">Confirm Password</label>
 				<input type="password" name="confirm_password" id="confirm_password" class="text ui-widget-content ui-corner-all">
 			</div>
 			<div class="submit-button">
