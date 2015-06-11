@@ -264,7 +264,7 @@ class file_upload {
 			$error[12] = '<p class="error">Sorry, the filename contains invalid characters. Use only alphanumerical chars and separate parts of the name (if needed) with an underscore. <br>A valid filename ends with one dot followed by the extension.</p>';
 			$error[13] = '<p class="error">The filename exceeds the maximum length of '.$this->max_length_filename.' characters.</p>';
 			$error[14] = '<p class="error">Sorry, the upload directory does not exist!</p>';
-			$error[15] = '<p class="error">Uploading '.$this->the_file.'...Error! Sorry, a file with this name already exitst.</p>';
+			$error[15] = '<p class="error">Uploading '.$this->the_file.'...Error! Sorry, a file with this name already exists.</p>';
 			$error[16] = '<p class="success">The uploaded file is renamed to '.$this->file_copy.'</p>.';
 			$error[17] = '<p class="error">The file %s does not exist.</p>';
 			$error[18] = '<p class="error">The file type (MIME type) is not valid.</p>'; 

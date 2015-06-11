@@ -167,7 +167,62 @@ $(document).ready(function(){
 				setSessionVariableAndReload('ChangeBidSheetID', changeTo);
 		}
 	);
+
+	/////////////////////////////////
+	// handle file download
+	/////////////////////////////////
+	$("#dllink").click(
+		function(evt)
+		{
+			dllink=$(this);
+			var folder=$(this).attr('data-folder');
+			var filename=$("#file_dl_list :selected").val();
+//			console.log(filename);
+			if(filename!=""){
+				dllink.href=folder;
+				dllink.attr("download", filename);
+			} else {
+				console.log("No file name");
+				evt.preventDefault();
+				return false;
+			}
+		}
+	);
+
+
+// 	/////////////////////////////////
+// 	// handle file download
+// 	/////////////////////////////////
+// 	$("#filedownload").click(
+// 		function(evt)
+// 		{
+// 			var folder=$(this).attr('data-folder');
+// 			var filename=$("#file_dl_list :selected").val();
+// 			var dllink = $("#dllink");
+// 			dllink.href=folder;
+// 			dllink.attr("download", filename);
+
+// 			dllink.click();
+// //			console.log(filename);
+// 			// if(filename!=""){
+// 			// 	$.ajax({
+// 			// 		url: 'phpscripts/downloadfile.php',
+// 			// 		type: 'get',
+// 			// 		data: {'file_to_download': filename, 'dl_folder':folder},
+// 			// 		//async: false,
+// 			// 		success: function(data) {
+// 			// 			console.log('fileDL data: ' + data);
+// 			// 		},
+// 			// 		error: function(xhr, desc, err) {
+// 			// 			console.log(xhr);
+// 			// 			console.log("Details: " + desc + "\nError:" + err);
+// 			// 		}
+// 			// 	});
+// 			// }
+// 		}
+// 	);
 });
+// end Ready
 
 function saveProjectDescriptionSheet()
 {
@@ -268,3 +323,4 @@ function saveChangeBidSheet()
 	//tab5
 
 }
+

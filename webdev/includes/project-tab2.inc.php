@@ -39,8 +39,8 @@ function select_files($dir) {
 	$teller = 0;
 	if ($handle = opendir($dir)) {
 		$mydir = "<p>Uploaded Files:</p>\n";
-		$mydir .= "<form name=\"form1\" method=\"post\" action=\"".$_SERVER['PHP_SELF']."\">\n";
-		$mydir .= "  <select name=\"file_in_folder\">\n";
+		$mydir .= "<form name=\"form1\" method=\"post\" action=\"#\">\n";
+		$mydir .= "  <select id=\"file_dl_list\" name=\"file_in_folder\">\n";
 		$mydir .= "    <option value=\"\" selected>...\n";
 		while (false !== ($file = readdir($handle))) {
 			$files[] = $file;
@@ -54,8 +54,10 @@ function select_files($dir) {
 				$teller++;	
 			}
 		}
+		$dl_folder = $_SERVER['DOCUMENT_ROOT']."/files/";
 		$mydir .= "  </select>";
-		$mydir .= "<input type=\"submit\" name=\"download\" value=\"Download\">";
+		$mydir .= "<a id=\"dllink\" href=\"#\" download=\"#\">Download</a>\n";
+		//$mydir .= "<input type=\"button\" id=\"filedownload\" data-folder=\"$dl_folder\" name=\"download\" value=\"Download\">";
 		$mydir .= "</form>\n";
 	}
 	if ($teller == 0) {
@@ -64,58 +66,7 @@ function select_files($dir) {
 		echo $mydir;
 	}
 }
-if (isset($_POST['download'])) {
-	$fullPath = $folder.$_POST['file_in_folder'];
-	if ($fd = fopen ($fullPath, "rb")) {
-		$fsize = filesize($fullPath);
-		$path_parts = pathinfo($fullPath); 
-		$ext = strtolower($path_parts["extension"]); 
-		switch ($ext) {
-			case "png":
-			case "bmp":
-			case "gif":
-			case "jpg":
-			case "jpeg":
-			header("Content-type: image/".$ext.""); 
-			header("Content-Disposition: attachment; filename=\"".$path_parts["basename"]."\"");
-			break;
-			case "pdf":
-			header("Content-type: application/pdf");
-			header("Content-Disposition: attachment; filename=\"".$path_parts["basename"]."\""); 
-			break;
-			case "svg":
-			header("Content-type: application/svg");
-			header("Content-Disposition: attachment; filename=\"".$path_parts["basename"]."\""); 
-			break;
-			case "dwg":
-			header("Content-type: application/dwg");
-			header("Content-Disposition: attachment; filename=\"".$path_parts["basename"]."\""); 
-			break;
-			case "zip":
-			header("Content-type: application/zip"); 
-			header("Content-Disposition: filename=\"".$path_parts["basename"]."\"");
-			break;
-			case "doc":
-			header("Content-type: application/doc");
-			header("Content-Disposition: filename=\"".$path_parts["basename"]."\"");
-			break;
-			case "docx":
-			header("Content-type: application/docx");
-			header("Content-Disposition: filename=\"".$path_parts["basename"]."\"");
-			default;
-			header("Content-type: application/octet-stream");
-			header("Content-Disposition: filename=\"".$path_parts["basename"]."\"");
-		}
-		header("Content-length: $fsize");
-		header("Cache-control: private"); 
-		while(!feof($fd)) {
-			$buffer = fread($fd, 2048);
-			echo $buffer;
-		}
-	}
-	fclose ($fd);
-	exit;
-}
+
 function del_file($file) {
 	$delete = @unlink($file); 
 	clearstatcache();

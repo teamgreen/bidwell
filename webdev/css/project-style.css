@@ -301,6 +301,26 @@ button:hover{
 .div-table{
 	display: table;
 }
+
+#dllink {
+  -webkit-border-radius: 5;
+  -moz-border-radius: 5;
+  border-radius: 5px;
+  -webkit-box-shadow: 0px 1px 3px #666666;
+  -moz-box-shadow: 0px 1px 3px #666666;
+  box-shadow: 0px 1px 3px #666666;
+  color: #000000;
+  font-size: 20px;
+  background: #b4e753;
+  padding: 2px 5px;
+  text-decoration: none;
+  margin:0 0 0 4px;
+}
+
+#dllink:hover {
+  text-decoration: none;
+}
+
 /**/
 /*start Table related CSS*/
 /**/
