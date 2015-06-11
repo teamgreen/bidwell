@@ -229,7 +229,7 @@ class InternalBidSheetLine extends Line
 	{
 		echo "<tr class='inTableRow'>\n";
 //		echo "<th class='inTableColTaskID'>Task ID</th>\n";
-		echo "<th class='inTableColTaskName'>Division {$a_div} Tasks</th>\n";
+		echo "<th class='inTableColTaskName'>{$a_div}</th>\n";
 		echo "<th>Subcontractor</th>\n";
 		echo "<th class='chTableColAmount'>Amount</th>\n";
 		echo "<th>Notes</th>\n";
@@ -287,8 +287,6 @@ class InternalBidSheetLine extends Line
 		echo '<td>$' . $a_amount . "</td>\n";
 		echo "</tr>\n";	
 	}
-
-
 
 	//////////////////////////////////////
 	// taskIDSelectBox  - writes out select box

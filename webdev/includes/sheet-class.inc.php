@@ -361,13 +361,14 @@ class InternalBidSheet extends Sheet
 		// all of this in a form.
 		echo "<form data-sheetID='".$this->sheetID."'>\n";
 
-
+		$sql="SELECT `DivisionName` FROM `division`";
+		$result = @mysqli_query($a_dbc, $sql);
 		$lineCount=0;
 		$total=0;
 		$subtotal=0;
 		$lastDiv=999;
 		$tableStarted=false;
-		$div=0;
+		//$div=0;
 
 		// display the lines and keep track of the total
 		foreach ($this->lines as $i) {
@@ -389,7 +390,10 @@ class InternalBidSheet extends Sheet
 				echo "<table>\n";
 
 				//add the header
-				$this->generateTableHeaderHTML(++$div);
+				//$div++;
+				$row = mysqli_fetch_row($result);
+//varDump(__FUNCTION__, __LINE__, $row);
+				$this->generateTableHeaderHTML($row[0]);
 
 				// increment the lastDiv by 1000 (one div)
 				$lastDiv+=1000;
@@ -398,6 +402,8 @@ class InternalBidSheet extends Sheet
 			$subtotal+=$i->displayLine($a_dbc, ++$lineCount);
 		}
 
+		// close the result
+		$result->close();
 
 		// finish off the last table with its subtotal and close it
 		InternalBidSheetLine::displayTotal($subtotal, "Subtotal");
@@ -411,6 +417,7 @@ class InternalBidSheet extends Sheet
 
 		// and the form.
 		echo "</form>\n";
+
 	}
 } 
 // end InternalBidSheet
