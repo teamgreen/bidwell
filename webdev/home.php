@@ -74,7 +74,7 @@
 							$pageNum = 1;
 						};
 
-						$sql_project = "SELECT COUNT(*) FROM `project`";
+						$sql_project = "SELECT COUNT(*) FROM `project` WHERE `ProjectStatusID`!='7'";
 						$result_project = @mysqli_query($dbc, $sql_project);
 
 						$rows = @mysqli_fetch_row($result_project);
@@ -93,7 +93,7 @@
 						$limit = 'LIMIT ' . ($pageNum - 1) * $numRows . ", " . $numRows;
 
 						// SQL statement to select everything from project table to populate table with rows and cells		
-						$sql_project = "SELECT * FROM `project` $limit"; 
+						$sql_project = "SELECT * FROM `project` WHERE `ProjectStatusID`!='7' $limit"; 
 						$result_project = @mysqli_query($dbc, $sql_project);
 
 						$num_rows_project = @mysqli_num_rows($result_project);
@@ -173,7 +173,7 @@
 							$pageNum = 1;
 						};
 
-						$sql_completed_project = "SELECT COUNT(*) FROM `project`";
+						$sql_completed_project = "SELECT COUNT(*) FROM `project` WHERE `ProjectStatusID`='7'";
 						$result_completed_project = @mysqli_query($dbc, $sql_completed_project);
 
 						$rows = @mysqli_fetch_row($result_completed_project);
@@ -192,7 +192,7 @@
 						$limit = 'LIMIT ' . ($pageNum - 1) * $numRows . ", " . $numRows;
 
 						// SQL statement to select everything from project table to populate table with rows and cells		
-						$sql_completed_project = "SELECT * FROM `project` $limit";
+						$sql_completed_project = "SELECT * FROM `project` WHERE `ProjectStatusID`='7' $limit";
 						$result_completed_project = @mysqli_query($dbc, $sql_completed_project);
 
 						$num_rows_completed_project = @mysqli_num_rows($result_completed_project);
