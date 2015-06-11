@@ -64,7 +64,6 @@
 											while($row_states = @mysqli_fetch_array($result_states)) {
 												echo "<option value='"  .$row_states['abbrevName']. "'>" . $row_states['fullStateName'] . "</option>\n";
 											}
-
 										?>
 									</select>
 								</div>
@@ -154,7 +153,6 @@
 											while($row_states = @mysqli_fetch_array($result_states)) {
 												echo "<option value='" . $row_states['abbrevName'] . "'>" .$row_states['fullStateName'] . "</option>\n";
 											}
-
 										?>
 									</select>
 								</div>

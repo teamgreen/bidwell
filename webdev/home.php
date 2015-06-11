@@ -46,9 +46,9 @@
 
 		$filename = basename(__FILE__);
 		@require_once "includes/header.inc.php"; 
-
 		@require_once 'includes/mysqli_connect.inc.php';
 		$dbc = SQLConnect();
+		@require_once 'includes/mysqli_functions.inc.php';
 
 		# set up projectid SESSION variable
 		# for use in project page
@@ -86,7 +86,6 @@
 	?>
 	
 		<div class="content">
-
 			<div id="home-tabs">
 				<ul>
 					<li><a href="#tab1">Current Projects</a></li>
@@ -142,7 +141,7 @@
 								echo "<td>" . $row_project['ProjectID'] . "</td>";
 								echo "<td>" . $row_project['ProjectName'] . "</td>";
 								echo "<td>" . getCityFromAddressID($dbc, $row_project['SiteAddressID']) . "</td>";
-								echo "<td>" . $row_project['ProjectDueDate'] . "</td>";
+								echo "<td>" . rearrangeDateYMDtoMDY($row_project['ProjectDueDate']) . "</td>";
 								echo "<td>" . getStatusNameFromID($dbc, $row_project['ProjectStatusID']) . "</td>";
 								echo "</tr>\n";
 								echo "<tr class=\"go-to-project\">\n";
@@ -171,24 +170,18 @@
 								echo " <a href='{$_SERVER['PHP_SELF']}?pageNum=$next'><button class=\"page-buttons\" title=\"Next\"><i class=\"fa fa-arrow-right\"></i></button></a> ";
 								echo " <a href='{$_SERVER['PHP_SELF']}?pageNum=$lastPage'><button class=\"page-buttons\" title=\"Last\">Last Page</button></a> ";
 							};
-
 							echo "</div>";
-
 						};
-
 					?>
 				</div>
 				<div id="tab2">
 					<?php
-		
-						@require_once 'includes/mysqli_functions.inc.php';
 						$hasPermission = HasPermission($dbc, $_SESSION['accountid'], Permissions::ePROJECT_CREATE);
 						if ($hasPermission == false) {
 							echo "<p>We are sorry to report that you do not have the permission to create a project.</p>";
 						} else {
 							@include_once 'includes/home-new-form.inc.php';
 						}
-
 					?>
 				</div>
 				<div id="tab3">
@@ -241,14 +234,13 @@
 								echo "<td>" . $row_completed_project['ProjectID'] . "</td>";
 								echo "<td>" . $row_completed_project['ProjectName'] . "</td>";
 								echo "<td>" . getCityFromAddressID($dbc, $row_completed_project['SiteAddressID']) . "</td>";
-								echo "<td>" . $row_completed_project['ProjectDueDate'] . "</td>";
+								echo "<td>" . rearrangeDateYMDtoMDY($row_completed_project['ProjectDueDate']) . "</td>";
 								echo "<td>" . getStatusNameFromID($dbc, $row_completed_project['ProjectStatusID']) . "</td>";
 								echo "</tr>\n";
 								echo "<tr class=\"go-to-project\">\n";
 								echo "<td colspan=\"5\">
 										<p>Would you like to view this project?
 											<a href='{$_SERVER['PHP_SELF']}?projectid=" . $row_project['ProjectID'] . "'><button class=\"view-btn\" title=\"Go To Project\"><i class=\"fa fa-eye\"></i> View Project</button></a>
-						
 									</td>";
 								echo"</tr>\n";
 							}
@@ -270,11 +262,8 @@
 								echo " <a href='{$_SERVER['PHP_SELF']}?pageNum=$next'><button class=\"page-buttons\" title=\"Next\"><i class=\"fa fa-arrow-right\"></i></button></a> ";
 								echo " <a href='{$_SERVER['PHP_SELF']}?pageNum=$lastPage'><button class=\"page-buttons\" title=\"Last\">Last Page</button></a> ";
 							};
-
 							echo "</div>";
-
 						};
-
 					?>
 				</div>
 			</div>

@@ -107,6 +107,15 @@
 	 return $pieces[2] . "-" . $pieces[0] . "-" . $pieces[1];
 	}
 
+	////////////////////////////////////
+	// rearrangeDate - rearranges a date from yyyy-mm-dd format to mm-dd-yyyy
+	// $a_Date - a date in yyyy-mm-dd format.
+	function rearrangeDateYMDtoMDY($a_Date)
+	{
+		$dateArray = explode("-", $a_Date);
+		return $dateArray[1].'-'.$dateArray[2].'-'.$dateArray[0];
+	}
+
 
 
 	///////////////////////////////////////

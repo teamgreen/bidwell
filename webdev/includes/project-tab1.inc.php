@@ -25,7 +25,7 @@
 				<div class="left"><label>Project Owner: </label></div>
 				<input class="project-tab1-inputs" type="text" name="project_name" id="project_name" value='<?php echo $project->getOwner(); ?>'>
 				<div class="left"><label>Due Date:</label></div> 
-				<input class="project-tab1-inputs" type="text" id="project_due_date" name="project_due_date" value='<?php echo $project->getProjectDueDate(); ?>'>
+				<input class="project-tab1-inputs" type="text" id="project_due_date" name="project_due_date" value='<?php @require_once 'includes/mysqli_functions.inc.php';echo rearrangeDateYMDtoMDY($project->getProjectDueDate()); ?>'>
 				<div class="project-status">
 				<div class="left"><label>Project Status:</label></div> 
 				<?php 
