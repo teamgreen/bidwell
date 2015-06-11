@@ -76,6 +76,7 @@ $(document).ready(function(){
 	// --------------------
 	// Created 5/17/2015
 	// Edited 6/3/2015
+	// Edited by Frank van der Salm 6/10/2015
 	// Authored by Alex Chaudoin
 	/////////////////////////////
 
@@ -147,11 +148,17 @@ $(document).ready(function(){
 				url: 'phpscripts/reset-password.php', 
 				data: {'accountid':accountid, 'password':password},
 				success: function(data){
-					console.log("Password reset successfully."+data);
+					if(data == "SUCCESS") {
+						console.log("Password reset successfully."+data);
+						$('.post-success').show().delay(500).hide(5000);
+					}
 				},
 				error: function(xhr, desc, err) {
-					console.log(xhr);
-					console.log("Details: " + desc + "\nError:" + err);
+					if(data == "ERROR") {
+						console.log(xhr);
+						console.log("Details: " + desc + "\nError:" + err);
+						$('.post-error').show().delay(500).hide(5000);
+					}
 				}
 			}); // end ajax
 		}

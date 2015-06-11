@@ -41,6 +41,9 @@
 <body>
 
 	<?php include 'includes/admin-add_reset_delete.php'; ?>
+	
+	<div class="post-success">Success! The password has been changed.</div>
+	<div class="post-error">Error: Password could not be updated.</div>
 
 	<div class="wrapper">
 
