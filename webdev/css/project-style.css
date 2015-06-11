@@ -348,7 +348,7 @@ table{
 	height:auto;
 }
 
-.exAmtInput, .chAmtInput{
+.exAmtInput, .chAmtInput, .inAmtInput{
 	width:100%;
 	/*width:135px;*/
 	text-align:right;

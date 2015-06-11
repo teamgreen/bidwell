@@ -51,6 +51,31 @@ $(document).ready(function(){
 		}
 	);
 
+	// internal bid sheet total updating.
+	(function () {
+	    var previous;
+
+	    $('#tab3 .inAmtInput').on('focus', 
+	    	function()
+	    	{
+		        // Store the current value on focus and on change
+		        previous = this.value;
+	    	}).change(
+			function(evt)
+			{
+				var dif = $(this).val() - previous; // difference of the old and new value
+				var total = $('#tab3 .inTotal'); //total stored here.
+				var newTotal = parseInt(total.html().match(/\d+/)) + parseInt(dif); // the new total amount
+
+				// now update the total box.
+				total.html("$" + newTotal);
+
+		        // Make sure the previous value is updated, in case they change it again.
+		        previous = this.value;
+			}
+	    );
+	})();
+
 	// change bid sheet total updating.
 	(function () {
 	    var previous;

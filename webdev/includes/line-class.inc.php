@@ -248,7 +248,7 @@ class InternalBidSheetLine extends Line
 		echo "<th class='inTableColTaskName'></th>\n";
 		echo "<th></th>\n";
 		echo "<th class='chTableColAmount inTableTotal'>Total:</th>\n";
-		echo "<th>$a_amount</th>\n";
+		echo "<th class='inTotal'>$a_amount</th>\n";
 		echo "</tr>\n";
 	}
 
@@ -271,7 +271,7 @@ class InternalBidSheetLine extends Line
 	 	$this->taskIDSelectBox($a_dbc, $this->taskID);
 		echo "</td>\n";
 		echo "<td class='inTableData'><input class='inSubCon' type='text' maxlength='400' name='fname' value='" . htmlspecialchars($this->subcontractorBidUsed, ENT_QUOTES) . "'></td>\n";
-		echo "<td><input class='exAmtInput' type='number' name='fname' value='" . $this->amount . "'></td>\n";
+		echo "<td><input class='inAmtInput' type='number' name='fname' value='" . $this->amount . "'></td>\n";
 		//echo "<td>{$this->generalNotes}<span class='ui-icon ui-icon-info' title='Notes about this task.'></span></td>\n";
 		echo "<td class='inTableData'><input class='inSubCon' type='text' maxlength='1000' name='fname' value='" . htmlspecialchars($this->generalNotes, ENT_QUOTES) . "'></td>\n";
 		echo "</tr>\n";
