@@ -46,10 +46,10 @@ div.left{
 	display: inline-block;
 	width: 140px;
 }
+
 .left label{
 	text-align: left;
 	width: 210px;
-
 }
 
 div.left2{
@@ -71,6 +71,16 @@ div.left2{
 	display: inline-block;
 	margin-left: -50px;
 	/*margin-right: 13px;*/
+}
+
+.project_status_id{
+	background-color: #d7f3a1;
+}
+
+.project_status_id, .project_status_id option{
+	width:225px;
+	margin-left: 9px;
+	padding-left: 9px;
 }
 
 

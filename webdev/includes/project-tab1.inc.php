@@ -29,27 +29,7 @@
 				<div class="project-status">
 				<div class="left"><label>Project Status:</label></div> 
 				<?php 
-					echo "<select name='project_status_id' class='project_status_id'>\n";
-					
-
-					// SQL statement to select everything from state table to populate options in select form element
-					$sql_project_status_select = "SELECT * FROM `projectstatus`.`ProjectStatusID`.`ProjectStatusName` ";
-					//varDump(__FUNCTION__, __LINE__, $sql_project_status_select);
-					$result = @mysqli_query($dbc, $sql_project_status_select);
-					//varDump(__FUNCTION__, __LINE__, $result_states);
-					
-					while($row_project_status_select = @mysqli_fetch_array($result)) {
-						if($this->projectStatusID == $row_project_status_select) {
-							echo '<option value=' . $row_project_status_select . ' selected>' . $row_project_status_select . "</option>\n";
-						} else {
-							
-							echo "<option value='" . $row_project_status_select['ProjectStatusID'] . "'>" . $row_project_status_select['ProjectStatusName'] . "</option>\n";
-
-						} 
-					}	
-
-					echo "</select>\n";
-
+					$project->generateStatusSelectHTML($dbc);
 				 ?>
 				
 				</div>
