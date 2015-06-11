@@ -137,9 +137,14 @@ $(document).ready(function(){
 		$('#add-reset_bg').hide();
 		$('#reset-dialog').hide();
 
-		// TODO: Validate the password!!!!
+		// values of password/confirm password will
+		// be compared for validation
+		var pass_a = $('#password').val();
+		var pass_b = $('#confirm_password').val();
 
-		if(1){ // if valid, send ajax.
+		// if both passwords are equal, then
+		// the rest of the code will be executed
+		if(pass_a === pass_b){ // if valid, send ajax.
 			var accountid = $(this).attr('data-accountid');
 			var password=$("#new_password").val();
 //			console.log("accountID = " + accountid + " password=" + password);
