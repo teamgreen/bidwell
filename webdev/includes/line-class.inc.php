@@ -149,7 +149,7 @@ class ExternalBidSheetLine extends Line
 		echo "<tr>\n";
 		echo "<td></td>\n";
 		echo "<td class='exTableTotal'>Total:</td>\n";
-		echo '<td>$' . $a_amount . "</td>\n";
+		echo '<td class="exTotal">$' . $a_amount . "</td>\n";
 		echo "</tr>\n";
 	}
 }
